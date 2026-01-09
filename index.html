@@ -576,13 +576,30 @@
             overflow: hidden;
         }
 
-        .advisor-image::before {
-            content: '';
-            position: absolute;
+        .advisor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .advisor-card:hover .advisor-image img {
+            transform: scale(1.05);
+        }
+
+        .advisor-image-placeholder {
             width: 80px;
             height: 80px;
             border: 3px solid var(--muted-green);
             border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'GT America Extended', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--electric-green);
+            background: var(--near-black);
         }
 
         .advisor-info {
@@ -1571,6 +1588,229 @@
             border-radius: 8px;
         }
 
+        /* Advisor Bio Modal */
+        .advisor-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 40px;
+        }
+
+        .advisor-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .advisor-modal {
+            background: var(--dark-gray);
+            border-radius: 16px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .advisor-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--near-black);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .advisor-modal-close:hover {
+            border-color: var(--electric-green);
+            background: rgba(78, 255, 0, 0.1);
+        }
+
+        .advisor-modal-close svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--white);
+        }
+
+        .advisor-modal-header {
+            display: flex;
+            gap: 30px;
+            padding: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .advisor-modal-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 12px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: var(--charcoal);
+        }
+
+        .advisor-modal-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .advisor-modal-photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'GT America Extended', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--electric-green);
+            background: var(--near-black);
+        }
+
+        .advisor-modal-info {
+            flex: 1;
+            padding-top: 10px;
+        }
+
+        .advisor-modal-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .advisor-modal-role {
+            font-size: 1.1rem;
+            color: var(--electric-green);
+            margin-bottom: 16px;
+        }
+
+        .advisor-modal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .advisor-modal-tag {
+            font-family: 'Roboto Mono', monospace;
+            text-transform: uppercase;
+            font-size: 0.65rem;
+            letter-spacing: 0.05em;
+            padding: 6px 12px;
+            background: rgba(78, 255, 0, 0.1);
+            color: var(--electric-green);
+            border-radius: 4px;
+        }
+
+        .advisor-modal-body {
+            padding: 40px;
+        }
+
+        .advisor-modal-section {
+            margin-bottom: 28px;
+        }
+
+        .advisor-modal-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .advisor-modal-section-title {
+            font-family: 'Roboto Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 12px;
+        }
+
+        .advisor-modal-bio {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .advisor-modal-bio p {
+            margin-bottom: 16px;
+        }
+
+        .advisor-modal-bio p:last-child {
+            margin-bottom: 0;
+        }
+
+        .advisor-modal-highlights {
+            list-style: none;
+        }
+
+        .advisor-modal-highlights li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .advisor-modal-highlights li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 6px;
+            height: 6px;
+            background: var(--electric-green);
+            border-radius: 50%;
+        }
+
+        .advisor-modal-linkedin {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .advisor-modal-linkedin:hover {
+            border-color: var(--electric-green);
+            color: var(--electric-green);
+        }
+
+        .advisor-modal-linkedin svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        @media (max-width: 600px) {
+            .advisor-modal-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .advisor-modal-tags {
+                justify-content: center;
+            }
+        }
+
         /* ============================================
            TOAST NOTIFICATION
            ============================================ */
@@ -1819,8 +2059,10 @@
                 <span class="advisor-category">Enterprise Software</span>
             </div>
             <div class="advisors-grid">
-                <div class="advisor-card fade-up stagger-1">
-                    <div class="advisor-image"></div>
+                <div class="advisor-card fade-up stagger-1" data-advisor="charles-eason">
+                    <div class="advisor-image">
+                        <img src="https://ui-avatars.com/api/?name=Charles+Eason&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true" alt="Charles Eason">
+                    </div>
                     <div class="advisor-info">
                         <div class="advisor-name">Charles Eason</div>
                         <div class="advisor-role">SBIR/STTR Specialist</div>
@@ -1830,8 +2072,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="advisor-card fade-up stagger-2">
-                    <div class="advisor-image"></div>
+                <div class="advisor-card fade-up stagger-2" data-advisor="paul-bozzo">
+                    <div class="advisor-image">
+                        <img src="https://ui-avatars.com/api/?name=Paul+Bozzo&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true" alt="Paul Bozzo">
+                    </div>
                     <div class="advisor-info">
                         <div class="advisor-name">Paul Bozzo</div>
                         <div class="advisor-role">Finance & Strategy</div>
@@ -1841,8 +2085,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="advisor-card fade-up stagger-3">
-                    <div class="advisor-image"></div>
+                <div class="advisor-card fade-up stagger-3" data-advisor="mark-klopp">
+                    <div class="advisor-image">
+                        <img src="https://ui-avatars.com/api/?name=Mark+Klopp&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true" alt="Mark Klopp">
+                    </div>
                     <div class="advisor-info">
                         <div class="advisor-name">Mark Klopp</div>
                         <div class="advisor-role">Corporate Venturing</div>
@@ -1852,8 +2098,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="advisor-card fade-up stagger-4">
-                    <div class="advisor-image"></div>
+                <div class="advisor-card fade-up stagger-4" data-advisor="hon-pak">
+                    <div class="advisor-image">
+                        <img src="https://ui-avatars.com/api/?name=Hon+Pak&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true" alt="Hon Pak">
+                    </div>
                     <div class="advisor-info">
                         <div class="advisor-name">Hon Pak</div>
                         <div class="advisor-role">Startup Strategy</div>
@@ -1863,8 +2111,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="advisor-card fade-up stagger-1">
-                    <div class="advisor-image"></div>
+                <div class="advisor-card fade-up stagger-1" data-advisor="stuart-broadhead">
+                    <div class="advisor-image">
+                        <img src="https://ui-avatars.com/api/?name=Stuart+Broadhead&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true" alt="Stuart Broadhead">
+                    </div>
                     <div class="advisor-info">
                         <div class="advisor-name">Stuart Broadhead</div>
                         <div class="advisor-role">Navy SBIR Specialist</div>
@@ -1874,8 +2124,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="advisor-card fade-up stagger-2">
-                    <div class="advisor-image"></div>
+                <div class="advisor-card fade-up stagger-2" data-advisor="daniel-kriozere">
+                    <div class="advisor-image">
+                        <img src="https://ui-avatars.com/api/?name=Daniel+Kriozere&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true" alt="Daniel Kriozere">
+                    </div>
                     <div class="advisor-info">
                         <div class="advisor-name">Daniel Kriozere</div>
                         <div class="advisor-role">Climate Tech</div>
@@ -1885,8 +2137,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="advisor-card fade-up stagger-3">
-                    <div class="advisor-image"></div>
+                <div class="advisor-card fade-up stagger-3" data-advisor="helena-merk">
+                    <div class="advisor-image">
+                        <img src="https://ui-avatars.com/api/?name=Helena+Merk&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true" alt="Helena Merk">
+                    </div>
                     <div class="advisor-info">
                         <div class="advisor-name">Helena Merk</div>
                         <div class="advisor-role">Grants Specialist</div>
@@ -1896,8 +2150,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="advisor-card fade-up stagger-4">
-                    <div class="advisor-image"></div>
+                <div class="advisor-card fade-up stagger-4" data-advisor="kc-wisdom">
+                    <div class="advisor-image">
+                        <img src="https://ui-avatars.com/api/?name=KC+Wisdom&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true" alt="KC Wisdom">
+                    </div>
                     <div class="advisor-info">
                         <div class="advisor-name">KC Wisdom</div>
                         <div class="advisor-role">Pitch & Events</div>
@@ -1907,8 +2163,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="advisor-card fade-up stagger-1">
-                    <div class="advisor-image"></div>
+                <div class="advisor-card fade-up stagger-1" data-advisor="axel-tillmann">
+                    <div class="advisor-image">
+                        <img src="https://ui-avatars.com/api/?name=Axel+Tillmann&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true" alt="Axel Tillmann">
+                    </div>
                     <div class="advisor-info">
                         <div class="advisor-name">Axel Tillmann</div>
                         <div class="advisor-role">Pitch & Events</div>
@@ -2336,6 +2594,35 @@
         </div>
     </div>
 
+    <!-- Advisor Bio Modal -->
+    <div class="advisor-modal-overlay" id="advisorModal">
+        <div class="advisor-modal">
+            <button class="advisor-modal-close" id="advisorModalClose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="advisor-modal-header">
+                <div class="advisor-modal-photo" id="advisorModalPhoto"></div>
+                <div class="advisor-modal-info">
+                    <h3 class="advisor-modal-name" id="advisorModalName"></h3>
+                    <div class="advisor-modal-role" id="advisorModalRole"></div>
+                    <div class="advisor-modal-tags" id="advisorModalTags"></div>
+                </div>
+            </div>
+            <div class="advisor-modal-body">
+                <div class="advisor-modal-section">
+                    <h4 class="advisor-modal-section-title">About</h4>
+                    <div class="advisor-modal-bio" id="advisorModalBio"></div>
+                </div>
+                <div class="advisor-modal-section">
+                    <h4 class="advisor-modal-section-title">Expertise</h4>
+                    <ul class="advisor-modal-highlights" id="advisorModalHighlights"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Pattern Studio Modal -->
     <div class="pattern-studio-overlay" id="patternStudio">
         <div class="pattern-studio-header">
@@ -2620,6 +2907,207 @@
                 document.querySelectorAll('.advisor-category').forEach(c => c.classList.remove('active'));
                 cat.classList.add('active');
             });
+        });
+
+        // ============================================
+        // ADVISOR BIO MODAL
+        // ============================================
+        const advisorData = {
+            'charles-eason': {
+                name: 'Charles Eason',
+                role: 'SBIR/STTR Specialist',
+                tags: ['Grants', 'SBIR/STTR', 'Defense', 'Engineering'],
+                photo: 'https://ui-avatars.com/api/?name=Charles+Eason&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true',
+                bio: `<p>Charles was previously the Statewide Director of Business and Entrepreneurship for the California Community Colleges Economic and Workforce Development Program.</p>
+                      <p>Prior to this position, he was the Director of the Solano College SBDC, where he managed a team of 23 business advisors and served as the Associate Director of the California Community College's Statewide Economic Development Network.</p>
+                      <p>Before moving to Northern California, Charles worked for the Inland Empire Small Business Development Center as Manager of the Inland Empire Business Incubator. He also worked in the defense industry as a systems engineer for TRW's Ballistic Missile Program.</p>`,
+                highlights: [
+                    'Former Statewide Director, CA Community Colleges',
+                    'Managed 23 business advisors at Solano College SBDC',
+                    'Systems Engineer, TRW Ballistic Missile Program',
+                    'B.S. Engineering Sciences, UC San Diego',
+                    'MBA, California State University San Bernardino'
+                ]
+            },
+            'paul-bozzo': {
+                name: 'Paul Bozzo',
+                role: 'Finance & Strategy',
+                tags: ['Finance', 'Business Planning', 'Fundraising', 'Go-to-Market'],
+                photo: 'https://ui-avatars.com/api/?name=Paul+Bozzo&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true',
+                bio: `<p>Paul's specialty is working with entrepreneurial ventures to refine their business model, create an investment-driven business plan, develop credible financial projections and prepare an effective investor pitch.</p>
+                      <p>He advises founding teams on common start-up issues such as legal entity selection, intellectual property, financial accounting and go-to-market strategy.</p>
+                      <p>With deep experience in finance and strategy, Paul helps founders think through the critical decisions that will shape their company's trajectory and appeal to investors.</p>`,
+                highlights: [
+                    'Business model refinement specialist',
+                    'Investment-driven business planning',
+                    'Financial projections development',
+                    'Investor pitch preparation',
+                    'B.S. Information Systems, MBA Finance'
+                ]
+            },
+            'mark-klopp': {
+                name: 'Mark Klopp',
+                role: 'Corporate Venturing',
+                tags: ['Investment', 'Medical Devices', 'Corporate VC', 'Board Member'],
+                photo: 'https://ui-avatars.com/api/?name=Mark+Klopp&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true',
+                bio: `<p>Mark Klopp is an independent consultant, board member, advisor and investor. He is a consultant focused on corporate venturing best practices and a Managing Director with Coronis Medical Ventures, an accelerator for medical devices.</p>
+                      <p>He is an instructor for Global Corporate Venturing Institute and a principal advisor for Larta and Tech Futures Group. Mark is also an angel investor serving as a board member and advisor for several startups and Christian ministries.</p>
+                      <p>Mark is a former Board Member of the National Venture Capital Association (NVCA) and served as Chairman and founding member of the Corporate Venture Group. Formerly Managing Director of Eastman Ventures, Eastman Chemical Company's corporate venture capital arm.</p>`,
+                highlights: [
+                    'Managing Director, Coronis Medical Ventures',
+                    'Former Board Member, NVCA',
+                    'Chairman, Corporate Venture Group (founding)',
+                    'Former Managing Director, Eastman Ventures',
+                    'Instructor, Global Corporate Venturing Institute'
+                ]
+            },
+            'hon-pak': {
+                name: 'Hon Pak',
+                role: 'Startup Strategy',
+                tags: ['Enterprise', 'SaaS', 'Angel Investor', 'IPO/M&A'],
+                photo: 'https://ui-avatars.com/api/?name=Hon+Pak&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true',
+                bio: `<p>As a founder, executive, angel investor, and active board member of technology start-ups, Hon has led multiple start-ups through their entire life-cycle from conception and growth to exits through IPOs and M&As.</p>
+                      <p>Hon has extensive hands-on experience with all aspects of the start-up process and has worked with and guided many management teams through challenges including fund raising, team building, competitive positioning, market and partnership development, pivoting, and go-to-market strategy formation and execution.</p>
+                      <p>Hon has worked with enterprise software, SaaS, cloud infrastructure and manufacturing service companies.</p>`,
+                highlights: [
+                    'Multiple startup exits via IPO and M&A',
+                    'Active angel investor and board member',
+                    'Enterprise software & SaaS expertise',
+                    'Cloud infrastructure experience',
+                    'Full startup lifecycle expertise'
+                ]
+            },
+            'stuart-broadhead': {
+                name: 'Stuart Broadhead',
+                role: 'Navy SBIR Specialist',
+                tags: ['Defense', 'SBIR', 'Navy', 'Government Contracting'],
+                photo: 'https://ui-avatars.com/api/?name=Stuart+Broadhead&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true',
+                bio: `<p>Stuart specializes in helping technology companies navigate the Navy SBIR/STTR program and defense contracting landscape. With deep knowledge of Department of Defense procurement processes, he guides startups through the complexities of government innovation funding.</p>
+                      <p>His expertise spans proposal development, contract negotiations, and building relationships with Navy program managers and prime contractors.</p>
+                      <p>Stuart helps founders understand how to position their technologies for defense applications while maintaining commercial viability.</p>`,
+                highlights: [
+                    'Navy SBIR/STTR program specialist',
+                    'Defense contracting expertise',
+                    'Proposal development guidance',
+                    'DoD procurement navigation',
+                    'Dual-use technology positioning'
+                ]
+            },
+            'daniel-kriozere': {
+                name: 'Daniel Kriozere',
+                role: 'Climate Tech',
+                tags: ['Climate', 'Grants', 'Sustainability', 'Clean Energy'],
+                photo: 'https://ui-avatars.com/api/?name=Daniel+Kriozere&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true',
+                bio: `<p>Daniel is a recognized leader in the climate tech and sustainability space, helping founders navigate the unique challenges and opportunities in clean energy, carbon reduction, and environmental technology sectors.</p>
+                      <p>He specializes in connecting climate startups with grant funding, impact investors, and strategic partners aligned with sustainability goals.</p>
+                      <p>Tech Futures Group has been highly successful at supporting founders both pre-and post-grant funding, with Daniel playing a key role in climate-focused initiatives.</p>`,
+                highlights: [
+                    'Climate tech sector specialist',
+                    'Clean energy funding expertise',
+                    'Impact investor connections',
+                    'Sustainability strategy',
+                    'Grant funding navigation'
+                ]
+            },
+            'helena-merk': {
+                name: 'Helena Merk',
+                role: 'Grants Specialist',
+                tags: ['Grants', 'Strategy', 'Federal Funding', 'Non-Dilutive Capital'],
+                photo: 'https://ui-avatars.com/api/?name=Helena+Merk&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true',
+                bio: `<p>Helena is a leader in the grants and non-dilutive funding field, helping technology companies secure federal and state grant funding to accelerate their growth without giving up equity.</p>
+                      <p>She guides founders through the complex landscape of SBIR, STTR, and other government innovation programs, from initial application through successful award management.</p>
+                      <p>Her strategic approach helps companies build sustainable grant pipelines that complement their venture funding strategies.</p>`,
+                highlights: [
+                    'Federal grant funding specialist',
+                    'SBIR/STTR application guidance',
+                    'Non-dilutive capital strategy',
+                    'Award management expertise',
+                    'Grant pipeline development'
+                ]
+            },
+            'kc-wisdom': {
+                name: 'KC Wisdom',
+                role: 'Pitch & Events',
+                tags: ['Pitching', 'Events', 'Storytelling', 'Investor Relations'],
+                photo: 'https://ui-avatars.com/api/?name=KC+Wisdom&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true',
+                bio: `<p>KC Wisdom (Kaustav Chaudhuri) is a seasoned advisor at Tech Futures Group specializing in pitch coaching and event strategy.</p>
+                      <p>He helps founders craft compelling narratives that resonate with investors, customers, and partners. His approach combines storytelling fundamentals with deep understanding of what decision-makers want to hear.</p>
+                      <p>KC also advises on event strategy, helping companies maximize their presence at conferences, demo days, and investor showcases.</p>`,
+                highlights: [
+                    'Expert pitch coach',
+                    'Startup storytelling specialist',
+                    'Demo day preparation',
+                    'Investor presentation strategy',
+                    'Event presence optimization'
+                ]
+            },
+            'axel-tillmann': {
+                name: 'Axel Tillmann',
+                role: 'Pitch & Events',
+                tags: ['Pitching', 'Capital', 'Global Markets', 'Serial Entrepreneur'],
+                photo: 'https://ui-avatars.com/api/?name=Axel+Tillmann&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true',
+                bio: `<p>Axel Tillmann is a serial entrepreneur having run a few companies and exited several in Europe as well as in the USA. For the last 10 years he has been coaching and mentoring startups and companies of all sizes, including the spin-out of a $20B Japanese corporation.</p>
+                      <p>Axel is comfortable in many different verticals and has embraced entrepreneurship as a way of life. His current roles include Co-founding EIR at Pitch Global and Managing Director of Alpha Consul.</p>
+                      <p>He has launched initiatives to foster entrepreneurship and bring the Silicon Valley Mindset around the world, targeting African Countries, Philippines, Malaysia, Vietnam, South America, and select Eastern and Western European countries.</p>`,
+                highlights: [
+                    'Serial entrepreneur with multiple exits',
+                    'Co-founding EIR at Pitch Global',
+                    'Managing Director, Alpha Consul',
+                    'Corporate spin-out expertise ($20B)',
+                    'Global entrepreneurship initiatives'
+                ]
+            }
+        };
+
+        const advisorModal = document.getElementById('advisorModal');
+        const advisorModalClose = document.getElementById('advisorModalClose');
+        const advisorModalPhoto = document.getElementById('advisorModalPhoto');
+        const advisorModalName = document.getElementById('advisorModalName');
+        const advisorModalRole = document.getElementById('advisorModalRole');
+        const advisorModalTags = document.getElementById('advisorModalTags');
+        const advisorModalBio = document.getElementById('advisorModalBio');
+        const advisorModalHighlights = document.getElementById('advisorModalHighlights');
+
+        document.querySelectorAll('.advisor-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const advisorId = card.dataset.advisor;
+                const advisor = advisorData[advisorId];
+
+                if (advisor) {
+                    advisorModalPhoto.innerHTML = `<img src="${advisor.photo}" alt="${advisor.name}">`;
+                    advisorModalName.textContent = advisor.name;
+                    advisorModalRole.textContent = advisor.role;
+                    advisorModalTags.innerHTML = advisor.tags.map(tag =>
+                        `<span class="advisor-modal-tag">${tag}</span>`
+                    ).join('');
+                    advisorModalBio.innerHTML = advisor.bio;
+                    advisorModalHighlights.innerHTML = advisor.highlights.map(h =>
+                        `<li>${h}</li>`
+                    ).join('');
+
+                    advisorModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        advisorModalClose.addEventListener('click', () => {
+            advisorModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        advisorModal.addEventListener('click', (e) => {
+            if (e.target === advisorModal) {
+                advisorModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && advisorModal.classList.contains('active')) {
+                advisorModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
 
         // ============================================

@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFG Social — Advisor Series v2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --green: #39FF14;
+            --charcoal: #1a1a1a;
+            --charcoal-light: #2d2d2d;
+            --charcoal-mid: #242424;
+            --white: #ffffff;
+            --gray: #888888;
+            --gray-light: #aaaaaa;
+            --gray-dark: #444444;
+            --cream: #e8e4d9;
+            
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'Inter', 'Helvetica Neue', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+        
+        body {
+            font-family: var(--sans);
+            background: #0a0a0a;
+            padding: 40px;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .page-header {
+            margin-bottom: 48px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--gray-dark);
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        
+        .page-header img { height: 48px; }
+        .page-meta { flex: 1; }
+        
+        .page-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+        
+        .page-title {
+            font-family: var(--serif);
+            font-size: 42px;
+            color: var(--white);
+            font-style: italic;
+        }
+        
+        .page-desc {
+            font-size: 14px;
+            color: var(--gray);
+            margin-top: 8px;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+        
+        /* Sections */
+        .campaign-section { margin-bottom: 80px; }
+        .section-header { margin-bottom: 32px; }
+        
+        .section-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gray-dark);
+            margin-bottom: 8px;
+        }
+        
+        .section-title {
+            font-family: var(--serif);
+            font-size: 28px;
+            font-style: italic;
+            color: var(--white);
+        }
+        
+        .section-desc {
+            font-size: 14px;
+            color: var(--gray);
+            margin-top: 8px;
+            max-width: 500px;
+        }
+        
+        /* Post Grid */
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 60px 24px;
+        }
+        
+        /* Post Wrapper */
+        .post-wrapper {
+            position: relative;
+            padding-top: 30px;
+            padding-left: 15px;
+        }
+        
+        .post-sequence {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            font-family: var(--serif);
+            font-size: 140px;
+            font-style: italic;
+            line-height: 1;
+            pointer-events: none;
+            z-index: 0;
+            color: var(--green);
+            opacity: 0.15;
+        }
+        
+        /* Social Post Base */
+        .social-post {
+            aspect-ratio: 1 / 1;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border-radius: 4px;
+            z-index: 1;
+        }
+        
+        .post-logo {
+            position: absolute;
+            top: 6%;
+            left: 6%;
+            height: 7%;
+            z-index: 10;
+        }
+        
+        .post-cta {
+            position: absolute;
+            bottom: 6%;
+            right: 6%;
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.2vw, 10px);
+            letter-spacing: 0.08em;
+            z-index: 10;
+            color: var(--gray-dark);
+        }
+        
+        /* SVG Starburst */
+        .starburst {
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        .starburst-muted { color: #d4d4d4; opacity: 0.15; }
+        .starburst-dark { color: var(--charcoal); opacity: 0.2; }
+        
+        /* Post Caption */
+        .post-caption {
+            background: var(--charcoal-light);
+            padding: 16px 20px;
+            border-radius: 0 0 4px 4px;
+            margin-top: -4px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .post-caption-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gray-dark);
+            margin-bottom: 8px;
+        }
+        
+        .post-caption-text {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+        
+        /* =============================================
+           STYLE: SERIES OPENER
+        ============================================= */
+        .post-opener {
+            background: var(--green);
+            padding: 8%;
+            justify-content: flex-end;
+        }
+        
+        .post-opener .opener-label {
+            font-family: var(--mono);
+            font-size: clamp(9px, 2.5vw, 11px);
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+        
+        .post-opener .opener-headline {
+            font-family: var(--serif);
+            font-size: clamp(36px, 11vw, 56px);
+            color: var(--charcoal);
+            line-height: 0.95;
+            margin-bottom: 16px;
+        }
+        
+        .post-opener .opener-sub {
+            font-family: var(--serif);
+            font-size: clamp(16px, 4.5vw, 22px);
+            font-style: italic;
+            color: var(--charcoal);
+            opacity: 0.6;
+            line-height: 1.3;
+            max-width: 85%;
+        }
+        
+        .post-opener .opener-starburst {
+            width: 30%;
+            top: 8%;
+            right: 8%;
+        }
+        
+        /* =============================================
+           STYLE: WHAT I LOOK FOR
+        ============================================= */
+        .post-lookfor {
+            background: var(--charcoal);
+            display: grid;
+            grid-template-rows: auto 1fr;
+        }
+        
+        .post-lookfor .lookfor-header {
+            padding: 6% 8%;
+            border-bottom: 1px solid var(--gray-dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .post-lookfor .lookfor-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--charcoal-mid);
+            border-radius: 50%;
+            border: 2px solid var(--gray-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--serif);
+            font-size: 18px;
+            font-style: italic;
+            color: var(--green);
+            opacity: 0.5;
+        }
+        
+        .post-lookfor .lookfor-info {}
+        
+        .post-lookfor .lookfor-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 2px;
+        }
+        
+        .post-lookfor .lookfor-title {
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: 0.08em;
+            color: var(--gray);
+        }
+        
+        .post-lookfor .lookfor-body {
+            padding: 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .post-lookfor .lookfor-label {
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.2vw, 10px);
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 16px;
+        }
+        
+        .post-lookfor .lookfor-quote {
+            font-family: var(--serif);
+            font-size: clamp(22px, 6.5vw, 32px);
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.2;
+        }
+        
+        .post-lookfor .lookfor-quote em {
+            color: var(--green);
+        }
+        
+        .post-lookfor .lookfor-starburst {
+            width: 18%;
+            bottom: 8%;
+            right: 8%;
+        }
+        
+        /* =============================================
+           STYLE: THE QUESTION
+        ============================================= */
+        .post-question {
+            background: var(--charcoal);
+            padding: 8%;
+            justify-content: center;
+        }
+        
+        .post-question .question-label {
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.2vw, 10px);
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray-dark);
+            margin-bottom: 16px;
+        }
+        
+        .post-question .question-text {
+            font-family: var(--serif);
+            font-size: clamp(26px, 8vw, 40px);
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 24px;
+        }
+        
+        .post-question .question-attr {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .post-question .question-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--charcoal-mid);
+            border-radius: 50%;
+            border: 2px solid var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--serif);
+            font-size: 14px;
+            font-style: italic;
+            color: var(--green);
+        }
+        
+        .post-question .question-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--white);
+        }
+        
+        .post-question .question-role {
+            font-family: var(--mono);
+            font-size: 9px;
+            color: var(--gray);
+            margin-top: 2px;
+        }
+        
+        .post-question .question-starburst {
+            width: 22%;
+            top: 8%;
+            right: 8%;
+        }
+        
+        /* =============================================
+           STYLE: THE MISTAKE
+        ============================================= */
+        .post-mistake {
+            background: var(--green);
+            padding: 8%;
+            justify-content: center;
+        }
+        
+        .post-mistake .mistake-label {
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.2vw, 10px);
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            opacity: 0.5;
+            margin-bottom: 16px;
+        }
+        
+        .post-mistake .mistake-text {
+            font-family: var(--serif);
+            font-size: clamp(24px, 7vw, 36px);
+            color: var(--charcoal);
+            line-height: 1.15;
+            margin-bottom: 24px;
+        }
+        
+        .post-mistake .mistake-text em {
+            font-style: italic;
+        }
+        
+        .post-mistake .mistake-attr {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .post-mistake .mistake-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--charcoal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--serif);
+            font-size: 14px;
+            font-style: italic;
+            color: var(--green);
+        }
+        
+        .post-mistake .mistake-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+        
+        .post-mistake .mistake-role {
+            font-family: var(--mono);
+            font-size: 9px;
+            color: var(--charcoal);
+            opacity: 0.6;
+            margin-top: 2px;
+        }
+        
+        .post-mistake .mistake-starburst {
+            width: 20%;
+            bottom: 10%;
+            right: 8%;
+        }
+        
+        /* =============================================
+           STYLE: ADVISOR TIP
+        ============================================= */
+        .post-tip {
+            background: var(--charcoal);
+            padding: 8%;
+            justify-content: flex-end;
+            border: 1px solid var(--gray-dark);
+        }
+        
+        .post-tip .tip-number {
+            position: absolute;
+            top: 6%;
+            right: 8%;
+            font-family: var(--serif);
+            font-size: clamp(64px, 18vw, 90px);
+            font-style: italic;
+            color: var(--green);
+            opacity: 0.15;
+            line-height: 1;
+        }
+        
+        .post-tip .tip-label {
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.2vw, 10px);
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 16px;
+        }
+        
+        .post-tip .tip-text {
+            font-family: var(--serif);
+            font-size: clamp(22px, 6.5vw, 32px);
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        .post-tip .tip-attr {
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--gray);
+        }
+        
+        /* =============================================
+           STYLE: SPLIT ADVISOR
+        ============================================= */
+        .post-split-advisor {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .post-split-advisor .split-photo {
+            background: var(--charcoal-mid);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .post-split-advisor .split-photo-placeholder {
+            font-family: var(--serif);
+            font-size: 56px;
+            font-style: italic;
+            color: var(--green);
+            opacity: 0.2;
+        }
+        
+        .post-split-advisor .split-content {
+            background: var(--charcoal);
+            padding: 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .post-split-advisor .split-label {
+            font-family: var(--mono);
+            font-size: clamp(8px, 2vw, 9px);
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 12px;
+        }
+        
+        .post-split-advisor .split-name {
+            font-family: var(--serif);
+            font-size: clamp(24px, 7vw, 32px);
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+        
+        .post-split-advisor .split-title {
+            font-family: var(--mono);
+            font-size: clamp(8px, 2vw, 9px);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 16px;
+        }
+        
+        .post-split-advisor .split-cred {
+            font-size: clamp(12px, 3.5vw, 14px);
+            color: var(--gray-light);
+            line-height: 1.5;
+        }
+        
+        /* =============================================
+           STYLE: FULL BLEED QUOTE
+        ============================================= */
+        .post-fullquote {
+            background: var(--charcoal);
+            padding: 10%;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .post-fullquote .fullquote-mark {
+            font-family: var(--serif);
+            font-size: clamp(80px, 22vw, 120px);
+            color: var(--green);
+            opacity: 0.1;
+            line-height: 0.5;
+            margin-bottom: 8px;
+        }
+        
+        .post-fullquote .fullquote-text {
+            font-family: var(--serif);
+            font-size: clamp(20px, 6vw, 28px);
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: 24px;
+        }
+        
+        .post-fullquote .fullquote-text em {
+            color: var(--green);
+        }
+        
+        .post-fullquote .fullquote-attr {
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--gray);
+            letter-spacing: 0.08em;
+        }
+        
+        /* =============================================
+           STYLE: STAT CARD
+        ============================================= */
+        .post-stat-card {
+            background: var(--green);
+            padding: 8%;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .post-stat-card .stat-value {
+            font-family: var(--serif);
+            font-size: clamp(72px, 22vw, 100px);
+            color: var(--charcoal);
+            line-height: 0.9;
+            margin-bottom: 8px;
+        }
+        
+        .post-stat-card .stat-label {
+            font-family: var(--mono);
+            font-size: clamp(10px, 3vw, 12px);
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            margin-bottom: 16px;
+        }
+        
+        .post-stat-card .stat-context {
+            font-family: var(--serif);
+            font-size: clamp(16px, 4.5vw, 20px);
+            font-style: italic;
+            color: var(--charcoal);
+            opacity: 0.6;
+            max-width: 80%;
+        }
+        
+        .post-stat-card .stat-starburst {
+            width: 25%;
+            top: 8%;
+            right: 8%;
+        }
+        
+        /* =============================================
+           STYLE: CLOSER
+        ============================================= */
+        .post-closer {
+            background: var(--charcoal);
+            padding: 8%;
+            justify-content: center;
+        }
+        
+        .post-closer .closer-line {
+            font-family: var(--serif);
+            font-size: clamp(28px, 8vw, 42px);
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 4px;
+        }
+        
+        .post-closer .closer-line.dim {
+            color: var(--gray-dark);
+        }
+        
+        .post-closer .closer-line em {
+            font-style: italic;
+            color: var(--green);
+        }
+        
+        .post-closer .closer-cta {
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            color: var(--gray);
+            margin-top: 24px;
+        }
+        
+        .post-closer .closer-starburst {
+            width: 20%;
+            bottom: 10%;
+            right: 8%;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- SVG Symbol -->
+    <svg style="display: none;">
+        <symbol id="starburst" viewBox="0 0 100 100">
+            <g transform="translate(50,50)" fill="none" stroke="currentColor" stroke-width="1.2">
+                <line x1="0" y1="-46" x2="0" y2="-18"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(15)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(30)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(45)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(60)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(75)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(90)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(105)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(120)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(135)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(150)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(165)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(180)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(195)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(210)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(225)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(240)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(255)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(270)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(285)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(300)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(315)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(330)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(345)"/>
+            </g>
+        </symbol>
+    </svg>
+
+    <div class="page-header">
+        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" alt="TFG">
+        <div class="page-meta">
+            <div class="page-label">Social Campaign</div>
+            <div class="page-title">Advisor Series v2</div>
+            <div class="page-desc">20-post series humanizing TFG advisors through their insights, signature questions, and hard-won lessons. Less "meet the team" — more "learn from the experts."</div>
+        </div>
+    </div>
+    
+    <!-- =============================================
+         SERIES OPENERS
+    ============================================= -->
+    <div class="campaign-section">
+        <div class="section-header">
+            <div class="section-label">Series Openers</div>
+            <div class="section-title">Launch Posts</div>
+            <div class="section-desc">Introduce the series concept. Create anticipation.</div>
+        </div>
+        
+        <div class="post-grid">
+            
+            <!-- Opener 1 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">01</div>
+                <div class="social-post post-opener">
+                    <svg class="starburst opener-starburst starburst-dark"><use href="#starburst"/></svg>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="post-logo" alt="TFG">
+                    <div class="opener-label">New Series</div>
+                    <div class="opener-headline">What I Look For<br>in a Founder</div>
+                    <div class="opener-sub">14 advisors. Hundreds of investments. Here's what they've learned.</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">NEW SERIES: We asked our advisors — ex-VCs, serial founders, grant specialists — what separates the founders who make it from those who don't. Their answers might surprise you. First post drops tomorrow.</div>
+                </div>
+            </div>
+            
+            <!-- Opener 2 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">02</div>
+                <div class="social-post post-stat-card">
+                    <svg class="starburst stat-starburst starburst-dark"><use href="#starburst"/></svg>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="post-logo" alt="TFG">
+                    <div class="stat-value">14</div>
+                    <div class="stat-label">Advisors</div>
+                    <div class="stat-context">Ex-VCs. Serial founders. $1B+ in deals. Their insights — free.</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">14 advisors who've seen hundreds of pitches, funded dozens of companies, and learned what actually matters. This week: their unfiltered advice.</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- =============================================
+         WHAT I LOOK FOR
+    ============================================= -->
+    <div class="campaign-section">
+        <div class="section-header">
+            <div class="section-label">Content Block A</div>
+            <div class="section-title">"What I Look For"</div>
+            <div class="section-desc">Each advisor shares the #1 thing they look for in founders.</div>
+        </div>
+        
+        <div class="post-grid">
+            
+            <!-- Emily Ma -->
+            <div class="post-wrapper">
+                <div class="post-sequence">03</div>
+                <div class="social-post post-lookfor">
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                    <div class="lookfor-header">
+                        <div class="lookfor-avatar">EM</div>
+                        <div class="lookfor-info">
+                            <div class="lookfor-name">Emily Ma</div>
+                            <div class="lookfor-title">Ex-VC · $50M+ Deployed</div>
+                        </div>
+                    </div>
+                    <div class="lookfor-body">
+                        <div class="lookfor-label">What I Look For</div>
+                        <div class="lookfor-quote">Founders who can <em>articulate the problem</em> in one sentence. If you can't, you don't understand it deeply enough.</div>
+                    </div>
+                    <svg class="starburst lookfor-starburst starburst-muted"><use href="#starburst"/></svg>
+                    <div class="post-cta">techfuturesgroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Emily deployed $50M+ at Lightspeed before joining TFG. Her #1 filter: clarity. Can you explain the problem you solve in one sentence?</div>
+                </div>
+            </div>
+            
+            <!-- Hon Wong -->
+            <div class="post-wrapper">
+                <div class="post-sequence">04</div>
+                <div class="social-post post-lookfor">
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                    <div class="lookfor-header">
+                        <div class="lookfor-avatar">HW</div>
+                        <div class="lookfor-info">
+                            <div class="lookfor-name">Hon Wong</div>
+                            <div class="lookfor-title">Multiple IPOs & Exits</div>
+                        </div>
+                    </div>
+                    <div class="lookfor-body">
+                        <div class="lookfor-label">What I Look For</div>
+                        <div class="lookfor-quote"><em>Speed of iteration.</em> I don't care about your first idea. I care how fast you learn when it's wrong.</div>
+                    </div>
+                    <svg class="starburst lookfor-starburst starburst-muted"><use href="#starburst"/></svg>
+                    <div class="post-cta">techfuturesgroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Hon has taken multiple companies from founding to exit — IPOs and acquisitions. His litmus test: how quickly can you learn and adapt?</div>
+                </div>
+            </div>
+            
+            <!-- Kristina McMillan -->
+            <div class="post-wrapper">
+                <div class="post-sequence">05</div>
+                <div class="social-post post-lookfor">
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                    <div class="lookfor-header">
+                        <div class="lookfor-avatar">KM</div>
+                        <div class="lookfor-info">
+                            <div class="lookfor-name">Kristina McMillan</div>
+                            <div class="lookfor-title">GTM Expert · 100+ Papers</div>
+                        </div>
+                    </div>
+                    <div class="lookfor-body">
+                        <div class="lookfor-label">What I Look For</div>
+                        <div class="lookfor-quote">Founders who've <em>talked to 50 customers</em> before writing a line of code. Most haven't talked to 5.</div>
+                    </div>
+                    <svg class="starburst lookfor-starburst starburst-muted"><use href="#starburst"/></svg>
+                    <div class="post-cta">techfuturesgroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Kristina has published 100+ research papers on GTM strategy. Her advice: customer discovery isn't optional. It's the job.</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- =============================================
+         THE QUESTION I ALWAYS ASK
+    ============================================= -->
+    <div class="campaign-section">
+        <div class="section-header">
+            <div class="section-label">Content Block B</div>
+            <div class="section-title">"The Question I Always Ask"</div>
+            <div class="section-desc">Signature questions each advisor uses to evaluate founders.</div>
+        </div>
+        
+        <div class="post-grid">
+            
+            <!-- Question 1 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">06</div>
+                <div class="social-post post-question">
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                    <svg class="starburst question-starburst starburst-muted"><use href="#starburst"/></svg>
+                    <div class="question-label">The Question I Always Ask</div>
+                    <div class="question-text">"Why will you win — and why will you win now?"</div>
+                    <div class="question-attr">
+                        <div class="question-avatar">JS</div>
+                        <div>
+                            <div class="question-name">Jeff Smith</div>
+                            <div class="question-role">30+ years in tech sales</div>
+                        </div>
+                    </div>
+                    <div class="post-cta">techfuturesgroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Jeff has closed deals at every stage from seed to IPO. His question cuts to the heart of timing and competitive advantage. Can you answer it?</div>
+                </div>
+            </div>
+            
+            <!-- Question 2 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">07</div>
+                <div class="social-post post-question">
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                    <svg class="starburst question-starburst starburst-muted"><use href="#starburst"/></svg>
+                    <div class="question-label">The Question I Always Ask</div>
+                    <div class="question-text">"What do you know that the market hasn't figured out yet?"</div>
+                    <div class="question-attr">
+                        <div class="question-avatar">ND</div>
+                        <div>
+                            <div class="question-name">Nikki Darden</div>
+                            <div class="question-role">60+ startups advised</div>
+                        </div>
+                    </div>
+                    <div class="post-cta">techfuturesgroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Nikki has overseen 60+ startups at Growth Factory Ventures. Her question tests for unique insight — the unfair advantage that can't be copied.</div>
+                </div>
+            </div>
+            
+            <!-- Question 3 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">08</div>
+                <div class="social-post post-question">
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                    <svg class="starburst question-starburst starburst-muted"><use href="#starburst"/></svg>
+                    <div class="question-label">The Question I Always Ask</div>
+                    <div class="question-text">"What's the last thing a customer told you that changed your mind?"</div>
+                    <div class="question-attr">
+                        <div class="question-avatar">GT</div>
+                        <div>
+                            <div class="question-name">Gregory Theyel</div>
+                            <div class="question-role">500+ companies assisted</div>
+                        </div>
+                    </div>
+                    <div class="post-cta">techfuturesgroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Gregory has helped 500+ companies with strategy. His question reveals whether you're actually listening to customers — or just building what you want.</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- =============================================
+         THE MISTAKE I SEE MOST
+    ============================================= -->
+    <div class="campaign-section">
+        <div class="section-header">
+            <div class="section-label">Content Block C</div>
+            <div class="section-title">"The Mistake I See Most"</div>
+            <div class="section-desc">Common founder pitfalls, straight from advisors who've seen it all.</div>
+        </div>
+        
+        <div class="post-grid">
+            
+            <!-- Mistake 1 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">09</div>
+                <div class="social-post post-mistake">
+                    <svg class="starburst mistake-starburst starburst-dark"><use href="#starburst"/></svg>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="post-logo" alt="TFG">
+                    <div class="mistake-label">The Mistake I See Most</div>
+                    <div class="mistake-text">Founders <em>leading with technology</em> instead of the problem. VCs fund solutions to expensive problems — not interesting tech.</div>
+                    <div class="mistake-attr">
+                        <div class="mistake-avatar">EM</div>
+                        <div>
+                            <div class="mistake-name">Emily Ma</div>
+                            <div class="mistake-role">Ex-Lightspeed Ventures</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Emily has seen thousands of pitches. The #1 mistake: talking about your solution before the investor understands why they should care about the problem.</div>
+                </div>
+            </div>
+            
+            <!-- Mistake 2 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">10</div>
+                <div class="social-post post-mistake">
+                    <svg class="starburst mistake-starburst starburst-dark"><use href="#starburst"/></svg>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="post-logo" alt="TFG">
+                    <div class="mistake-label">The Mistake I See Most</div>
+                    <div class="mistake-text">Spraying 200 VCs instead of targeting <em>the 15 who actually invest</em> in your space and stage.</div>
+                    <div class="mistake-attr">
+                        <div class="mistake-avatar">AT</div>
+                        <div>
+                            <div class="mistake-name">Axel Tillmann</div>
+                            <div class="mistake-role">Serial Entrepreneur</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Axel has built and exited companies on two continents. His advice: quality over quantity. 15 right investors beats 200 wrong ones.</div>
+                </div>
+            </div>
+            
+            <!-- Mistake 3 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">11</div>
+                <div class="social-post post-mistake">
+                    <svg class="starburst mistake-starburst starburst-dark"><use href="#starburst"/></svg>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="post-logo" alt="TFG">
+                    <div class="mistake-label">The Mistake I See Most</div>
+                    <div class="mistake-text">Waiting until the money runs out to start fundraising. <em>You raise when you're strong</em>, not when you're desperate.</div>
+                    <div class="mistake-attr">
+                        <div class="mistake-avatar">HW</div>
+                        <div>
+                            <div class="mistake-name">Hon Wong</div>
+                            <div class="mistake-role">Multiple IPOs & Exits</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Hon has seen the full startup lifecycle. His warning: desperation fundraising never works. Start when you have leverage, not when you need a lifeline.</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- =============================================
+         ADVISOR TIPS
+    ============================================= -->
+    <div class="campaign-section">
+        <div class="section-header">
+            <div class="section-label">Content Block D</div>
+            <div class="section-title">Quick Tips</div>
+            <div class="section-desc">Bite-sized tactical advice.</div>
+        </div>
+        
+        <div class="post-grid">
+            
+            <!-- Tip 1 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">12</div>
+                <div class="social-post post-tip">
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                    <div class="tip-number">01</div>
+                    <div class="tip-label">Advisor Tip</div>
+                    <div class="tip-text">Your deck isn't the pitch. It's the leave-behind. The pitch is the conversation.</div>
+                    <div class="tip-attr">— Jeff Smith, BD Expert</div>
+                    <div class="post-cta">techfuturesgroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Stop reading your slides. Tell a story. The deck is what they review after you leave — not a teleprompter.</div>
+                </div>
+            </div>
+            
+            <!-- Tip 2 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">13</div>
+                <div class="social-post post-tip">
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                    <div class="tip-number">02</div>
+                    <div class="tip-label">Advisor Tip</div>
+                    <div class="tip-text">SBIR Phase I isn't about the money. It's about de-risking your tech for VCs.</div>
+                    <div class="tip-attr">— Gregory Theyel, Grants</div>
+                    <div class="post-cta">techfuturesgroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">$275K is nice. But the real value? Third-party validation that your technology works. Use it as a fundraising asset.</div>
+                </div>
+            </div>
+            
+            <!-- Tip 3 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">14</div>
+                <div class="social-post post-tip">
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                    <div class="tip-number">03</div>
+                    <div class="tip-label">Advisor Tip</div>
+                    <div class="tip-text">Never ask "what do you think?" Ask "would you pay for this — and how much?"</div>
+                    <div class="tip-attr">— Kristina McMillan, GTM</div>
+                    <div class="post-cta">techfuturesgroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Opinions are free. Commitments cost something. The only customer feedback that matters is tied to their wallet.</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- =============================================
+         FEATURED ADVISORS
+    ============================================= -->
+    <div class="campaign-section">
+        <div class="section-header">
+            <div class="section-label">Content Block E</div>
+            <div class="section-title">Advisor Spotlights</div>
+            <div class="section-desc">Deeper dives on select advisors.</div>
+        </div>
+        
+        <div class="post-grid">
+            
+            <!-- Split Advisor -->
+            <div class="post-wrapper">
+                <div class="post-sequence">15</div>
+                <div class="social-post post-split-advisor">
+                    <div class="split-photo">
+                        <div class="split-photo-placeholder">EM</div>
+                    </div>
+                    <div class="split-content">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                        <div class="split-label">Meet the Advisor</div>
+                        <div class="split-name">Emily Ma</div>
+                        <div class="split-title">Finance & Fundraising</div>
+                        <div class="split-cred">Former Lightspeed Ventures. $50M+ deployed across 15 seed deals. Stanford GSB.</div>
+                    </div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Emily spent 8 years on the other side of the table. Now she helps TFG founders understand what VCs actually look for — and how to get to yes.</div>
+                </div>
+            </div>
+            
+            <!-- Full Quote -->
+            <div class="post-wrapper">
+                <div class="post-sequence">16</div>
+                <div class="social-post post-fullquote">
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                    <div class="fullquote-mark">"</div>
+                    <div class="fullquote-text">The best founders I've backed weren't the smartest. They were the most <em>relentlessly curious</em> about their customers.</div>
+                    <div class="fullquote-attr">— NIKKI DARDEN, GROWTH FACTORY VENTURES</div>
+                    <div class="post-cta">techfuturesgroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Nikki has backed 60+ startups. Her insight: IQ matters less than customer obsession. Are you listening more than you're building?</div>
+                </div>
+            </div>
+            
+            <!-- Split Advisor 2 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">17</div>
+                <div class="social-post post-split-advisor">
+                    <div class="split-photo">
+                        <div class="split-photo-placeholder">GT</div>
+                    </div>
+                    <div class="split-content">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                        <div class="split-label">Meet the Advisor</div>
+                        <div class="split-name">Gregory Theyel</div>
+                        <div class="split-title">BioTech & Manufacturing</div>
+                        <div class="split-cred">500+ companies assisted. Cambridge Senior Research Fellow. SBIR expert.</div>
+                    </div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Gregory knows biomedical manufacturing like few others. If you're building hardware, deep tech, or anything that needs to scale physically — he's your advisor.</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- =============================================
+         SERIES CLOSERS
+    ============================================= -->
+    <div class="campaign-section">
+        <div class="section-header">
+            <div class="section-label">Series Closers</div>
+            <div class="section-title">Wrap-Up & CTA</div>
+            <div class="section-desc">Close the series with impact.</div>
+        </div>
+        
+        <div class="post-grid">
+            
+            <!-- Stat Closer -->
+            <div class="post-wrapper">
+                <div class="post-sequence">18</div>
+                <div class="social-post post-stat-card">
+                    <svg class="starburst stat-starburst starburst-dark"><use href="#starburst"/></svg>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="post-logo" alt="TFG">
+                    <div class="stat-value">$0</div>
+                    <div class="stat-label">Cost to You</div>
+                    <div class="stat-context">All that expertise. 14 advisors. Completely free.</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Ex-VCs. Serial founders. Grant specialists. All free to NorCal tech founders. Apply now — link in bio.</div>
+                </div>
+            </div>
+            
+            <!-- Stacked Closer -->
+            <div class="post-wrapper">
+                <div class="post-sequence">19</div>
+                <div class="social-post post-closer">
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                    <svg class="starburst closer-starburst starburst-muted"><use href="#starburst"/></svg>
+                    <div class="closer-line dim">14 advisors.</div>
+                    <div class="closer-line dim">$1B+ raised.</div>
+                    <div class="closer-line dim">500+ founders.</div>
+                    <div class="closer-line">Your turn to <em>build.</em></div>
+                    <div class="closer-cta">Apply → techfuturesgroup.org</div>
+                    <div class="post-cta">techfuturesgroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">That's the series. 14 advisors who've seen it all — and want to help you build something that matters. Apply now — link in bio.</div>
+                </div>
+            </div>
+            
+            <!-- Final CTA -->
+            <div class="post-wrapper">
+                <div class="post-sequence">20</div>
+                <div class="social-post post-opener">
+                    <svg class="starburst opener-starburst starburst-dark"><use href="#starburst"/></svg>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="post-logo" alt="TFG">
+                    <div class="opener-label">Apply Now</div>
+                    <div class="opener-headline">Your Ambition.<br>Their Expertise.</div>
+                    <div class="opener-sub">Venture-grade advising. Zero cost. NorCal founders only.</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">You've heard from the advisors. Now it's your move. Apply for free 1:1 advising — link in bio.</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+</html>

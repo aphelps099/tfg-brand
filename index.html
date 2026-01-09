@@ -731,21 +731,23 @@
 
         .advisors-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
         }
 
         .advisor-card {
             background: var(--dark-gray);
-            border-radius: 12px;
+            border-radius: 0;
             overflow: hidden;
             transition: transform 0.3s ease;
             cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid #000000;
+            position: relative;
         }
 
         .advisor-card:hover {
-            transform: translateY(-4px);
+            transform: none;
+            z-index: 2;
         }
 
         .advisor-image {
@@ -807,7 +809,13 @@
         }
 
         .advisor-info {
-            padding: 24px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 60%, transparent 100%);
+            z-index: 3;
         }
 
         .advisor-name {
@@ -837,6 +845,25 @@
             background: rgba(57, 255, 20, 0.1);
             color: var(--electric-green);
             border-radius: 4px;
+        }
+
+        /* Responsive advisor grid */
+        @media (max-width: 1200px) {
+            .advisors-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .advisors-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .advisors-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* ============================================
@@ -2192,7 +2219,7 @@
             <div class="pillars-header">
                 <span class="section-label fade-up">What We Do</span>
                 <h2 class="pillars-headline fade-up stagger-1">
-                    Four pillars. <span class="serif">One mission.</span>
+                    Four pillars.
                 </h2>
             </div>
             <div class="pillars-grid">
@@ -2278,7 +2305,7 @@
             <div class="advisors-header">
                 <span class="section-label fade-up">The Team</span>
                 <h2 class="advisors-headline fade-up stagger-1">
-                    Serial founders. VCs. <span class="serif">Operators.</span>
+                    Serial founders. VCs.
                 </h2>
                 <p class="advisors-subhead fade-up stagger-2">
                     14 advisors who've built, funded, and scaled companies from zero to exit.
@@ -2485,7 +2512,7 @@
             <div class="assets-header">
                 <span class="section-label fade-up">Asset Library</span>
                 <h2 class="assets-headline fade-up stagger-1">
-                    Brand assets. <span class="serif">Ready to deploy.</span>
+                    Brand assets.
                 </h2>
             </div>
 
@@ -2863,7 +2890,7 @@
             <div class="brand-elements-header">
                 <span class="section-label fade-up">Brand Guidelines</span>
                 <h2 class="brand-elements-headline fade-up stagger-1">
-                    Visual system. <span class="serif">Built for impact.</span>
+                    Visual system.
                 </h2>
             </div>
 

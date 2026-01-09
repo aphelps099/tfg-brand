@@ -165,40 +165,58 @@
             pointer-events: none;
         }
 
-        /* Large gradient arc */
+        /* Large gradient arc - TFG style */
         .hero-gradient-arc {
             position: absolute;
-            bottom: -450px;
+            bottom: -500px;
             left: 50%;
-            transform: translateX(-50%);
-            width: 900px;
-            height: 900px;
+            transform: translateX(-60%);
+            width: 1100px;
+            height: 1100px;
             border-radius: 50%;
-            background: conic-gradient(
-                from 180deg,
-                transparent 0deg,
-                rgba(72, 82, 75, 0.6) 30deg,
-                rgba(72, 82, 75, 0.4) 90deg,
-                rgba(72, 82, 75, 0.2) 150deg,
-                transparent 180deg
-            );
             pointer-events: none;
             z-index: 1;
         }
 
+        /* The thick gradient band */
         .hero-gradient-arc::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 700px;
-            height: 700px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            background: var(--charcoal);
+            background: conic-gradient(
+                from 220deg at 50% 50%,
+                transparent 0deg,
+                rgba(55, 75, 70, 0.15) 10deg,
+                rgba(60, 85, 78, 0.4) 40deg,
+                rgba(65, 90, 82, 0.6) 70deg,
+                rgba(58, 80, 74, 0.5) 100deg,
+                rgba(50, 70, 65, 0.3) 130deg,
+                transparent 160deg,
+                transparent 360deg
+            );
+            -webkit-mask: radial-gradient(
+                circle at center,
+                transparent 0%,
+                transparent 58%,
+                black 58%,
+                black 72%,
+                transparent 72%
+            );
+            mask: radial-gradient(
+                circle at center,
+                transparent 0%,
+                transparent 58%,
+                black 58%,
+                black 72%,
+                transparent 72%
+            );
         }
 
-        /* Thin magenta accent arc */
+        /* Magenta accent line */
         .hero-gradient-arc::after {
             content: '';
             position: absolute;
@@ -207,31 +225,43 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            border: 1px solid transparent;
             background: conic-gradient(
-                from 200deg,
+                from 210deg at 50% 50%,
                 transparent 0deg,
-                rgba(200, 100, 180, 0.8) 20deg,
-                rgba(200, 100, 180, 0.6) 60deg,
-                rgba(200, 100, 180, 0.3) 100deg,
-                transparent 140deg
-            ) border-box;
-            -webkit-mask:
-                linear-gradient(#fff 0 0) padding-box,
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
+                rgba(180, 80, 160, 0.3) 15deg,
+                rgba(200, 100, 180, 0.7) 45deg,
+                rgba(220, 120, 200, 0.9) 75deg,
+                rgba(200, 100, 180, 0.6) 105deg,
+                rgba(180, 80, 160, 0.2) 135deg,
+                transparent 155deg,
+                transparent 360deg
+            );
+            -webkit-mask: radial-gradient(
+                circle at center,
+                transparent 0%,
+                transparent 71%,
+                black 71%,
+                black 73%,
+                transparent 73%
+            );
+            mask: radial-gradient(
+                circle at center,
+                transparent 0%,
+                transparent 71%,
+                black 71%,
+                black 73%,
+                transparent 73%
+            );
         }
 
-        /* Small decorative arcs */
+        /* Small decorative arcs - top right */
         .hero-arc {
             position: absolute;
-            top: 80px;
-            right: 100px;
-            width: 200px;
-            height: 200px;
-            border: 1px solid rgba(72, 82, 75, 0.3);
+            top: 60px;
+            right: 80px;
+            width: 180px;
+            height: 180px;
+            border: 1px solid rgba(78, 255, 0, 0.15);
             border-radius: 50%;
             pointer-events: none;
         }
@@ -239,11 +269,22 @@
         .hero-arc::before {
             content: '';
             position: absolute;
-            top: -30px;
-            left: -30px;
-            width: 260px;
-            height: 260px;
-            border: 1px solid rgba(72, 82, 75, 0.2);
+            top: -25px;
+            left: -25px;
+            width: 230px;
+            height: 230px;
+            border: 1px solid rgba(78, 255, 0, 0.08);
+            border-radius: 50%;
+        }
+
+        .hero-arc::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 140px;
+            height: 140px;
+            border: 1px solid rgba(78, 255, 0, 0.1);
             border-radius: 50%;
         }
 

@@ -3297,7 +3297,8 @@
             window.addEventListener('scroll', () => {
                 const scrollY = window.scrollY;
                 const rotation = scrollY * 0.15; // Adjust speed factor as needed
-                starburstEl.style.transform = `rotate(${rotation}deg)`;
+                // Preserve the translate(-50%, -50%) centering while adding rotation
+                starburstEl.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
             }, { passive: true });
         }
 

@@ -980,6 +980,434 @@
             stroke: var(--electric-green);
         }
 
+        /* Mini-Preview Designs */
+        .preview-mini {
+            position: absolute;
+            inset: 16px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        /* Workshop: Green diagonal split */
+        .preview-workshop {
+            background: var(--charcoal);
+        }
+        .preview-workshop::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: var(--electric-green);
+            clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
+        }
+        .preview-workshop::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 12%;
+            width: 30%;
+            height: 8%;
+            background: rgba(78, 255, 0, 0.3);
+            border-radius: 2px;
+        }
+
+        /* Demo Day: Arc curves */
+        .preview-demoday {
+            background: var(--near-black);
+        }
+        .preview-demoday::before {
+            content: '';
+            position: absolute;
+            bottom: -60%;
+            left: -30%;
+            width: 80%;
+            height: 120%;
+            border: 2px solid rgba(78, 255, 0, 0.2);
+            border-radius: 50%;
+        }
+        .preview-demoday::after {
+            content: '';
+            position: absolute;
+            top: 30%;
+            left: 12%;
+            width: 50%;
+            height: 15%;
+            background: var(--electric-green);
+            opacity: 0.8;
+        }
+
+        /* Webinar: Grid with top bar */
+        .preview-webinar {
+            background: var(--charcoal);
+            background-image:
+                linear-gradient(to right, rgba(78, 255, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(78, 255, 0, 0.05) 1px, transparent 1px);
+            background-size: 12px 12px;
+        }
+        .preview-webinar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--electric-green);
+        }
+        .preview-webinar::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 45%;
+            height: 100%;
+            border-left: 1px solid rgba(78, 255, 0, 0.15);
+            transform: translateY(-50%);
+        }
+
+        /* Workshop Alt: Dark split with schedule */
+        .preview-workshop-alt {
+            background: var(--near-black);
+            display: flex;
+        }
+        .preview-workshop-alt::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 35%;
+            height: 100%;
+            background: var(--charcoal);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .preview-workshop-alt::after {
+            content: '';
+            position: absolute;
+            top: 25%;
+            right: 8%;
+            width: 22%;
+            height: 50%;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.1) 0px,
+                rgba(255, 255, 255, 0.1) 8px,
+                transparent 8px,
+                transparent 20px
+            );
+        }
+
+        /* Pitch: Diagonal green accent */
+        .preview-pitch {
+            background: var(--charcoal);
+        }
+        .preview-pitch::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 35%;
+            height: 100%;
+            background: var(--electric-green);
+            clip-path: polygon(40% 0, 100% 0, 100% 100%, 0 100%);
+        }
+        .preview-pitch::after {
+            content: '';
+            position: absolute;
+            top: 40%;
+            left: 10%;
+            width: 45%;
+            height: 20%;
+            border-left: 3px solid var(--electric-green);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Flier: Document shape */
+        .preview-flier {
+            background: linear-gradient(180deg, var(--electric-green) 0%, var(--electric-green) 25%, #fff 25%);
+        }
+        .preview-flier::before {
+            content: '';
+            position: absolute;
+            top: 35%;
+            left: 15%;
+            width: 70%;
+            height: 8%;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+        }
+        .preview-flier::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 15%;
+            width: 50%;
+            height: 5%;
+            background: rgba(0, 0, 0, 0.08);
+            border-radius: 2px;
+        }
+
+        /* Social: Square with logo circle */
+        .preview-social {
+            background: var(--charcoal);
+        }
+        .preview-social::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 12%;
+            width: 18%;
+            height: 24%;
+            border: 2px solid var(--electric-green);
+            border-radius: 50%;
+        }
+        .preview-social::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 12%;
+            width: 55%;
+            height: 20%;
+            background: rgba(78, 255, 0, 0.15);
+            border-radius: 2px;
+        }
+
+        /* Newsletter: Dark header with blocks */
+        .preview-newsletter {
+            background: #fff;
+        }
+        .preview-newsletter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: var(--charcoal);
+        }
+        .preview-newsletter::after {
+            content: '';
+            position: absolute;
+            top: 40%;
+            left: 10%;
+            width: 80%;
+            height: 45%;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.06) 0px,
+                rgba(0, 0, 0, 0.06) 12px,
+                transparent 12px,
+                transparent 20px
+            );
+        }
+
+        /* Email Events: Colorful header */
+        .preview-email-events {
+            background: var(--charcoal);
+        }
+        .preview-email-events::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 10%;
+            width: 25%;
+            height: 25%;
+            border: 2px solid var(--electric-green);
+            border-radius: 50%;
+        }
+        .preview-email-events::after {
+            content: '';
+            position: absolute;
+            bottom: 20%;
+            left: 10%;
+            width: 80%;
+            height: 12%;
+            background: var(--electric-green);
+            border-radius: 2px;
+        }
+
+        /* Signature: Horizontal layout */
+        .preview-signature {
+            background: #fff;
+        }
+        .preview-signature::before {
+            content: '';
+            position: absolute;
+            top: 30%;
+            left: 8%;
+            width: 3px;
+            height: 40%;
+            background: var(--electric-green);
+        }
+        .preview-signature::after {
+            content: '';
+            position: absolute;
+            top: 35%;
+            left: 15%;
+            width: 60%;
+            height: 30%;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.08) 0px,
+                rgba(0, 0, 0, 0.08) 6px,
+                transparent 6px,
+                transparent 12px
+            );
+        }
+
+        /* Business Card: Minimal card */
+        .preview-bizcard {
+            background: var(--near-black);
+        }
+        .preview-bizcard::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 15%;
+            width: 20%;
+            height: 28%;
+            border: 2px solid var(--electric-green);
+            border-radius: 50%;
+        }
+        .preview-bizcard::after {
+            content: '';
+            position: absolute;
+            bottom: 25%;
+            left: 15%;
+            width: 50%;
+            height: 15%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+
+        /* One-Pager: Document */
+        .preview-onepager {
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .preview-onepager::before {
+            content: '';
+            position: absolute;
+            top: 8%;
+            left: 10%;
+            width: 35%;
+            height: 12%;
+            background: var(--electric-green);
+            border-radius: 2px;
+        }
+        .preview-onepager::after {
+            content: '';
+            position: absolute;
+            top: 28%;
+            left: 10%;
+            width: 80%;
+            height: 55%;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.06) 0px,
+                rgba(0, 0, 0, 0.06) 8px,
+                transparent 8px,
+                transparent 14px
+            );
+        }
+
+        /* Pitch Deck: Slides */
+        .preview-deck {
+            background: var(--charcoal);
+        }
+        .preview-deck::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 12%;
+            width: 76%;
+            height: 55%;
+            background: var(--near-black);
+            border: 1px solid rgba(78, 255, 0, 0.2);
+            border-radius: 3px;
+        }
+        .preview-deck::after {
+            content: '';
+            position: absolute;
+            top: 25%;
+            left: 20%;
+            width: 40%;
+            height: 20%;
+            background: var(--electric-green);
+            opacity: 0.6;
+            border-radius: 2px;
+        }
+
+        /* Advisor Carousel */
+        .preview-advisor {
+            background: var(--near-black);
+        }
+        .preview-advisor::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35%;
+            height: 45%;
+            background: var(--charcoal);
+            border: 2px solid var(--electric-green);
+            border-radius: 4px;
+        }
+        .preview-advisor::after {
+            content: '';
+            position: absolute;
+            bottom: 15%;
+            left: 20%;
+            width: 60%;
+            height: 10%;
+            background: rgba(78, 255, 0, 0.3);
+            border-radius: 2px;
+        }
+
+        /* Case Study */
+        .preview-casestudy {
+            background: linear-gradient(135deg, var(--charcoal) 50%, var(--electric-green) 50%);
+        }
+        .preview-casestudy::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            width: 35%;
+            height: 60%;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+        }
+
+        /* Impact Report */
+        .preview-impact {
+            background: var(--near-black);
+        }
+        .preview-impact::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            height: 50%;
+            border: 3px solid var(--electric-green);
+            border-radius: 50%;
+        }
+        .preview-impact::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30%;
+            height: 30%;
+            background: var(--electric-green);
+            opacity: 0.3;
+            border-radius: 50%;
+        }
+
         .asset-info {
             padding: 20px;
         }
@@ -2507,7 +2935,7 @@
                     <a href="./tfg-social-templates.html" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">All Templates</span>
+                                <div class="preview-mini preview-social"></div>
                                 <span class="asset-preview-badge">16 Designs</span>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">
@@ -2533,7 +2961,7 @@
                     <a href="./tfg-event-workshop.html" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">Workshop</span>
+                                <div class="preview-mini preview-workshop"></div>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2551,7 +2979,7 @@
                     <a href="./tfg-event-demoday.html" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">Demo Day</span>
+                                <div class="preview-mini preview-demoday"></div>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2569,7 +2997,7 @@
                     <a href="./tfg-event-webinar.html" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">Webinar</span>
+                                <div class="preview-mini preview-webinar"></div>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2587,7 +3015,7 @@
                     <a href="./tfg-event-workshop-alt.html" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">Series</span>
+                                <div class="preview-mini preview-workshop-alt"></div>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2605,7 +3033,7 @@
                     <a href="./tfg-event-pitch.html" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">Pitch</span>
+                                <div class="preview-mini preview-pitch"></div>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2623,7 +3051,7 @@
                     <a href="./Fliers-TFG-June-Events.pdf" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">Flier</span>
+                                <div class="preview-mini preview-flier"></div>
                                 <span class="asset-preview-badge">Sample</span>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">
@@ -2649,7 +3077,7 @@
                     <a href="./tfg-newsletter-emails.html" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">Newsletter</span>
+                                <div class="preview-mini preview-newsletter"></div>
                                 <span class="asset-preview-badge">3 Concepts</span>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">
@@ -2669,7 +3097,7 @@
                     <a href="./tfg-event-emails.html" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">Events</span>
+                                <div class="preview-mini preview-email-events"></div>
                                 <span class="asset-preview-badge">4 Concepts</span>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">
@@ -2689,7 +3117,7 @@
                     <a href="./tfg-email-signatures.html" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">Signatures</span>
+                                <div class="preview-mini preview-signature"></div>
                                 <span class="asset-preview-badge">7 Options</span>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">
@@ -2715,7 +3143,7 @@
                     <a href="./Flier-TFG-1B-.pdf" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">1-Pager</span>
+                                <div class="preview-mini preview-onepager"></div>
                                 <span class="asset-preview-badge">$1B+</span>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">
@@ -2735,7 +3163,7 @@
                     <a href="./TFG-1-pager-founders--31824.pdf" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">Onboard</span>
+                                <div class="preview-mini preview-onepager"></div>
                                 <span class="asset-preview-badge">Founders</span>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">
@@ -2755,7 +3183,7 @@
                     <a href="./20241120_TFG-deck-2024-1B-.pdf" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">Pitch Deck</span>
+                                <div class="preview-mini preview-deck"></div>
                                 <span class="asset-preview-badge">2025</span>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">
@@ -2775,7 +3203,7 @@
                     <a href="./tfg-business-cards.html" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">Business Cards</span>
+                                <div class="preview-mini preview-bizcard"></div>
                                 <span class="asset-preview-badge">6 Designs</span>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">
@@ -2801,7 +3229,7 @@
                     <a href="./tfg-advisor-series-v2.html" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">Advisor Series</span>
+                                <div class="preview-mini preview-advisor"></div>
                                 <span class="asset-preview-badge">20 Posts</span>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">
@@ -2821,7 +3249,7 @@
                     <a href="./tfg-ambition-ignited.html" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">Ambition Ignited</span>
+                                <div class="preview-mini preview-social"></div>
                                 <span class="asset-preview-badge">15 Posts</span>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">
@@ -2841,7 +3269,7 @@
                     <a href="./tfg-linkedin-carousels-banners-evergreen.html" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">LinkedIn Assets</span>
+                                <div class="preview-mini preview-social"></div>
                                 <span class="asset-preview-badge">Full Kit</span>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">
@@ -2861,7 +3289,7 @@
                     <a href="./tfg-impact-report-2025.html" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">Impact Report</span>
+                                <div class="preview-mini preview-impact"></div>
                                 <span class="asset-preview-badge">2025</span>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">
@@ -2881,7 +3309,7 @@
                     <a href="./tfg-case-study-template.html" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
-                                <span class="asset-preview-placeholder">Case Study</span>
+                                <div class="preview-mini preview-casestudy"></div>
                                 <span class="asset-preview-badge">Template</span>
                                 <div class="asset-preview-overlay">
                                     <div class="asset-preview-icon">

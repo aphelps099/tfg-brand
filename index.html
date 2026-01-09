@@ -361,8 +361,23 @@
             font-size: 1.25rem;
             color: rgba(255, 255, 255, 0.7);
             max-width: 500px;
-            margin-bottom: 40px;
+            margin-bottom: 24px;
             font-weight: 300;
+        }
+
+        .hero-impact-link {
+            display: inline-block;
+            font-family: 'GT America Extended', sans-serif;
+            font-size: 0.9rem;
+            color: var(--electric-green);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            margin-bottom: 40px;
+            transition: opacity 0.2s ease;
+        }
+
+        .hero-impact-link:hover {
+            opacity: 0.8;
         }
 
         .hero-hook {
@@ -2163,6 +2178,7 @@
                     <p class="hero-subhead fade-up stagger-2">
                         Venture-grade advising for Northern California tech founders. $1B+ investment. $0 cost. No equity.
                     </p>
+                    <a href="./tfg-impact-report-2025.html" class="hero-impact-link fade-up stagger-3" target="_blank">2025 Impact Report →</a>
                 </div>
                 <div class="hero-stat fade-up stagger-4">
                     <div class="hero-stat-starburst" id="starburst"></div>
@@ -2191,12 +2207,6 @@
                     <h3 class="pillar-title">Product</h3>
                     <div class="pillar-stat">Product-Market Fit</div>
                     <p class="pillar-desc">Advisors who've shipped. Get from MVP to traction with founders who've been there.</p>
-                    <a href="#" class="pillar-cta">
-                        Learn more
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
                 </div>
                 <div class="pillar-card fade-up stagger-2">
                     <div class="pillar-lockup">
@@ -2206,12 +2216,6 @@
                     <h3 class="pillar-title">Capital</h3>
                     <div class="pillar-stat">$1B+ Raised</div>
                     <p class="pillar-desc">Cap table strategy, pitch prep, investor intros. We know what VCs want to see.</p>
-                    <a href="#" class="pillar-cta">
-                        Learn more
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
                 </div>
                 <div class="pillar-card fade-up stagger-3">
                     <div class="pillar-lockup">
@@ -2221,12 +2225,6 @@
                     <h3 class="pillar-title">Grants</h3>
                     <div class="pillar-stat">$70M+ Secured</div>
                     <p class="pillar-desc">SBIR/STTR specialists. Non-dilutive funding that keeps your cap table clean.</p>
-                    <a href="#" class="pillar-cta">
-                        Learn more
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
                 </div>
                 <div class="pillar-card fade-up stagger-4">
                     <div class="pillar-lockup">
@@ -2234,14 +2232,8 @@
                         <span class="pillar-lockup-text">Tech Futures Group</span>
                     </div>
                     <h3 class="pillar-title">Scale</h3>
-                    <div class="pillar-stat">2,700+ Jobs Created</div>
+                    <div class="pillar-stat">10X Faster GTM</div>
                     <p class="pillar-desc">Go-to-market, hiring, operations. Build the machine that builds the company.</p>
-                    <a href="#" class="pillar-cta">
-                        Learn more
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
                 </div>
             </div>
         </div>
@@ -2253,7 +2245,7 @@
             <div class="success-content">
                 <div class="success-label">Success</div>
                 <p class="success-statement">
-                    To date—we have helped founders raise over <span class="success-stat">$1B</span> and receive over <span class="success-stat">$70M</span> in grants—ultimately creating more than <span class="success-stat">2,700</span> jobs
+                    To date—we have helped founders raise over <span class="success-stat">$1B</span> and receive over <span class="success-stat">$70M</span> in grants—accelerating go-to-market by <span class="success-stat">10X</span>
                 </p>
             </div>
         </div>
@@ -3294,6 +3286,16 @@
             }
         }
         createStarburst();
+
+        // Scroll-based starburst rotation
+        const starburstEl = document.getElementById('starburst');
+        if (starburstEl) {
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                const rotation = scrollY * 0.15; // Adjust speed factor as needed
+                starburstEl.style.transform = `rotate(${rotation}deg)`;
+            }, { passive: true });
+        }
 
         // ============================================
         // RADIAL DEMO

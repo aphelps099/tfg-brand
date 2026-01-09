@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFG Event Graphic — Workshop Series</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'GT America Extended';
+            src: url('./4618gt.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'GT America Extended';
+            src: url('./2809gt-bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Tobias';
+            src: url('./Tobias-Thin.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Tobias';
+            src: url('./Tobias-Medium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --green: #4EFF00;
+            --green-dim: rgba(78, 255, 0, 0.3);
+            --charcoal: #2d2d2d;
+            --charcoal-dark: #1a1a1a;
+            --charcoal-light: #3a3a3a;
+            --white: #ffffff;
+            --gray: #888888;
+            --gray-dark: #666666;
+            --serif: 'Tobias', Georgia, serif;
+            --sans: 'GT America Extended', 'Helvetica Neue', sans-serif;
+            --mono: 'Roboto Mono', monospace;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: #1a1a1a;
+            padding: 40px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .template-label {
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green);
+            background: #2d2d2d;
+            padding: 10px 16px;
+            margin-bottom: 0;
+            display: inline-block;
+        }
+
+        .template-size {
+            font-family: var(--mono);
+            font-size: 10px;
+            color: #666;
+            margin-left: 12px;
+        }
+
+        .template-container {
+            margin-bottom: 60px;
+        }
+
+        .event-graphic {
+            width: 960px;
+            height: 540px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+            margin-top: 0;
+        }
+
+        .graphic-inner {
+            width: 1920px;
+            height: 1080px;
+            transform: scale(0.5);
+            transform-origin: top left;
+            position: relative;
+        }
+
+        .workshop-graphic {
+            background: var(--charcoal);
+            display: flex;
+        }
+
+        .workshop-graphic .left-panel {
+            width: 55%;
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .workshop-graphic .right-panel {
+            width: 45%;
+            background: var(--green);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .workshop-graphic .right-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -80px;
+            width: 160px;
+            height: 100%;
+            background: var(--green);
+            transform: skewX(-6deg);
+        }
+
+        .workshop-graphic .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .workshop-graphic .logo-circle {
+            width: 64px;
+            height: 64px;
+            border: 7px solid var(--green);
+            border-radius: 50%;
+        }
+
+        .workshop-graphic .logo-text {
+            font-family: var(--mono);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--green);
+            line-height: 1.4;
+        }
+
+        .workshop-graphic .content-area {
+            max-width: 700px;
+        }
+
+        .workshop-graphic .event-type {
+            font-family: var(--mono);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+
+        .workshop-graphic .event-title {
+            font-family: var(--serif);
+            font-size: 72px;
+            font-weight: 500;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .workshop-graphic .event-title span {
+            color: var(--green);
+        }
+
+        .workshop-graphic .event-desc {
+            font-size: 22px;
+            color: var(--gray);
+            line-height: 1.5;
+            max-width: 600px;
+        }
+
+        .workshop-graphic .cta-area {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .workshop-graphic .cta-button {
+            background: var(--green);
+            color: var(--charcoal);
+            font-family: var(--mono);
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            padding: 20px 40px;
+            text-decoration: none;
+        }
+
+        .workshop-graphic .cta-url {
+            font-family: var(--mono);
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .workshop-graphic .date-block {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .workshop-graphic .date-block .month {
+            font-family: var(--mono);
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: var(--charcoal);
+            display: block;
+        }
+
+        .workshop-graphic .date-block .day {
+            font-family: var(--serif);
+            font-size: 180px;
+            font-weight: 500;
+            color: var(--charcoal);
+            line-height: 0.9;
+            display: block;
+        }
+
+        .workshop-graphic .date-block .time {
+            font-family: var(--mono);
+            font-size: 18px;
+            color: var(--charcoal);
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="template-container">
+        <div class="template-label">Workshop Series<span class="template-size">1920 × 1080 PNG</span></div>
+        <div class="event-graphic">
+            <div class="graphic-inner workshop-graphic">
+                <div class="left-panel">
+                    <div class="logo-area">
+                        <div class="logo-circle"></div>
+                        <div class="logo-text">
+                            TECH<br>FUTURES<br>GROUP
+                        </div>
+                    </div>
+
+                    <div class="content-area">
+                        <div class="event-type">WORKSHOP SERIES</div>
+                        <h1 class="event-title">SBIR Grant<br><span>Writing</span></h1>
+                        <p class="event-desc">Master the proposal process. Learn what agencies actually want to see. Walk away with a draft.</p>
+                    </div>
+
+                    <div class="cta-area">
+                        <div class="cta-button">REGISTER FREE →</div>
+                        <div class="cta-url">techfuturesgroup.org</div>
+                    </div>
+                </div>
+
+                <div class="right-panel">
+                    <div class="date-block">
+                        <span class="month">JAN</span>
+                        <span class="day">18</span>
+                        <div class="time">1:00 PM PST · VIRTUAL</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

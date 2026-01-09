@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFG Event Graphic — Workshop Alt Dark Split</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'GT America Extended';
+            src: url('./4618gt.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'GT America Extended';
+            src: url('./2809gt-bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Tobias';
+            src: url('./Tobias-Thin.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Tobias';
+            src: url('./Tobias-Medium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --green: #4EFF00;
+            --green-dim: rgba(78, 255, 0, 0.3);
+            --charcoal: #2d2d2d;
+            --charcoal-dark: #1a1a1a;
+            --charcoal-light: #3a3a3a;
+            --white: #ffffff;
+            --gray: #888888;
+            --gray-dark: #666666;
+            --serif: 'Tobias', Georgia, serif;
+            --sans: 'GT America Extended', 'Helvetica Neue', sans-serif;
+            --mono: 'Roboto Mono', monospace;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: #1a1a1a;
+            padding: 40px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .template-label {
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green);
+            background: #2d2d2d;
+            padding: 10px 16px;
+            margin-bottom: 0;
+            display: inline-block;
+        }
+
+        .template-size {
+            font-family: var(--mono);
+            font-size: 10px;
+            color: #666;
+            margin-left: 12px;
+        }
+
+        .template-container {
+            margin-bottom: 60px;
+        }
+
+        .event-graphic {
+            width: 960px;
+            height: 540px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+            margin-top: 0;
+        }
+
+        .graphic-inner {
+            width: 1920px;
+            height: 1080px;
+            transform: scale(0.5);
+            transform-origin: top left;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="template-container">
+        <div class="template-label">Workshop Alt — Dark Split<span class="template-size">1920 × 1080 PNG</span></div>
+        <div class="event-graphic">
+            <div class="graphic-inner" style="background: #1a1a1a; display: flex;">
+                <!-- Left: Content -->
+                <div style="width: 60%; padding: 80px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <div style="width: 56px; height: 56px; border: 6px solid #4EFF00; border-radius: 50%;"></div>
+                        <div style="font-family: 'Roboto Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; color: #4EFF00; line-height: 1.4;">
+                            TECH<br>FUTURES<br>GROUP
+                        </div>
+                    </div>
+
+                    <div style="max-width: 750px;">
+                        <div style="font-family: 'Roboto Mono', monospace; font-size: 14px; font-weight: 600; letter-spacing: 0.2em; color: #666; margin-bottom: 20px;">3-PART SERIES</div>
+                        <h1 style="font-family: 'Tobias', Georgia, serif; font-size: 80px; font-weight: 500; color: #fff; line-height: 1.05; margin-bottom: 24px;">
+                            Product-Market<br><span style="color: #4EFF00;">Fit Intensive</span>
+                        </h1>
+                        <p style="font-size: 22px; color: #888; line-height: 1.5;">You have users. Now what? This series takes you from "people are using it" to true product-market fit.</p>
+                    </div>
+
+                    <div style="display: flex; align-items: center; gap: 32px;">
+                        <div style="background: #4EFF00; color: #1a1a1a; font-family: 'Roboto Mono', monospace; font-size: 16px; font-weight: 700; letter-spacing: 0.1em; padding: 20px 40px;">ENROLL FREE →</div>
+                        <div style="font-family: 'Roboto Mono', monospace; font-size: 14px; color: #666;">techfuturesgroup.org</div>
+                    </div>
+                </div>
+
+                <!-- Right: Schedule -->
+                <div style="width: 40%; background: #2d2d2d; padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; border-left: 1px solid #3a3a3a;">
+                    <div style="font-family: 'Roboto Mono', monospace; font-size: 12px; letter-spacing: 0.15em; color: #4EFF00; margin-bottom: 40px;">SCHEDULE</div>
+
+                    <div style="margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid #3a3a3a;">
+                        <div style="font-family: 'Roboto Mono', monospace; font-size: 11px; color: #666; margin-bottom: 8px;">WEEK 1 · FEB 15</div>
+                        <div style="font-size: 20px; color: #fff;">Measuring What Matters</div>
+                    </div>
+
+                    <div style="margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid #3a3a3a;">
+                        <div style="font-family: 'Roboto Mono', monospace; font-size: 11px; color: #666; margin-bottom: 8px;">WEEK 2 · FEB 22</div>
+                        <div style="font-size: 20px; color: #fff;">Customer Discovery Deep-Dive</div>
+                    </div>
+
+                    <div>
+                        <div style="font-family: 'Roboto Mono', monospace; font-size: 11px; color: #666; margin-bottom: 8px;">WEEK 3 · MAR 1</div>
+                        <div style="font-size: 20px; color: #fff;">Iteration & Positioning</div>
+                    </div>
+
+                    <div style="margin-top: 48px; font-family: 'Roboto Mono', monospace; font-size: 12px; color: #666;">
+                        10:00 AM PST · VIRTUAL
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

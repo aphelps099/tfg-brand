@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFG Case Study — Founder Journey Template</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --green: #39FF14;
+            --charcoal: #1a1a1a;
+            --charcoal-light: #2d2d2d;
+            --white: #ffffff;
+            --gray: #888888;
+            --gray-light: #cccccc;
+            --gray-dark: #444444;
+            
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'Inter', 'Helvetica Neue', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+        
+        body {
+            font-family: var(--sans);
+            background: #0a0a0a;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* =============================================
+           CASE STUDY CONTAINER
+        ============================================= */
+        .case-study {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--charcoal);
+        }
+        
+        /* =============================================
+           HERO SECTION
+        ============================================= */
+        .cs-hero {
+            background: var(--green);
+            padding: 60px 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cs-hero-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            opacity: 0.5;
+            margin-bottom: 24px;
+        }
+        
+        .cs-hero-company {
+            font-family: var(--serif);
+            font-size: 64px;
+            font-style: italic;
+            color: var(--charcoal);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+        
+        .cs-hero-tagline {
+            font-family: var(--sans);
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--charcoal);
+            opacity: 0.7;
+            max-width: 400px;
+            line-height: 1.5;
+        }
+        
+        .cs-hero-starburst {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 120px;
+            height: 120px;
+            color: var(--charcoal);
+            opacity: 0.15;
+        }
+        
+        .cs-hero-logo {
+            position: absolute;
+            bottom: 24px;
+            right: 40px;
+            height: 28px;
+            opacity: 0.4;
+        }
+        
+        /* =============================================
+           OUTCOME BAR
+        ============================================= */
+        .cs-outcome-bar {
+            background: var(--charcoal);
+            padding: 32px 48px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            border-bottom: 1px solid var(--gray-dark);
+        }
+        
+        .cs-outcome {
+            text-align: center;
+        }
+        
+        .cs-outcome-value {
+            font-family: var(--serif);
+            font-size: 42px;
+            font-style: italic;
+            color: var(--green);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        
+        .cs-outcome-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+        
+        /* =============================================
+           BEFORE / AFTER
+        ============================================= */
+        .cs-transformation {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .cs-before, .cs-after {
+            padding: 40px 48px;
+        }
+        
+        .cs-before {
+            background: var(--charcoal-light);
+            border-right: 1px solid var(--gray-dark);
+        }
+        
+        .cs-after {
+            background: var(--charcoal);
+        }
+        
+        .cs-transform-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        
+        .cs-before .cs-transform-label {
+            color: var(--gray);
+        }
+        
+        .cs-after .cs-transform-label {
+            color: var(--green);
+        }
+        
+        .cs-transform-text {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-style: italic;
+            line-height: 1.4;
+            color: var(--white);
+        }
+        
+        .cs-before .cs-transform-text {
+            color: var(--gray-light);
+        }
+        
+        /* =============================================
+           FOUNDER QUOTE
+        ============================================= */
+        .cs-quote {
+            padding: 48px;
+            border-bottom: 1px solid var(--gray-dark);
+        }
+        
+        .cs-quote-text {
+            font-family: var(--serif);
+            font-size: 28px;
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.35;
+            margin-bottom: 24px;
+        }
+        
+        .cs-quote-text em {
+            color: var(--green);
+            font-style: italic;
+        }
+        
+        .cs-quote-attr {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .cs-quote-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--gray-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--serif);
+            font-size: 20px;
+            font-style: italic;
+            color: var(--green);
+        }
+        
+        .cs-quote-info {
+            flex: 1;
+        }
+        
+        .cs-quote-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 2px;
+        }
+        
+        .cs-quote-role {
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--gray);
+            letter-spacing: 0.05em;
+        }
+        
+        /* =============================================
+           TIMELINE
+        ============================================= */
+        .cs-timeline {
+            padding: 48px;
+            border-bottom: 1px solid var(--gray-dark);
+        }
+        
+        .cs-section-title {
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 32px;
+        }
+        
+        .cs-timeline-track {
+            position: relative;
+            padding-left: 32px;
+        }
+        
+        .cs-timeline-track::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: var(--gray-dark);
+        }
+        
+        .cs-timeline-item {
+            position: relative;
+            padding-bottom: 32px;
+        }
+        
+        .cs-timeline-item:last-child {
+            padding-bottom: 0;
+        }
+        
+        .cs-timeline-dot {
+            position: absolute;
+            left: -32px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            background: var(--charcoal);
+            border: 2px solid var(--gray);
+            border-radius: 50%;
+        }
+        
+        .cs-timeline-item.milestone .cs-timeline-dot {
+            background: var(--green);
+            border-color: var(--green);
+        }
+        
+        .cs-timeline-date {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--gray);
+            margin-bottom: 6px;
+        }
+        
+        .cs-timeline-item.milestone .cs-timeline-date {
+            color: var(--green);
+        }
+        
+        .cs-timeline-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        
+        .cs-timeline-desc {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+        
+        /* =============================================
+           KEY DECISIONS
+        ============================================= */
+        .cs-decisions {
+            padding: 48px;
+            border-bottom: 1px solid var(--gray-dark);
+        }
+        
+        .cs-decision-grid {
+            display: grid;
+            gap: 24px;
+        }
+        
+        .cs-decision {
+            display: grid;
+            grid-template-columns: 32px 1fr;
+            gap: 16px;
+        }
+        
+        .cs-decision-num {
+            font-family: var(--serif);
+            font-size: 24px;
+            font-style: italic;
+            color: var(--green);
+            line-height: 1.2;
+        }
+        
+        .cs-decision-content {}
+        
+        .cs-decision-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+        
+        .cs-decision-desc {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+        
+        /* =============================================
+           TFG IMPACT
+        ============================================= */
+        .cs-impact {
+            padding: 48px;
+            background: var(--charcoal-light);
+            border-bottom: 1px solid var(--gray-dark);
+        }
+        
+        .cs-impact-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .cs-impact-logo {
+            height: 24px;
+        }
+        
+        .cs-impact-title {
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green);
+        }
+        
+        .cs-impact-list {
+            list-style: none;
+            display: grid;
+            gap: 16px;
+        }
+        
+        .cs-impact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .cs-impact-check {
+            width: 20px;
+            height: 20px;
+            background: var(--green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: var(--charcoal);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .cs-impact-text {
+            font-size: 15px;
+            color: var(--white);
+            line-height: 1.5;
+        }
+        
+        /* =============================================
+           FOOTER CTA
+        ============================================= */
+        .cs-footer {
+            padding: 48px;
+            background: var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .cs-footer-text {
+            font-family: var(--serif);
+            font-size: 28px;
+            font-style: italic;
+            color: var(--charcoal);
+        }
+        
+        .cs-footer-cta {
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            background: transparent;
+            border: 2px solid var(--charcoal);
+            padding: 14px 28px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .cs-footer-cta:hover {
+            background: var(--charcoal);
+            color: var(--green);
+        }
+        
+        /* =============================================
+           TEMPLATE NOTES (for internal use)
+        ============================================= */
+        .template-notes {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 32px;
+            background: var(--charcoal-light);
+            border: 1px dashed var(--gray-dark);
+            border-radius: 8px;
+        }
+        
+        .template-notes h3 {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 16px;
+        }
+        
+        .template-notes p {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        
+        .template-notes ul {
+            list-style: none;
+            margin-top: 16px;
+        }
+        
+        .template-notes li {
+            font-size: 13px;
+            color: var(--gray);
+            padding: 6px 0;
+            border-bottom: 1px solid var(--gray-dark);
+        }
+        
+        .template-notes li strong {
+            color: var(--white);
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- SVG Symbol -->
+    <svg style="display: none;">
+        <symbol id="starburst" viewBox="0 0 100 100">
+            <g transform="translate(50,50)" fill="none" stroke="currentColor" stroke-width="1.2">
+                <line x1="0" y1="-46" x2="0" y2="-18"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(15)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(30)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(45)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(60)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(75)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(90)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(105)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(120)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(135)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(150)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(165)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(180)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(195)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(210)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(225)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(240)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(255)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(270)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(285)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(300)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(315)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(330)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(345)"/>
+            </g>
+        </symbol>
+    </svg>
+
+    <div class="case-study">
+        
+        <!-- Hero -->
+        <div class="cs-hero">
+            <div class="cs-hero-label">Founder Case Study</div>
+            <div class="cs-hero-company">CarbonGrid</div>
+            <div class="cs-hero-tagline">AI-powered carbon accounting for enterprise supply chains</div>
+            <svg class="cs-hero-starburst"><use href="#starburst"/></svg>
+            <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="cs-hero-logo" alt="TFG">
+        </div>
+        
+        <!-- Outcome Bar -->
+        <div class="cs-outcome-bar">
+            <div class="cs-outcome">
+                <div class="cs-outcome-value">$3.2M</div>
+                <div class="cs-outcome-label">Seed Raised</div>
+            </div>
+            <div class="cs-outcome">
+                <div class="cs-outcome-value">12 wks</div>
+                <div class="cs-outcome-label">Time to Close</div>
+            </div>
+            <div class="cs-outcome">
+                <div class="cs-outcome-value">F500</div>
+                <div class="cs-outcome-label">Pilot Signed</div>
+            </div>
+        </div>
+        
+        <!-- Before / After -->
+        <div class="cs-transformation">
+            <div class="cs-before">
+                <div class="cs-transform-label">Before TFG</div>
+                <div class="cs-transform-text">Working prototype. Strong technical team. 8 months of investor pitches. Zero term sheets. "We kept leading with our ML model — and watching investors' eyes glaze over."</div>
+            </div>
+            <div class="cs-after">
+                <div class="cs-transform-label">After TFG</div>
+                <div class="cs-transform-text">Reframed narrative around the $4B compliance problem. Closed $3.2M seed in 12 weeks. Signed Fortune 500 pilot before close.</div>
+            </div>
+        </div>
+        
+        <!-- Founder Quote -->
+        <div class="cs-quote">
+            <div class="cs-quote-text">"Our advisor didn't change our product. He changed how we <em>talked about the problem</em> we solve. That shift — from technology-first to problem-first — was everything."</div>
+            <div class="cs-quote-attr">
+                <div class="cs-quote-avatar">SC</div>
+                <div class="cs-quote-info">
+                    <div class="cs-quote-name">Dr. Sarah Chen</div>
+                    <div class="cs-quote-role">Co-founder & CEO, CarbonGrid</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Timeline -->
+        <div class="cs-timeline">
+            <div class="cs-section-title">Journey Timeline</div>
+            <div class="cs-timeline-track">
+                
+                <div class="cs-timeline-item">
+                    <div class="cs-timeline-dot"></div>
+                    <div class="cs-timeline-date">JAN 2024</div>
+                    <div class="cs-timeline-title">Applied to TFG</div>
+                    <div class="cs-timeline-desc">Live MVP, 2 pilot customers, struggling to articulate value prop to investors</div>
+                </div>
+                
+                <div class="cs-timeline-item milestone">
+                    <div class="cs-timeline-dot"></div>
+                    <div class="cs-timeline-date">FEB 2024</div>
+                    <div class="cs-timeline-title">Narrative Reset</div>
+                    <div class="cs-timeline-desc">TFG advisor helped reframe pitch from "ML carbon tracking" to "SEC compliance risk for CFOs"</div>
+                </div>
+                
+                <div class="cs-timeline-item">
+                    <div class="cs-timeline-dot"></div>
+                    <div class="cs-timeline-date">MAR 2024</div>
+                    <div class="cs-timeline-title">Deck Rebuilt</div>
+                    <div class="cs-timeline-desc">New 12-slide deck with problem-first structure. Practiced pitch 20+ times with advisor.</div>
+                </div>
+                
+                <div class="cs-timeline-item milestone">
+                    <div class="cs-timeline-dot"></div>
+                    <div class="cs-timeline-date">APR 2024</div>
+                    <div class="cs-timeline-title">Term Sheet Received</div>
+                    <div class="cs-timeline-desc">First term sheet from Initialized Capital after 3rd meeting. Two more followed within 2 weeks.</div>
+                </div>
+                
+                <div class="cs-timeline-item milestone">
+                    <div class="cs-timeline-dot"></div>
+                    <div class="cs-timeline-date">MAY 2024</div>
+                    <div class="cs-timeline-title">$3.2M Seed Closed</div>
+                    <div class="cs-timeline-desc">Round led by Initialized with participation from Climate Angels and strategic angels.</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Key Decisions -->
+        <div class="cs-decisions">
+            <div class="cs-section-title">Key Decisions</div>
+            <div class="cs-decision-grid">
+                
+                <div class="cs-decision">
+                    <div class="cs-decision-num">1</div>
+                    <div class="cs-decision-content">
+                        <div class="cs-decision-title">Led with the CFO's nightmare, not the tech</div>
+                        <div class="cs-decision-desc">SEC climate disclosure rules create a $4B compliance market. VCs fund solutions to expensive problems — not interesting technology.</div>
+                    </div>
+                </div>
+                
+                <div class="cs-decision">
+                    <div class="cs-decision-num">2</div>
+                    <div class="cs-decision-content">
+                        <div class="cs-decision-title">Targeted climate-focused funds only</div>
+                        <div class="cs-decision-desc">Stopped spraying 100 VCs. Focused on 12 funds with explicit climate thesis. Conversion rate jumped from 2% to 25%.</div>
+                    </div>
+                </div>
+                
+                <div class="cs-decision">
+                    <div class="cs-decision-num">3</div>
+                    <div class="cs-decision-content">
+                        <div class="cs-decision-title">Closed pilot before closing round</div>
+                        <div class="cs-decision-desc">TFG advisor made intro to Fortune 500 sustainability lead. Signed LOI before term sheet — gave VCs confidence in enterprise demand.</div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- TFG Impact -->
+        <div class="cs-impact">
+            <div class="cs-impact-header">
+                <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="cs-impact-logo" alt="TFG">
+                <div class="cs-impact-title">How TFG Helped</div>
+            </div>
+            <ul class="cs-impact-list">
+                <li class="cs-impact-item">
+                    <div class="cs-impact-check">✓</div>
+                    <div class="cs-impact-text">Weekly 1:1 sessions with advisor (ex-Sequoia scout, 2x climate tech founder)</div>
+                </li>
+                <li class="cs-impact-item">
+                    <div class="cs-impact-check">✓</div>
+                    <div class="cs-impact-text">Complete pitch narrative overhaul — problem-first framework</div>
+                </li>
+                <li class="cs-impact-item">
+                    <div class="cs-impact-check">✓</div>
+                    <div class="cs-impact-text">Warm introductions to 4 climate-focused VCs</div>
+                </li>
+                <li class="cs-impact-item">
+                    <div class="cs-impact-check">✓</div>
+                    <div class="cs-impact-text">Enterprise intro that led to F500 pilot LOI</div>
+                </li>
+                <li class="cs-impact-item">
+                    <div class="cs-impact-check">✓</div>
+                    <div class="cs-impact-text">Term sheet negotiation support and due diligence prep</div>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Footer CTA -->
+        <div class="cs-footer">
+            <div class="cs-footer-text">Your ambition, ignited.</div>
+            <button class="cs-footer-cta">Apply Now →</button>
+        </div>
+        
+    </div>
+    
+    <!-- Template Notes -->
+    <div class="template-notes">
+        <h3>Template Usage Notes</h3>
+        <p>This case study template is designed for TFG founder success stories. Replace placeholder content with real founder details. Recommended length: 1 page when printed (single-scroll web).</p>
+        <ul>
+            <li><strong>Hero:</strong> Company name + one-line description</li>
+            <li><strong>Outcomes:</strong> 3 key metrics (capital raised, timeline, major milestone)</li>
+            <li><strong>Before/After:</strong> Concrete transformation — what changed?</li>
+            <li><strong>Quote:</strong> Founder voice, ideally highlighting TFG's specific impact</li>
+            <li><strong>Timeline:</strong> 4-6 milestones, mark major wins with green dots</li>
+            <li><strong>Key Decisions:</strong> 2-4 strategic choices that made the difference</li>
+            <li><strong>TFG Impact:</strong> Specific ways TFG contributed (intros, sessions, frameworks)</li>
+        </ul>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFG Social — Ambition, Ignited</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --green: #39FF14;
+            --charcoal: #1a1a1a;
+            --charcoal-light: #2d2d2d;
+            --white: #ffffff;
+            --gray: #888888;
+            --gray-dark: #444444;
+            
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'Inter', 'Helvetica Neue', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+        
+        body {
+            font-family: var(--sans);
+            background: #0a0a0a;
+            padding: 40px;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .page-header {
+            margin-bottom: 48px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--gray-dark);
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        
+        .page-header img { height: 48px; }
+        .page-meta { flex: 1; }
+        
+        .page-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+        
+        .page-title {
+            font-family: var(--serif);
+            font-size: 42px;
+            color: var(--white);
+            font-style: italic;
+        }
+        
+        /* SECTIONS */
+        .campaign-section { margin-bottom: 80px; }
+        .section-header { margin-bottom: 32px; }
+        
+        .section-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gray-dark);
+            margin-bottom: 8px;
+        }
+        
+        .section-title {
+            font-family: var(--serif);
+            font-size: 28px;
+            font-style: italic;
+            color: var(--white);
+        }
+        
+        .section-desc {
+            font-size: 14px;
+            color: var(--gray);
+            margin-top: 8px;
+            max-width: 500px;
+        }
+        
+        /* POST GRID */
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 60px 24px;
+        }
+        
+        /* POST WRAPPER */
+        .post-wrapper {
+            position: relative;
+            padding-top: 30px;
+            padding-left: 15px;
+        }
+        
+        .post-sequence {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            font-family: var(--serif);
+            font-size: 140px;
+            font-style: italic;
+            line-height: 1;
+            pointer-events: none;
+            z-index: 0;
+            color: var(--green);
+            opacity: 0.15;
+        }
+        
+        /* SOCIAL POST BASE */
+        .social-post {
+            aspect-ratio: 1 / 1;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border-radius: 4px;
+            z-index: 1;
+        }
+        
+        .post-logo {
+            position: absolute;
+            bottom: 6%;
+            right: 6%;
+            height: 8%;
+            z-index: 10;
+        }
+        
+        .post-logo-top {
+            top: 6%;
+            left: 6%;
+            bottom: auto;
+            right: auto;
+        }
+        
+        /* SVG STARBURST */
+        .starburst {
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        .starburst-green { color: var(--green); }
+        .starburst-dark { color: var(--charcoal); }
+        .starburst-muted { color: #d4d4d4; opacity: 0.2; }
+        
+        /* CTA */
+        .post-cta {
+            position: absolute;
+            bottom: 6%;
+            left: 6%;
+            font-family: var(--mono);
+            font-size: clamp(9px, 2.5vw, 11px);
+            letter-spacing: 0.08em;
+            z-index: 10;
+        }
+        
+        .post-green .post-cta { color: var(--charcoal); opacity: 0.6; }
+        .post-dark .post-cta { color: var(--gray); }
+        
+        /* HERO IGNITE */
+        .post-hero-ignite {
+            background: var(--green);
+            justify-content: flex-start;
+            padding: 8%;
+        }
+        
+        .post-hero-ignite .hero-headline {
+            font-family: var(--serif);
+            font-size: clamp(56px, 18vw, 90px);
+            font-weight: 400;
+            color: var(--charcoal);
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .post-hero-ignite .hero-starburst {
+            width: 35%;
+            bottom: 18%;
+            left: 58%;
+            transform: translateX(-50%);
+            opacity: 0.3;
+        }
+        
+        .post-hero-ignite .hero-tagline {
+            position: absolute;
+            bottom: 18%;
+            left: 8%;
+            font-family: var(--serif);
+            font-size: clamp(18px, 5vw, 26px);
+            font-style: italic;
+            color: var(--charcoal);
+            line-height: 1.2;
+            max-width: 70%;
+            z-index: 2;
+        }
+        
+        /* POSTER IGNITE */
+        .post-poster-ignite {
+            background: var(--green);
+            justify-content: flex-start;
+            align-items: center;
+            padding: 6%;
+        }
+        
+        .post-poster-ignite .poster-headline {
+            font-family: var(--serif);
+            font-size: clamp(48px, 15vw, 72px);
+            font-weight: 400;
+            color: var(--charcoal);
+            line-height: 0.92;
+            letter-spacing: -0.02em;
+            text-align: center;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .post-poster-ignite .poster-box {
+            width: 85%;
+            aspect-ratio: 16 / 9;
+            background: var(--charcoal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 6%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .post-poster-ignite .poster-box .starburst { 
+            position: relative; 
+            width: 35%; 
+        }
+        
+        .post-poster-ignite .poster-tagline {
+            font-family: var(--serif);
+            font-size: clamp(16px, 4.5vw, 22px);
+            font-style: italic;
+            color: var(--charcoal);
+            line-height: 1.2;
+            text-align: left;
+            width: 100%;
+            margin-top: auto;
+            padding-top: 6%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* MINIMAL IGNITE */
+        .post-minimal-ignite {
+            background: var(--charcoal);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10%;
+        }
+        
+        .post-minimal-ignite .minimal-starburst {
+            width: 40%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.2;
+        }
+        
+        .post-minimal-ignite .minimal-text {
+            font-family: var(--serif);
+            font-size: clamp(28px, 9vw, 44px);
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.15;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .post-minimal-ignite .minimal-text em {
+            color: var(--green);
+            font-style: italic;
+        }
+        
+        /* STAT IGNITE */
+        .post-stat-ignite {
+            background: var(--green);
+            justify-content: center;
+            padding: 8%;
+        }
+        
+        .post-stat-ignite .stat-number {
+            font-family: var(--serif);
+            font-size: clamp(80px, 28vw, 140px);
+            color: var(--charcoal);
+            line-height: 0.85;
+            letter-spacing: -0.04em;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .post-stat-ignite .stat-label {
+            font-family: var(--mono);
+            font-size: clamp(10px, 3vw, 13px);
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            margin-top: 4%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .post-stat-ignite .stat-context {
+            font-family: var(--serif);
+            font-size: clamp(16px, 5vw, 24px);
+            font-style: italic;
+            color: var(--charcoal);
+            opacity: 0.6;
+            margin-top: 4%;
+            line-height: 1.25;
+            max-width: 80%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .post-stat-ignite .stat-starburst {
+            width: 22%;
+            top: 8%;
+            right: 8%;
+            opacity: 0.25;
+        }
+        
+        /* JOURNEY IGNITE */
+        .post-journey-ignite {
+            background: var(--charcoal);
+            padding: 8%;
+            justify-content: center;
+        }
+        
+        .post-journey-ignite .journey-starburst {
+            width: 16%;
+            top: 50%;
+            right: 6%;
+            transform: translateY(-50%);
+            opacity: 0.5;
+        }
+        
+        .post-journey-ignite .journey-label {
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.2vw, 10px);
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray-dark);
+            margin-bottom: 3%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .post-journey-ignite .journey-text {
+            font-family: var(--serif);
+            font-size: clamp(18px, 5.5vw, 26px);
+            font-style: italic;
+            color: var(--gray);
+            line-height: 1.25;
+            margin-bottom: 6%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .post-journey-ignite .journey-arrow {
+            font-size: 24px;
+            color: var(--green);
+            margin-bottom: 6%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .post-journey-ignite .journey-after .journey-label { color: var(--green); }
+        .post-journey-ignite .journey-after .journey-text { color: var(--white); margin-bottom: 0; }
+        
+        .post-journey-ignite .journey-attr {
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.2vw, 10px);
+            color: var(--gray-dark);
+            margin-top: 5%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* QUOTE IGNITE */
+        .post-quote-ignite {
+            background: var(--charcoal);
+            justify-content: center;
+            padding: 10%;
+        }
+        
+        .post-quote-ignite .quote-starburst {
+            width: 18%;
+            top: 8%;
+            left: 8%;
+            opacity: 0.6;
+        }
+        
+        .post-quote-ignite .quote-text {
+            font-family: var(--serif);
+            font-size: clamp(22px, 7vw, 34px);
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.2;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .post-quote-ignite .quote-text em {
+            color: var(--green);
+            font-style: italic;
+        }
+        
+        .post-quote-ignite .quote-attr {
+            font-family: var(--mono);
+            font-size: clamp(9px, 2.5vw, 11px);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-top: 6%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* STACKED IGNITE */
+        .post-stacked-ignite {
+            background: var(--green);
+            justify-content: center;
+            padding: 8%;
+        }
+        
+        .post-stacked-ignite .stacked-line {
+            font-family: var(--serif);
+            font-size: clamp(32px, 10vw, 52px);
+            color: var(--charcoal);
+            line-height: 1.1;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .post-stacked-ignite .stacked-line.dim { opacity: 0.25; }
+        
+        .post-stacked-ignite .stacked-starburst {
+            width: 20%;
+            bottom: 10%;
+            right: 5%;
+            opacity: 0.2;
+        }
+        
+        /* SPLIT IGNITE */
+        .post-split-ignite {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+        }
+        
+        .post-split-ignite .split-top {
+            background: var(--charcoal);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 8%;
+            position: relative;
+        }
+        
+        .post-split-ignite .split-bottom {
+            background: var(--green);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 8%;
+            position: relative;
+        }
+        
+        .post-split-ignite .split-starburst {
+            width: 14%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.7;
+            z-index: 5;
+        }
+        
+        .post-split-ignite .split-label {
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.2vw, 10px);
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 3%;
+        }
+        
+        .post-split-ignite .split-top .split-label { color: var(--green); }
+        .post-split-ignite .split-bottom .split-label { color: var(--charcoal); opacity: 0.5; }
+        
+        .post-split-ignite .split-text {
+            font-family: var(--serif);
+            font-size: clamp(20px, 6vw, 30px);
+            font-style: italic;
+            line-height: 1.15;
+        }
+        
+        .post-split-ignite .split-top .split-text { color: var(--white); }
+        .post-split-ignite .split-bottom .split-text { color: var(--charcoal); }
+        
+        /* POST CAPTION */
+        .post-caption {
+            background: var(--charcoal-light);
+            padding: 16px 20px;
+            border-radius: 0 0 4px 4px;
+            margin-top: -4px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .post-caption-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gray-dark);
+            margin-bottom: 8px;
+        }
+        
+        .post-caption-text {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- SVG Symbol Definition -->
+    <svg style="display: none;">
+        <symbol id="starburst" viewBox="0 0 100 100">
+            <g transform="translate(50,50)" fill="none" stroke="currentColor" stroke-width="1.2">
+                <line x1="0" y1="-46" x2="0" y2="-18"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(15)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(30)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(45)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(60)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(75)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(90)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(105)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(120)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(135)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(150)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(165)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(180)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(195)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(210)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(225)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(240)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(255)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(270)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(285)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(300)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(315)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(330)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(345)"/>
+            </g>
+        </symbol>
+    </svg>
+
+    <div class="page-header">
+        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" alt="TFG">
+        <div class="page-meta">
+            <div class="page-label">Social Campaign</div>
+            <div class="page-title">Ambition, Ignited</div>
+        </div>
+    </div>
+    
+    <!-- HERO POSTS -->
+    <div class="campaign-section">
+        <div class="section-header">
+            <div class="section-label">Hero Posts</div>
+            <div class="section-title">Campaign Openers</div>
+            <div class="section-desc">Bold, poster-style hero posts to launch the "Ambition, Ignited" campaign.</div>
+        </div>
+        
+        <div class="post-grid">
+            
+            <!-- Hero 1 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">01</div>
+                <div class="social-post post-green post-hero-ignite">
+                    <div class="hero-headline">IGNITE<br>AMBITION</div>
+                    <svg class="starburst hero-starburst starburst-dark"><use href="#starburst"/></svg>
+                    <div class="hero-tagline">Free advice for founders.<br>$1B+ in results.</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="post-logo" alt="TFG">
+                    <div class="post-cta">TechFuturesGroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Your ambition deserves world-class advisors. $1B+ raised by TFG founders. $0 cost to you. Apply now — link in bio.</div>
+                </div>
+            </div>
+            
+            <!-- Hero 2 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">02</div>
+                <div class="social-post post-green post-poster-ignite">
+                    <div class="poster-headline">IGNITE<br>AMBITION</div>
+                    <div class="poster-box">
+                        <svg class="starburst starburst-green"><use href="#starburst"/></svg>
+                    </div>
+                    <div class="poster-tagline">Free advice for founders.<br>$1B+ in results.</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="post-logo" alt="TFG">
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Venture-grade advising. Zero cost. We've helped NorCal founders raise over $1B. Your turn?</div>
+                </div>
+            </div>
+            
+            <!-- Hero 3 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">03</div>
+                <div class="social-post post-dark post-minimal-ignite">
+                    <svg class="starburst minimal-starburst starburst-muted"><use href="#starburst"/></svg>
+                    <div class="minimal-text">Ambition, <em>ignited.</em></div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                    <div class="post-cta">techfuturesgroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">14 world-class advisors. Serial founders. Former VCs. Grant specialists. All free to NorCal tech founders.</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- STATS -->
+    <div class="campaign-section">
+        <div class="section-header">
+            <div class="section-label">Stats</div>
+            <div class="section-title">Proof Points</div>
+            <div class="section-desc">Bold statistics that demonstrate TFG's track record.</div>
+        </div>
+        
+        <div class="post-grid">
+            
+            <!-- $1B+ -->
+            <div class="post-wrapper">
+                <div class="post-sequence">04</div>
+                <div class="social-post post-green post-stat-ignite">
+                    <svg class="starburst stat-starburst starburst-dark"><use href="#starburst"/></svg>
+                    <div class="stat-number">$1B+</div>
+                    <div class="stat-label">Raised by TFG Founders</div>
+                    <div class="stat-context">That's not a pitch. That's a track record.</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="post-logo" alt="TFG">
+                    <div class="post-cta">TechFuturesGroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Our founders have raised over $1B in capital. Venture-grade advising. Zero cost to you.</div>
+                </div>
+            </div>
+            
+            <!-- $70M+ -->
+            <div class="post-wrapper">
+                <div class="post-sequence">05</div>
+                <div class="social-post post-green post-stat-ignite">
+                    <svg class="starburst stat-starburst starburst-dark"><use href="#starburst"/></svg>
+                    <div class="stat-number">$70M+</div>
+                    <div class="stat-label">Grants Secured</div>
+                    <div class="stat-context">SBIR. STTR. Non-dilutive capital.</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="post-logo" alt="TFG">
+                    <div class="post-cta">TechFuturesGroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">$70M+ in government grants navigated. No equity given up. That's how you keep control.</div>
+                </div>
+            </div>
+            
+            <!-- $0 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">06</div>
+                <div class="social-post post-green post-stat-ignite">
+                    <svg class="starburst stat-starburst starburst-dark"><use href="#starburst"/></svg>
+                    <div class="stat-number">$0</div>
+                    <div class="stat-label">Cost to You</div>
+                    <div class="stat-context">SBA-backed. No equity. No fees. Ever.</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="post-logo" alt="TFG">
+                    <div class="post-cta">TechFuturesGroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">World-class advisors. Real results. No cost. We're backed by the SBA so you don't pay a thing.</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- FOUNDER STORIES -->
+    <div class="campaign-section">
+        <div class="section-header">
+            <div class="section-label">Founder Stories</div>
+            <div class="section-title">Ambition → Results</div>
+            <div class="section-desc">Before/after journeys that show real founder outcomes.</div>
+        </div>
+        
+        <div class="post-grid">
+            
+            <!-- Journey: Seed -->
+            <div class="post-wrapper">
+                <div class="post-sequence">07</div>
+                <div class="social-post post-dark post-journey-ignite">
+                    <svg class="starburst journey-starburst starburst-muted"><use href="#starburst"/></svg>
+                    <div>
+                        <div class="journey-label">The Ambition</div>
+                        <div class="journey-text">"I'd been coding nights and weekends. Two years. Still no runway."</div>
+                    </div>
+                    <div class="journey-arrow">↓</div>
+                    <div class="journey-after">
+                        <div class="journey-label">Ignited</div>
+                        <div class="journey-text">"$2.4M seed closed. Full-time founder."</div>
+                    </div>
+                    <div class="journey-attr">— SaaS Founder, TFG Client</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                    <div class="post-cta">techfuturesgroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Side project → Funded startup. This is what our advisors do. Apply now — link in bio.</div>
+                </div>
+            </div>
+            
+            <!-- Journey: Climate -->
+            <div class="post-wrapper">
+                <div class="post-sequence">08</div>
+                <div class="social-post post-dark post-journey-ignite">
+                    <svg class="starburst journey-starburst starburst-muted"><use href="#starburst"/></svg>
+                    <div>
+                        <div class="journey-label">The Ambition</div>
+                        <div class="journey-text">"Working prototype. Zero investor traction after 8 months."</div>
+                    </div>
+                    <div class="journey-arrow">↓</div>
+                    <div class="journey-after">
+                        <div class="journey-label">Ignited</div>
+                        <div class="journey-text">"$3.2M seed. Fortune 500 pilot signed."</div>
+                    </div>
+                    <div class="journey-attr">— Climate Tech Founder</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                    <div class="post-cta">techfuturesgroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">8 months of pitching, zero traction. 12 weeks with TFG, $3.2M closed. The difference? How they told their story.</div>
+                </div>
+            </div>
+            
+            <!-- Split -->
+            <div class="post-wrapper">
+                <div class="post-sequence">09</div>
+                <div class="social-post post-split-ignite">
+                    <div class="split-top">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo post-logo-top" alt="TFG">
+                        <div class="split-label">The Ambition</div>
+                        <div class="split-text">Side project. Nights and weekends.</div>
+                    </div>
+                    <svg class="starburst split-starburst starburst-muted"><use href="#starburst"/></svg>
+                    <div class="split-bottom">
+                        <div class="split-label">Ignited</div>
+                        <div class="split-text">$2.4M seed. Full-time founder.</div>
+                    </div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Your ambition + our advisors = results. Apply now — link in bio.</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- QUOTES -->
+    <div class="campaign-section">
+        <div class="section-header">
+            <div class="section-label">Quotes</div>
+            <div class="section-title">Founder Voices</div>
+            <div class="section-desc">Real quotes from founders whose ambition was ignited.</div>
+        </div>
+        
+        <div class="post-grid">
+            
+            <!-- Quote 1 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">10</div>
+                <div class="social-post post-dark post-quote-ignite">
+                    <svg class="starburst quote-starburst starburst-muted"><use href="#starburst"/></svg>
+                    <div class="quote-text">My TFG advisor didn't just help me raise. He helped me understand what investors <em>actually look for.</em></div>
+                    <div class="quote-attr">— SaaS Founder, TFG Client</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                    <div class="post-cta">techfuturesgroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Your pitch deck isn't the problem. Your story might be. Our advisors help founders reframe how they talk to investors.</div>
+                </div>
+            </div>
+            
+            <!-- Quote 2 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">11</div>
+                <div class="social-post post-dark post-quote-ignite">
+                    <svg class="starburst quote-starburst starburst-muted"><use href="#starburst"/></svg>
+                    <div class="quote-text">We went from leading with technology to leading with the <em>$4B problem we solve.</em></div>
+                    <div class="quote-attr">— Dr. Sarah Chen, CarbonGrid</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                    <div class="post-cta">techfuturesgroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Investors don't fund technology. They fund solutions to big problems. Our advisors help you reframe.</div>
+                </div>
+            </div>
+            
+            <!-- Quote 3 -->
+            <div class="post-wrapper">
+                <div class="post-sequence">12</div>
+                <div class="social-post post-dark post-quote-ignite">
+                    <svg class="starburst quote-starburst starburst-muted"><use href="#starburst"/></svg>
+                    <div class="quote-text">Most founders overthink their deck and underthink <em>their story.</em></div>
+                    <div class="quote-attr">— Marcus Reynolds, TFG Advisor</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                    <div class="post-cta">techfuturesgroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Marcus was a partner at Sequoia Scout Fund. Now he helps TFG founders nail their pitch. Apply now — link in bio.</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- CLOSERS -->
+    <div class="campaign-section">
+        <div class="section-header">
+            <div class="section-label">Closers</div>
+            <div class="section-title">Campaign Closers</div>
+            <div class="section-desc">Final CTA posts to drive applications.</div>
+        </div>
+        
+        <div class="post-grid">
+            
+            <!-- Stacked: Results -->
+            <div class="post-wrapper">
+                <div class="post-sequence">13</div>
+                <div class="social-post post-green post-stacked-ignite">
+                    <svg class="starburst stacked-starburst starburst-dark"><use href="#starburst"/></svg>
+                    <div class="stacked-line dim">$1B+ raised.</div>
+                    <div class="stacked-line dim">$70M+ in grants.</div>
+                    <div class="stacked-line">Zero cost to you.</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="post-logo" alt="TFG">
+                    <div class="post-cta">TechFuturesGroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">This is what we do. Apply now — link in bio.</div>
+                </div>
+            </div>
+            
+            <!-- Stacked: Advisors -->
+            <div class="post-wrapper">
+                <div class="post-sequence">14</div>
+                <div class="social-post post-green post-stacked-ignite">
+                    <svg class="starburst stacked-starburst starburst-dark"><use href="#starburst"/></svg>
+                    <div class="stacked-line dim">Former VCs.</div>
+                    <div class="stacked-line dim">Serial founders.</div>
+                    <div class="stacked-line">Your advisors.</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="post-logo" alt="TFG">
+                    <div class="post-cta">TechFuturesGroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">14 world-class advisors. Free to NorCal founders. Apply now — link in bio.</div>
+                </div>
+            </div>
+            
+            <!-- Final CTA -->
+            <div class="post-wrapper">
+                <div class="post-sequence">15</div>
+                <div class="social-post post-dark post-minimal-ignite">
+                    <svg class="starburst minimal-starburst starburst-muted"><use href="#starburst"/></svg>
+                    <div class="minimal-text">Ready to <em>ignite?</em></div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="post-logo" alt="TFG">
+                    <div class="post-cta">techfuturesgroup.org</div>
+                </div>
+                <div class="post-caption">
+                    <div class="post-caption-label">Caption</div>
+                    <div class="post-caption-text">Your ambition. Our advisors. Zero cost. Apply now — link in bio.</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+</html>

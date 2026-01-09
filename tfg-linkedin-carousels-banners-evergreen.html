@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFG LinkedIn — Carousels, Banners & Evergreen Ads</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --green: #39FF14;
+            --green-dim: rgba(57, 255, 20, 0.3);
+            --green-subtle: rgba(57, 255, 20, 0.08);
+            --charcoal: #1a1a1a;
+            --charcoal-light: #232323;
+            --charcoal-lighter: #2d2d2d;
+            --white: #ffffff;
+            --gray: #888888;
+            --gray-dark: #444444;
+            
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'Inter', 'Helvetica Neue', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+        
+        body {
+            font-family: var(--sans);
+            background: #0a0a0a;
+            padding: 40px;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .page-header {
+            margin-bottom: 48px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--gray-dark);
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        
+        .page-header img {
+            height: 48px;
+        }
+        
+        .page-meta {
+            flex: 1;
+        }
+        
+        .page-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+        
+        .page-title {
+            font-family: var(--serif);
+            font-size: 42px;
+            color: var(--white);
+            font-style: italic;
+        }
+        
+        /* =============================================
+           SECTIONS
+        ============================================= */
+        .campaign-section {
+            margin-bottom: 80px;
+        }
+        
+        .section-header {
+            margin-bottom: 32px;
+        }
+        
+        .section-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gray-dark);
+            margin-bottom: 8px;
+        }
+        
+        .section-title {
+            font-family: var(--serif);
+            font-size: 28px;
+            font-style: italic;
+            color: var(--white);
+        }
+        
+        .section-desc {
+            font-size: 14px;
+            color: var(--gray);
+            margin-top: 8px;
+            max-width: 500px;
+        }
+        
+        /* =============================================
+           LINKEDIN BANNER (1128 x 191)
+        ============================================= */
+        .banner-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .linkedin-banner {
+            width: 100%;
+            max-width: 1128px;
+            aspect-ratio: 1128 / 191;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            border-radius: 4px;
+        }
+        
+        .banner-grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(to right, var(--charcoal-lighter) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--charcoal-lighter) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.25;
+        }
+        
+        .banner-arc {
+            position: absolute;
+            border: 1px solid var(--green-dim);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        /* Banner Style 1: Tagline */
+        .banner-tagline {
+            background: var(--charcoal);
+            align-items: center;
+            padding: 0 60px;
+            gap: 40px;
+        }
+        
+        .banner-tagline .banner-arc {
+            width: 400px;
+            height: 400px;
+            top: -200px;
+            left: -100px;
+        }
+        
+        .banner-tagline .banner-text {
+            font-family: var(--serif);
+            font-size: clamp(24px, 4vw, 42px);
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.1;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .banner-tagline .banner-text em {
+            color: var(--green);
+        }
+        
+        .banner-tagline .banner-sub {
+            font-family: var(--mono);
+            font-size: clamp(8px, 1vw, 11px);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gray);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Banner Style 2: Stats */
+        .banner-stats {
+            background: var(--charcoal);
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+        }
+        
+        .banner-stats .stat-group {
+            display: flex;
+            gap: 48px;
+        }
+        
+        .banner-stats .stat-item {
+            text-align: center;
+        }
+        
+        .banner-stats .stat-number {
+            font-family: var(--serif);
+            font-size: clamp(20px, 3vw, 36px);
+            color: var(--green);
+            line-height: 1;
+        }
+        
+        .banner-stats .stat-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-top: 6px;
+        }
+        
+        .banner-stats .banner-tagline-text {
+            font-family: var(--serif);
+            font-size: clamp(18px, 3vw, 32px);
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.15;
+        }
+        
+        .banner-stats .banner-tagline-text em {
+            color: var(--green);
+        }
+        
+        /* Banner Style 3: Green */
+        .banner-green {
+            background: var(--green);
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+        }
+        
+        .banner-green .banner-arc {
+            border-color: rgba(26, 26, 26, 0.1);
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            right: 200px;
+        }
+        
+        .banner-green .banner-text {
+            font-family: var(--serif);
+            font-size: clamp(20px, 3.5vw, 38px);
+            font-style: italic;
+            color: var(--charcoal);
+            line-height: 1.15;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .banner-green .banner-cta {
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            opacity: 0.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* =============================================
+           RESPONSIVE CAROUSEL GRID
+        ============================================= */
+        .carousel-container {
+            margin-bottom: 40px;
+        }
+        
+        .carousel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            max-width: 100%;
+        }
+        
+        /* Ensure perfect squares */
+        .carousel-slide {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border-radius: 4px;
+        }
+        
+        .slide-grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(to right, var(--charcoal-lighter) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--charcoal-lighter) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.25;
+        }
+        
+        .slide-arc {
+            position: absolute;
+            border: 1px solid var(--green-dim);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .slide-logo {
+            position: absolute;
+            top: 6%;
+            left: 6%;
+            height: 7%;
+            z-index: 10;
+        }
+        
+        .slide-number {
+            position: absolute;
+            top: 6%;
+            right: 6%;
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.5vw, 10px);
+            letter-spacing: 0.1em;
+            color: var(--gray-dark);
+            z-index: 10;
+        }
+        
+        /* =============================================
+           SEQUENCE NUMBER IN BACKGROUND
+        ============================================= */
+        .slide-sequence {
+            position: absolute;
+            bottom: -5%;
+            right: 2%;
+            font-family: var(--serif);
+            font-size: clamp(120px, 35vw, 200px);
+            font-style: italic;
+            color: var(--white);
+            opacity: 0.03;
+            line-height: 0.8;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .slide-green .slide-sequence {
+            color: var(--charcoal);
+            opacity: 0.08;
+        }
+        
+        /* =============================================
+           SLIDE CONTENT STYLES
+        ============================================= */
+        
+        /* Slide: Cover */
+        .slide-cover {
+            background: var(--charcoal);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10%;
+        }
+        
+        .slide-cover .slide-arc {
+            width: 80%;
+            height: 80%;
+            top: -35%;
+            right: -25%;
+        }
+        
+        .slide-cover .cover-label {
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.5vw, 10px);
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 4%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .slide-cover .cover-title {
+            font-family: var(--serif);
+            font-size: clamp(24px, 8vw, 36px);
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.1;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .slide-cover .cover-title em {
+            color: var(--green);
+        }
+        
+        .slide-cover .cover-sub {
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.5vw, 10px);
+            color: var(--gray);
+            margin-top: 5%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Slide: Content */
+        .slide-content {
+            background: var(--charcoal);
+            padding: 10%;
+            justify-content: center;
+        }
+        
+        .slide-content .content-label {
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.5vw, 10px);
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 4%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .slide-content .content-title {
+            font-family: var(--serif);
+            font-size: clamp(18px, 6vw, 28px);
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 4%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .slide-content .content-text {
+            font-size: clamp(11px, 3.5vw, 14px);
+            color: var(--gray);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Slide: Stat */
+        .slide-stat {
+            background: var(--charcoal);
+            padding: 10%;
+            justify-content: center;
+        }
+        
+        .slide-stat .stat-number {
+            font-family: var(--serif);
+            font-size: clamp(48px, 18vw, 80px);
+            color: var(--green);
+            line-height: 0.85;
+            letter-spacing: -0.03em;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .slide-stat .stat-label {
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.8vw, 11px);
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-top: 4%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .slide-stat .stat-context {
+            font-family: var(--serif);
+            font-size: clamp(14px, 4.5vw, 18px);
+            font-style: italic;
+            color: var(--gray);
+            margin-top: 4%;
+            line-height: 1.3;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Slide: Green */
+        .slide-green {
+            background: var(--green);
+            padding: 10%;
+            justify-content: center;
+        }
+        
+        .slide-green .slide-arc {
+            border-color: rgba(26, 26, 26, 0.1);
+            width: 75%;
+            height: 75%;
+            bottom: -35%;
+            right: -20%;
+        }
+        
+        .slide-green .green-label {
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.5vw, 10px);
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(26, 26, 26, 0.5);
+            margin-bottom: 4%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .slide-green .green-text {
+            font-family: var(--serif);
+            font-size: clamp(18px, 6vw, 28px);
+            font-style: italic;
+            color: var(--charcoal);
+            line-height: 1.2;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .slide-green .green-cta {
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.8vw, 11px);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: rgba(26, 26, 26, 0.6);
+            margin-top: 6%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Slide: CTA Final */
+        .slide-cta-final {
+            background: var(--charcoal);
+            padding: 10%;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .slide-cta-final .cta-title {
+            font-family: var(--serif);
+            font-size: clamp(22px, 7vw, 32px);
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 2%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .slide-cta-final .cta-title em {
+            color: var(--green);
+        }
+        
+        .slide-cta-final .cta-sub {
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.5vw, 10px);
+            color: var(--gray);
+            margin-bottom: 6%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .slide-cta-final .cta-button {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.5vw, 10px);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            background: var(--green);
+            padding: 4% 8%;
+            border-radius: 3px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* =============================================
+           EVERGREEN ADS
+        ============================================= */
+        .ad-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .evergreen-ad {
+            aspect-ratio: 1 / 1;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border-radius: 4px;
+        }
+        
+        .ad-grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(to right, var(--charcoal-lighter) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--charcoal-lighter) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.25;
+        }
+        
+        .ad-arc {
+            position: absolute;
+            border: 1px solid var(--green-dim);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .ad-logo {
+            position: absolute;
+            top: 6%;
+            left: 6%;
+            height: 7%;
+            z-index: 10;
+        }
+        
+        .ad-cta {
+            position: absolute;
+            bottom: 6%;
+            right: 6%;
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.5vw, 10px);
+            letter-spacing: 0.1em;
+            color: var(--gray-dark);
+            z-index: 10;
+        }
+        
+        .ad-cta-green {
+            color: var(--green);
+        }
+        
+        /* Ad: Massive Stat */
+        .ad-massive-stat {
+            background: var(--charcoal);
+            justify-content: center;
+            padding: 10%;
+        }
+        
+        .ad-massive-stat .ad-arc {
+            width: 100%;
+            height: 100%;
+            top: -45%;
+            right: -30%;
+        }
+        
+        .ad-massive-stat .stat-number {
+            font-family: var(--serif);
+            font-size: clamp(64px, 25vw, 120px);
+            color: var(--green);
+            line-height: 0.85;
+            letter-spacing: -0.04em;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ad-massive-stat .stat-label {
+            font-family: var(--mono);
+            font-size: clamp(9px, 3vw, 12px);
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-top: 5%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ad-massive-stat .stat-context {
+            font-family: var(--serif);
+            font-size: clamp(14px, 5vw, 22px);
+            font-style: italic;
+            color: var(--gray);
+            margin-top: 4%;
+            line-height: 1.3;
+            max-width: 85%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Ad: Headline */
+        .ad-headline {
+            background: var(--charcoal);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10%;
+        }
+        
+        .ad-headline .ad-arc {
+            width: 120%;
+            height: 120%;
+            top: -55%;
+            right: -35%;
+        }
+        
+        .ad-headline .headline-text {
+            font-family: var(--serif);
+            font-size: clamp(28px, 10vw, 42px);
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.1;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ad-headline .headline-text em {
+            color: var(--green);
+        }
+        
+        .ad-headline .headline-sub {
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.8vw, 11px);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-top: 6%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Ad: Stacked */
+        .ad-stacked {
+            background: var(--green);
+            justify-content: center;
+            padding: 10%;
+        }
+        
+        .ad-stacked .ad-arc {
+            border-color: rgba(26, 26, 26, 0.1);
+            width: 90%;
+            height: 90%;
+            bottom: -45%;
+            right: -25%;
+        }
+        
+        .ad-stacked .stacked-line {
+            font-family: var(--serif);
+            font-size: clamp(20px, 7vw, 32px);
+            font-style: italic;
+            color: var(--charcoal);
+            line-height: 1.25;
+        }
+        
+        .ad-stacked .stacked-line.dim {
+            color: rgba(26, 26, 26, 0.35);
+        }
+        
+        .ad-stacked .stacked-cta {
+            font-family: var(--mono);
+            font-size: clamp(8px, 2.5vw, 10px);
+            letter-spacing: 0.1em;
+            color: rgba(26, 26, 26, 0.5);
+            margin-top: 8%;
+        }
+        
+        /* Ad: Minimal */
+        .ad-minimal {
+            background: var(--charcoal);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 12%;
+        }
+        
+        .ad-minimal .minimal-text {
+            font-family: var(--serif);
+            font-size: clamp(24px, 8vw, 36px);
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.2;
+            max-width: 90%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ad-minimal .minimal-text em {
+            color: var(--green);
+        }
+        
+        /* Ad: Split */
+        .ad-split {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+        }
+        
+        .ad-split .split-top {
+            background: var(--charcoal);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 8%;
+            position: relative;
+        }
+        
+        .ad-split .split-bottom {
+            background: var(--green);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 8%;
+        }
+        
+        .ad-split .split-label {
+            font-family: var(--mono);
+            font-size: clamp(7px, 2.2vw, 9px);
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 3%;
+        }
+        
+        .ad-split .split-top .split-label {
+            color: var(--gray-dark);
+        }
+        
+        .ad-split .split-bottom .split-label {
+            color: rgba(26, 26, 26, 0.5);
+        }
+        
+        .ad-split .split-text {
+            font-family: var(--serif);
+            font-size: clamp(16px, 5.5vw, 24px);
+            font-style: italic;
+            line-height: 1.2;
+        }
+        
+        .ad-split .split-top .split-text {
+            color: var(--gray);
+        }
+        
+        .ad-split .split-bottom .split-text {
+            color: var(--charcoal);
+        }
+        
+        /* =============================================
+           POST CAPTION
+        ============================================= */
+        .post-caption {
+            background: var(--charcoal-light);
+            padding: 16px 20px;
+            border-radius: 0 0 4px 4px;
+            margin-top: -4px;
+        }
+        
+        .post-caption-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gray-dark);
+            margin-bottom: 8px;
+        }
+        
+        .post-caption-text {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="page-header">
+        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" alt="TFG">
+        <div class="page-meta">
+            <div class="page-label">LinkedIn Assets</div>
+            <div class="page-title">Carousels, Banners & Evergreen</div>
+        </div>
+    </div>
+    
+    <!-- =============================================
+         LINKEDIN PAGE BANNERS (1128 x 191)
+    ============================================= -->
+    <div class="campaign-section">
+        <div class="section-header">
+            <div class="section-label">LinkedIn Page Banner</div>
+            <div class="section-title">Company Page Headers</div>
+            <div class="section-desc">1128 × 191px. Primary banner for LinkedIn company page.</div>
+        </div>
+        
+        <div class="banner-grid">
+            
+            <!-- Banner 1: Primary Tagline -->
+            <div class="linkedin-banner banner-tagline">
+                <div class="banner-grid-bg"></div>
+                <div class="banner-arc"></div>
+                <div class="banner-text">Move Faster. <em>Build Bigger.</em></div>
+                <div class="banner-sub">Venture-grade advising for NorCal tech founders · Zero cost</div>
+            </div>
+            
+            <!-- Banner 2: Stats Focus -->
+            <div class="linkedin-banner banner-stats">
+                <div class="banner-grid-bg"></div>
+                <div class="stat-group">
+                    <div class="stat-item">
+                        <div class="stat-number">$1B+</div>
+                        <div class="stat-label">Raised</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">$70M+</div>
+                        <div class="stat-label">Grants</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">$0</div>
+                        <div class="stat-label">Cost</div>
+                    </div>
+                </div>
+                <div class="banner-tagline-text">From MVP <em>to Funded.</em></div>
+            </div>
+            
+            <!-- Banner 3: Green Variant -->
+            <div class="linkedin-banner banner-green">
+                <div class="banner-arc"></div>
+                <div class="banner-text">Venture-grade advising. Zero cost.</div>
+                <div class="banner-cta">techfuturesgroup.org</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- =============================================
+         CAROUSEL 1: WHY TFG
+    ============================================= -->
+    <div class="campaign-section">
+        <div class="section-header">
+            <div class="section-label">LinkedIn Carousel</div>
+            <div class="section-title">Why TFG</div>
+            <div class="section-desc">5-slide intro carousel. Core value prop.</div>
+        </div>
+        
+        <div class="carousel-container">
+            <div class="carousel-grid">
+                
+                <!-- Slide 1: Cover -->
+                <div class="carousel-slide slide-cover">
+                    <div class="slide-grid-bg"></div>
+                    <div class="slide-arc"></div>
+                    <div class="slide-sequence">01</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number">1/5</div>
+                    <div>
+                        <div class="cover-label">Swipe →</div>
+                        <div class="cover-title">Why founders choose <em>TFG</em></div>
+                    </div>
+                </div>
+                
+                <!-- Slide 2: Problem -->
+                <div class="carousel-slide slide-content">
+                    <div class="slide-grid-bg"></div>
+                    <div class="slide-sequence">02</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number">2/5</div>
+                    <div class="content-label">The Problem</div>
+                    <div class="content-title">You've built the tech. Now what?</div>
+                    <div class="content-text">Product-market fit. Fundraising. Grants. Cap tables. Most founders figure it out the hard way.</div>
+                </div>
+                
+                <!-- Slide 3: Solution -->
+                <div class="carousel-slide slide-content">
+                    <div class="slide-grid-bg"></div>
+                    <div class="slide-sequence">03</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number">3/5</div>
+                    <div class="content-label">The Solution</div>
+                    <div class="content-title">Advisors who've done it before.</div>
+                    <div class="content-text">Serial founders. Former VCs. Grant specialists. 14 advisors who've scaled startups and can help you do the same.</div>
+                </div>
+                
+                <!-- Slide 4: Proof -->
+                <div class="carousel-slide slide-stat">
+                    <div class="slide-grid-bg"></div>
+                    <div class="slide-sequence">04</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number">4/5</div>
+                    <div class="stat-number">$1B+</div>
+                    <div class="stat-label">Raised by TFG Founders</div>
+                    <div class="stat-context">Not a pitch. A track record.</div>
+                </div>
+                
+                <!-- Slide 5: CTA -->
+                <div class="carousel-slide slide-green">
+                    <div class="slide-arc"></div>
+                    <div class="slide-sequence">05</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number" style="color: rgba(26,26,26,0.3);">5/5</div>
+                    <div class="green-label">The Best Part</div>
+                    <div class="green-text">World-class advisors. $0 cost. SBA-backed.</div>
+                    <div class="green-cta">Apply → techfuturesgroup.org</div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <!-- =============================================
+         CAROUSEL 2: SBIR/STTR
+    ============================================= -->
+    <div class="campaign-section">
+        <div class="section-header">
+            <div class="section-label">LinkedIn Carousel</div>
+            <div class="section-title">SBIR/STTR Explained</div>
+            <div class="section-desc">6-slide educational carousel on non-dilutive funding.</div>
+        </div>
+        
+        <div class="carousel-container">
+            <div class="carousel-grid">
+                
+                <!-- Slide 1: Cover -->
+                <div class="carousel-slide slide-cover">
+                    <div class="slide-grid-bg"></div>
+                    <div class="slide-arc"></div>
+                    <div class="slide-sequence">01</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number">1/6</div>
+                    <div>
+                        <div class="cover-label">Swipe →</div>
+                        <div class="cover-title">SBIR/STTR: <em>The basics</em></div>
+                        <div class="cover-sub">Non-dilutive funding explained</div>
+                    </div>
+                </div>
+                
+                <!-- Slide 2: What -->
+                <div class="carousel-slide slide-content">
+                    <div class="slide-grid-bg"></div>
+                    <div class="slide-sequence">02</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number">2/6</div>
+                    <div class="content-label">What Is It?</div>
+                    <div class="content-title">Government grants for R&D.</div>
+                    <div class="content-text">SBIR and STTR are federal programs that fund early-stage tech. No equity. No repayment. You keep 100%.</div>
+                </div>
+                
+                <!-- Slide 3: Phases -->
+                <div class="carousel-slide slide-content">
+                    <div class="slide-grid-bg"></div>
+                    <div class="slide-sequence">03</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number">3/6</div>
+                    <div class="content-label">The Phases</div>
+                    <div class="content-title">Phase I → II → III</div>
+                    <div class="content-text">Phase I: $50K–$275K feasibility. Phase II: $750K–$1.5M development. Phase III: Commercialization.</div>
+                </div>
+                
+                <!-- Slide 4: Stat -->
+                <div class="carousel-slide slide-stat">
+                    <div class="slide-grid-bg"></div>
+                    <div class="slide-sequence">04</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number">4/6</div>
+                    <div class="stat-number">$70M+</div>
+                    <div class="stat-label">Grants Secured</div>
+                    <div class="stat-context">TFG advisors have navigated $70M+ in SBIR/STTR.</div>
+                </div>
+                
+                <!-- Slide 5: Who -->
+                <div class="carousel-slide slide-content">
+                    <div class="slide-grid-bg"></div>
+                    <div class="slide-sequence">05</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number">5/6</div>
+                    <div class="content-label">Who Qualifies?</div>
+                    <div class="content-title">US-based. &lt;500 employees.</div>
+                    <div class="content-text">Deep tech, biotech, climate tech, defense-adjacent. If you're building hard tech, you likely qualify.</div>
+                </div>
+                
+                <!-- Slide 6: CTA -->
+                <div class="carousel-slide slide-green">
+                    <div class="slide-arc"></div>
+                    <div class="slide-sequence">06</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number" style="color: rgba(26,26,26,0.3);">6/6</div>
+                    <div class="green-label">Get Help</div>
+                    <div class="green-text">Our grant specialists guide you from application to award.</div>
+                    <div class="green-cta">Apply → techfuturesgroup.org</div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <!-- =============================================
+         CAROUSEL 3: FOUNDER JOURNEY
+    ============================================= -->
+    <div class="campaign-section">
+        <div class="section-header">
+            <div class="section-label">LinkedIn Carousel</div>
+            <div class="section-title">Founder Journey</div>
+            <div class="section-desc">5-slide case study. Before/after format.</div>
+        </div>
+        
+        <div class="carousel-container">
+            <div class="carousel-grid">
+                
+                <!-- Slide 1: Cover -->
+                <div class="carousel-slide slide-cover">
+                    <div class="slide-grid-bg"></div>
+                    <div class="slide-arc"></div>
+                    <div class="slide-sequence">01</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number">1/5</div>
+                    <div>
+                        <div class="cover-label">Case Study</div>
+                        <div class="cover-title">8 months. <em>Zero traction.</em></div>
+                        <div class="cover-sub">Then she found TFG.</div>
+                    </div>
+                </div>
+                
+                <!-- Slide 2: Before -->
+                <div class="carousel-slide slide-content">
+                    <div class="slide-grid-bg"></div>
+                    <div class="slide-sequence">02</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number">2/5</div>
+                    <div class="content-label">Before TFG</div>
+                    <div class="content-title">Great tech. Wrong pitch.</div>
+                    <div class="content-text">Working prototype. Strong team. 8 months of pitching. Zero term sheets.</div>
+                </div>
+                
+                <!-- Slide 3: Insight -->
+                <div class="carousel-slide slide-content">
+                    <div class="slide-grid-bg"></div>
+                    <div class="slide-sequence">03</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number">3/5</div>
+                    <div class="content-label">The Shift</div>
+                    <div class="content-title">Lead with the problem.</div>
+                    <div class="content-text">Her TFG advisor helped her reframe. Stop selling features. Start selling the $4B problem she solves.</div>
+                </div>
+                
+                <!-- Slide 4: Result -->
+                <div class="carousel-slide slide-stat">
+                    <div class="slide-grid-bg"></div>
+                    <div class="slide-sequence">04</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number">4/5</div>
+                    <div class="stat-number">$3.2M</div>
+                    <div class="stat-label">Seed Closed</div>
+                    <div class="stat-context">12 weeks. 3 term sheets. Fortune 500 pilot.</div>
+                </div>
+                
+                <!-- Slide 5: CTA -->
+                <div class="carousel-slide slide-cta-final">
+                    <div class="slide-grid-bg"></div>
+                    <div class="slide-sequence">05</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number">5/5</div>
+                    <div class="cta-title">Your turn?</div>
+                    <div class="cta-sub">World-class advisors. Zero cost.</div>
+                    <div class="cta-button">Apply to TFG →</div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <!-- =============================================
+         CAROUSEL 4: MEET THE TEAM
+    ============================================= -->
+    <div class="campaign-section">
+        <div class="section-header">
+            <div class="section-label">LinkedIn Carousel</div>
+            <div class="section-title">Meet the Team</div>
+            <div class="section-desc">5-slide advisor overview. Builds credibility.</div>
+        </div>
+        
+        <div class="carousel-container">
+            <div class="carousel-grid">
+                
+                <!-- Slide 1: Cover -->
+                <div class="carousel-slide slide-cover">
+                    <div class="slide-grid-bg"></div>
+                    <div class="slide-arc"></div>
+                    <div class="slide-sequence">01</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number">1/5</div>
+                    <div>
+                        <div class="cover-label">Swipe →</div>
+                        <div class="cover-title">Meet <em>your advisors.</em></div>
+                    </div>
+                </div>
+                
+                <!-- Slide 2: VCs -->
+                <div class="carousel-slide slide-content">
+                    <div class="slide-grid-bg"></div>
+                    <div class="slide-sequence">02</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number">2/5</div>
+                    <div class="content-label">Former VCs</div>
+                    <div class="content-title">They've sat on the other side.</div>
+                    <div class="content-text">NVCA board members. Corporate venture leads. Seed fund managers. They know what investors look for.</div>
+                </div>
+                
+                <!-- Slide 3: Founders -->
+                <div class="carousel-slide slide-content">
+                    <div class="slide-grid-bg"></div>
+                    <div class="slide-sequence">03</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number">3/5</div>
+                    <div class="content-label">Serial Founders</div>
+                    <div class="content-title">Multiple exits. IPOs. M&As.</div>
+                    <div class="content-text">They've built and sold companies on two continents. They've been where you're going.</div>
+                </div>
+                
+                <!-- Slide 4: Grant Specialists -->
+                <div class="carousel-slide slide-content">
+                    <div class="slide-grid-bg"></div>
+                    <div class="slide-sequence">04</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number">4/5</div>
+                    <div class="content-label">Grant Specialists</div>
+                    <div class="content-title">$70M+ in SBIR/STTR navigated.</div>
+                    <div class="content-text">Tibbetts Award winners. NSF recipients. TRL 3 to TRL 9. They know the government game.</div>
+                </div>
+                
+                <!-- Slide 5: CTA -->
+                <div class="carousel-slide slide-green">
+                    <div class="slide-arc"></div>
+                    <div class="slide-sequence">05</div>
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="slide-logo" alt="TFG">
+                    <div class="slide-number" style="color: rgba(26,26,26,0.3);">5/5</div>
+                    <div class="green-label">14 Advisors</div>
+                    <div class="green-text">VCs. Founders. Grant specialists. All free to you.</div>
+                    <div class="green-cta">Apply → techfuturesgroup.org</div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <!-- =============================================
+         EVERGREEN ADS
+    ============================================= -->
+    <div class="campaign-section">
+        <div class="section-header">
+            <div class="section-label">Evergreen Ads</div>
+            <div class="section-title">Always-On Creative</div>
+            <div class="section-desc">High-impact ads for ongoing promotion. Run anytime.</div>
+        </div>
+        
+        <div class="ad-grid">
+            
+            <!-- $0 - Primary -->
+            <div class="evergreen-ad ad-massive-stat">
+                <div class="ad-grid-bg"></div>
+                <div class="ad-arc"></div>
+                <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="ad-logo" alt="TFG">
+                <div class="stat-number">$0</div>
+                <div class="stat-label">Cost to You</div>
+                <div class="stat-context">14 advisors. $1B+ raised. Yours free.</div>
+                <div class="ad-cta ad-cta-green">techfuturesgroup.org</div>
+            </div>
+            
+            <!-- $0 - Variant 2 -->
+            <div class="evergreen-ad ad-massive-stat">
+                <div class="ad-grid-bg"></div>
+                <div class="ad-arc"></div>
+                <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="ad-logo" alt="TFG">
+                <div class="stat-number">$0</div>
+                <div class="stat-label">Cost to You</div>
+                <div class="stat-context">VCs. Founders. Grant specialists. Free.</div>
+                <div class="ad-cta ad-cta-green">techfuturesgroup.org</div>
+            </div>
+            
+            <!-- $1B+ -->
+            <div class="evergreen-ad ad-massive-stat">
+                <div class="ad-grid-bg"></div>
+                <div class="ad-arc"></div>
+                <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="ad-logo" alt="TFG">
+                <div class="stat-number">$1B+</div>
+                <div class="stat-label">Raised by TFG Founders</div>
+                <div class="stat-context">Not a pitch. A track record.</div>
+                <div class="ad-cta ad-cta-green">techfuturesgroup.org</div>
+            </div>
+            
+            <!-- $70M+ -->
+            <div class="evergreen-ad ad-massive-stat">
+                <div class="ad-grid-bg"></div>
+                <div class="ad-arc"></div>
+                <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="ad-logo" alt="TFG">
+                <div class="stat-number">$70M+</div>
+                <div class="stat-label">Grants Secured</div>
+                <div class="stat-context">SBIR. STTR. Non-dilutive capital.</div>
+                <div class="ad-cta ad-cta-green">techfuturesgroup.org</div>
+            </div>
+            
+            <!-- Move Faster -->
+            <div class="evergreen-ad ad-headline">
+                <div class="ad-grid-bg"></div>
+                <div class="ad-arc"></div>
+                <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="ad-logo" alt="TFG">
+                <div>
+                    <div class="headline-text">Move Faster. <em>Build Bigger.</em></div>
+                    <div class="headline-sub">Venture-grade advising · Zero cost</div>
+                </div>
+                <div class="ad-cta">techfuturesgroup.org</div>
+            </div>
+            
+            <!-- From MVP to Funded -->
+            <div class="evergreen-ad ad-headline">
+                <div class="ad-grid-bg"></div>
+                <div class="ad-arc"></div>
+                <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="ad-logo" alt="TFG">
+                <div>
+                    <div class="headline-text">From MVP <em>to Funded.</em></div>
+                    <div class="headline-sub">14 advisors · $0 cost</div>
+                </div>
+                <div class="ad-cta">techfuturesgroup.org</div>
+            </div>
+            
+            <!-- Free advice. Real results. -->
+            <div class="evergreen-ad ad-minimal">
+                <div class="ad-grid-bg"></div>
+                <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="ad-logo" alt="TFG">
+                <div class="minimal-text">Free advice. <em>Real results.</em></div>
+                <div class="ad-cta">techfuturesgroup.org</div>
+            </div>
+            
+            <!-- No equity. No fees. No catch. -->
+            <div class="evergreen-ad ad-minimal">
+                <div class="ad-grid-bg"></div>
+                <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="ad-logo" alt="TFG">
+                <div class="minimal-text">No equity. No fees. <em>No catch.</em></div>
+                <div class="ad-cta">techfuturesgroup.org</div>
+            </div>
+            
+            <!-- Stacked: Raised/Grants/Cost -->
+            <div class="evergreen-ad ad-stacked">
+                <div class="ad-arc"></div>
+                <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="ad-logo" alt="TFG">
+                <div class="stacked-line dim">$1B+ raised.</div>
+                <div class="stacked-line dim">$70M+ in grants.</div>
+                <div class="stacked-line">Zero cost to you.</div>
+                <div class="stacked-cta">techfuturesgroup.org</div>
+            </div>
+            
+            <!-- Stacked: Advisors -->
+            <div class="evergreen-ad ad-stacked">
+                <div class="ad-arc"></div>
+                <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" class="ad-logo" alt="TFG">
+                <div class="stacked-line dim">Former VCs.</div>
+                <div class="stacked-line dim">Serial founders.</div>
+                <div class="stacked-line">Your advisors.</div>
+                <div class="stacked-cta">Zero cost · techfuturesgroup.org</div>
+            </div>
+            
+            <!-- Split: Problem/Solution -->
+            <div class="evergreen-ad ad-split">
+                <div class="split-top">
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="ad-logo" alt="TFG">
+                    <div class="split-label">The Problem</div>
+                    <div class="split-text">Great tech. No product-market fit.</div>
+                </div>
+                <div class="split-bottom">
+                    <div class="split-label">The Solution</div>
+                    <div class="split-text">Advisors who've scaled startups before.</div>
+                </div>
+            </div>
+            
+            <!-- Split: Before/After -->
+            <div class="evergreen-ad ad-split">
+                <div class="split-top">
+                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Lime.png" class="ad-logo" alt="TFG">
+                    <div class="split-label">Before TFG</div>
+                    <div class="split-text">Side project. Nights and weekends.</div>
+                </div>
+                <div class="split-bottom">
+                    <div class="split-label">After TFG</div>
+                    <div class="split-text">$2.4M seed. Full-time founder.</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+</html>

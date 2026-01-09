@@ -6,8 +6,40 @@
     <title>TFG Brand House | Tech Futures Group</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* Custom Font Faces */
+        @font-face {
+            font-family: 'GT America Extended';
+            src: url('./4618gt.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'GT America Extended';
+            src: url('./2809gt-bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Tobias';
+            src: url('./Tobias-Thin.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Tobias';
+            src: url('./Tobias-Medium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
         :root {
             --electric-green: #39FF14;
             --charcoal: #1a1a1a;
@@ -30,7 +62,7 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'GT America Extended', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--near-black);
             color: var(--white);
             line-height: 1.6;
@@ -53,7 +85,7 @@
         }
 
         .serif-italic {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Tobias', serif;
             font-style: italic;
         }
 
@@ -204,7 +236,7 @@
         }
 
         .hero-hook {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Tobias', serif;
             font-style: italic;
             font-size: 1.1rem;
             color: var(--muted-green);
@@ -337,7 +369,7 @@
         }
 
         .pillar-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Tobias', serif;
             font-style: italic;
             font-size: 2.5rem;
             color: var(--white);
@@ -813,7 +845,7 @@
         }
 
         .brand-logo-full .wordmark {
-            font-family: 'Inter', sans-serif;
+            font-family: 'GT America Extended', sans-serif;
             font-weight: 700;
             font-size: 1.4rem;
             letter-spacing: -0.02em;
@@ -912,18 +944,18 @@
         }
 
         .type-specimen-sample.headline {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Tobias', serif;
             font-size: 3rem;
         }
 
         .type-specimen-sample.headline-italic {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Tobias', serif;
             font-style: italic;
             font-size: 3rem;
         }
 
         .type-specimen-sample.body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'GT America Extended', sans-serif;
             font-size: 1.1rem;
             line-height: 1.8;
             max-width: 600px;
@@ -1797,8 +1829,8 @@
                 <div class="type-specimens">
                     <div class="type-specimen fade-up stagger-1">
                         <div class="type-specimen-label">Headlines — Serif</div>
-                        <div class="type-specimen-sample headline">Playfair Display</div>
-                        <div class="type-specimen-meta">Bold for emphasis, Regular for elegance</div>
+                        <div class="type-specimen-sample headline">Tobias</div>
+                        <div class="type-specimen-meta">Medium for emphasis, Thin for elegance</div>
                     </div>
                     <div class="type-specimen fade-up stagger-2">
                         <div class="type-specimen-label">Headlines — Serif Italic</div>
@@ -1808,10 +1840,10 @@
                     <div class="type-specimen fade-up stagger-3">
                         <div class="type-specimen-label">Body — Sans Serif</div>
                         <div class="type-specimen-sample body">
-                            Inter is used for all body copy, UI elements, and general text. It's clean,
-                            highly readable, and works well across all screen sizes.
+                            GT America Extended is used for all body copy, UI elements, and general text.
+                            Clean, extended letterforms with a confident, modern presence.
                         </div>
-                        <div class="type-specimen-meta">Inter — 400/500/600/700</div>
+                        <div class="type-specimen-meta">GT America Extended — 400/700</div>
                     </div>
                     <div class="type-specimen fade-up stagger-4">
                         <div class="type-specimen-label">Labels / Stats — Monospace</div>

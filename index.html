@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFG Brand House | Tech Futures Group</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --electric-green: #39FF14;
+            --charcoal: #1a1a1a;
+            --near-black: #0a0a0a;
+            --dark-gray: #2d2d2d;
+            --white: #ffffff;
+            --muted-green: #39FF1466;
+            --cream: #f7f6f1;
+            --green-glow: rgba(57, 255, 20, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--near-black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .mono {
+            font-family: 'Roboto Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .serif-italic {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        .section-label {
+            font-family: 'Roboto Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.7rem;
+            color: var(--electric-green);
+            margin-bottom: 1rem;
+        }
+
+        /* Grain Texture Overlay */
+        .grain {
+            position: relative;
+        }
+
+        .grain::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            z-index: 1;
+        }
+
+        .grain > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            min-height: 100vh;
+            background: var(--charcoal);
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-grid-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(90deg, rgba(57, 255, 20, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(57, 255, 20, 0.03) 1px, transparent 1px);
+            background-size: 80px 80px;
+            pointer-events: none;
+        }
+
+        .hero-arc {
+            position: absolute;
+            bottom: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            border: 2px solid var(--muted-green);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            width: 100%;
+            padding: 120px 0;
+        }
+
+        .hero-logo {
+            margin-bottom: 60px;
+        }
+
+        .logo-mark {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--electric-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo-mark::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 4px solid var(--electric-green);
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0; }
+            50% { transform: scale(1.3); opacity: 0.3; }
+        }
+
+        .hero-headline {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .hero-headline .serif-italic {
+            font-weight: 400;
+            color: var(--electric-green);
+        }
+
+        .hero-subhead {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 500px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-hook {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--muted-green);
+            border-left: 2px solid var(--electric-green);
+            padding-left: 20px;
+        }
+
+        .hero-stat {
+            text-align: right;
+            position: relative;
+        }
+
+        .hero-stat-starburst {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            pointer-events: none;
+        }
+
+        .starburst-line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--electric-green), transparent);
+            transform-origin: left center;
+            opacity: 0.3;
+        }
+
+        .hero-stat-number {
+            font-family: 'Roboto Mono', monospace;
+            font-size: clamp(8rem, 20vw, 14rem);
+            font-weight: 700;
+            color: var(--electric-green);
+            line-height: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-stat-label {
+            font-family: 'Roboto Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 20px;
+        }
+
+        /* ============================================
+           SERVICE PILLARS
+           ============================================ */
+        .pillars {
+            background: var(--near-black);
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .pillars-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .pillars-headline {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .pillar-card {
+            background: var(--dark-gray);
+            border-radius: 12px;
+            padding: 40px 32px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(57, 255, 20, 0.1);
+        }
+
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--electric-green);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .pillar-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .pillar-lockup {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .pillar-lockup-mark {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--electric-green);
+            border-radius: 50%;
+        }
+
+        .pillar-lockup-text {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .pillar-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .pillar-stat {
+            font-family: 'Roboto Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.75rem;
+            color: var(--electric-green);
+            margin-bottom: 20px;
+        }
+
+        .pillar-desc {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .pillar-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: gap 0.3s ease;
+        }
+
+        .pillar-cta:hover {
+            gap: 16px;
+        }
+
+        .pillar-cta svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--electric-green);
+        }
+
+        /* ============================================
+           TRUST BOARD (Data Theater)
+           ============================================ */
+        .trust {
+            background: var(--charcoal);
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trust-arc {
+            position: absolute;
+            top: -300px;
+            left: -300px;
+            width: 800px;
+            height: 800px;
+            border: 1px solid rgba(57, 255, 20, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .trust-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .trust-main-stat {
+            text-align: center;
+        }
+
+        .trust-stat-number {
+            font-family: 'Roboto Mono', monospace;
+            font-size: clamp(6rem, 15vw, 12rem);
+            font-weight: 700;
+            color: var(--electric-green);
+            line-height: 1;
+            position: relative;
+        }
+
+        .trust-stat-number .counter {
+            display: inline-block;
+        }
+
+        .trust-stat-label {
+            font-family: 'Roboto Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 20px;
+        }
+
+        .trust-supporting {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .trust-metric {
+            border-left: 2px solid var(--electric-green);
+            padding-left: 24px;
+        }
+
+        .trust-metric-value {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .trust-metric-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ============================================
+           ADVISORS SECTION
+           ============================================ */
+        .advisors {
+            background: var(--near-black);
+            padding: 120px 0;
+        }
+
+        .advisors-header {
+            margin-bottom: 60px;
+        }
+
+        .advisors-headline {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .advisors-subhead {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .advisors-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 50px;
+        }
+
+        .advisor-category {
+            font-family: 'Roboto Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.7rem;
+            padding: 8px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .advisor-category:hover,
+        .advisor-category.active {
+            border-color: var(--electric-green);
+            color: var(--electric-green);
+        }
+
+        .advisors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .advisor-card {
+            background: var(--dark-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .advisor-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .advisor-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--charcoal), var(--dark-gray));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .advisor-image::before {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 3px solid var(--muted-green);
+            border-radius: 50%;
+        }
+
+        .advisor-info {
+            padding: 24px;
+        }
+
+        .advisor-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .advisor-role {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 12px;
+        }
+
+        .advisor-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .advisor-tag {
+            font-family: 'Roboto Mono', monospace;
+            text-transform: uppercase;
+            font-size: 0.6rem;
+            letter-spacing: 0.05em;
+            padding: 4px 8px;
+            background: rgba(57, 255, 20, 0.1);
+            color: var(--electric-green);
+            border-radius: 4px;
+        }
+
+        /* ============================================
+           ASSET LIBRARY
+           ============================================ */
+        .assets {
+            background: var(--charcoal);
+            padding: 120px 0;
+        }
+
+        .assets-header {
+            margin-bottom: 60px;
+        }
+
+        .assets-headline {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+        }
+
+        .asset-section {
+            margin-bottom: 60px;
+        }
+
+        .asset-section-title {
+            font-family: 'Roboto Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.75rem;
+            color: var(--electric-green);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .asset-section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .asset-carousel {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 20px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .asset-carousel::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .asset-carousel::-webkit-scrollbar-track {
+            background: var(--dark-gray);
+            border-radius: 2px;
+        }
+
+        .asset-carousel::-webkit-scrollbar-thumb {
+            background: var(--electric-green);
+            border-radius: 2px;
+        }
+
+        .asset-card {
+            flex: 0 0 280px;
+            scroll-snap-align: start;
+            background: var(--dark-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .asset-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .asset-preview {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, var(--near-black), var(--charcoal));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .asset-preview-placeholder {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted-green);
+        }
+
+        .asset-preview-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(57, 255, 20, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .asset-card:hover .asset-preview-overlay {
+            opacity: 1;
+        }
+
+        .asset-preview-icon {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--electric-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .asset-preview-icon svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--electric-green);
+        }
+
+        .asset-info {
+            padding: 20px;
+        }
+
+        .asset-name {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .asset-type {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* ============================================
+           BRAND ELEMENTS
+           ============================================ */
+        .brand-elements {
+            background: var(--near-black);
+            padding: 120px 0;
+        }
+
+        .brand-elements-header {
+            margin-bottom: 80px;
+        }
+
+        .brand-elements-headline {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+        }
+
+        .brand-subsection {
+            margin-bottom: 80px;
+        }
+
+        .brand-subsection-title {
+            font-family: 'Roboto Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 32px;
+        }
+
+        /* Logo Usage */
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .logo-example {
+            background: var(--dark-gray);
+            border-radius: 12px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo-example.light {
+            background: var(--cream);
+        }
+
+        .logo-example-label {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            font-family: 'Roboto Mono', monospace;
+            text-transform: uppercase;
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .logo-example.light .logo-example-label {
+            color: rgba(0, 0, 0, 0.4);
+        }
+
+        .brand-logo-mark {
+            width: 80px;
+            height: 80px;
+            border: 5px solid var(--electric-green);
+            border-radius: 50%;
+        }
+
+        .brand-logo-full {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-logo-full .mark {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--electric-green);
+            border-radius: 50%;
+        }
+
+        .brand-logo-full .wordmark {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-logo-full.dark .wordmark {
+            color: var(--near-black);
+        }
+
+        /* Color Palette */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .color-swatch {
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .color-swatch:hover {
+            transform: translateY(-4px);
+        }
+
+        .color-swatch-preview {
+            height: 120px;
+            position: relative;
+        }
+
+        .color-swatch-preview::after {
+            content: 'Click to copy';
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .color-swatch:hover .color-swatch-preview::after {
+            opacity: 1;
+        }
+
+        .color-swatch-info {
+            padding: 16px;
+            background: var(--dark-gray);
+        }
+
+        .color-swatch-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .color-swatch-hex {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Typography */
+        .type-specimens {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .type-specimen {
+            background: var(--dark-gray);
+            border-radius: 12px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .type-specimen-label {
+            font-family: 'Roboto Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.65rem;
+            color: var(--electric-green);
+            margin-bottom: 20px;
+        }
+
+        .type-specimen-sample {
+            margin-bottom: 20px;
+        }
+
+        .type-specimen-sample.headline {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+        }
+
+        .type-specimen-sample.headline-italic {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 3rem;
+        }
+
+        .type-specimen-sample.body {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 600px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .type-specimen-sample.mono {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--electric-green);
+        }
+
+        .type-specimen-meta {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Graphic Elements */
+        .graphic-elements-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .graphic-element {
+            background: var(--dark-gray);
+            border-radius: 12px;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            min-height: 300px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .graphic-element-visual {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .graphic-element-name {
+            font-family: 'Roboto Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Radial Lines */
+        .radial-demo {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        .radial-demo .line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--electric-green), transparent);
+            transform-origin: left center;
+        }
+
+        /* Arc Swoops */
+        .arc-demo {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        .arc-demo .arc {
+            position: absolute;
+            border: 2px solid var(--electric-green);
+            border-radius: 50%;
+        }
+
+        .arc-demo .arc-1 {
+            width: 300px;
+            height: 300px;
+            top: -50px;
+            left: -50px;
+            border-color: var(--electric-green);
+            opacity: 0.6;
+        }
+
+        .arc-demo .arc-2 {
+            width: 200px;
+            height: 200px;
+            top: 0;
+            left: 0;
+            border-color: var(--muted-green);
+        }
+
+        /* Grid Lines Demo */
+        .grid-demo {
+            width: 200px;
+            height: 200px;
+            background-image:
+                linear-gradient(90deg, var(--electric-green) 1px, transparent 1px),
+                linear-gradient(var(--electric-green) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.3;
+        }
+
+        /* Split Composition */
+        .split-demo {
+            width: 200px;
+            height: 150px;
+            display: flex;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .split-demo .half {
+            flex: 1;
+        }
+
+        .split-demo .half-green {
+            background: var(--electric-green);
+        }
+
+        .split-demo .half-black {
+            background: var(--near-black);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: var(--near-black);
+            padding: 80px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-logo-mark {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--electric-green);
+            border-radius: 50%;
+        }
+
+        .footer-logo-text {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--electric-green);
+        }
+
+        .footer-network {
+            font-family: 'Roboto Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ============================================
+           MODAL
+           ============================================ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            width: 32px;
+            height: 32px;
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            border-color: var(--electric-green);
+        }
+
+        .modal-close svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--white);
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+        }
+
+        /* ============================================
+           TOAST NOTIFICATION
+           ============================================ */
+        .toast {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--electric-green);
+            color: var(--near-black);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 1001;
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .toast.active {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 1200px) {
+            .pillars-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 968px) {
+            .container {
+                padding: 0 24px;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+                padding: 100px 0 80px;
+            }
+
+            .hero-stat {
+                text-align: center;
+            }
+
+            .trust-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .trust-main-stat {
+                order: 1;
+            }
+
+            .trust-supporting {
+                order: 2;
+            }
+
+            .logo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .graphic-elements-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pillars-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 32px;
+                text-align: center;
+            }
+
+            .footer-links {
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero grain">
+        <div class="hero-grid-lines"></div>
+        <div class="hero-arc"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-left">
+                    <div class="hero-logo fade-up">
+                        <div class="logo-mark"></div>
+                    </div>
+                    <h1 class="hero-headline fade-up stagger-1">
+                        <span class="serif-italic">Move Faster.</span><br>
+                        Build Bigger.
+                    </h1>
+                    <p class="hero-subhead fade-up stagger-2">
+                        Venture-grade advising for Northern California tech founders. $0 cost.
+                    </p>
+                    <p class="hero-hook fade-up stagger-3">
+                        "You have nothing to lose but momentum."
+                    </p>
+                </div>
+                <div class="hero-stat fade-up stagger-4">
+                    <div class="hero-stat-starburst" id="starburst"></div>
+                    <div class="hero-stat-number">$0</div>
+                    <div class="hero-stat-label">Cost to Founders</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Pillars -->
+    <section class="pillars">
+        <div class="container">
+            <div class="pillars-header">
+                <span class="section-label fade-up">What We Do</span>
+                <h2 class="pillars-headline fade-up stagger-1">
+                    Four pillars. <span class="serif-italic">One mission.</span>
+                </h2>
+            </div>
+            <div class="pillars-grid">
+                <div class="pillar-card fade-up stagger-1">
+                    <div class="pillar-lockup">
+                        <div class="pillar-lockup-mark"></div>
+                        <span class="pillar-lockup-text">Tech Futures Group</span>
+                    </div>
+                    <h3 class="pillar-title">Product</h3>
+                    <div class="pillar-stat">Product-Market Fit</div>
+                    <p class="pillar-desc">Advisors who've shipped. Get from MVP to traction with founders who've been there.</p>
+                    <a href="#" class="pillar-cta">
+                        Learn more
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="pillar-card fade-up stagger-2">
+                    <div class="pillar-lockup">
+                        <div class="pillar-lockup-mark"></div>
+                        <span class="pillar-lockup-text">Tech Futures Group</span>
+                    </div>
+                    <h3 class="pillar-title">Capital</h3>
+                    <div class="pillar-stat">$1B+ Raised</div>
+                    <p class="pillar-desc">Cap table strategy, pitch prep, investor intros. We know what VCs want to see.</p>
+                    <a href="#" class="pillar-cta">
+                        Learn more
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="pillar-card fade-up stagger-3">
+                    <div class="pillar-lockup">
+                        <div class="pillar-lockup-mark"></div>
+                        <span class="pillar-lockup-text">Tech Futures Group</span>
+                    </div>
+                    <h3 class="pillar-title">Grants</h3>
+                    <div class="pillar-stat">$70M+ Secured</div>
+                    <p class="pillar-desc">SBIR/STTR specialists. Non-dilutive funding that keeps your cap table clean.</p>
+                    <a href="#" class="pillar-cta">
+                        Learn more
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="pillar-card fade-up stagger-4">
+                    <div class="pillar-lockup">
+                        <div class="pillar-lockup-mark"></div>
+                        <span class="pillar-lockup-text">Tech Futures Group</span>
+                    </div>
+                    <h3 class="pillar-title">Scale</h3>
+                    <div class="pillar-stat">2,700+ Jobs Created</div>
+                    <p class="pillar-desc">Go-to-market, hiring, operations. Build the machine that builds the company.</p>
+                    <a href="#" class="pillar-cta">
+                        Learn more
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Board -->
+    <section class="trust grain">
+        <div class="trust-arc"></div>
+        <div class="container">
+            <div class="trust-content">
+                <div class="trust-main-stat fade-up">
+                    <div class="trust-stat-number">
+                        $<span class="counter" data-target="1">0</span>B+
+                    </div>
+                    <div class="trust-stat-label">Raised by TFG Founders</div>
+                </div>
+                <div class="trust-supporting">
+                    <div class="trust-metric fade-up stagger-1">
+                        <div class="trust-metric-value">$70M+</div>
+                        <div class="trust-metric-label">in grants secured</div>
+                    </div>
+                    <div class="trust-metric fade-up stagger-2">
+                        <div class="trust-metric-value">2,700+</div>
+                        <div class="trust-metric-label">jobs created</div>
+                    </div>
+                    <div class="trust-metric fade-up stagger-3">
+                        <div class="trust-metric-value">14</div>
+                        <div class="trust-metric-label">world-class advisors</div>
+                    </div>
+                    <div class="trust-metric fade-up stagger-4">
+                        <div class="trust-metric-value">$0</div>
+                        <div class="trust-metric-label">cost (SBA-backed)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advisors Section -->
+    <section class="advisors">
+        <div class="container">
+            <div class="advisors-header">
+                <span class="section-label fade-up">The Team</span>
+                <h2 class="advisors-headline fade-up stagger-1">
+                    Serial founders. VCs. <span class="serif-italic">Operators.</span>
+                </h2>
+                <p class="advisors-subhead fade-up stagger-2">
+                    14 advisors who've built, funded, and scaled companies from zero to exit.
+                </p>
+            </div>
+            <div class="advisors-categories fade-up stagger-3">
+                <span class="advisor-category active">All</span>
+                <span class="advisor-category">SBIR/Grants</span>
+                <span class="advisor-category">Finance & Investment</span>
+                <span class="advisor-category">Go-to-Market</span>
+                <span class="advisor-category">Biotech</span>
+                <span class="advisor-category">Enterprise Software</span>
+            </div>
+            <div class="advisors-grid">
+                <div class="advisor-card fade-up stagger-1">
+                    <div class="advisor-image"></div>
+                    <div class="advisor-info">
+                        <div class="advisor-name">Advisor Name</div>
+                        <div class="advisor-role">Partner, Venture Fund</div>
+                        <div class="advisor-tags">
+                            <span class="advisor-tag">Finance</span>
+                            <span class="advisor-tag">Series A+</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="advisor-card fade-up stagger-2">
+                    <div class="advisor-image"></div>
+                    <div class="advisor-info">
+                        <div class="advisor-name">Advisor Name</div>
+                        <div class="advisor-role">SBIR Specialist</div>
+                        <div class="advisor-tags">
+                            <span class="advisor-tag">Grants</span>
+                            <span class="advisor-tag">SBIR/STTR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="advisor-card fade-up stagger-3">
+                    <div class="advisor-image"></div>
+                    <div class="advisor-info">
+                        <div class="advisor-name">Advisor Name</div>
+                        <div class="advisor-role">Serial Founder, 3x Exit</div>
+                        <div class="advisor-tags">
+                            <span class="advisor-tag">Go-to-Market</span>
+                            <span class="advisor-tag">SaaS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="advisor-card fade-up stagger-4">
+                    <div class="advisor-image"></div>
+                    <div class="advisor-info">
+                        <div class="advisor-name">Advisor Name</div>
+                        <div class="advisor-role">VP Engineering, BigCo</div>
+                        <div class="advisor-tags">
+                            <span class="advisor-tag">Enterprise</span>
+                            <span class="advisor-tag">Scale</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="advisor-card fade-up stagger-1">
+                    <div class="advisor-image"></div>
+                    <div class="advisor-info">
+                        <div class="advisor-name">Advisor Name</div>
+                        <div class="advisor-role">Biotech Founder</div>
+                        <div class="advisor-tags">
+                            <span class="advisor-tag">Biotech</span>
+                            <span class="advisor-tag">FDA</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="advisor-card fade-up stagger-2">
+                    <div class="advisor-image"></div>
+                    <div class="advisor-info">
+                        <div class="advisor-name">Advisor Name</div>
+                        <div class="advisor-role">Growth Lead, Unicorn</div>
+                        <div class="advisor-tags">
+                            <span class="advisor-tag">Go-to-Market</span>
+                            <span class="advisor-tag">B2B</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Asset Library -->
+    <section class="assets grain">
+        <div class="container">
+            <div class="assets-header">
+                <span class="section-label fade-up">Asset Library</span>
+                <h2 class="assets-headline fade-up stagger-1">
+                    Brand assets. <span class="serif-italic">Ready to deploy.</span>
+                </h2>
+            </div>
+
+            <div class="asset-section">
+                <div class="asset-section-title">Social Templates</div>
+                <div class="asset-carousel">
+                    <div class="asset-card" data-modal="social-1">
+                        <div class="asset-preview">
+                            <span class="asset-preview-placeholder">LinkedIn Square</span>
+                            <div class="asset-preview-overlay">
+                                <div class="asset-preview-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="asset-info">
+                            <div class="asset-name">Announcement Post</div>
+                            <div class="asset-type">1080 × 1080 PNG</div>
+                        </div>
+                    </div>
+                    <div class="asset-card" data-modal="social-2">
+                        <div class="asset-preview">
+                            <span class="asset-preview-placeholder">Story Format</span>
+                            <div class="asset-preview-overlay">
+                                <div class="asset-preview-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="asset-info">
+                            <div class="asset-name">Event Story</div>
+                            <div class="asset-type">1080 × 1920 PNG</div>
+                        </div>
+                    </div>
+                    <div class="asset-card" data-modal="social-3">
+                        <div class="asset-preview">
+                            <span class="asset-preview-placeholder">Carousel Slide</span>
+                            <div class="asset-preview-overlay">
+                                <div class="asset-preview-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="asset-info">
+                            <div class="asset-name">Stat Carousel</div>
+                            <div class="asset-type">1080 × 1080 PNG</div>
+                        </div>
+                    </div>
+                    <div class="asset-card" data-modal="social-4">
+                        <div class="asset-preview">
+                            <span class="asset-preview-placeholder">Banner</span>
+                            <div class="asset-preview-overlay">
+                                <div class="asset-preview-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="asset-info">
+                            <div class="asset-name">LinkedIn Banner</div>
+                            <div class="asset-type">1584 × 396 PNG</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="asset-section">
+                <div class="asset-section-title">Event Graphics</div>
+                <div class="asset-carousel">
+                    <div class="asset-card" data-modal="event-1">
+                        <div class="asset-preview">
+                            <span class="asset-preview-placeholder">Workshop</span>
+                            <div class="asset-preview-overlay">
+                                <div class="asset-preview-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="asset-info">
+                            <div class="asset-name">Workshop Series</div>
+                            <div class="asset-type">1920 × 1080 PNG</div>
+                        </div>
+                    </div>
+                    <div class="asset-card" data-modal="event-2">
+                        <div class="asset-preview">
+                            <span class="asset-preview-placeholder">Pitch Event</span>
+                            <div class="asset-preview-overlay">
+                                <div class="asset-preview-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="asset-info">
+                            <div class="asset-name">Demo Day Invite</div>
+                            <div class="asset-type">1920 × 1080 PNG</div>
+                        </div>
+                    </div>
+                    <div class="asset-card" data-modal="event-3">
+                        <div class="asset-preview">
+                            <span class="asset-preview-placeholder">Webinar</span>
+                            <div class="asset-preview-overlay">
+                                <div class="asset-preview-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="asset-info">
+                            <div class="asset-name">Webinar Promo</div>
+                            <div class="asset-type">1920 × 1080 PNG</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="asset-section">
+                <div class="asset-section-title">Email Templates</div>
+                <div class="asset-carousel">
+                    <div class="asset-card" data-modal="email-1">
+                        <div class="asset-preview">
+                            <span class="asset-preview-placeholder">Newsletter</span>
+                            <div class="asset-preview-overlay">
+                                <div class="asset-preview-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="asset-info">
+                            <div class="asset-name">Monthly Newsletter</div>
+                            <div class="asset-type">HTML Template</div>
+                        </div>
+                    </div>
+                    <div class="asset-card" data-modal="email-2">
+                        <div class="asset-preview">
+                            <span class="asset-preview-placeholder">Invite</span>
+                            <div class="asset-preview-overlay">
+                                <div class="asset-preview-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="asset-info">
+                            <div class="asset-name">Event Invite</div>
+                            <div class="asset-type">HTML Template</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="asset-section">
+                <div class="asset-section-title">One-Pagers</div>
+                <div class="asset-carousel">
+                    <div class="asset-card" data-modal="onepager-1">
+                        <div class="asset-preview">
+                            <span class="asset-preview-placeholder">Overview</span>
+                            <div class="asset-preview-overlay">
+                                <div class="asset-preview-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="asset-info">
+                            <div class="asset-name">TFG Overview</div>
+                            <div class="asset-type">PDF / HTML</div>
+                        </div>
+                    </div>
+                    <div class="asset-card" data-modal="onepager-2">
+                        <div class="asset-preview">
+                            <span class="asset-preview-placeholder">Services</span>
+                            <div class="asset-preview-overlay">
+                                <div class="asset-preview-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="asset-info">
+                            <div class="asset-name">Service Menu</div>
+                            <div class="asset-type">PDF / HTML</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Elements -->
+    <section class="brand-elements">
+        <div class="container">
+            <div class="brand-elements-header">
+                <span class="section-label fade-up">Brand Guidelines</span>
+                <h2 class="brand-elements-headline fade-up stagger-1">
+                    Visual system. <span class="serif-italic">Built for impact.</span>
+                </h2>
+            </div>
+
+            <!-- Logo Usage -->
+            <div class="brand-subsection">
+                <h3 class="brand-subsection-title fade-up">Logo Usage</h3>
+                <div class="logo-grid">
+                    <div class="logo-example fade-up stagger-1">
+                        <div class="brand-logo-mark"></div>
+                        <span class="logo-example-label">Mark Only — Dark BG</span>
+                    </div>
+                    <div class="logo-example fade-up stagger-2">
+                        <div class="brand-logo-full">
+                            <div class="mark"></div>
+                            <span class="wordmark">Tech Futures Group</span>
+                        </div>
+                        <span class="logo-example-label">Full Lockup — Dark BG</span>
+                    </div>
+                    <div class="logo-example light fade-up stagger-3">
+                        <div class="brand-logo-full dark">
+                            <div class="mark"></div>
+                            <span class="wordmark">Tech Futures Group</span>
+                        </div>
+                        <span class="logo-example-label">Full Lockup — Light BG</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Color Palette -->
+            <div class="brand-subsection">
+                <h3 class="brand-subsection-title fade-up">Color Palette</h3>
+                <div class="color-grid">
+                    <div class="color-swatch fade-up stagger-1" data-color="#39FF14">
+                        <div class="color-swatch-preview" style="background: #39FF14;"></div>
+                        <div class="color-swatch-info">
+                            <div class="color-swatch-name">Electric Green</div>
+                            <div class="color-swatch-hex">#39FF14</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch fade-up stagger-2" data-color="#1a1a1a">
+                        <div class="color-swatch-preview" style="background: #1a1a1a;"></div>
+                        <div class="color-swatch-info">
+                            <div class="color-swatch-name">Charcoal</div>
+                            <div class="color-swatch-hex">#1a1a1a</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch fade-up stagger-3" data-color="#0a0a0a">
+                        <div class="color-swatch-preview" style="background: #0a0a0a;"></div>
+                        <div class="color-swatch-info">
+                            <div class="color-swatch-name">Near Black</div>
+                            <div class="color-swatch-hex">#0a0a0a</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch fade-up stagger-4" data-color="#2d2d2d">
+                        <div class="color-swatch-preview" style="background: #2d2d2d;"></div>
+                        <div class="color-swatch-info">
+                            <div class="color-swatch-name">Dark Gray</div>
+                            <div class="color-swatch-hex">#2d2d2d</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch fade-up stagger-1" data-color="#ffffff">
+                        <div class="color-swatch-preview" style="background: #ffffff;"></div>
+                        <div class="color-swatch-info">
+                            <div class="color-swatch-name">White</div>
+                            <div class="color-swatch-hex">#ffffff</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch fade-up stagger-2" data-color="#f7f6f1">
+                        <div class="color-swatch-preview" style="background: #f7f6f1;"></div>
+                        <div class="color-swatch-info">
+                            <div class="color-swatch-name">Cream</div>
+                            <div class="color-swatch-hex">#f7f6f1</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Typography -->
+            <div class="brand-subsection">
+                <h3 class="brand-subsection-title fade-up">Typography</h3>
+                <div class="type-specimens">
+                    <div class="type-specimen fade-up stagger-1">
+                        <div class="type-specimen-label">Headlines — Serif</div>
+                        <div class="type-specimen-sample headline">Playfair Display</div>
+                        <div class="type-specimen-meta">Bold for emphasis, Regular for elegance</div>
+                    </div>
+                    <div class="type-specimen fade-up stagger-2">
+                        <div class="type-specimen-label">Headlines — Serif Italic</div>
+                        <div class="type-specimen-sample headline-italic">Move Faster. Build Bigger.</div>
+                        <div class="type-specimen-meta">Used for brand voice, emotional emphasis</div>
+                    </div>
+                    <div class="type-specimen fade-up stagger-3">
+                        <div class="type-specimen-label">Body — Sans Serif</div>
+                        <div class="type-specimen-sample body">
+                            Inter is used for all body copy, UI elements, and general text. It's clean,
+                            highly readable, and works well across all screen sizes.
+                        </div>
+                        <div class="type-specimen-meta">Inter — 400/500/600/700</div>
+                    </div>
+                    <div class="type-specimen fade-up stagger-4">
+                        <div class="type-specimen-label">Labels / Stats — Monospace</div>
+                        <div class="type-specimen-sample mono">$1B+ RAISED BY TFG FOUNDERS</div>
+                        <div class="type-specimen-meta">Roboto Mono — Uppercase, tracked</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Graphic Elements -->
+            <div class="brand-subsection">
+                <h3 class="brand-subsection-title fade-up">Graphic Elements</h3>
+                <div class="graphic-elements-grid">
+                    <div class="graphic-element fade-up stagger-1">
+                        <div class="graphic-element-visual">
+                            <div class="radial-demo" id="radial-demo"></div>
+                        </div>
+                        <div class="graphic-element-name">Radial Lines / Starburst</div>
+                    </div>
+                    <div class="graphic-element fade-up stagger-2">
+                        <div class="graphic-element-visual">
+                            <div class="arc-demo">
+                                <div class="arc arc-1"></div>
+                                <div class="arc arc-2"></div>
+                            </div>
+                        </div>
+                        <div class="graphic-element-name">Arc Swoops</div>
+                    </div>
+                    <div class="graphic-element fade-up stagger-3">
+                        <div class="graphic-element-visual">
+                            <div class="grid-demo"></div>
+                        </div>
+                        <div class="graphic-element-name">Grid Lines</div>
+                    </div>
+                    <div class="graphic-element fade-up stagger-4">
+                        <div class="graphic-element-visual">
+                            <div class="split-demo">
+                                <div class="half half-green"></div>
+                                <div class="half half-black"></div>
+                            </div>
+                        </div>
+                        <div class="graphic-element-name">Split Compositions</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="footer-logo-mark"></div>
+                    <span class="footer-logo-text">Tech Futures Group</span>
+                </div>
+                <div class="footer-links">
+                    <a href="https://techfuturesgroup.org" class="footer-link" target="_blank">techfuturesgroup.org</a>
+                    <span class="footer-network">Part of the NorCal SBDC Network</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">Copied to clipboard!</div>
+
+    <script>
+        // ============================================
+        // SCROLL ANIMATIONS
+        // ============================================
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ============================================
+        // STARBURST GENERATION
+        // ============================================
+        function createStarburst() {
+            const container = document.getElementById('starburst');
+            if (!container) return;
+
+            const numLines = 24;
+            for (let i = 0; i < numLines; i++) {
+                const line = document.createElement('div');
+                line.className = 'starburst-line';
+                line.style.transform = `rotate(${(360 / numLines) * i}deg)`;
+                container.appendChild(line);
+            }
+        }
+        createStarburst();
+
+        // ============================================
+        // RADIAL DEMO
+        // ============================================
+        function createRadialDemo() {
+            const container = document.getElementById('radial-demo');
+            if (!container) return;
+
+            const numLines = 16;
+            for (let i = 0; i < numLines; i++) {
+                const line = document.createElement('div');
+                line.className = 'line';
+                line.style.transform = `rotate(${(360 / numLines) * i}deg)`;
+                container.appendChild(line);
+            }
+        }
+        createRadialDemo();
+
+        // ============================================
+        // COUNTER ANIMATION
+        // ============================================
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Easing function
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                const current = Math.floor(easeOutQuart * target);
+
+                element.textContent = current;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.textContent = target;
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        // Observe counter elements
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.dataset.target);
+                    animateCounter(entry.target, target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.counter').forEach(el => {
+            counterObserver.observe(el);
+        });
+
+        // ============================================
+        // COLOR COPY TO CLIPBOARD
+        // ============================================
+        const toast = document.getElementById('toast');
+
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add('active');
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 2000);
+        }
+
+        document.querySelectorAll('.color-swatch').forEach(swatch => {
+            swatch.addEventListener('click', () => {
+                const color = swatch.dataset.color;
+                navigator.clipboard.writeText(color).then(() => {
+                    showToast(`${color} copied!`);
+                });
+            });
+        });
+
+        // ============================================
+        // MODAL
+        // ============================================
+        const modal = document.getElementById('modal');
+        const modalBody = document.getElementById('modal-body');
+        const modalClose = document.getElementById('modal-close');
+
+        document.querySelectorAll('.asset-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const assetName = card.querySelector('.asset-name').textContent;
+                const assetType = card.querySelector('.asset-type').textContent;
+
+                modalBody.innerHTML = `
+                    <div style="background: var(--dark-gray); padding: 80px; border-radius: 12px; text-align: center; min-width: 400px;">
+                        <div style="width: 80px; height: 80px; border: 3px solid var(--electric-green); border-radius: 50%; margin: 0 auto 24px;"></div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 8px;">${assetName}</h3>
+                        <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">${assetType}</p>
+                        <p style="color: var(--electric-green); font-family: 'Roboto Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 24px;">Asset Preview</p>
+                    </div>
+                `;
+
+                modal.classList.add('active');
+            });
+        });
+
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                modal.classList.remove('active');
+            }
+        });
+
+        // ============================================
+        // ADVISOR CATEGORY FILTER
+        // ============================================
+        document.querySelectorAll('.advisor-category').forEach(cat => {
+            cat.addEventListener('click', () => {
+                document.querySelectorAll('.advisor-category').forEach(c => c.classList.remove('active'));
+                cat.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

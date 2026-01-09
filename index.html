@@ -2631,6 +2631,193 @@
         }
 
         /* ============================================
+           ASSETS MODAL
+           ============================================ */
+        .assets-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .assets-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .assets-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            background: var(--near-black);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            flex-shrink: 0;
+        }
+
+        .assets-modal-title {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .assets-modal-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .assets-modal-type {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .assets-modal-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .assets-modal-open-tab {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--white);
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .assets-modal-open-tab:hover {
+            border-color: var(--electric-green);
+            color: var(--electric-green);
+        }
+
+        .assets-modal-open-tab svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .assets-modal-close {
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .assets-modal-close:hover {
+            border-color: var(--electric-green);
+            background: rgba(78, 255, 0, 0.1);
+        }
+
+        .assets-modal-close svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--white);
+        }
+
+        .assets-modal-body {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            overflow: hidden;
+        }
+
+        .assets-modal-iframe-container {
+            width: 100%;
+            height: 100%;
+            max-width: 1400px;
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .assets-modal-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .assets-modal-loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark-gray);
+            gap: 16px;
+        }
+
+        .assets-modal-loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: var(--electric-green);
+            border-radius: 50%;
+            animation: assets-modal-spin 1s linear infinite;
+        }
+
+        @keyframes assets-modal-spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .assets-modal-loading-text {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        @media (max-width: 768px) {
+            .assets-modal-header {
+                padding: 12px 16px;
+            }
+
+            .assets-modal-open-tab span {
+                display: none;
+            }
+
+            .assets-modal-open-tab {
+                padding: 10px;
+            }
+
+            .assets-modal-body {
+                padding: 16px;
+            }
+
+            .assets-modal-iframe-container {
+                border-radius: 8px;
+            }
+        }
+
+        /* ============================================
            TOAST NOTIFICATION
            ============================================ */
         .toast {
@@ -3061,7 +3248,7 @@
             <div class="asset-section">
                 <div class="asset-section-title">Social Templates</div>
                 <div class="asset-carousel">
-                    <a href="./tfg-social-templates.html" class="asset-card-link" target="_blank">
+                    <a href="./tfg-social-templates.html" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-social"></div>
@@ -3087,7 +3274,7 @@
             <div class="asset-section">
                 <div class="asset-section-title">Event Graphics</div>
                 <div class="asset-carousel">
-                    <a href="./tfg-event-workshop.html" class="asset-card-link" target="_blank">
+                    <a href="./tfg-event-workshop.html" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-workshop"></div>
@@ -3105,7 +3292,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="./tfg-event-demoday.html" class="asset-card-link" target="_blank">
+                    <a href="./tfg-event-demoday.html" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-demoday"></div>
@@ -3123,7 +3310,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="./tfg-event-webinar.html" class="asset-card-link" target="_blank">
+                    <a href="./tfg-event-webinar.html" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-webinar"></div>
@@ -3141,7 +3328,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="./tfg-event-workshop-alt.html" class="asset-card-link" target="_blank">
+                    <a href="./tfg-event-workshop-alt.html" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-workshop-alt"></div>
@@ -3159,7 +3346,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="./tfg-event-pitch.html" class="asset-card-link" target="_blank">
+                    <a href="./tfg-event-pitch.html" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-pitch"></div>
@@ -3177,7 +3364,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="https://www.techfuturesgroup.org/wp-content/uploads/2026/01/Fliers-TFG-June-Events.pdf" class="asset-card-link" target="_blank">
+                    <a href="https://www.techfuturesgroup.org/wp-content/uploads/2026/01/Fliers-TFG-June-Events.pdf" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-flier"></div>
@@ -3203,7 +3390,7 @@
             <div class="asset-section">
                 <div class="asset-section-title">Email Templates</div>
                 <div class="asset-carousel">
-                    <a href="./tfg-newsletter-emails.html" class="asset-card-link" target="_blank">
+                    <a href="./tfg-newsletter-emails.html" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-newsletter"></div>
@@ -3223,7 +3410,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="./tfg-event-emails.html" class="asset-card-link" target="_blank">
+                    <a href="./tfg-event-emails.html" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-email-events"></div>
@@ -3243,7 +3430,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="./tfg-email-signatures.html" class="asset-card-link" target="_blank">
+                    <a href="./tfg-email-signatures.html" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-signature"></div>
@@ -3269,7 +3456,7 @@
             <div class="asset-section">
                 <div class="asset-section-title">One-Pagers</div>
                 <div class="asset-carousel">
-                    <a href="./Flier-TFG-1B-.pdf" class="asset-card-link" target="_blank">
+                    <a href="./Flier-TFG-1B-.pdf" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-onepager"></div>
@@ -3289,7 +3476,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="https://www.techfuturesgroup.org/wp-content/uploads/2026/01/TFG-1-pager-founders-31824.pdf" class="asset-card-link" target="_blank">
+                    <a href="https://www.techfuturesgroup.org/wp-content/uploads/2026/01/TFG-1-pager-founders-31824.pdf" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-onepager"></div>
@@ -3309,7 +3496,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="./20241120_TFG-deck-2024-1B-.pdf" class="asset-card-link" target="_blank">
+                    <a href="./20241120_TFG-deck-2024-1B-.pdf" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-deck"></div>
@@ -3329,7 +3516,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="./tfg-business-cards.html" class="asset-card-link" target="_blank">
+                    <a href="./tfg-business-cards.html" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-bizcard"></div>
@@ -3355,7 +3542,7 @@
             <div class="asset-section">
                 <div class="asset-section-title">Marketing Campaigns</div>
                 <div class="asset-carousel">
-                    <a href="./tfg-advisor-series-v2.html" class="asset-card-link" target="_blank">
+                    <a href="./tfg-advisor-series-v2.html" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-advisor"></div>
@@ -3375,7 +3562,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="./tfg-ambition-ignited.html" class="asset-card-link" target="_blank">
+                    <a href="./tfg-ambition-ignited.html" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-social"></div>
@@ -3395,7 +3582,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="./tfg-linkedin-carousels-banners-evergreen.html" class="asset-card-link" target="_blank">
+                    <a href="./tfg-linkedin-carousels-banners-evergreen.html" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-social"></div>
@@ -3415,7 +3602,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="./tfg-impact-report-2025.html" class="asset-card-link" target="_blank">
+                    <a href="./tfg-impact-report-2025.html" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-impact"></div>
@@ -3435,7 +3622,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="./tfg-case-study-template.html" class="asset-card-link" target="_blank">
+                    <a href="./tfg-case-study-template.html" class="asset-card-link">
                         <div class="asset-card">
                             <div class="asset-preview">
                                 <div class="preview-mini preview-casestudy"></div>
@@ -3684,6 +3871,38 @@
                     <h4 class="advisor-modal-section-title">Expertise</h4>
                     <ul class="advisor-modal-highlights" id="advisorModalHighlights"></ul>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assets Modal -->
+    <div class="assets-modal-overlay" id="assetsModal">
+        <div class="assets-modal-header">
+            <div class="assets-modal-title">
+                <div class="assets-modal-name" id="assetsModalName">Asset Name</div>
+                <div class="assets-modal-type" id="assetsModalType">Asset Type</div>
+            </div>
+            <div class="assets-modal-actions">
+                <a href="#" class="assets-modal-open-tab" id="assetsModalOpenTab" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+                    </svg>
+                    <span>Open in New Tab</span>
+                </a>
+                <button class="assets-modal-close" id="assetsModalClose">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="assets-modal-body">
+            <div class="assets-modal-iframe-container" id="assetsModalContainer">
+                <div class="assets-modal-loading" id="assetsModalLoading">
+                    <div class="assets-modal-loading-spinner"></div>
+                    <div class="assets-modal-loading-text">Loading asset...</div>
+                </div>
+                <iframe class="assets-modal-iframe" id="assetsModalIframe"></iframe>
             </div>
         </div>
     </div>
@@ -4054,43 +4273,77 @@
         });
 
         // ============================================
-        // MODAL
+        // ASSETS MODAL
         // ============================================
-        const modal = document.getElementById('modal');
-        const modalBody = document.getElementById('modal-body');
-        const modalClose = document.getElementById('modal-close');
+        const assetsModal = document.getElementById('assetsModal');
+        const assetsModalName = document.getElementById('assetsModalName');
+        const assetsModalType = document.getElementById('assetsModalType');
+        const assetsModalOpenTab = document.getElementById('assetsModalOpenTab');
+        const assetsModalClose = document.getElementById('assetsModalClose');
+        const assetsModalIframe = document.getElementById('assetsModalIframe');
+        const assetsModalLoading = document.getElementById('assetsModalLoading');
 
-        document.querySelectorAll('.asset-card').forEach(card => {
-            card.addEventListener('click', () => {
+        function openAssetsModal(url, name, type) {
+            // Set modal info
+            assetsModalName.textContent = name;
+            assetsModalType.textContent = type;
+            assetsModalOpenTab.href = url;
+
+            // Show loading state
+            assetsModalLoading.style.display = 'flex';
+            assetsModalIframe.style.opacity = '0';
+
+            // Set iframe source
+            assetsModalIframe.src = url;
+
+            // Hide loading when iframe loads
+            assetsModalIframe.onload = function() {
+                assetsModalLoading.style.display = 'none';
+                assetsModalIframe.style.opacity = '1';
+            };
+
+            // Open modal
+            assetsModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAssetsModal() {
+            assetsModal.classList.remove('active');
+            document.body.style.overflow = '';
+            // Clear iframe after transition
+            setTimeout(() => {
+                assetsModalIframe.src = '';
+            }, 300);
+        }
+
+        // Add click handlers to all asset links
+        document.querySelectorAll('.asset-card-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                const url = link.href;
+                const card = link.querySelector('.asset-card');
                 const assetName = card.querySelector('.asset-name').textContent;
                 const assetType = card.querySelector('.asset-type').textContent;
 
-                modalBody.innerHTML = `
-                    <div style="background: var(--dark-gray); padding: 80px; border-radius: 12px; text-align: center; min-width: 400px;">
-                        <div style="width: 80px; height: 80px; border: 3px solid var(--electric-green); border-radius: 50%; margin: 0 auto 24px;"></div>
-                        <h3 style="font-size: 1.5rem; margin-bottom: 8px;">${assetName}</h3>
-                        <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">${assetType}</p>
-                        <p style="color: var(--electric-green); font-family: 'Roboto Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 24px;">Asset Preview</p>
-                    </div>
-                `;
-
-                modal.classList.add('active');
+                openAssetsModal(url, assetName, assetType);
             });
         });
 
-        modalClose.addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
+        // Close button
+        assetsModalClose.addEventListener('click', closeAssetsModal);
 
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
+        // Click outside to close
+        assetsModal.addEventListener('click', (e) => {
+            if (e.target === assetsModal) {
+                closeAssetsModal();
             }
         });
 
+        // Escape key to close
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                modal.classList.remove('active');
+            if (e.key === 'Escape' && assetsModal.classList.contains('active')) {
+                closeAssetsModal();
             }
         });
 

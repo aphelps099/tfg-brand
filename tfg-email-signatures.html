@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFG Email Signature Concepts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Font Faces */
+        @font-face {
+            font-family: 'GT America Extended';
+            src: url('./4618gt.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'GT America Extended';
+            src: url('./2809gt-bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Tobias';
+            src: url('./Tobias-Thin.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Tobias';
+            src: url('./Tobias-Medium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --green: #4EFF00;
+            --charcoal: #1a1a1a;
+            --near-black: #0d0d0d;
+            --white: #ffffff;
+            --gray: #666666;
+            --gray-light: #999999;
+
+            --serif: 'Tobias', Georgia, serif;
+            --sans: 'GT America Extended', 'Helvetica Neue', sans-serif;
+            --mono: 'Roboto Mono', monospace;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: #0a0a0a;
+            padding: 40px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            margin-bottom: 48px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .page-header img { height: 48px; }
+        .page-meta { flex: 1; }
+
+        .page-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+
+        .page-title {
+            font-family: var(--serif);
+            font-size: 36px;
+            color: var(--white);
+            font-weight: 300;
+        }
+
+        .page-desc {
+            font-size: 14px;
+            color: var(--gray);
+            margin-top: 12px;
+            max-width: 500px;
+        }
+
+        .concept-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green);
+            background: var(--charcoal);
+            padding: 8px 16px;
+            margin-bottom: 0;
+            display: inline-block;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .signature-preview {
+            background: #ffffff;
+            padding: 32px;
+            margin-bottom: 48px;
+            border: 1px solid #333;
+            border-radius: 0 4px 4px 4px;
+        }
+
+        .signature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 32px;
+        }
+
+        .signature-item {
+            background: var(--charcoal);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .usage-note {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--gray);
+            margin-top: 12px;
+            padding: 12px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="page-header">
+            <img src="./tfg_logo_neon.svg" alt="TFG">
+            <div class="page-meta">
+                <div class="page-label">Brand Assets</div>
+                <h1 class="page-title">Email Signatures</h1>
+                <p class="page-desc">Professional email signature templates for TFG team members. Copy the HTML or use as reference.</p>
+            </div>
+        </div>
+
+        <!-- CONCEPT 1: Minimal Clean -->
+        <div class="concept-label">Concept 1 — Minimal</div>
+        <div class="signature-preview">
+            <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.4; color: #333333;">
+                <tr>
+                    <td style="padding-bottom: 12px;">
+                        <span style="font-size: 16px; font-weight: 600; color: #0d0d0d;">Matthew Joehnk</span><br>
+                        <span style="font-size: 13px; color: #666666;">Program Director</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-bottom: 12px; border-bottom: 2px solid #4EFF00;">
+                        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.05em; color: #0d0d0d;">TECH FUTURES GROUP</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-top: 12px;">
+                        <span style="font-size: 12px; color: #666666;">
+                            <a href="mailto:matthew@techfuturesgroup.org" style="color: #0d0d0d; text-decoration: none;">matthew@techfuturesgroup.org</a>
+                            &nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="https://techfuturesgroup.org" style="color: #666666; text-decoration: none;">techfuturesgroup.org</a>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+            <div class="usage-note">Best for: Clean, professional correspondence. Works well in all email clients.</div>
+        </div>
+
+        <!-- CONCEPT 2: With Logo + Tagline -->
+        <div class="concept-label">Concept 2 — Logo + Tagline</div>
+        <div class="signature-preview">
+            <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.4; color: #333333;">
+                <tr>
+                    <td style="padding-right: 20px; border-right: 2px solid #4EFF00; vertical-align: top;">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Dark.png" alt="TFG" width="120" style="display: block;">
+                    </td>
+                    <td style="padding-left: 20px; vertical-align: top;">
+                        <span style="font-size: 16px; font-weight: 600; color: #0d0d0d;">Matthew Joehnk</span><br>
+                        <span style="font-size: 13px; color: #666666;">Program Director</span>
+                        <br><br>
+                        <span style="font-size: 12px; color: #666666;">
+                            <a href="mailto:matthew@techfuturesgroup.org" style="color: #0d0d0d; text-decoration: none;">matthew@techfuturesgroup.org</a><br>
+                            <a href="tel:+15551234567" style="color: #666666; text-decoration: none;">(555) 123-4567</a>
+                        </span>
+                        <br><br>
+                        <span style="font-size: 11px; font-style: italic; color: #4EFF00;">Move Faster. Build Bigger.</span>
+                    </td>
+                </tr>
+            </table>
+            <div class="usage-note">Best for: External communications where brand recognition is important.</div>
+        </div>
+
+        <!-- CONCEPT 4: Compact with Stats -->
+        <div class="concept-label">Concept 3 — Stats Badge</div>
+        <div class="signature-preview">
+            <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.4; color: #333333;">
+                <tr>
+                    <td style="vertical-align: top;">
+                        <span style="font-size: 16px; font-weight: 600; color: #0d0d0d;">Matthew Joehnk</span><br>
+                        <span style="font-size: 13px; color: #666666;">Program Director, Tech Futures Group</span>
+                        <br><br>
+                        <span style="font-size: 12px; color: #666666;">
+                            <a href="mailto:matthew@techfuturesgroup.org" style="color: #0d0d0d; text-decoration: none;">matthew@techfuturesgroup.org</a>
+                            &nbsp;·&nbsp;
+                            <a href="https://techfuturesgroup.org" style="color: #666666; text-decoration: none;">techfuturesgroup.org</a>
+                        </span>
+                    </td>
+                    <td style="padding-left: 24px; vertical-align: top;">
+                        <table cellpadding="0" cellspacing="0" border="0" style="background: #0d0d0d; padding: 12px 16px;">
+                            <tr>
+                                <td style="text-align: center; padding: 12px 16px;">
+                                    <span style="font-size: 20px; font-weight: 700; color: #4EFF00;">$1B+</span><br>
+                                    <span style="font-size: 9px; letter-spacing: 0.1em; color: #666666;">RAISED BY FOUNDERS</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <div class="usage-note">Best for: Investor/partner outreach where impact metrics matter.</div>
+        </div>
+
+        <!-- CONCEPT 6: Green Accent Bar -->
+        <div class="concept-label">Concept 4 — Accent Bar</div>
+        <div class="signature-preview">
+            <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.4; color: #333333;">
+                <tr>
+                    <td style="width: 4px; background: #4EFF00;"></td>
+                    <td style="padding-left: 16px;">
+                        <span style="font-size: 16px; font-weight: 600; color: #0d0d0d;">Matthew Joehnk</span><br>
+                        <span style="font-size: 13px; color: #666666;">Program Director</span>
+                        <br><br>
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Dark.png" alt="TFG" width="100" style="display: block; margin-bottom: 12px;">
+                        <span style="font-size: 12px; color: #666666;">
+                            <a href="mailto:matthew@techfuturesgroup.org" style="color: #0d0d0d; text-decoration: none;">matthew@techfuturesgroup.org</a><br>
+                            <a href="https://techfuturesgroup.org" style="color: #666666; text-decoration: none;">techfuturesgroup.org</a>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+            <div class="usage-note">Best for: Balanced brand presence with subtle TFG green accent.</div>
+        </div>
+
+        <!-- NEW CONCEPT A: Two-Tone Split -->
+        <div class="concept-label">Concept 5 — Two-Tone Split</div>
+        <div class="signature-preview">
+            <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.4; color: #333333;">
+                <tr>
+                    <td style="background: #0d0d0d; padding: 16px 20px; vertical-align: middle;">
+                        <span style="font-size: 15px; font-weight: 600; color: #ffffff;">Matthew Joehnk</span><br>
+                        <span style="font-size: 11px; color: #4EFF00; letter-spacing: 0.05em;">PROGRAM DIRECTOR</span>
+                    </td>
+                    <td style="background: #4EFF00; padding: 16px 20px; vertical-align: middle;">
+                        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: #0d0d0d;">TECH FUTURES GROUP</span><br>
+                        <span style="font-size: 11px; color: #0d0d0d;">
+                            <a href="mailto:matthew@techfuturesgroup.org" style="color: #0d0d0d; text-decoration: none;">matthew@techfuturesgroup.org</a>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+            <div class="usage-note">Best for: Bold, modern impression. High visual impact.</div>
+        </div>
+
+        <!-- NEW CONCEPT E: ZAG Stark -->
+        <div class="concept-label">Concept 6 — Dark Mode</div>
+        <div class="signature-preview" style="background: #f0f0f0;">
+            <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.4;">
+                <tr>
+                    <td style="background: #0d0d0d; padding: 20px 24px; vertical-align: top;">
+                        <span style="font-size: 24px; font-weight: 300; color: #ffffff; font-family: Georgia, serif; font-style: italic;">Matthew Joehnk</span><br>
+                        <span style="font-size: 10px; letter-spacing: 0.2em; color: #4EFF00;">PROGRAM DIRECTOR</span>
+                    </td>
+                    <td style="background: #0d0d0d; padding: 20px 24px; vertical-align: top; border-left: 1px solid #333333;">
+                        <span style="font-size: 10px; letter-spacing: 0.15em; color: #666666;">TFG</span><br>
+                        <a href="mailto:matthew@techfuturesgroup.org" style="font-size: 12px; color: #ffffff; text-decoration: none;">matthew@techfuturesgroup.org</a><br>
+                        <a href="https://techfuturesgroup.org" style="font-size: 11px; color: #666666; text-decoration: none;">techfuturesgroup.org</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="background: #4EFF00; padding: 8px 24px;">
+                        <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.15em; color: #0d0d0d;">MOVE FASTER. BUILD BIGGER.</span>
+                    </td>
+                </tr>
+            </table>
+            <div class="usage-note">Best for: Premium, editorial feel. Great for founder/exec communications.</div>
+        </div>
+
+        <!-- NEW CONCEPT F: ZAG Number Focus -->
+        <div class="concept-label">Concept 7 — Impact Focus</div>
+        <div class="signature-preview" style="background: #f0f0f0;">
+            <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.4;">
+                <tr>
+                    <td style="background: #0d0d0d; padding: 16px 20px; vertical-align: middle;">
+                        <span style="font-size: 36px; font-weight: 300; color: #4EFF00; font-family: Georgia, serif;">$1B+</span>
+                    </td>
+                    <td style="background: #0d0d0d; padding: 16px 20px; vertical-align: middle; border-left: 1px solid #333333;">
+                        <span style="font-size: 15px; font-weight: 600; color: #ffffff;">Matthew Joehnk</span><br>
+                        <span style="font-size: 11px; color: #666666;">Program Director · Tech Futures Group</span><br>
+                        <a href="mailto:matthew@techfuturesgroup.org" style="font-size: 11px; color: #4EFF00; text-decoration: none;">matthew@techfuturesgroup.org</a>
+                    </td>
+                </tr>
+            </table>
+            <div class="usage-note">Best for: Lead with impact. Great for fundraising or BD outreach.</div>
+        </div>
+
+    </div>
+</body>
+</html>

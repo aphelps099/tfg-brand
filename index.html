@@ -1904,9 +1904,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'GT America Extended', sans-serif;
+            font-family: 'Tobias', Georgia, serif;
             font-size: 3rem;
-            font-weight: 700;
+            font-weight: 300;
+            font-style: italic;
             color: var(--electric-green);
             background: var(--near-black);
         }
@@ -3409,16 +3410,6 @@
         });
 
         // ============================================
-        // ADVISOR CATEGORY FILTER
-        // ============================================
-        document.querySelectorAll('.advisor-category').forEach(cat => {
-            cat.addEventListener('click', () => {
-                document.querySelectorAll('.advisor-category').forEach(c => c.classList.remove('active'));
-                cat.classList.add('active');
-            });
-        });
-
-        // ============================================
         // ADVISOR BIO MODAL
         // ============================================
         const advisorData = {
@@ -3426,7 +3417,8 @@
                 name: 'Charles Eason',
                 role: 'SBIR/STTR Specialist',
                 tags: ['Grants', 'SBIR/STTR', 'Defense', 'Engineering'],
-                photo: 'https://ui-avatars.com/api/?name=Charles+Eason&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true',
+                categories: ['SBIR/Grants'],
+                photo: 'https://www.techfuturesgroup.org/wp-content/uploads/2023/08/chuck-eason-768x768.jpg',
                 bio: `<p>Charles was previously the Statewide Director of Business and Entrepreneurship for the California Community Colleges Economic and Workforce Development Program.</p>
                       <p>Prior to this position, he was the Director of the Solano College SBDC, where he managed a team of 23 business advisors and served as the Associate Director of the California Community College's Statewide Economic Development Network.</p>
                       <p>Before moving to Northern California, Charles worked for the Inland Empire Small Business Development Center as Manager of the Inland Empire Business Incubator. He also worked in the defense industry as a systems engineer for TRW's Ballistic Missile Program.</p>`,
@@ -3442,7 +3434,8 @@
                 name: 'Paul Bozzo',
                 role: 'Finance & Strategy',
                 tags: ['Finance', 'Business Planning', 'Fundraising', 'Go-to-Market'],
-                photo: 'https://ui-avatars.com/api/?name=Paul+Bozzo&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true',
+                categories: ['Finance & Investment', 'Go-to-Market'],
+                photo: 'https://www.techfuturesgroup.org/wp-content/uploads/2023/08/paul-bozzo-768x768.jpg',
                 bio: `<p>Paul's specialty is working with entrepreneurial ventures to refine their business model, create an investment-driven business plan, develop credible financial projections and prepare an effective investor pitch.</p>
                       <p>He advises founding teams on common start-up issues such as legal entity selection, intellectual property, financial accounting and go-to-market strategy.</p>
                       <p>With deep experience in finance and strategy, Paul helps founders think through the critical decisions that will shape their company's trajectory and appeal to investors.</p>`,
@@ -3458,7 +3451,8 @@
                 name: 'Mark Klopp',
                 role: 'Corporate Venturing',
                 tags: ['Investment', 'Medical Devices', 'Corporate VC', 'Board Member'],
-                photo: 'https://ui-avatars.com/api/?name=Mark+Klopp&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true',
+                categories: ['Finance & Investment', 'Biotech'],
+                photo: 'https://www.techfuturesgroup.org/wp-content/uploads/2023/08/mark-klopp-768x768.jpg',
                 bio: `<p>Mark Klopp is an independent consultant, board member, advisor and investor. He is a consultant focused on corporate venturing best practices and a Managing Director with Coronis Medical Ventures, an accelerator for medical devices.</p>
                       <p>He is an instructor for Global Corporate Venturing Institute and a principal advisor for Larta and Tech Futures Group. Mark is also an angel investor serving as a board member and advisor for several startups and Christian ministries.</p>
                       <p>Mark is a former Board Member of the National Venture Capital Association (NVCA) and served as Chairman and founding member of the Corporate Venture Group. Formerly Managing Director of Eastman Ventures, Eastman Chemical Company's corporate venture capital arm.</p>`,
@@ -3470,76 +3464,47 @@
                     'Instructor, Global Corporate Venturing Institute'
                 ]
             },
-            'hon-pak': {
-                name: 'Hon Pak',
-                role: 'Startup Strategy',
-                tags: ['Enterprise', 'SaaS', 'Angel Investor', 'IPO/M&A'],
-                photo: 'https://ui-avatars.com/api/?name=Hon+Pak&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true',
-                bio: `<p>As a founder, executive, angel investor, and active board member of technology start-ups, Hon has led multiple start-ups through their entire life-cycle from conception and growth to exits through IPOs and M&As.</p>
-                      <p>Hon has extensive hands-on experience with all aspects of the start-up process and has worked with and guided many management teams through challenges including fund raising, team building, competitive positioning, market and partnership development, pivoting, and go-to-market strategy formation and execution.</p>
-                      <p>Hon has worked with enterprise software, SaaS, cloud infrastructure and manufacturing service companies.</p>`,
+            'axel-tillmann': {
+                name: 'Axel Tillmann',
+                role: 'Pitch & Capital',
+                tags: ['Pitching', 'Capital', 'Global Markets', 'Serial Entrepreneur'],
+                categories: ['Go-to-Market', 'Finance & Investment'],
+                photo: 'https://www.techfuturesgroup.org/wp-content/uploads/2023/08/axel-tillman.jpg',
+                bio: `<p>Axel Tillmann is a serial entrepreneur having run a few companies and exited several in Europe as well as in the USA. For the last 10 years he has been coaching and mentoring startups and companies of all sizes, including the spin-out of a $20B Japanese corporation.</p>
+                      <p>Axel is comfortable in many different verticals and has embraced entrepreneurship as a way of life. His current roles include Co-founding EIR at Pitch Global and Managing Director of Alpha Consul.</p>
+                      <p>He has launched initiatives to foster entrepreneurship and bring the Silicon Valley Mindset around the world, targeting African Countries, Philippines, Malaysia, Vietnam, South America, and select Eastern and Western European countries.</p>`,
                 highlights: [
-                    'Multiple startup exits via IPO and M&A',
-                    'Active angel investor and board member',
-                    'Enterprise software & SaaS expertise',
-                    'Cloud infrastructure experience',
-                    'Full startup lifecycle expertise'
+                    'Serial entrepreneur with multiple exits',
+                    'Co-founding EIR at Pitch Global',
+                    'Managing Director, Alpha Consul',
+                    'Corporate spin-out expertise ($20B)',
+                    'Global entrepreneurship initiatives'
                 ]
             },
-            'stuart-broadhead': {
-                name: 'Stuart Broadhead',
+            'stewart': {
+                name: 'Stewart',
                 role: 'Navy SBIR Specialist',
-                tags: ['Defense', 'SBIR', 'Navy', 'Government Contracting'],
-                photo: 'https://ui-avatars.com/api/?name=Stuart+Broadhead&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true',
-                bio: `<p>Stuart specializes in helping technology companies navigate the Navy SBIR/STTR program and defense contracting landscape. With deep knowledge of Department of Defense procurement processes, he guides startups through the complexities of government innovation funding.</p>
-                      <p>His expertise spans proposal development, contract negotiations, and building relationships with Navy program managers and prime contractors.</p>
-                      <p>Stuart helps founders understand how to position their technologies for defense applications while maintaining commercial viability.</p>`,
+                tags: ['Defense', 'SBIR', 'Navy', 'Government'],
+                categories: ['SBIR/Grants'],
+                photo: 'https://www.techfuturesgroup.org/wp-content/uploads/2023/09/stewart.jpeg',
+                bio: `<p>Stewart specializes in helping technology companies navigate the Navy SBIR/STTR program and defense contracting landscape.</p>
+                      <p>With deep knowledge of Department of Defense procurement processes, he guides startups through the complexities of government innovation funding.</p>
+                      <p>His expertise spans proposal development, contract negotiations, and building relationships with Navy program managers and prime contractors.</p>`,
                 highlights: [
                     'Navy SBIR/STTR program specialist',
                     'Defense contracting expertise',
                     'Proposal development guidance',
                     'DoD procurement navigation',
-                    'Dual-use technology positioning'
+                    'Government contracting strategy'
                 ]
             },
-            'daniel-kriozere': {
-                name: 'Daniel Kriozere',
-                role: 'Climate Tech',
-                tags: ['Climate', 'Grants', 'Sustainability', 'Clean Energy'],
-                photo: 'https://ui-avatars.com/api/?name=Daniel+Kriozere&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true',
-                bio: `<p>Daniel is a recognized leader in the climate tech and sustainability space, helping founders navigate the unique challenges and opportunities in clean energy, carbon reduction, and environmental technology sectors.</p>
-                      <p>He specializes in connecting climate startups with grant funding, impact investors, and strategic partners aligned with sustainability goals.</p>
-                      <p>Tech Futures Group has been highly successful at supporting founders both pre-and post-grant funding, with Daniel playing a key role in climate-focused initiatives.</p>`,
-                highlights: [
-                    'Climate tech sector specialist',
-                    'Clean energy funding expertise',
-                    'Impact investor connections',
-                    'Sustainability strategy',
-                    'Grant funding navigation'
-                ]
-            },
-            'helena-merk': {
-                name: 'Helena Merk',
-                role: 'Grants Specialist',
-                tags: ['Grants', 'Strategy', 'Federal Funding', 'Non-Dilutive Capital'],
-                photo: 'https://ui-avatars.com/api/?name=Helena+Merk&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true',
-                bio: `<p>Helena is a leader in the grants and non-dilutive funding field, helping technology companies secure federal and state grant funding to accelerate their growth without giving up equity.</p>
-                      <p>She guides founders through the complex landscape of SBIR, STTR, and other government innovation programs, from initial application through successful award management.</p>
-                      <p>Her strategic approach helps companies build sustainable grant pipelines that complement their venture funding strategies.</p>`,
-                highlights: [
-                    'Federal grant funding specialist',
-                    'SBIR/STTR application guidance',
-                    'Non-dilutive capital strategy',
-                    'Award management expertise',
-                    'Grant pipeline development'
-                ]
-            },
-            'kc-wisdom': {
-                name: 'KC Wisdom',
+            'kc': {
+                name: 'KC',
                 role: 'Pitch & Events',
-                tags: ['Pitching', 'Events', 'Storytelling', 'Investor Relations'],
-                photo: 'https://ui-avatars.com/api/?name=KC+Wisdom&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true',
-                bio: `<p>KC Wisdom (Kaustav Chaudhuri) is a seasoned advisor at Tech Futures Group specializing in pitch coaching and event strategy.</p>
+                tags: ['Pitching', 'Events', 'Storytelling', 'Demo Days'],
+                categories: ['Go-to-Market'],
+                photo: 'https://www.techfuturesgroup.org/wp-content/uploads/2023/08/kc-2.png',
+                bio: `<p>KC is a seasoned advisor at Tech Futures Group specializing in pitch coaching and event strategy.</p>
                       <p>He helps founders craft compelling narratives that resonate with investors, customers, and partners. His approach combines storytelling fundamentals with deep understanding of what decision-makers want to hear.</p>
                       <p>KC also advises on event strategy, helping companies maximize their presence at conferences, demo days, and investor showcases.</p>`,
                 highlights: [
@@ -3550,20 +3515,140 @@
                     'Event presence optimization'
                 ]
             },
-            'axel-tillmann': {
-                name: 'Axel Tillmann',
-                role: 'Pitch & Events',
-                tags: ['Pitching', 'Capital', 'Global Markets', 'Serial Entrepreneur'],
-                photo: 'https://ui-avatars.com/api/?name=Axel+Tillmann&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true',
-                bio: `<p>Axel Tillmann is a serial entrepreneur having run a few companies and exited several in Europe as well as in the USA. For the last 10 years he has been coaching and mentoring startups and companies of all sizes, including the spin-out of a $20B Japanese corporation.</p>
-                      <p>Axel is comfortable in many different verticals and has embraced entrepreneurship as a way of life. His current roles include Co-founding EIR at Pitch Global and Managing Director of Alpha Consul.</p>
-                      <p>He has launched initiatives to foster entrepreneurship and bring the Silicon Valley Mindset around the world, targeting African Countries, Philippines, Malaysia, Vietnam, South America, and select Eastern and Western European countries.</p>`,
+            'kristina-mcmillan': {
+                name: 'Kristina McMillan',
+                role: 'Strategy',
+                tags: ['Strategy', 'Growth', 'Business Development'],
+                categories: ['Go-to-Market'],
+                photo: 'https://www.techfuturesgroup.org/wp-content/uploads/2023/12/kristina-mcmillan.jpeg',
+                bio: `<p>Kristina McMillan is a strategic advisor helping startups define and execute growth strategies that scale.</p>
+                      <p>With expertise in business development and market expansion, she guides founders through the critical decisions that drive sustainable growth.</p>
+                      <p>Her approach combines analytical rigor with practical execution, helping companies move from strategy to results.</p>`,
                 highlights: [
-                    'Serial entrepreneur with multiple exits',
-                    'Co-founding EIR at Pitch Global',
-                    'Managing Director, Alpha Consul',
-                    'Corporate spin-out expertise ($20B)',
-                    'Global entrepreneurship initiatives'
+                    'Strategic planning expertise',
+                    'Growth strategy development',
+                    'Business development guidance',
+                    'Market expansion strategies',
+                    'Execution-focused advisory'
+                ]
+            },
+            'stephen-plume': {
+                name: 'Stephen Plume',
+                role: 'Enterprise',
+                tags: ['Enterprise', 'Software', 'B2B', 'Sales'],
+                categories: ['Enterprise Software', 'Go-to-Market'],
+                photo: 'https://www.techfuturesgroup.org/wp-content/uploads/2023/09/Plume-Stephen-768x801.jpg',
+                bio: `<p>Stephen Plume brings deep experience in enterprise software sales and B2B go-to-market strategy.</p>
+                      <p>He helps startups navigate the complexities of selling to large organizations, from initial prospecting through deal closure and customer success.</p>
+                      <p>His expertise spans enterprise sales cycles, procurement processes, and building scalable B2B revenue engines.</p>`,
+                highlights: [
+                    'Enterprise software sales expert',
+                    'B2B go-to-market strategy',
+                    'Sales process optimization',
+                    'Enterprise deal structuring',
+                    'Customer success frameworks'
+                ]
+            },
+            'gurdeep': {
+                name: 'Gurdeep',
+                role: 'Technology',
+                tags: ['Tech', 'Product', 'Engineering', 'Architecture'],
+                categories: ['Enterprise Software'],
+                photo: 'https://www.techfuturesgroup.org/wp-content/uploads/2023/08/Gurdeep.jpg',
+                bio: `<p>Gurdeep is a technology advisor with deep expertise in product development and engineering leadership.</p>
+                      <p>He helps startups make critical technology decisions, from architecture choices to team building and development processes.</p>
+                      <p>With hands-on experience building and scaling technology products, Gurdeep provides practical guidance on turning ideas into production-ready solutions.</p>`,
+                highlights: [
+                    'Technology strategy advisor',
+                    'Product development expertise',
+                    'Engineering leadership guidance',
+                    'Architecture and scalability',
+                    'Technical team building'
+                ]
+            },
+            'nikki-sims': {
+                name: 'Nikki Sims',
+                role: 'Operations',
+                tags: ['Operations', 'Strategy', 'Scaling', 'Process'],
+                categories: ['Go-to-Market'],
+                photo: 'https://www.techfuturesgroup.org/wp-content/uploads/2025/11/nikki-tfg-2025-768x768.jpeg',
+                bio: `<p>Nikki Sims specializes in operational excellence and helping startups build scalable business processes.</p>
+                      <p>She guides founders through the operational challenges of growth, from team structure to process optimization and resource allocation.</p>
+                      <p>Her practical approach helps companies build the operational foundation needed to scale efficiently.</p>`,
+                highlights: [
+                    'Operations strategy specialist',
+                    'Process optimization expert',
+                    'Scaling operations guidance',
+                    'Team structure and efficiency',
+                    'Resource planning expertise'
+                ]
+            },
+            'jeff-smith': {
+                name: 'Jeff Smith',
+                role: 'Executive',
+                tags: ['Leadership', 'Strategy', 'Executive Coaching'],
+                categories: ['Go-to-Market'],
+                photo: 'https://www.techfuturesgroup.org/wp-content/uploads/2023/08/jeff-smith-768x768.jpg',
+                bio: `<p>Jeff Smith brings executive leadership experience to help founders develop as leaders and build high-performing teams.</p>
+                      <p>His advisory focuses on executive coaching, strategic decision-making, and organizational leadership.</p>
+                      <p>Jeff helps founders navigate the transition from startup operator to company leader.</p>`,
+                highlights: [
+                    'Executive leadership advisor',
+                    'Strategic decision-making',
+                    'Leadership development',
+                    'Team building expertise',
+                    'Organizational effectiveness'
+                ]
+            },
+            'hillary-talbot': {
+                name: 'Hillary Talbot',
+                role: 'Marketing',
+                tags: ['Marketing', 'Growth', 'Brand', 'Communications'],
+                categories: ['Go-to-Market'],
+                photo: 'https://www.techfuturesgroup.org/wp-content/uploads/2024/10/hillary-talbot.jpeg',
+                bio: `<p>Hillary Talbot is a marketing and growth expert helping startups build brands and acquire customers.</p>
+                      <p>She advises on marketing strategy, brand positioning, and growth tactics that drive measurable results.</p>
+                      <p>Her approach combines creative brand building with data-driven growth marketing.</p>`,
+                highlights: [
+                    'Marketing strategy expert',
+                    'Brand positioning specialist',
+                    'Growth marketing tactics',
+                    'Customer acquisition strategies',
+                    'Communications leadership'
+                ]
+            },
+            'gregory-theyel': {
+                name: 'Gregory Theyel',
+                role: 'Innovation',
+                tags: ['Innovation', 'R&D', 'Technology Transfer'],
+                categories: ['Enterprise Software'],
+                photo: 'https://www.techfuturesgroup.org/wp-content/uploads/2023/08/gregory-theyel-768x768.jpg',
+                bio: `<p>Gregory Theyel specializes in innovation strategy and helping companies commercialize new technologies.</p>
+                      <p>He guides startups through the innovation process, from R&D strategy to technology transfer and market introduction.</p>
+                      <p>His expertise helps founders bridge the gap between technical innovation and commercial success.</p>`,
+                highlights: [
+                    'Innovation strategy advisor',
+                    'R&D management expertise',
+                    'Technology commercialization',
+                    'Innovation process design',
+                    'Technology transfer guidance'
+                ]
+            },
+            'hon-wong': {
+                name: 'Hon Wong',
+                role: 'Enterprise',
+                tags: ['Enterprise', 'SaaS', 'Angel Investor', 'IPO/M&A'],
+                categories: ['Enterprise Software', 'Finance & Investment'],
+                photo: 'https://www.techfuturesgroup.org/wp-content/uploads/2023/08/hon-won-768x768.jpg',
+                bio: `<p>As a founder, executive, angel investor, and active board member of technology start-ups, Hon has led multiple start-ups through their entire life-cycle from conception and growth to exits through IPOs and M&As.</p>
+                      <p>Hon has extensive hands-on experience with all aspects of the start-up process and has worked with and guided many management teams through challenges including fund raising, team building, competitive positioning, market and partnership development, pivoting, and go-to-market strategy formation and execution.</p>
+                      <p>Hon has worked with enterprise software, SaaS, cloud infrastructure and manufacturing service companies.</p>`,
+                highlights: [
+                    'Multiple startup exits via IPO and M&A',
+                    'Active angel investor and board member',
+                    'Enterprise software & SaaS expertise',
+                    'Cloud infrastructure experience',
+                    'Full startup lifecycle expertise'
                 ]
             }
         };
@@ -3583,7 +3668,19 @@
                 const advisor = advisorData[advisorId];
 
                 if (advisor) {
-                    advisorModalPhoto.innerHTML = `<img src="${advisor.photo}" alt="${advisor.name}">`;
+                    // Generate initials from name
+                    const initials = advisor.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+
+                    // Create image with fallback to initials
+                    const img = document.createElement('img');
+                    img.src = advisor.photo;
+                    img.alt = advisor.name;
+                    img.onerror = function() {
+                        advisorModalPhoto.innerHTML = `<div class="advisor-modal-photo-placeholder">${initials}</div>`;
+                    };
+                    advisorModalPhoto.innerHTML = '';
+                    advisorModalPhoto.appendChild(img);
+
                     advisorModalName.textContent = advisor.name;
                     advisorModalRole.textContent = advisor.role;
                     advisorModalTags.innerHTML = advisor.tags.map(tag =>
@@ -3617,6 +3714,33 @@
                 advisorModal.classList.remove('active');
                 document.body.style.overflow = '';
             }
+        });
+
+        // ============================================
+        // ADVISOR CATEGORY FILTER
+        // ============================================
+        document.querySelectorAll('.advisor-category').forEach(cat => {
+            cat.addEventListener('click', () => {
+                // Update active state
+                document.querySelectorAll('.advisor-category').forEach(c => c.classList.remove('active'));
+                cat.classList.add('active');
+
+                const selectedCategory = cat.textContent.trim();
+                const cards = document.querySelectorAll('.advisor-card');
+
+                cards.forEach(card => {
+                    const advisorId = card.dataset.advisor;
+                    const advisor = advisorData[advisorId];
+
+                    if (selectedCategory === 'All') {
+                        card.style.display = '';
+                    } else if (advisor && advisor.categories && advisor.categories.includes(selectedCategory)) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
         });
 
         // ============================================

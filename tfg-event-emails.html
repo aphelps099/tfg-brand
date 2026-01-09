@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFG Event Invite Email Concepts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Font Faces */
+        @font-face {
+            font-family: 'GT America Extended';
+            src: url('./4618gt.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'GT America Extended';
+            src: url('./2809gt-bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Tobias';
+            src: url('./Tobias-Thin.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Tobias';
+            src: url('./Tobias-Medium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --green: #4EFF00;
+            --charcoal: #1a1a1a;
+            --near-black: #0d0d0d;
+            --white: #ffffff;
+            --gray: #666666;
+            --gray-light: #999999;
+
+            --serif: 'Tobias', Georgia, serif;
+            --sans: 'GT America Extended', 'Helvetica Neue', sans-serif;
+            --mono: 'Roboto Mono', monospace;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: #0a0a0a;
+            padding: 40px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            margin-bottom: 48px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .page-header img { height: 48px; }
+        .page-meta { flex: 1; }
+
+        .page-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+
+        .page-title {
+            font-family: var(--serif);
+            font-size: 36px;
+            color: var(--white);
+            font-weight: 300;
+        }
+
+        .page-desc {
+            font-size: 14px;
+            color: var(--gray);
+            margin-top: 12px;
+            max-width: 500px;
+        }
+
+        .concept-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green);
+            background: var(--charcoal);
+            padding: 8px 16px;
+            margin-bottom: 0;
+            display: inline-block;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .email-preview {
+            background: #ffffff;
+            margin-bottom: 64px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 0 4px 4px 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="page-header">
+            <img src="./tfg_logo_neon.svg" alt="TFG">
+            <div class="page-meta">
+                <div class="page-label">Brand Assets</div>
+                <h1 class="page-title">Event Invite Emails</h1>
+                <p class="page-desc">Email templates for TFG workshops, demo days, and founder events.</p>
+            </div>
+        </div>
+
+        <!-- CONCEPT 1: ZAG BOLD -->
+        <div class="concept-label">Concept 1 — ZAG Bold</div>
+        <div class="email-preview">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="font-family: Arial, Helvetica, sans-serif;">
+                <!-- Header -->
+                <tr>
+                    <td style="background: #0d0d0d; padding: 24px 32px;">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" alt="Tech Futures Group" width="140" style="display: block;">
+                    </td>
+                </tr>
+                <!-- Hero -->
+                <tr>
+                    <td style="background: #4EFF00; padding: 48px 32px;">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td>
+                                    <span style="font-family: 'Roboto Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; color: #0d0d0d; opacity: 0.6;">FOUNDER WORKSHOP</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-top: 12px;">
+                                    <span style="font-family: Georgia, serif; font-size: 36px; font-style: italic; color: #0d0d0d; line-height: 1.2;">From MVP<br>to Funded</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-top: 16px;">
+                                    <span style="font-size: 14px; color: #0d0d0d; opacity: 0.8;">A 3-hour intensive on raising your first round.</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Event Details -->
+                <tr>
+                    <td style="background: #0d0d0d; padding: 32px;">
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tr>
+                                <td width="33%" style="padding: 16px 0; border-bottom: 1px solid #333;">
+                                    <span style="font-family: 'Roboto Mono', monospace; font-size: 9px; letter-spacing: 0.15em; color: #666;">DATE</span><br>
+                                    <span style="font-size: 15px; color: #fff; margin-top: 4px; display: inline-block;">Feb 12, 2025</span>
+                                </td>
+                                <td width="33%" style="padding: 16px 0; border-bottom: 1px solid #333;">
+                                    <span style="font-family: 'Roboto Mono', monospace; font-size: 9px; letter-spacing: 0.15em; color: #666;">TIME</span><br>
+                                    <span style="font-size: 15px; color: #fff; margin-top: 4px; display: inline-block;">1:00 – 4:00 PM</span>
+                                </td>
+                                <td width="33%" style="padding: 16px 0; border-bottom: 1px solid #333;">
+                                    <span style="font-family: 'Roboto Mono', monospace; font-size: 9px; letter-spacing: 0.15em; color: #666;">LOCATION</span><br>
+                                    <span style="font-size: 15px; color: #fff; margin-top: 4px; display: inline-block;">Chico, CA</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Body -->
+                <tr>
+                    <td style="background: #fff; padding: 32px;">
+                        <p style="font-size: 15px; line-height: 1.7; color: #333; margin-bottom: 20px;">
+                            You've built the product. Now it's time to raise.
+                        </p>
+                        <p style="font-size: 15px; line-height: 1.7; color: #333; margin-bottom: 20px;">
+                            Join us for an intensive workshop covering everything from pitch deck fundamentals to term sheet negotiation. Led by advisors who've helped founders raise over $1B.
+                        </p>
+                        <p style="font-size: 15px; line-height: 1.7; color: #666; margin-bottom: 0;">
+                            <strong style="color: #333;">What you'll learn:</strong><br>
+                            → How to structure your raise<br>
+                            → What VCs actually look for<br>
+                            → Valuation strategies that work<br>
+                            → Live pitch feedback session
+                        </p>
+                    </td>
+                </tr>
+                <!-- CTA -->
+                <tr>
+                    <td style="background: #fff; padding: 0 32px 40px;">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td style="background: #0d0d0d; padding: 16px 32px;">
+                                    <a href="#" style="font-family: 'Roboto Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: #4EFF00; text-decoration: none;">REGISTER NOW →</a>
+                                </td>
+                            </tr>
+                        </table>
+                        <p style="font-size: 12px; color: #999; margin-top: 16px;">
+                            Limited to 20 founders. $0 cost.
+                        </p>
+                    </td>
+                </tr>
+                <!-- Footer -->
+                <tr>
+                    <td style="background: #f5f5f5; padding: 24px 32px; border-top: 1px solid #e5e5e5;">
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tr>
+                                <td>
+                                    <span style="font-family: 'Roboto Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: #333;">TECH FUTURES GROUP</span><br>
+                                    <span style="font-size: 11px; color: #999;">Venture-grade advising. Zero cost.</span>
+                                </td>
+                                <td style="text-align: right;">
+                                    <a href="#" style="font-size: 11px; color: #666; text-decoration: none;">Unsubscribe</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- CONCEPT 2: MINIMAL CLEAN -->
+        <div class="concept-label">Concept 2 — Minimal Clean</div>
+        <div class="email-preview">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="font-family: Arial, Helvetica, sans-serif;">
+                <!-- Header -->
+                <tr>
+                    <td style="padding: 32px 32px 24px; border-bottom: 1px solid #e5e5e5;">
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tr>
+                                <td>
+                                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Dark.png" alt="Tech Futures Group" width="120" style="display: block;">
+                                </td>
+                                <td style="text-align: right;">
+                                    <span style="font-family: 'Roboto Mono', monospace; font-size: 9px; letter-spacing: 0.15em; color: #4EFF00; background: #0d0d0d; padding: 6px 10px;">EVENT</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Body -->
+                <tr>
+                    <td style="padding: 40px 32px;">
+                        <span style="font-family: 'Roboto Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: #999;">FEB 12 · 1:00 PM · CHICO</span>
+
+                        <h1 style="font-family: Georgia, serif; font-size: 32px; font-weight: 400; color: #0d0d0d; margin: 16px 0 24px; line-height: 1.2;">
+                            SBIR Grant Writing<br>Workshop
+                        </h1>
+
+                        <p style="font-size: 15px; line-height: 1.7; color: #666; margin-bottom: 24px;">
+                            $70M+ in grants secured. Learn the system that works.
+                        </p>
+
+                        <p style="font-size: 15px; line-height: 1.7; color: #333; margin-bottom: 24px;">
+                            SBIR/STTR grants are non-dilutive capital that can fund your R&D without giving up equity. But the application process is complex. This workshop breaks it down.
+                        </p>
+
+                        <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 32px;">
+                            <tr>
+                                <td style="padding: 12px 0; border-top: 1px solid #e5e5e5;">
+                                    <span style="font-size: 14px; color: #333;">✓ &nbsp;Agency selection strategy</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 0; border-top: 1px solid #e5e5e5;">
+                                    <span style="font-size: 14px; color: #333;">✓ &nbsp;Proposal structure that wins</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 0; border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5;">
+                                    <span style="font-size: 14px; color: #333;">✓ &nbsp;Common mistakes to avoid</span>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <a href="#" style="display: inline-block; background: #4EFF00; color: #0d0d0d; font-family: 'Roboto Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.05em; padding: 14px 28px; text-decoration: none;">SAVE YOUR SPOT</a>
+
+                        <p style="font-size: 12px; color: #999; margin-top: 24px;">
+                            Free for NorCal founders. Seats are limited.
+                        </p>
+                    </td>
+                </tr>
+                <!-- Footer -->
+                <tr>
+                    <td style="padding: 24px 32px; background: #f9f9f9; border-top: 1px solid #e5e5e5;">
+                        <p style="font-size: 11px; color: #999; margin: 0;">
+                            Tech Futures Group · <a href="#" style="color: #666;">techfuturesgroup.org</a> · <a href="#" style="color: #999; text-decoration: none;">Unsubscribe</a>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- CONCEPT 3: DARK MODE -->
+        <div class="concept-label">Concept 3 — Dark Mode</div>
+        <div class="email-preview">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="font-family: Arial, Helvetica, sans-serif; background: #0d0d0d;">
+                <!-- Header -->
+                <tr>
+                    <td style="padding: 24px 32px;">
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tr>
+                                <td>
+                                    <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" alt="Tech Futures Group" width="120" style="display: block;">
+                                </td>
+                                <td style="text-align: right;">
+                                    <span style="font-family: 'Roboto Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: #666;">PITCH EVENT</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Hero -->
+                <tr>
+                    <td style="padding: 32px 32px 40px;">
+                        <h1 style="font-family: Georgia, serif; font-size: 42px; font-weight: 400; font-style: italic; color: #fff; margin: 0 0 8px; line-height: 1.1;">
+                            Demo Day
+                        </h1>
+                        <p style="font-family: Georgia, serif; font-size: 20px; color: #4EFF00; margin: 0;">
+                            Spring 2025
+                        </p>
+                    </td>
+                </tr>
+                <!-- Details Bar -->
+                <tr>
+                    <td style="padding: 0 32px;">
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background: #1a1a1a;">
+                            <tr>
+                                <td style="padding: 20px; text-align: center; border-right: 1px solid #333;">
+                                    <span style="font-family: 'Roboto Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: #666; display: block; margin-bottom: 4px;">DATE</span>
+                                    <span style="font-size: 14px; color: #fff;">March 20</span>
+                                </td>
+                                <td style="padding: 20px; text-align: center; border-right: 1px solid #333;">
+                                    <span style="font-family: 'Roboto Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: #666; display: block; margin-bottom: 4px;">TIME</span>
+                                    <span style="font-size: 14px; color: #fff;">5:00 PM</span>
+                                </td>
+                                <td style="padding: 20px; text-align: center;">
+                                    <span style="font-family: 'Roboto Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: #666; display: block; margin-bottom: 4px;">VENUE</span>
+                                    <span style="font-size: 14px; color: #fff;">Sacramento</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Body -->
+                <tr>
+                    <td style="padding: 40px 32px;">
+                        <p style="font-size: 15px; line-height: 1.7; color: #999; margin-bottom: 24px;">
+                            10 founders. 5 minutes each. Real investors in the room.
+                        </p>
+                        <p style="font-size: 15px; line-height: 1.7; color: #ccc; margin-bottom: 32px;">
+                            Our Spring cohort presents to a curated audience of angels, VCs, and strategic partners. Whether you're pitching or watching, this is where deals start.
+                        </p>
+
+                        <table cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td style="background: #4EFF00; padding: 14px 28px;">
+                                    <a href="#" style="font-family: 'Roboto Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; color: #0d0d0d; text-decoration: none;">APPLY TO PITCH →</a>
+                                </td>
+                                <td style="padding-left: 16px;">
+                                    <a href="#" style="font-family: 'Roboto Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #666; text-decoration: none; border: 1px solid #333; padding: 13px 24px; display: inline-block;">ATTEND AS INVESTOR</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Stats -->
+                <tr>
+                    <td style="padding: 0 32px 40px;">
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tr>
+                                <td style="padding: 16px 0; border-top: 1px solid #333;">
+                                    <span style="font-family: Georgia, serif; font-size: 28px; color: #4EFF00;">$1B+</span>
+                                    <span style="font-size: 12px; color: #666; margin-left: 8px;">raised by TFG founders</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Footer -->
+                <tr>
+                    <td style="padding: 24px 32px; border-top: 1px solid #1a1a1a;">
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tr>
+                                <td>
+                                    <span style="font-size: 11px; color: #666;">Tech Futures Group · techfuturesgroup.org</span>
+                                </td>
+                                <td style="text-align: right;">
+                                    <a href="#" style="font-size: 11px; color: #666; text-decoration: none;">Unsubscribe</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- CONCEPT 4: SPLIT ZAG -->
+        <div class="concept-label">Concept 4 — Split ZAG</div>
+        <div class="email-preview">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="font-family: Arial, Helvetica, sans-serif;">
+                <!-- Header -->
+                <tr>
+                    <td style="background: #0d0d0d; padding: 20px 32px;">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/10/Tech-Futures-Group-Logo-Light.png" alt="Tech Futures Group" width="120" style="display: block;">
+                    </td>
+                </tr>
+                <!-- Split Hero -->
+                <tr>
+                    <td>
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tr>
+                                <td width="45%" style="background: #0d0d0d; padding: 40px 32px; vertical-align: top;">
+                                    <span style="font-family: 'Roboto Mono', monospace; font-size: 9px; letter-spacing: 0.15em; color: #4EFF00;">WORKSHOP SERIES</span>
+                                    <h1 style="font-family: Georgia, serif; font-size: 28px; font-weight: 400; color: #fff; margin: 12px 0 0; line-height: 1.2;">
+                                        Product-Market<br>Fit Intensive
+                                    </h1>
+                                </td>
+                                <td width="55%" style="background: #4EFF00; padding: 40px 32px; vertical-align: top;">
+                                    <table cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td style="padding-bottom: 12px;">
+                                                <span style="font-family: 'Roboto Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: #0d0d0d; opacity: 0.6;">WHEN</span><br>
+                                                <span style="font-size: 15px; color: #0d0d0d; font-weight: 600;">Feb 15, 22, Mar 1</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-bottom: 12px;">
+                                                <span style="font-family: 'Roboto Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: #0d0d0d; opacity: 0.6;">TIME</span><br>
+                                                <span style="font-size: 15px; color: #0d0d0d; font-weight: 600;">10:00 AM – 1:00 PM</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span style="font-family: 'Roboto Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: #0d0d0d; opacity: 0.6;">FORMAT</span><br>
+                                                <span style="font-size: 15px; color: #0d0d0d; font-weight: 600;">3-Part Virtual Series</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Body -->
+                <tr>
+                    <td style="padding: 40px 32px; background: #fff;">
+                        <p style="font-size: 15px; line-height: 1.7; color: #333; margin-bottom: 24px;">
+                            <strong>You have users. Now what?</strong>
+                        </p>
+                        <p style="font-size: 15px; line-height: 1.7; color: #666; margin-bottom: 24px;">
+                            This 3-part series takes you from "people are using it" to "we have product-market fit" — with frameworks, live feedback, and accountability.
+                        </p>
+
+                        <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 32px; width: 100%;">
+                            <tr>
+                                <td style="padding: 16px; background: #f9f9f9; border-left: 3px solid #4EFF00;">
+                                    <span style="font-family: 'Roboto Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: #999;">WEEK 1</span><br>
+                                    <span style="font-size: 14px; color: #333;">Measuring what matters</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 16px; background: #f9f9f9; border-left: 3px solid #4EFF00; border-top: 1px solid #e5e5e5;">
+                                    <span style="font-family: 'Roboto Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: #999;">WEEK 2</span><br>
+                                    <span style="font-size: 14px; color: #333;">Customer discovery deep-dive</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 16px; background: #f9f9f9; border-left: 3px solid #4EFF00; border-top: 1px solid #e5e5e5;">
+                                    <span style="font-family: 'Roboto Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: #999;">WEEK 3</span><br>
+                                    <span style="font-size: 14px; color: #333;">Iteration & positioning</span>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <a href="#" style="display: inline-block; background: #0d0d0d; color: #4EFF00; font-family: 'Roboto Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; padding: 14px 28px; text-decoration: none;">ENROLL NOW →</a>
+
+                        <p style="font-size: 12px; color: #999; margin-top: 20px;">
+                            Cohort limited to 15 founders. Free for NorCal startups.
+                        </p>
+                    </td>
+                </tr>
+                <!-- Footer -->
+                <tr>
+                    <td style="padding: 24px 32px; background: #f5f5f5; border-top: 1px solid #e5e5e5;">
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tr>
+                                <td>
+                                    <span style="font-size: 11px; color: #999;">Tech Futures Group · techfuturesgroup.org</span>
+                                </td>
+                                <td style="text-align: right;">
+                                    <a href="#" style="font-size: 11px; color: #999; text-decoration: none;">Unsubscribe</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>

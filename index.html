@@ -779,6 +779,42 @@
             color: rgba(255, 255, 255, 0.4);
         }
 
+        /* Link-based Asset Cards */
+        a.asset-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            flex: 0 0 280px;
+            scroll-snap-align: start;
+        }
+
+        a.asset-card-link .asset-card {
+            cursor: pointer;
+            height: 100%;
+        }
+
+        .asset-description {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.35);
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+
+        .asset-preview-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--electric-green);
+            color: var(--near-black);
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
         /* ============================================
            BRAND ELEMENTS
            ============================================ */
@@ -2387,6 +2423,112 @@
                             <div class="asset-type">PDF / HTML</div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="asset-section">
+                <div class="asset-section-title">Marketing Campaigns</div>
+                <div class="asset-carousel">
+                    <a href="./tfg-advisor-series-v2.html" class="asset-card-link" target="_blank">
+                        <div class="asset-card">
+                            <div class="asset-preview">
+                                <span class="asset-preview-placeholder">Advisor Series</span>
+                                <span class="asset-preview-badge">20 Posts</span>
+                                <div class="asset-preview-overlay">
+                                    <div class="asset-preview-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="asset-info">
+                                <div class="asset-name">Advisor Series v2</div>
+                                <div class="asset-type">Social Campaign</div>
+                                <div class="asset-description">20-post series featuring advisor insights, questions, and lessons</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="./tfg-ambition-ignited.html" class="asset-card-link" target="_blank">
+                        <div class="asset-card">
+                            <div class="asset-preview">
+                                <span class="asset-preview-placeholder">Ambition Ignited</span>
+                                <span class="asset-preview-badge">15 Posts</span>
+                                <div class="asset-preview-overlay">
+                                    <div class="asset-preview-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="asset-info">
+                                <div class="asset-name">Ambition, Ignited</div>
+                                <div class="asset-type">Social Campaign</div>
+                                <div class="asset-description">Hero posts, stats, founder stories, and campaign closers</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="./tfg-linkedin-carousels-banners-evergreen.html" class="asset-card-link" target="_blank">
+                        <div class="asset-card">
+                            <div class="asset-preview">
+                                <span class="asset-preview-placeholder">LinkedIn Assets</span>
+                                <span class="asset-preview-badge">Full Kit</span>
+                                <div class="asset-preview-overlay">
+                                    <div class="asset-preview-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="asset-info">
+                                <div class="asset-name">LinkedIn Marketing Kit</div>
+                                <div class="asset-type">Banners, Carousels, Ads</div>
+                                <div class="asset-description">Page banners, carousel decks, and evergreen ad creatives</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="./tfg-impact-report-2025.html" class="asset-card-link" target="_blank">
+                        <div class="asset-card">
+                            <div class="asset-preview">
+                                <span class="asset-preview-placeholder">Impact Report</span>
+                                <span class="asset-preview-badge">2025</span>
+                                <div class="asset-preview-overlay">
+                                    <div class="asset-preview-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="asset-info">
+                                <div class="asset-name">Impact Report 2025</div>
+                                <div class="asset-type">Full-Page Report</div>
+                                <div class="asset-description">Scrolling impact report with stats, SBIR data, and stories</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="./tfg-case-study-template.html" class="asset-card-link" target="_blank">
+                        <div class="asset-card">
+                            <div class="asset-preview">
+                                <span class="asset-preview-placeholder">Case Study</span>
+                                <span class="asset-preview-badge">Template</span>
+                                <div class="asset-preview-overlay">
+                                    <div class="asset-preview-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="asset-info">
+                                <div class="asset-name">Case Study Template</div>
+                                <div class="asset-type">Founder Stories</div>
+                                <div class="asset-description">Template for showcasing founder success stories</div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

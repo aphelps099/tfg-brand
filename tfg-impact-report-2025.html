@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFG Impact Report 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --green: #39FF14;
+            --green-dim: rgba(57, 255, 20, 0.3);
+            --green-glow: rgba(57, 255, 20, 0.15);
+            --charcoal: #0d0d0d;
+            --charcoal-light: #1a1a1a;
+            --charcoal-mid: #141414;
+            --white: #ffffff;
+            --gray: #666666;
+            --gray-light: #999999;
+            --gray-dark: #333333;
+            
+            --serif: 'gt-bold', Georgia, serif;
+            --sans: 'gt', 'Helvetica Neue', sans-serif;
+            --mono: 'Roboto Mono', monospace;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            scrollbar-width: thin;
+            scrollbar-color: var(--green) var(--charcoal);
+        }
+        
+        html::-webkit-scrollbar { width: 6px; }
+        html::-webkit-scrollbar-track { background: var(--charcoal); }
+        html::-webkit-scrollbar-thumb { background: var(--green); border-radius: 3px; }
+        
+        body {
+            font-family: var(--sans);
+            background: var(--charcoal);
+            color: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--gray-dark);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-dot::before {
+            content: attr(data-label);
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: 0.1em;
+            color: var(--gray);
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            pointer-events: none;
+        }
+        
+        .nav-dot:hover::before { opacity: 1; }
+        .nav-dot:hover, .nav-dot.active {
+            background: var(--green);
+            box-shadow: 0 0 12px var(--green-dim);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--green);
+            width: 0%;
+            z-index: 100;
+            box-shadow: 0 0 10px var(--green-dim);
+            transition: width 0.1s ease-out;
+        }
+        
+        /* Section Base */
+        .section {
+            min-height: 100vh;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-hero {
+            min-height: 90vh;
+        }
+        
+        /* Pattern Backgrounds */
+        .pattern-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(to right, var(--gray-dark) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--gray-dark) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        
+        .pattern-circles {
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        .pattern-arc {
+            position: absolute;
+            border: 1px solid var(--green);
+            border-radius: 50%;
+            opacity: 0.12;
+            pointer-events: none;
+            will-change: transform;
+        }
+        
+        /* Parallax starburst */
+        .parallax-starburst {
+            position: absolute;
+            pointer-events: none;
+            will-change: transform;
+            color: var(--green);
+            opacity: 0.15;
+            animation: spin-slow 60s linear infinite;
+            z-index: 1;
+        }
+        
+        .parallax-starburst.dark {
+            color: var(--charcoal);
+        }
+        
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Snap Animation */
+        .snap-content {
+            opacity: 0;
+            transform: translateY(80px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .section.in-view .snap-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .snap-content.delay-1 { transition-delay: 0.08s; }
+        .snap-content.delay-2 { transition-delay: 0.16s; }
+        .snap-content.delay-3 { transition-delay: 0.24s; }
+        .snap-content.delay-4 { transition-delay: 0.32s; }
+        .snap-content.delay-5 { transition-delay: 0.4s; }
+        
+        .scale-snap {
+            opacity: 0;
+            transform: scale(0.8) translateY(40px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .section.in-view .scale-snap {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+        
+        /* Hero headline mask reveal */
+        .title-mask {
+            overflow: hidden;
+            display: block;
+        }
+        
+        .title-mask-inner {
+            display: block;
+            transform: translateY(110%);
+            transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .section.in-view .title-mask-inner {
+            transform: translateY(0);
+        }
+        
+        .title-mask-inner.delay-1 { transition-delay: 0.1s; }
+        .title-mask-inner.delay-2 { transition-delay: 0.2s; }
+        
+        /* Section Header */
+        .section-label {
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .section-label::before {
+            content: '';
+            width: 32px;
+            height: 2px;
+            background: var(--green);
+        }
+        
+        .section-title {
+            font-family: var(--serif);
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 400;
+            font-style: normal;
+            line-height: 0.95;
+            margin-bottom: 24px;
+        }
+        
+        .section-desc {
+            font-size: 18px;
+            color: var(--gray-light);
+            max-width: 500px;
+            line-height: 1.6;
+        }
+        
+        /* Section Divider - Animated Line */
+        .section-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gray-dark);
+            overflow: hidden;
+        }
+        
+        .section-divider::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: var(--green);
+            transform: translateX(-100%);
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 20px var(--green-dim), 0 0 40px var(--green-glow);
+        }
+        
+        .section.in-view .section-divider::after {
+            transform: translateX(0);
+        }
+        
+        /* =============================================
+           COVER
+        ============================================= */
+        .section-cover {
+            background: var(--green);
+            color: var(--charcoal);
+margin-top:-21px;
+        }
+        
+        .cover-bg-text {
+            position: absolute;
+            top: 50%;
+            right: -5%;
+            transform: translateY(-50%);
+            font-family: var(--serif);
+            font-size: clamp(200px, 40vw, 500px);
+            font-weight: 400;
+            font-style: normal;
+            color: var(--charcoal);
+            opacity: 0.08;
+            line-height: 0.8;
+            pointer-events: none;
+        }
+        
+        .cover-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+        
+        .section-cover .section-label {
+            color: var(--charcoal);
+            opacity: 0.5;
+        }
+        
+        .section-cover .section-label::before {
+            background: var(--charcoal);
+            opacity: 0.5;
+        }
+        
+        .section-cover .section-title { color: var(--charcoal); }
+        .section-cover .section-desc { color: var(--charcoal); opacity: 0.7; }
+        
+        .scroll-arrow {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        
+        .scroll-arrow:hover {
+            transform: translateX(-50%) translateY(4px);
+        }
+        
+        .scroll-arrow svg {
+            width: 20px;
+            height: 50px;
+            color: var(--charcoal);
+            opacity: 0.4;
+            transition: opacity 0.3s ease;
+        }
+        
+        .scroll-arrow:hover svg {
+            opacity: 0.7;
+        }
+        
+        /* Blink animation on first hover */
+        .scroll-arrow.first-hover svg {
+            animation: blink 0.4s ease 3;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+        
+        /* =============================================
+           HERO STATS
+        ============================================= */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-top: 48px;
+            background: var(--gray-dark);
+        }
+        
+        .stat-card {
+            background: var(--charcoal-light);
+            border: none;
+            border-radius: 0;
+            padding: 40px 28px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--green);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .stat-card:hover::before { transform: scaleX(1); }
+        
+        .stat-accent-star {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            top: 14px;
+            right: 14px;
+            color: var(--green);
+            opacity: 0.35;
+            animation: spin-slow 30s linear infinite;
+        }
+        
+        .stat-value {
+            font-family: var(--serif);
+            font-size: 72px;
+            font-weight: 400;
+            font-style: normal;
+            color: var(--green);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+        
+        .stat-label {
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+        
+        /* =============================================
+           SBIR SECTION
+        ============================================= */
+        /* =============================================
+           SBIR SECTION
+        ============================================= */
+        .section-sbir {
+            position: relative;
+        }
+        
+        .sbir-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://www.techfuturesgroup.org/wp-content/uploads/2023/08/impact-header-bg-2000x857.jpg');
+            background-size: cover;
+            background-position: center bottom;
+            opacity: 0.35;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .section-sbir .section-label,
+        .section-sbir .section-title,
+        .section-sbir .section-desc,
+        .section-sbir .sbir-banner,
+        .section-sbir .compare-banner,
+        .section-sbir .section-divider {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .sbir-banner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-top: 48px;
+            gap: 2px;
+            background: var(--gray-dark);
+        }
+        
+        .sbir-card {
+            padding: 40px;
+            position: relative;
+            transition: all 0.4s ease;
+            background: var(--charcoal-light);
+        }
+        
+        .sbir-card:hover {
+            background: var(--charcoal-mid);
+        }
+        
+        .sbir-phase {
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 16px;
+        }
+        
+        .sbir-amount {
+            font-family: var(--serif);
+            font-size: 56px;
+            font-weight: 400;
+            font-style: normal;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        
+        .sbir-timeline {
+            font-size: 14px;
+            color: var(--gray);
+        }
+        
+        /* Comparison Banner */
+        .compare-banner {
+            margin-top: 64px;
+            background: var(--green);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+        }
+        
+        .compare-block {
+            padding: 48px;
+            text-align: center;
+        }
+        
+        .compare-value {
+            font-family: var(--serif);
+            font-size: 80px;
+            font-weight: 400;
+            font-style: normal;
+            line-height: 1;
+            margin-bottom: 8px;
+            color: var(--charcoal);
+        }
+        
+        .compare-block.tfg .compare-value {
+            font-size: 100px;
+        }
+        
+        .compare-block.state .compare-value {
+            opacity: 0.3;
+        }
+        
+        .compare-label {
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+        }
+        
+        .compare-vs {
+            font-family: var(--mono);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--charcoal);
+            opacity: 0.3;
+            letter-spacing: 0.1em;
+            padding: 24px;
+        }
+        
+        /* =============================================
+           GRANTS SECTION
+        ============================================= */
+        .grants-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            margin-top: 48px;
+            background: var(--gray-dark);
+        }
+        
+        .grant-block {
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .grant-block.block-dark {
+            background: var(--charcoal-light);
+        }
+        
+        .grant-block.block-dark::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('https://www.techfuturesgroup.org/wp-content/themes/tfg/assets/img/static.png');
+            background-size: 150px;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .grant-block.block-green {
+            background: var(--green);
+            position: relative;
+        }
+        
+        /* ZAG diagonal cut */
+        .grant-block.block-green::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -40px;
+            width: 80px;
+            height: 100%;
+            background: var(--green);
+            transform: skewX(-4deg);
+            z-index: 1;
+        }
+        
+        .grant-block-title,
+        .grant-row,
+        .winrate-display,
+        .winrate-advantage {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Green block text colors */
+        .grant-block.block-green .grant-block-title {
+            color: var(--charcoal);
+            opacity: 0.5;
+        }
+        
+        .grant-block.block-green .winrate-number {
+            color: var(--charcoal);
+            font-size: 120px;
+        }
+        
+        .grant-block.block-green .winrate-label {
+            color: var(--charcoal);
+            opacity: 0.6;
+        }
+        
+        .grant-block.block-green .winrate-desc {
+            color: var(--charcoal);
+            opacity: 0.8;
+        }
+        
+        .grant-block.block-green .winrate-advantage {
+            border-top-color: rgba(0,0,0,0.15);
+        }
+        
+        .grant-block.block-green .advantage-item {
+            color: var(--charcoal);
+            opacity: 0.7;
+        }
+        
+        .grant-block.block-green .advantage-item span {
+            color: var(--charcoal);
+            opacity: 1;
+        }
+        
+        .grant-block-title {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 32px;
+        }
+        
+        .grant-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--gray-dark);
+        }
+        
+        .grant-row:last-child {
+            border-bottom: none;
+        }
+        
+        .grant-bar {
+            flex: 1;
+            height: 8px;
+            background: var(--charcoal);
+            border-radius: 0;
+            overflow: hidden;
+        }
+        
+        .grant-bar-fill {
+            height: 100%;
+            background: var(--green);
+            width: 0%;
+            transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 10px var(--green-glow);
+        }
+        
+        .grant-label {
+            font-size: 14px;
+            color: var(--white);
+            width: 80px;
+        }
+        
+        .grant-value {
+            font-family: var(--mono);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--green);
+            width: 60px;
+            text-align: right;
+        }
+        
+        /* Win Rate Block */
+        .winrate-display {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        
+        .winrate-number {
+            font-family: var(--serif);
+            font-size: 96px;
+            font-weight: 400;
+            font-style: normal;
+            color: var(--green);
+            line-height: 1;
+        }
+        
+        .winrate-context {
+            flex: 1;
+        }
+        
+        .winrate-label {
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 8px;
+        }
+        
+        .winrate-desc {
+            font-size: 16px;
+            color: var(--gray-light);
+            line-height: 1.5;
+        }
+        
+        .winrate-advantage {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--gray-dark);
+            display: flex;
+            gap: 32px;
+        }
+        
+        .advantage-item {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--gray);
+        }
+        
+        .advantage-item span {
+            color: var(--green);
+            font-weight: 600;
+        }
+        
+        /* =============================================
+           GEO SECTION
+        ============================================= */
+        .geo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-top: 48px;
+            background: var(--gray-dark);
+        }
+        
+        .geo-card {
+            background: var(--charcoal-light);
+            padding: 32px;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .geo-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--green);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .geo-card:hover {
+            background: var(--charcoal-mid);
+        }
+        
+        .geo-card:hover::after {
+            transform: scaleX(1);
+        }
+        
+        .geo-region {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 16px;
+        }
+        
+        .geo-value {
+            font-family: var(--serif);
+            font-size: 64px;
+            font-weight: 400;
+            font-style: normal;
+            color: var(--green);
+            line-height: 1;
+        }
+        
+        .geo-label {
+            font-size: 14px;
+            color: var(--gray-light);
+            margin-top: 4px;
+        }
+        
+        .geo-breakdown {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--gray-dark);
+        }
+        
+        .geo-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 13px;
+        }
+        
+        .geo-row span:first-child { color: var(--gray-light); }
+        .geo-row span:last-child { font-family: var(--mono); color: var(--white); }
+        
+        /* =============================================
+           STORIES SECTION
+        ============================================= */
+        /* =============================================
+           STORIES SECTION
+        ============================================= */
+        .section-stories {
+            position: relative;
+        }
+        
+        .section-stories .pattern-grid,
+        .section-stories .parallax-starburst,
+        .section-stories .pattern-arc,
+        .section-stories .section-label,
+        .section-stories .section-title,
+        .section-stories .section-desc,
+        .section-stories .stories-grid,
+        .section-stories .section-divider {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            margin-top: 48px;
+            background: var(--gray-dark);
+        }
+        
+        .story-card {
+            background: var(--charcoal-light);
+            transition: all 0.4s ease;
+        }
+        
+        .story-card:hover {
+            background: var(--charcoal-mid);
+        }
+        
+        .story-header {
+            background: var(--green);
+            padding: 28px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .story-avatar {
+            width: 64px;
+            height: 64px;
+            background: var(--charcoal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 400;
+            font-style: normal;
+            color: var(--green);
+        }
+        
+        .story-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+        
+        .story-company {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            color: var(--charcoal);
+            opacity: 0.6;
+            margin-top: 2px;
+        }
+        
+        .story-body { padding: 28px; }
+        
+        .story-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .story-stat-value {
+            font-family: var(--serif);
+            font-size: 32px;
+            font-weight: 400;
+            font-style: normal;
+            color: var(--green);
+            line-height: 1;
+        }
+        
+        .story-stat-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            color: var(--gray);
+            margin-top: 4px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        
+        .story-quote {
+            font-size: 16px;
+            color: var(--gray-light);
+            line-height: 1.6;
+            padding-top: 24px;
+            border-top: 1px solid var(--gray-dark);
+        }
+        
+        /* =============================================
+           CTA SECTION
+        ============================================= */
+        .section-cta {
+            background: var(--green);
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-cta .section-title { color: var(--charcoal); }
+        .section-cta .section-desc {
+            color: var(--charcoal);
+            opacity: 0.7;
+            margin: 0 auto 40px;
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            background: transparent;
+            border: 2px solid var(--charcoal);
+            padding: 18px 36px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .cta-button:hover {
+            background: var(--charcoal);
+            color: var(--green);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-button:hover svg { transform: translateX(4px); }
+        
+        /* =============================================
+           MOBILE RESPONSIVE
+        ============================================= */
+        @media (max-width: 768px) {
+            /* Cover - remove negative margin */
+            .section-cover {
+                margin-top: 0;
+            }
+            
+            /* Navigation */
+            .nav {
+                right: 12px;
+                gap: 8px;
+            }
+            
+            .nav-dot {
+                width: 8px;
+                height: 8px;
+            }
+            
+            .nav-dot::before {
+                display: none;
+            }
+            
+            /* Sections */
+            .section {
+                padding: 40px 24px;
+            }
+            
+            .section-hero {
+                min-height: 85vh;
+            }
+            
+            /* Typography */
+            .section-title {
+                font-size: clamp(36px, 10vw, 56px);
+                margin-bottom: 16px;
+            }
+            
+            .section-desc {
+                font-size: 16px;
+                max-width: 100%;
+            }
+            
+            .section-label {
+                font-size: 10px;
+                letter-spacing: 0.2em;
+            }
+            
+            /* Cover */
+            .cover-bg-text {
+                font-size: clamp(120px, 30vw, 200px);
+                right: -10%;
+            }
+            
+            .scroll-arrow {
+                bottom: 24px;
+            }
+            
+            .scroll-arrow svg {
+                width: 16px;
+                height: 40px;
+            }
+            
+            /* Stats Grid */
+            .stats-grid {
+                grid-template-columns: 1fr;
+                margin-top: 32px;
+            }
+            
+            .stat-card {
+                padding: 32px 24px;
+            }
+            
+            .stat-value {
+                font-size: 56px;
+            }
+            
+            .stat-accent-star {
+                width: 20px;
+                height: 20px;
+                top: 12px;
+                right: 12px;
+            }
+            
+            /* SBIR */
+            .sbir-banner {
+                grid-template-columns: 1fr;
+                margin-top: 32px;
+            }
+            
+            .sbir-card {
+                padding: 28px;
+            }
+            
+            .sbir-amount {
+                font-size: 40px;
+            }
+            
+            .compare-banner {
+                grid-template-columns: 1fr;
+                margin-top: 40px;
+            }
+            
+            .compare-block {
+                padding: 32px 24px;
+            }
+            
+            .compare-value {
+                font-size: 56px;
+            }
+            
+            .compare-block.tfg .compare-value {
+                font-size: 64px;
+            }
+            
+            .compare-vs {
+                padding: 12px;
+                border-top: 1px solid rgba(0,0,0,0.1);
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+            }
+            
+            /* Grants */
+            .grants-grid {
+                grid-template-columns: 1fr;
+                margin-top: 32px;
+            }
+            
+            .grant-block {
+                padding: 28px;
+            }
+            
+            .grant-block.block-green::before {
+                display: none;
+            }
+            
+            .grant-block.block-green .winrate-number {
+                font-size: 72px;
+            }
+            
+            .winrate-display {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .winrate-number {
+                font-size: 64px;
+            }
+            
+            .winrate-advantage {
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+            
+            .grant-label {
+                width: 50px;
+                font-size: 13px;
+            }
+            
+            .grant-value {
+                font-size: 13px;
+                width: 50px;
+            }
+            
+            /* Geography */
+            .geo-grid {
+                grid-template-columns: 1fr;
+                margin-top: 32px;
+            }
+            
+            .geo-card {
+                padding: 28px;
+            }
+            
+            .geo-value {
+                font-size: 48px;
+            }
+            
+            .geo-breakdown {
+                margin-top: 20px;
+                padding-top: 20px;
+            }
+            
+            /* Stories */
+            .stories-grid {
+                grid-template-columns: 1fr;
+                margin-top: 32px;
+            }
+            
+            .story-header {
+                padding: 20px;
+                gap: 16px;
+            }
+            
+            .story-avatar {
+                width: 48px;
+                height: 48px;
+                font-size: 18px;
+            }
+            
+            .story-name {
+                font-size: 18px;
+            }
+            
+            .story-body {
+                padding: 20px;
+            }
+            
+            .story-stats {
+                gap: 16px;
+                margin-bottom: 20px;
+            }
+            
+            .story-stat-value {
+                font-size: 28px;
+            }
+            
+            .story-quote {
+                font-size: 15px;
+                padding-top: 20px;
+            }
+            
+            /* CTA */
+            .section-cta {
+                text-align: left;
+            }
+            
+            .cta-content {
+                max-width: 100%;
+            }
+            
+            .section-cta .section-desc {
+                margin: 0 0 32px;
+            }
+            
+            .cta-button {
+                width: 100%;
+                justify-content: center;
+                padding: 16px 24px;
+            }
+            
+            /* Pattern elements - scale down */
+            .pattern-arc {
+                transform: scale(0.6);
+            }
+            
+            .parallax-starburst {
+                transform: scale(0.7);
+            }
+        }
+        
+        /* Extra small devices */
+        @media (max-width: 380px) {
+            .section {
+                padding: 32px 16px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .stat-value {
+                font-size: 48px;
+            }
+            
+            .compare-value {
+                font-size: 48px;
+            }
+            
+            .compare-block.tfg .compare-value {
+                font-size: 56px;
+            }
+            
+            .geo-value {
+                font-size: 40px;
+            }
+            
+            .winrate-number {
+                font-size: 56px;
+            }
+            
+            .grant-block.block-green .winrate-number {
+                font-size: 56px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- SVG Symbols -->
+    <svg style="display: none;">
+        <symbol id="starburst" viewBox="0 0 100 100">
+            <g transform="translate(50,50)" fill="none" stroke="currentColor" stroke-width="1.2">
+                <line x1="0" y1="-46" x2="0" y2="-18"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(15)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(30)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(45)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(60)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(75)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(90)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(105)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(120)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(135)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(150)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(165)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(180)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(195)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(210)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(225)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(240)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(255)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(270)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(285)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(300)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(315)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(330)"/>
+                <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(345)"/>
+            </g>
+        </symbol>
+        <!-- Compact 9-prong starburst -->
+        <symbol id="starburst-9" viewBox="0 0 100 100">
+            <g transform="translate(50,50)" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="0" y1="-44" x2="0" y2="-16"/>
+                <line x1="0" y1="-44" x2="0" y2="-16" transform="rotate(40)"/>
+                <line x1="0" y1="-44" x2="0" y2="-16" transform="rotate(80)"/>
+                <line x1="0" y1="-44" x2="0" y2="-16" transform="rotate(120)"/>
+                <line x1="0" y1="-44" x2="0" y2="-16" transform="rotate(160)"/>
+                <line x1="0" y1="-44" x2="0" y2="-16" transform="rotate(200)"/>
+                <line x1="0" y1="-44" x2="0" y2="-16" transform="rotate(240)"/>
+                <line x1="0" y1="-44" x2="0" y2="-16" transform="rotate(280)"/>
+                <line x1="0" y1="-44" x2="0" y2="-16" transform="rotate(320)"/>
+            </g>
+        </symbol>
+    </svg>
+
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <nav class="nav">
+        <button class="nav-dot active" data-section="0" data-label="COVER"></button>
+        <button class="nav-dot" data-section="1" data-label="IMPACT"></button>
+        <button class="nav-dot" data-section="2" data-label="SBIR"></button>
+        <button class="nav-dot" data-section="3" data-label="GRANTS"></button>
+        <button class="nav-dot" data-section="4" data-label="GEOGRAPHY"></button>
+        <button class="nav-dot" data-section="5" data-label="STORIES"></button>
+        <button class="nav-dot" data-section="6" data-label="APPLY"></button>
+    </nav>
+
+    <!-- COVER -->
+    <section class="section section-cover in-view" id="section-0">
+        <div class="cover-bg-text">2025</div>
+        <div class="pattern-arc" style="width: 500px; height: 500px; bottom: -150px; right: -100px; border-color: var(--charcoal); opacity: 0.1;" data-speed="0.3"></div>
+        <svg class="parallax-starburst dark" style="width: 180px; height: 180px; top: 15%; right: 12%; opacity: 0.12;" data-speed="0.5" viewBox="0 0 100 100">
+            <use href="#starburst"/>
+        </svg>
+        <div class="cover-content">
+            <div class="section-label snap-content">Impact Report 2025</div>
+            <h1 class="section-title">
+                <span class="title-mask"><span class="title-mask-inner">Real Impact.</span></span>
+                <span class="title-mask"><span class="title-mask-inner delay-1">Real Results.</span></span>
+            </h1>
+            <p class="section-desc snap-content delay-2">We've helped Northern California founders raise over $1B to date. Here's how.</p>
+        </div>
+        <a href="#section-1" class="scroll-arrow" id="scrollArrow">
+            <svg viewBox="0 0 24 60" width="24" height="60">
+                <line x1="12" y1="0" x2="12" y2="50" stroke="currentColor" stroke-width="1.5"/>
+                <polygon points="12,60 7,50 17,50" fill="currentColor"/>
+            </svg>
+        </a>
+        <div class="section-divider"></div>
+    </section>
+    
+    <!-- HERO STATS -->
+    <section class="section section-hero" id="section-1">
+        <div class="pattern-arc" style="width: 400px; height: 400px; top: -120px; right: -80px;" data-speed="0.35"></div>
+        
+        <div class="section-label snap-content">TFG Creates Real Impact</div>
+        <h2 class="section-title">
+            <span class="title-mask"><span class="title-mask-inner">To Date</span></span>
+        </h2>
+        <p class="section-desc snap-content delay-2">We've helped founders raise capital, secure grants, and build companies that matter.</p>
+        
+        <div class="stats-grid">
+            <div class="stat-card scale-snap delay-2">
+                <svg class="stat-accent-star" viewBox="0 0 100 100">
+                    <use href="#starburst-9"/>
+                </svg>
+                <div class="stat-value"><span class="counter" data-target="1" data-prefix="$" data-suffix="B+">$0</span></div>
+                <div class="stat-label">Capital Raised</div>
+            </div>
+            <div class="stat-card scale-snap delay-3">
+                <div class="stat-value"><span class="counter" data-target="70" data-prefix="$" data-suffix="M+">$0</span></div>
+                <div class="stat-label">Grants Secured</div>
+            </div>
+            <div class="stat-card scale-snap delay-4">
+                <div class="stat-value"><span class="counter" data-target="0" data-prefix="$" data-suffix="">$0</span></div>
+                <div class="stat-label">Cost to Founders</div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+    </section>
+    
+    <!-- SBIR -->
+    <section class="section section-sbir" id="section-2">
+        <div class="sbir-bg"></div>
+        <svg class="parallax-starburst" style="width: 100px; height: 100px; top: 12%; right: 10%; opacity: 0.15;" data-speed="0.55" viewBox="0 0 100 100">
+            <use href="#starburst"/>
+        </svg>
+        
+        <div class="section-label snap-content">SBIR/STTR Grants</div>
+        <h2 class="section-title">
+            <span class="title-mask"><span class="title-mask-inner">TFG Founders</span></span>
+            <span class="title-mask"><span class="title-mask-inner delay-1">Outperform</span></span>
+        </h2>
+        <p class="section-desc snap-content delay-2">TFG clients significantly outperform peers in winning Small Business Innovation Research grants.</p>
+        
+        <div class="sbir-banner scale-snap delay-3">
+            <div class="sbir-card">
+                <div class="sbir-phase">Phase I</div>
+                <div class="sbir-amount">$295,924</div>
+                <div class="sbir-timeline">6 months – 2 years</div>
+            </div>
+            <div class="sbir-card">
+                <div class="sbir-phase">Phase II</div>
+                <div class="sbir-amount">$1.97M</div>
+                <div class="sbir-timeline">1 – 3 years</div>
+            </div>
+        </div>
+        
+        <div class="compare-banner scale-snap delay-4">
+            <div class="compare-block tfg">
+                <div class="compare-value"><span class="counter" data-target="57" data-suffix="%">0%</span></div>
+                <div class="compare-label">TFG Founders</div>
+            </div>
+            <div class="compare-vs">VS</div>
+            <div class="compare-block state">
+                <div class="compare-value"><span class="counter" data-target="15" data-suffix="%">0%</span></div>
+                <div class="compare-label">CA State Average</div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+    </section>
+    
+    <!-- GRANTS BREAKDOWN -->
+    <section class="section" id="section-3">
+        <div class="pattern-arc" style="width: 450px; height: 450px; top: -150px; left: -120px;" data-speed="0.3"></div>
+        
+        <div class="section-label snap-content">Grant Funding</div>
+        <h2 class="section-title">
+            <span class="title-mask"><span class="title-mask-inner">$70M+ Secured</span></span>
+        </h2>
+        <p class="section-desc snap-content delay-2">Non-dilutive capital that doesn't cost equity.</p>
+        
+        <div class="grants-grid">
+            <div class="grant-block block-dark scale-snap delay-3">
+                <div class="grant-block-title">By Agency</div>
+                
+                <div class="grant-row">
+                    <div class="grant-label">NIH</div>
+                    <div class="grant-bar"><div class="grant-bar-fill" data-width="40"></div></div>
+                    <div class="grant-value">$28M</div>
+                </div>
+                <div class="grant-row">
+                    <div class="grant-label">NSF</div>
+                    <div class="grant-bar"><div class="grant-bar-fill" data-width="30"></div></div>
+                    <div class="grant-value">$21M</div>
+                </div>
+                <div class="grant-row">
+                    <div class="grant-label">DOE</div>
+                    <div class="grant-bar"><div class="grant-bar-fill" data-width="20"></div></div>
+                    <div class="grant-value">$14M</div>
+                </div>
+                <div class="grant-row">
+                    <div class="grant-label">DOD</div>
+                    <div class="grant-bar"><div class="grant-bar-fill" data-width="10"></div></div>
+                    <div class="grant-value">$7M</div>
+                </div>
+            </div>
+            
+            <div class="grant-block block-green scale-snap delay-4">
+                <div class="grant-block-title">TFG Advantage</div>
+                <div class="winrate-display">
+                    <div class="winrate-number"><span class="counter" data-target="57" data-suffix="%">0%</span></div>
+                    <div class="winrate-context">
+                        <div class="winrate-label">Win Rate</div>
+                        <div class="winrate-desc">Only 15% of Phase I California applications receive funds. TFG founders win at nearly 4× the state average.</div>
+                    </div>
+                </div>
+                <div class="winrate-advantage">
+                    <div class="advantage-item"><span>3.8×</span> better odds</div>
+                    <div class="advantage-item"><span>$70M+</span> secured</div>
+                    <div class="advantage-item"><span>0%</span> equity cost</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+    </section>
+    
+    <!-- GEOGRAPHY -->
+    <section class="section" id="section-4">
+        <div class="pattern-arc" style="width: 380px; height: 380px; bottom: -100px; right: -100px;" data-speed="0.35"></div>
+        <svg class="parallax-starburst" style="width: 90px; height: 90px; top: 18%; left: 6%; opacity: 0.15;" data-speed="0.5" viewBox="0 0 100 100">
+            <use href="#starburst"/>
+        </svg>
+        
+        <div class="section-label snap-content">Northern California</div>
+        <h2 class="section-title">
+            <span class="title-mask"><span class="title-mask-inner">Across the Region</span></span>
+        </h2>
+        <p class="section-desc snap-content delay-2">We serve tech founders throughout the NorCal SBDC network coverage area.</p>
+        
+        <div class="geo-grid">
+            <div class="geo-card scale-snap delay-2">
+                <div class="geo-region">Bay Area</div>
+                <div class="geo-value"><span class="counter" data-target="187">0</span></div>
+                <div class="geo-label">Founders Advised</div>
+                <div class="geo-breakdown">
+                    <div class="geo-row"><span>San Francisco</span><span>72</span></div>
+                    <div class="geo-row"><span>South Bay</span><span>58</span></div>
+                    <div class="geo-row"><span>East Bay</span><span>41</span></div>
+                    <div class="geo-row"><span>Peninsula</span><span>16</span></div>
+                </div>
+            </div>
+            
+            <div class="geo-card scale-snap delay-3">
+                <div class="geo-region">Sacramento Region</div>
+                <div class="geo-value"><span class="counter" data-target="68">0</span></div>
+                <div class="geo-label">Founders Advised</div>
+                <div class="geo-breakdown">
+                    <div class="geo-row"><span>Sacramento</span><span>42</span></div>
+                    <div class="geo-row"><span>Davis</span><span>14</span></div>
+                    <div class="geo-row"><span>Roseville / Folsom</span><span>12</span></div>
+                </div>
+            </div>
+            
+            <div class="geo-card scale-snap delay-4">
+                <div class="geo-region">North State</div>
+                <div class="geo-value"><span class="counter" data-target="57">0</span></div>
+                <div class="geo-label">Founders Advised</div>
+                <div class="geo-breakdown">
+                    <div class="geo-row"><span>Chico</span><span>23</span></div>
+                    <div class="geo-row"><span>Redding</span><span>18</span></div>
+                    <div class="geo-row"><span>Other</span><span>16</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+    </section>
+    
+    <!-- FOUNDER STORIES -->
+    <section class="section section-stories" id="section-5">
+        <div class="pattern-grid"></div>
+        <div class="pattern-arc" style="width: 320px; height: 320px; top: -80px; right: -60px;" data-speed="0.4"></div>
+        
+        <div class="section-label snap-content">Founder Spotlight</div>
+        <h2 class="section-title">
+            <span class="title-mask"><span class="title-mask-inner">Real Stories</span></span>
+        </h2>
+        <p class="section-desc snap-content delay-2">Behind the numbers are founders building the future.</p>
+        
+        <div class="stories-grid">
+            <div class="story-card scale-snap delay-2">
+                <div class="story-header">
+                    <div class="story-avatar">SC</div>
+                    <div>
+                        <div class="story-name">Dr. Sarah Chen</div>
+                        <div class="story-company">CARBONGRID · CLIMATE TECH</div>
+                    </div>
+                </div>
+                <div class="story-body">
+                    <div class="story-stats">
+                        <div>
+                            <div class="story-stat-value">$3.2M</div>
+                            <div class="story-stat-label">Seed Raised</div>
+                        </div>
+                        <div>
+                            <div class="story-stat-value">12 wks</div>
+                            <div class="story-stat-label">Time to Close</div>
+                        </div>
+                    </div>
+                    <div class="story-quote">"TFG helped us reframe from 'cool technology' to '$4B compliance problem.' That shift was everything."</div>
+                </div>
+            </div>
+            
+            <div class="story-card scale-snap delay-3">
+                <div class="story-header">
+                    <div class="story-avatar">MK</div>
+                    <div>
+                        <div class="story-name">Marcus Kim</div>
+                        <div class="story-company">NEURALPATH · BIOTECH</div>
+                    </div>
+                </div>
+                <div class="story-body">
+                    <div class="story-stats">
+                        <div>
+                            <div class="story-stat-value">$1.97M</div>
+                            <div class="story-stat-label">SBIR Phase II</div>
+                        </div>
+                        <div>
+                            <div class="story-stat-value">0%</div>
+                            <div class="story-stat-label">Equity Given</div>
+                        </div>
+                    </div>
+                    <div class="story-quote">"David walked us through every section of the NIH application. Funded on the first submission."</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="section section-cta" id="section-6">
+        <div class="pattern-arc" style="width: 500px; height: 500px; top: -180px; left: -150px; border-color: var(--charcoal); opacity: 0.08;" data-speed="0.3"></div>
+        <svg class="parallax-starburst dark" style="width: 140px; height: 140px; bottom: 15%; right: 10%; opacity: 0.1;" data-speed="0.45" viewBox="0 0 100 100">
+            <use href="#starburst"/>
+        </svg>
+        
+        <div class="cta-content">
+            <h2 class="section-title">
+                <span class="title-mask"><span class="title-mask-inner">A tech startup's</span></span>
+                <span class="title-mask"><span class="title-mask-inner delay-1">dream come true.</span></span>
+            </h2>
+            <p class="section-desc snap-content delay-1">No-cost & no-equity advising for select tech companies in Northern California.</p>
+            <a href="https://techfuturesgroup.org/apply" class="cta-button snap-content delay-2">
+                Apply Now
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Scroll arrow first-hover blink
+        const scrollArrow = document.getElementById('scrollArrow');
+        let hasHovered = false;
+        
+        scrollArrow.addEventListener('mouseenter', () => {
+            if (!hasHovered) {
+                hasHovered = true;
+                scrollArrow.classList.add('first-hover');
+                setTimeout(() => {
+                    scrollArrow.classList.remove('first-hover');
+                }, 1200);
+            }
+        });
+        
+        // Intersection Observer for snap animations
+        const sections = document.querySelectorAll('.section');
+        const navDots = document.querySelectorAll('.nav-dot');
+        const progressBar = document.getElementById('progressBar');
+        
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add in-view class for snap animation
+                    entry.target.classList.add('in-view');
+                    
+                    // Update nav
+                    const index = Array.from(sections).indexOf(entry.target);
+                    navDots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === index);
+                    });
+                    
+                    // Animate bars
+                    entry.target.querySelectorAll('.grant-bar-fill').forEach(bar => {
+                        const width = bar.dataset.width;
+                        setTimeout(() => { bar.style.width = width + '%'; }, 400);
+                    });
+                    
+                    // Animate counters
+                    entry.target.querySelectorAll('.counter').forEach(counter => {
+                        animateCounter(counter);
+                    });
+                }
+            });
+        }, { threshold: 0.4 });
+        
+        sections.forEach(section => sectionObserver.observe(section));
+        
+        // Counter animation
+        function animateCounter(el) {
+            if (el.dataset.animated) return;
+            el.dataset.animated = true;
+            
+            const target = parseFloat(el.dataset.target);
+            const prefix = el.dataset.prefix || '';
+            const suffix = el.dataset.suffix || '';
+            const duration = 1200;
+            const start = performance.now();
+            const isDecimal = target % 1 !== 0;
+            
+            function update(currentTime) {
+                const elapsed = currentTime - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = target * eased;
+                
+                if (isDecimal) {
+                    el.textContent = prefix + current.toFixed(1) + suffix;
+                } else {
+                    el.textContent = prefix + Math.floor(current).toLocaleString() + suffix;
+                }
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+        
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            progressBar.style.width = progress + '%';
+        });
+        
+        // Nav dot click
+        navDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const index = dot.dataset.section;
+                sections[index].scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        
+        // Parallax for arcs and starbursts
+        const parallaxArcs = document.querySelectorAll('.pattern-arc[data-speed]');
+        const parallaxStarbursts = document.querySelectorAll('.parallax-starburst');
+        let ticking = false;
+        let lastScrollY = window.scrollY;
+        let scrollVelocity = 0;
+        let starburstRotations = new Map();
+        
+        // Initialize rotation tracking for each starburst
+        parallaxStarbursts.forEach((el, i) => {
+            starburstRotations.set(el, 0);
+        });
+        
+        function updateParallax() {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            
+            // Calculate scroll velocity
+            scrollVelocity = Math.abs(scrollY - lastScrollY);
+            lastScrollY = scrollY;
+            
+            // Update arcs (position only)
+            parallaxArcs.forEach(el => {
+                const speed = parseFloat(el.dataset.speed) || 0.3;
+                const section = el.closest('.section');
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                const relativeScroll = scrollY - sectionTop + windowHeight;
+                const scrollPercent = relativeScroll / (sectionHeight + windowHeight);
+                const yOffset = (scrollPercent - 0.5) * speed * 150;
+                
+                el.style.transform = `translateY(${yOffset}px)`;
+            });
+            
+            // Update starbursts (position + rotation)
+            parallaxStarbursts.forEach(el => {
+                const speed = parseFloat(el.dataset.speed) || 0.3;
+                const section = el.closest('.section');
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                const relativeScroll = scrollY - sectionTop + windowHeight;
+                const scrollPercent = relativeScroll / (sectionHeight + windowHeight);
+                const yOffset = (scrollPercent - 0.5) * speed * 150;
+                
+                // Get current rotation and add scroll-based rotation
+                let currentRotation = starburstRotations.get(el);
+                // Base rotation: 0.5deg per frame, plus scroll velocity boost
+                const rotationSpeed = 0.5 + (scrollVelocity * 0.8);
+                currentRotation += rotationSpeed;
+                starburstRotations.set(el, currentRotation);
+                
+                el.style.transform = `translateY(${yOffset}px) rotate(${currentRotation}deg)`;
+                el.style.animation = 'none'; // Override CSS animation with JS control
+            });
+            
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+        
+        // Continuous slow rotation when not scrolling
+        function idleRotation() {
+            if (scrollVelocity < 1) {
+                parallaxStarbursts.forEach(el => {
+                    let currentRotation = starburstRotations.get(el);
+                    currentRotation += 0.15; // Slow idle rotation
+                    starburstRotations.set(el, currentRotation);
+                    
+                    // Only update rotation, preserve current Y position
+                    const currentTransform = el.style.transform;
+                    const yMatch = currentTransform.match(/translateY\(([^)]+)\)/);
+                    const yOffset = yMatch ? yMatch[1] : '0px';
+                    
+                    el.style.transform = `translateY(${yOffset}) rotate(${currentRotation}deg)`;
+                });
+            }
+            scrollVelocity *= 0.95; // Decay velocity
+            requestAnimationFrame(idleRotation);
+        }
+        
+        // Start idle rotation loop
+        idleRotation();
+        
+        // Initial parallax position
+        updateParallax();
+    </script>
+
+</body>
+</html>

@@ -982,6 +982,361 @@
             color: rgba(255, 255, 255, 0.4);
         }
 
+        /* Pattern Generator */
+        .pattern-generator-card {
+            background: linear-gradient(135deg, var(--dark-gray), var(--charcoal));
+            border-radius: 16px;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(78, 255, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pattern-generator-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(78, 255, 0, 0.15);
+            border-color: var(--electric-green);
+        }
+
+        .pattern-generator-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(78, 255, 0, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .pattern-generator-preview {
+            width: 200px;
+            height: 200px;
+            border-radius: 12px;
+            background: var(--near-black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pattern-generator-preview canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .pattern-generator-title {
+            font-family: 'Tobias', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--white);
+        }
+
+        .pattern-generator-desc {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .pattern-generator-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--electric-green);
+            color: var(--near-black);
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 14px 28px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pattern-generator-btn:hover {
+            background: var(--white);
+            transform: scale(1.05);
+        }
+
+        .pattern-generator-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Pattern Studio Modal */
+        .pattern-studio-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--near-black);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            overflow: auto;
+        }
+
+        .pattern-studio-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .pattern-studio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            background: var(--near-black);
+            z-index: 10;
+        }
+
+        .pattern-studio-title {
+            font-family: 'GT America Extended', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pattern-studio-title span {
+            color: var(--electric-green);
+        }
+
+        .pattern-studio-close {
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .pattern-studio-close:hover {
+            border-color: var(--electric-green);
+            background: rgba(78, 255, 0, 0.1);
+        }
+
+        .pattern-studio-close svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--white);
+        }
+
+        .pattern-studio-body {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            min-height: calc(100vh - 81px);
+        }
+
+        .pattern-canvas-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            background: var(--charcoal);
+        }
+
+        .pattern-canvas-wrapper {
+            position: relative;
+            background: var(--near-black);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        #patternCanvas {
+            display: block;
+        }
+
+        .pattern-controls {
+            background: var(--dark-gray);
+            padding: 30px;
+            overflow-y: auto;
+            max-height: calc(100vh - 81px);
+        }
+
+        .pattern-control-group {
+            margin-bottom: 28px;
+        }
+
+        .pattern-control-label {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--electric-green);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .pattern-control-select {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--near-black);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--white);
+            font-family: 'GT America Extended', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .pattern-control-select:hover,
+        .pattern-control-select:focus {
+            border-color: var(--electric-green);
+            outline: none;
+        }
+
+        .pattern-control-range {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .pattern-control-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: var(--electric-green);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .pattern-control-range::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .pattern-range-value {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 8px;
+            text-align: right;
+        }
+
+        .pattern-control-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--near-black);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--white);
+            font-family: 'GT America Extended', sans-serif;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .pattern-control-input:focus {
+            border-color: var(--electric-green);
+            outline: none;
+        }
+
+        .pattern-control-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .pattern-control-checkbox input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--electric-green);
+            cursor: pointer;
+        }
+
+        .pattern-control-checkbox span {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .pattern-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pattern-action-btn {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .pattern-action-btn.primary {
+            background: var(--electric-green);
+            color: var(--near-black);
+            border: none;
+        }
+
+        .pattern-action-btn.primary:hover {
+            background: var(--white);
+        }
+
+        .pattern-action-btn.secondary {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .pattern-action-btn.secondary:hover {
+            border-color: var(--electric-green);
+            color: var(--electric-green);
+        }
+
+        .pattern-action-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        @media (max-width: 968px) {
+            .pattern-studio-body {
+                grid-template-columns: 1fr;
+            }
+
+            .pattern-canvas-area {
+                min-height: 400px;
+            }
+
+            .pattern-controls {
+                max-height: none;
+            }
+        }
+
         /* Graphic Elements */
         .graphic-elements-grid {
             display: grid;
@@ -1893,6 +2248,27 @@
                 </div>
             </div>
 
+            <!-- Pattern Generator -->
+            <div class="brand-subsection">
+                <h3 class="brand-subsection-title fade-up">Pattern Generator</h3>
+                <div class="pattern-generator-card fade-up stagger-1" id="openPatternStudio">
+                    <div class="pattern-generator-preview">
+                        <canvas id="previewCanvas" width="200" height="200"></canvas>
+                    </div>
+                    <h4 class="pattern-generator-title">TFG Pattern Studio</h4>
+                    <p class="pattern-generator-desc">
+                        Generate custom brand patterns using TFG's visual system.
+                        Create radial bursts, grids, spirographs, and more.
+                    </p>
+                    <button class="pattern-generator-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                        Launch Pattern Studio
+                    </button>
+                </div>
+            </div>
+
             <!-- Graphic Elements -->
             <div class="brand-subsection">
                 <h3 class="brand-subsection-title fade-up">Graphic Elements</h3>
@@ -1957,6 +2333,118 @@
                 </svg>
             </button>
             <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Pattern Studio Modal -->
+    <div class="pattern-studio-overlay" id="patternStudio">
+        <div class="pattern-studio-header">
+            <div class="pattern-studio-title">
+                <span>TFG</span> Pattern Studio
+            </div>
+            <button class="pattern-studio-close" id="closePatternStudio">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        <div class="pattern-studio-body">
+            <div class="pattern-canvas-area">
+                <div class="pattern-canvas-wrapper">
+                    <canvas id="patternCanvas" width="600" height="600"></canvas>
+                </div>
+            </div>
+            <div class="pattern-controls">
+                <div class="pattern-control-group">
+                    <label class="pattern-control-label">Pattern Type</label>
+                    <select class="pattern-control-select" id="patternType">
+                        <option value="radialBurst">Radial Burst</option>
+                        <option value="gridMatrix">Grid Matrix</option>
+                        <option value="spirograph">Spirograph</option>
+                        <option value="concentricCircles">Concentric Circles</option>
+                        <option value="hexagonalGrid">Hexagonal Grid</option>
+                        <option value="waveInterference">Wave Interference</option>
+                        <option value="voronoiCells">Voronoi Cells</option>
+                        <option value="fractalTree">Fractal Tree</option>
+                        <option value="particleField">Particle Field</option>
+                        <option value="moire">Moire Pattern</option>
+                        <option value="penroseTiling">Penrose Tiling</option>
+                        <option value="celticKnot">Celtic Knot</option>
+                        <option value="sacredGeometry">Sacred Geometry</option>
+                        <option value="organicFlow">Organic Flow</option>
+                        <option value="circuitBoard">Circuit Board</option>
+                        <option value="topographic">Topographic</option>
+                        <option value="kaleidoscope">Kaleidoscope</option>
+                        <option value="noiseField">Noise Field</option>
+                        <option value="islamicPattern">Islamic Pattern</option>
+                        <option value="escherTessellation">Escher Tessellation</option>
+                        <option value="dataVisualization">Data Visualization</option>
+                        <option value="neuralNetwork">Neural Network</option>
+                        <option value="quantumField">Quantum Field</option>
+                    </select>
+                </div>
+
+                <div class="pattern-control-group">
+                    <label class="pattern-control-label">Color Scheme</label>
+                    <select class="pattern-control-select" id="colorScheme">
+                        <option value="neonBlack">Neon on Black</option>
+                        <option value="neonGray">Neon on Gray</option>
+                        <option value="blackWhite">Black on White</option>
+                        <option value="grayScale">Grayscale</option>
+                    </select>
+                </div>
+
+                <div class="pattern-control-group">
+                    <label class="pattern-control-label">Density</label>
+                    <input type="range" class="pattern-control-range" id="density" min="10" max="100" value="50">
+                    <div class="pattern-range-value" id="densityValue">50</div>
+                </div>
+
+                <div class="pattern-control-group">
+                    <label class="pattern-control-label">Scale</label>
+                    <input type="range" class="pattern-control-range" id="scale" min="10" max="200" value="100">
+                    <div class="pattern-range-value" id="scaleValue">100%</div>
+                </div>
+
+                <div class="pattern-control-group">
+                    <label class="pattern-control-label">Zoom</label>
+                    <input type="range" class="pattern-control-range" id="zoom" min="50" max="200" value="100">
+                    <div class="pattern-range-value" id="zoomValue">100%</div>
+                </div>
+
+                <div class="pattern-control-group">
+                    <label class="pattern-control-label">Crop Percentage</label>
+                    <input type="range" class="pattern-control-range" id="crop" min="0" max="50" value="0">
+                    <div class="pattern-range-value" id="cropValue">0%</div>
+                </div>
+
+                <div class="pattern-control-group">
+                    <label class="pattern-control-label">Text Overlay</label>
+                    <input type="text" class="pattern-control-input" id="textOverlay" placeholder="Enter text...">
+                </div>
+
+                <div class="pattern-control-group">
+                    <label class="pattern-control-checkbox">
+                        <input type="checkbox" id="animatePattern">
+                        <span>Animate Pattern</span>
+                    </label>
+                </div>
+
+                <div class="pattern-actions">
+                    <button class="pattern-action-btn primary" id="exportPattern">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                        </svg>
+                        Export PNG
+                    </button>
+                    <button class="pattern-action-btn secondary" id="randomizePattern">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 4v6h-6M1 20v-6h6M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/>
+                        </svg>
+                        Randomize
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -2133,6 +2621,946 @@
                 cat.classList.add('active');
             });
         });
+
+        // ============================================
+        // PATTERN STUDIO
+        // ============================================
+        const patternStudio = document.getElementById('patternStudio');
+        const openPatternStudioBtn = document.getElementById('openPatternStudio');
+        const closePatternStudioBtn = document.getElementById('closePatternStudio');
+        const patternCanvas = document.getElementById('patternCanvas');
+        const previewCanvas = document.getElementById('previewCanvas');
+        const ctx = patternCanvas.getContext('2d');
+        const previewCtx = previewCanvas.getContext('2d');
+
+        // Controls
+        const patternTypeSelect = document.getElementById('patternType');
+        const colorSchemeSelect = document.getElementById('colorScheme');
+        const densitySlider = document.getElementById('density');
+        const scaleSlider = document.getElementById('scale');
+        const zoomSlider = document.getElementById('zoom');
+        const cropSlider = document.getElementById('crop');
+        const textOverlayInput = document.getElementById('textOverlay');
+        const animateCheckbox = document.getElementById('animatePattern');
+        const exportBtn = document.getElementById('exportPattern');
+        const randomizeBtn = document.getElementById('randomizePattern');
+
+        // Value displays
+        const densityValue = document.getElementById('densityValue');
+        const scaleValue = document.getElementById('scaleValue');
+        const zoomValue = document.getElementById('zoomValue');
+        const cropValue = document.getElementById('cropValue');
+
+        // Color schemes
+        const colorSchemes = {
+            neonBlack: { bg: '#0a0a0a', primary: '#4EFF00', secondary: '#48524B', accent: '#272727' },
+            neonGray: { bg: '#272727', primary: '#4EFF00', secondary: '#48524B', accent: '#1a1a1a' },
+            blackWhite: { bg: '#F7F6F2', primary: '#0a0a0a', secondary: '#272727', accent: '#48524B' },
+            grayScale: { bg: '#1a1a1a', primary: '#ffffff', secondary: '#888888', accent: '#444444' }
+        };
+
+        let animationId = null;
+        let animationPhase = 0;
+
+        // Open/Close Pattern Studio
+        openPatternStudioBtn.addEventListener('click', () => {
+            patternStudio.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            generatePattern();
+        });
+
+        closePatternStudioBtn.addEventListener('click', () => {
+            patternStudio.classList.remove('active');
+            document.body.style.overflow = '';
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+        });
+
+        // Event listeners for controls
+        [patternTypeSelect, colorSchemeSelect].forEach(el => {
+            el.addEventListener('change', generatePattern);
+        });
+
+        [densitySlider, scaleSlider, zoomSlider, cropSlider].forEach(slider => {
+            slider.addEventListener('input', (e) => {
+                updateSliderValue(e.target);
+                generatePattern();
+            });
+        });
+
+        textOverlayInput.addEventListener('input', generatePattern);
+
+        animateCheckbox.addEventListener('change', () => {
+            if (animateCheckbox.checked) {
+                animatePatternLoop();
+            } else if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+        });
+
+        function updateSliderValue(slider) {
+            const id = slider.id;
+            const val = slider.value;
+            if (id === 'density') densityValue.textContent = val;
+            if (id === 'scale') scaleValue.textContent = val + '%';
+            if (id === 'zoom') zoomValue.textContent = val + '%';
+            if (id === 'crop') cropValue.textContent = val + '%';
+        }
+
+        function generatePattern() {
+            const type = patternTypeSelect.value;
+            const scheme = colorSchemes[colorSchemeSelect.value];
+            const density = parseInt(densitySlider.value);
+            const scale = parseInt(scaleSlider.value) / 100;
+            const zoom = parseInt(zoomSlider.value) / 100;
+            const crop = parseInt(cropSlider.value) / 100;
+            const text = textOverlayInput.value;
+
+            drawPattern(ctx, patternCanvas.width, patternCanvas.height, type, scheme, density, scale, zoom, crop, text, animationPhase);
+        }
+
+        function animatePatternLoop() {
+            animationPhase += 0.02;
+            generatePattern();
+            if (animateCheckbox.checked) {
+                animationId = requestAnimationFrame(animatePatternLoop);
+            }
+        }
+
+        function drawPattern(context, width, height, type, scheme, density, scale, zoom, crop, text, phase = 0) {
+            // Clear and fill background
+            context.fillStyle = scheme.bg;
+            context.fillRect(0, 0, width, height);
+
+            const centerX = width / 2;
+            const centerY = height / 2;
+
+            // Apply zoom
+            context.save();
+            context.translate(centerX, centerY);
+            context.scale(zoom, zoom);
+            context.translate(-centerX, -centerY);
+
+            // Draw pattern based on type
+            switch (type) {
+                case 'radialBurst':
+                    drawRadialBurst(context, centerX, centerY, scheme, density, scale, phase);
+                    break;
+                case 'gridMatrix':
+                    drawGridMatrix(context, width, height, scheme, density, scale, phase);
+                    break;
+                case 'spirograph':
+                    drawSpirograph(context, centerX, centerY, scheme, density, scale, phase);
+                    break;
+                case 'concentricCircles':
+                    drawConcentricCircles(context, centerX, centerY, scheme, density, scale, phase);
+                    break;
+                case 'hexagonalGrid':
+                    drawHexagonalGrid(context, width, height, scheme, density, scale, phase);
+                    break;
+                case 'waveInterference':
+                    drawWaveInterference(context, width, height, scheme, density, scale, phase);
+                    break;
+                case 'voronoiCells':
+                    drawVoronoiCells(context, width, height, scheme, density, scale);
+                    break;
+                case 'fractalTree':
+                    drawFractalTree(context, centerX, height, scheme, density, scale, phase);
+                    break;
+                case 'particleField':
+                    drawParticleField(context, width, height, scheme, density, scale, phase);
+                    break;
+                case 'moire':
+                    drawMoire(context, width, height, scheme, density, scale, phase);
+                    break;
+                case 'penroseTiling':
+                    drawPenroseTiling(context, width, height, scheme, density, scale);
+                    break;
+                case 'celticKnot':
+                    drawCelticKnot(context, centerX, centerY, scheme, density, scale, phase);
+                    break;
+                case 'sacredGeometry':
+                    drawSacredGeometry(context, centerX, centerY, scheme, density, scale, phase);
+                    break;
+                case 'organicFlow':
+                    drawOrganicFlow(context, width, height, scheme, density, scale, phase);
+                    break;
+                case 'circuitBoard':
+                    drawCircuitBoard(context, width, height, scheme, density, scale);
+                    break;
+                case 'topographic':
+                    drawTopographic(context, width, height, scheme, density, scale, phase);
+                    break;
+                case 'kaleidoscope':
+                    drawKaleidoscope(context, centerX, centerY, scheme, density, scale, phase);
+                    break;
+                case 'noiseField':
+                    drawNoiseField(context, width, height, scheme, density, scale, phase);
+                    break;
+                case 'islamicPattern':
+                    drawIslamicPattern(context, width, height, scheme, density, scale);
+                    break;
+                case 'escherTessellation':
+                    drawEscherTessellation(context, width, height, scheme, density, scale, phase);
+                    break;
+                case 'dataVisualization':
+                    drawDataVisualization(context, width, height, scheme, density, scale, phase);
+                    break;
+                case 'neuralNetwork':
+                    drawNeuralNetwork(context, width, height, scheme, density, scale, phase);
+                    break;
+                case 'quantumField':
+                    drawQuantumField(context, width, height, scheme, density, scale, phase);
+                    break;
+            }
+
+            context.restore();
+
+            // Apply crop mask
+            if (crop > 0) {
+                const cropAmount = Math.min(width, height) * crop;
+                context.fillStyle = scheme.bg;
+                context.fillRect(0, 0, cropAmount, height);
+                context.fillRect(width - cropAmount, 0, cropAmount, height);
+                context.fillRect(0, 0, width, cropAmount);
+                context.fillRect(0, height - cropAmount, width, cropAmount);
+            }
+
+            // Add text overlay
+            if (text) {
+                context.fillStyle = scheme.primary;
+                context.font = `bold ${Math.min(width, height) * 0.08}px "GT America Extended", sans-serif`;
+                context.textAlign = 'center';
+                context.textBaseline = 'middle';
+                context.fillText(text, centerX, centerY);
+            }
+        }
+
+        // Pattern Drawing Functions
+        function drawRadialBurst(ctx, cx, cy, scheme, density, scale, phase) {
+            const numLines = Math.floor(density * 0.8);
+            const maxRadius = Math.max(cx, cy) * 1.5 * scale;
+
+            for (let i = 0; i < numLines; i++) {
+                const angle = (i / numLines) * Math.PI * 2 + phase;
+                const lineWidth = 1 + Math.sin(i * 0.5 + phase) * 2;
+
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(
+                    cx + Math.cos(angle) * maxRadius,
+                    cy + Math.sin(angle) * maxRadius
+                );
+                ctx.strokeStyle = i % 3 === 0 ? scheme.primary : scheme.secondary;
+                ctx.lineWidth = lineWidth;
+                ctx.stroke();
+            }
+        }
+
+        function drawGridMatrix(ctx, width, height, scheme, density, scale, phase) {
+            const spacing = (100 - density + 20) * scale;
+            const offset = phase * 20;
+
+            ctx.strokeStyle = scheme.primary;
+            ctx.lineWidth = 1;
+
+            for (let x = offset % spacing; x < width; x += spacing) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, height);
+                ctx.stroke();
+            }
+
+            for (let y = offset % spacing; y < height; y += spacing) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(width, y);
+                ctx.stroke();
+            }
+
+            // Add dots at intersections
+            ctx.fillStyle = scheme.secondary;
+            for (let x = offset % spacing; x < width; x += spacing) {
+                for (let y = offset % spacing; y < height; y += spacing) {
+                    ctx.beginPath();
+                    ctx.arc(x, y, 3 * scale, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+
+        function drawSpirograph(ctx, cx, cy, scheme, density, scale, phase) {
+            const R = 150 * scale;
+            const r = 80 * scale;
+            const d = 60 * scale * (density / 50);
+            const iterations = density * 50;
+
+            ctx.beginPath();
+            for (let t = 0; t < iterations; t += 0.1) {
+                const angle = t + phase;
+                const x = cx + (R - r) * Math.cos(angle) + d * Math.cos((R - r) / r * angle);
+                const y = cy + (R - r) * Math.sin(angle) - d * Math.sin((R - r) / r * angle);
+
+                if (t === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.strokeStyle = scheme.primary;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+        }
+
+        function drawConcentricCircles(ctx, cx, cy, scheme, density, scale, phase) {
+            const numCircles = Math.floor(density * 0.5);
+            const maxRadius = Math.max(cx, cy) * 1.2;
+
+            for (let i = 0; i < numCircles; i++) {
+                const radius = (i / numCircles) * maxRadius * scale + phase * 10;
+                const adjustedRadius = radius % maxRadius;
+
+                ctx.beginPath();
+                ctx.arc(cx, cy, adjustedRadius, 0, Math.PI * 2);
+                ctx.strokeStyle = i % 2 === 0 ? scheme.primary : scheme.secondary;
+                ctx.lineWidth = 1 + Math.sin(i * 0.3) * 1;
+                ctx.stroke();
+            }
+        }
+
+        function drawHexagonalGrid(ctx, width, height, scheme, density, scale, phase) {
+            const size = (100 - density + 30) * scale * 0.5;
+            const h = size * Math.sqrt(3);
+
+            ctx.strokeStyle = scheme.primary;
+            ctx.lineWidth = 1;
+
+            for (let row = -1; row < height / h + 1; row++) {
+                for (let col = -1; col < width / (size * 1.5) + 1; col++) {
+                    const x = col * size * 1.5;
+                    const y = row * h + (col % 2 ? h / 2 : 0);
+
+                    drawHexagon(ctx, x, y, size, phase);
+                }
+            }
+        }
+
+        function drawHexagon(ctx, x, y, size, phase) {
+            ctx.beginPath();
+            for (let i = 0; i < 6; i++) {
+                const angle = (i / 6) * Math.PI * 2 + phase * 0.1;
+                const px = x + size * Math.cos(angle);
+                const py = y + size * Math.sin(angle);
+                if (i === 0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            }
+            ctx.closePath();
+            ctx.stroke();
+        }
+
+        function drawWaveInterference(ctx, width, height, scheme, density, scale, phase) {
+            const numWaves = 3;
+            const amplitude = 50 * scale;
+            const frequency = density * 0.001;
+
+            for (let y = 0; y < height; y += 3) {
+                ctx.beginPath();
+                for (let x = 0; x < width; x++) {
+                    let totalY = y;
+                    for (let w = 0; w < numWaves; w++) {
+                        totalY += Math.sin(x * frequency + phase + w * Math.PI / 3) * amplitude;
+                    }
+                    if (x === 0) ctx.moveTo(x, totalY);
+                    else ctx.lineTo(x, totalY);
+                }
+                ctx.strokeStyle = scheme.primary + '40';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+        }
+
+        function drawVoronoiCells(ctx, width, height, scheme, density, scale) {
+            const numPoints = Math.floor(density * 0.5);
+            const points = [];
+
+            // Use seeded random for consistent results
+            for (let i = 0; i < numPoints; i++) {
+                points.push({
+                    x: (Math.sin(i * 12.9898) * 43758.5453 % 1) * width,
+                    y: (Math.sin(i * 78.233) * 43758.5453 % 1) * height
+                });
+            }
+
+            // Draw cell outlines using distance field approximation
+            for (let x = 0; x < width; x += 4) {
+                for (let y = 0; y < height; y += 4) {
+                    let minDist = Infinity;
+                    let secondDist = Infinity;
+
+                    for (const p of points) {
+                        const dist = Math.hypot(p.x - x, p.y - y);
+                        if (dist < minDist) {
+                            secondDist = minDist;
+                            minDist = dist;
+                        } else if (dist < secondDist) {
+                            secondDist = dist;
+                        }
+                    }
+
+                    if (secondDist - minDist < 8 * scale) {
+                        ctx.fillStyle = scheme.primary;
+                        ctx.fillRect(x, y, 2, 2);
+                    }
+                }
+            }
+
+            // Draw points
+            ctx.fillStyle = scheme.secondary;
+            for (const p of points) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 4 * scale, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function drawFractalTree(ctx, x, y, scheme, density, scale, phase) {
+            const maxDepth = Math.floor(density / 10) + 3;
+            const initialLength = 100 * scale;
+
+            function branch(x, y, length, angle, depth) {
+                if (depth > maxDepth || length < 2) return;
+
+                const endX = x + Math.cos(angle) * length;
+                const endY = y - Math.sin(angle) * length;
+
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                ctx.lineTo(endX, endY);
+                ctx.strokeStyle = depth < 3 ? scheme.primary : scheme.secondary;
+                ctx.lineWidth = Math.max(1, maxDepth - depth);
+                ctx.stroke();
+
+                const branchAngle = 0.4 + Math.sin(phase + depth) * 0.2;
+                branch(endX, endY, length * 0.7, angle + branchAngle, depth + 1);
+                branch(endX, endY, length * 0.7, angle - branchAngle, depth + 1);
+            }
+
+            branch(x, y, initialLength, Math.PI / 2, 0);
+        }
+
+        function drawParticleField(ctx, width, height, scheme, density, scale, phase) {
+            const numParticles = density * 5;
+
+            for (let i = 0; i < numParticles; i++) {
+                const seed = i * 12.9898;
+                const x = ((Math.sin(seed) * 43758.5453) % 1 + 1) % 1 * width;
+                const y = ((Math.sin(seed + 78.233) * 43758.5453) % 1 + 1) % 1 * height;
+                const size = (((Math.sin(seed + 37.719) * 43758.5453) % 1 + 1) % 1 * 4 + 1) * scale;
+
+                const offsetX = Math.sin(phase + i * 0.1) * 20;
+                const offsetY = Math.cos(phase + i * 0.1) * 20;
+
+                ctx.beginPath();
+                ctx.arc(x + offsetX, y + offsetY, size, 0, Math.PI * 2);
+                ctx.fillStyle = i % 3 === 0 ? scheme.primary : scheme.secondary;
+                ctx.fill();
+            }
+        }
+
+        function drawMoire(ctx, width, height, scheme, density, scale, phase) {
+            const cx = width / 2;
+            const cy = height / 2;
+            const spacing = (100 - density + 10) * scale * 0.3;
+
+            // First set of circles
+            for (let r = spacing; r < Math.max(width, height); r += spacing) {
+                ctx.beginPath();
+                ctx.arc(cx - 50 + phase * 10, cy, r, 0, Math.PI * 2);
+                ctx.strokeStyle = scheme.primary + '60';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+
+            // Second set of circles
+            for (let r = spacing; r < Math.max(width, height); r += spacing) {
+                ctx.beginPath();
+                ctx.arc(cx + 50 - phase * 10, cy, r, 0, Math.PI * 2);
+                ctx.strokeStyle = scheme.primary + '60';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+        }
+
+        function drawPenroseTiling(ctx, width, height, scheme, density, scale) {
+            const size = (100 - density + 40) * scale * 0.4;
+            const phi = (1 + Math.sqrt(5)) / 2;
+
+            ctx.strokeStyle = scheme.primary;
+            ctx.lineWidth = 1;
+
+            for (let x = 0; x < width + size * 2; x += size * 2) {
+                for (let y = 0; y < height + size * 2; y += size * 1.5) {
+                    const offset = ((y / (size * 1.5)) % 2) * size;
+                    drawPenroseTile(ctx, x + offset, y, size);
+                }
+            }
+        }
+
+        function drawPenroseTile(ctx, x, y, size) {
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x + size, y);
+            ctx.lineTo(x + size * 1.3, y + size * 0.8);
+            ctx.lineTo(x + size * 0.3, y + size * 0.8);
+            ctx.closePath();
+            ctx.stroke();
+        }
+
+        function drawCelticKnot(ctx, cx, cy, scheme, density, scale, phase) {
+            const size = 150 * scale;
+            const complexity = Math.floor(density / 20) + 3;
+
+            ctx.strokeStyle = scheme.primary;
+            ctx.lineWidth = 3;
+
+            for (let i = 0; i < complexity; i++) {
+                const angle = (i / complexity) * Math.PI * 2 + phase;
+                const nextAngle = ((i + 1) / complexity) * Math.PI * 2 + phase;
+
+                const x1 = cx + Math.cos(angle) * size;
+                const y1 = cy + Math.sin(angle) * size;
+                const x2 = cx + Math.cos(nextAngle) * size;
+                const y2 = cy + Math.sin(nextAngle) * size;
+
+                const cpx = cx + Math.cos(angle + Math.PI / complexity) * size * 0.5;
+                const cpy = cy + Math.sin(angle + Math.PI / complexity) * size * 0.5;
+
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.quadraticCurveTo(cpx, cpy, x2, y2);
+                ctx.stroke();
+            }
+        }
+
+        function drawSacredGeometry(ctx, cx, cy, scheme, density, scale, phase) {
+            const radius = 120 * scale;
+            const numCircles = 6;
+
+            // Flower of Life pattern
+            ctx.strokeStyle = scheme.primary;
+            ctx.lineWidth = 1;
+
+            // Center circle
+            ctx.beginPath();
+            ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // Surrounding circles
+            for (let i = 0; i < numCircles; i++) {
+                const angle = (i / numCircles) * Math.PI * 2 + phase;
+                const x = cx + Math.cos(angle) * radius;
+                const y = cy + Math.sin(angle) * radius;
+
+                ctx.beginPath();
+                ctx.arc(x, y, radius, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+
+            // Inner details based on density
+            if (density > 30) {
+                for (let i = 0; i < numCircles; i++) {
+                    const angle = (i / numCircles) * Math.PI * 2 + Math.PI / 6 + phase;
+                    const x = cx + Math.cos(angle) * radius * 0.5;
+                    const y = cy + Math.sin(angle) * radius * 0.5;
+
+                    ctx.beginPath();
+                    ctx.arc(x, y, radius * 0.5, 0, Math.PI * 2);
+                    ctx.strokeStyle = scheme.secondary;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        function drawOrganicFlow(ctx, width, height, scheme, density, scale, phase) {
+            const numLines = Math.floor(density * 0.3);
+
+            for (let i = 0; i < numLines; i++) {
+                ctx.beginPath();
+                const startY = (i / numLines) * height;
+
+                for (let x = 0; x < width; x += 5) {
+                    const y = startY + Math.sin(x * 0.02 + phase + i * 0.5) * 50 * scale +
+                              Math.sin(x * 0.01 + phase * 2) * 30 * scale;
+
+                    if (x === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+
+                ctx.strokeStyle = i % 2 === 0 ? scheme.primary : scheme.secondary;
+                ctx.lineWidth = 1 + Math.sin(i * 0.5) * 0.5;
+                ctx.stroke();
+            }
+        }
+
+        function drawCircuitBoard(ctx, width, height, scheme, density, scale) {
+            const gridSize = (100 - density + 30) * scale * 0.5;
+
+            ctx.strokeStyle = scheme.primary;
+            ctx.lineWidth = 2;
+
+            // Draw traces
+            for (let x = gridSize; x < width; x += gridSize * 2) {
+                for (let y = gridSize; y < height; y += gridSize * 2) {
+                    const rand = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453 % 1;
+
+                    if (rand > 0.3) {
+                        ctx.beginPath();
+                        ctx.moveTo(x, y);
+
+                        if (rand > 0.6) {
+                            ctx.lineTo(x + gridSize, y);
+                        } else {
+                            ctx.lineTo(x, y + gridSize);
+                        }
+                        ctx.stroke();
+                    }
+
+                    // Draw nodes
+                    if (rand > 0.7) {
+                        ctx.beginPath();
+                        ctx.arc(x, y, 4 * scale, 0, Math.PI * 2);
+                        ctx.fillStyle = scheme.primary;
+                        ctx.fill();
+                    }
+                }
+            }
+        }
+
+        function drawTopographic(ctx, width, height, scheme, density, scale, phase) {
+            const numContours = Math.floor(density * 0.3);
+
+            for (let i = 0; i < numContours; i++) {
+                ctx.beginPath();
+                const baseRadius = (i / numContours) * Math.min(width, height) * 0.5 * scale;
+
+                for (let angle = 0; angle <= Math.PI * 2; angle += 0.1) {
+                    const noise = Math.sin(angle * 3 + phase + i) * 20 +
+                                  Math.sin(angle * 5 + phase * 2) * 10;
+                    const radius = baseRadius + noise;
+                    const x = width / 2 + Math.cos(angle) * radius;
+                    const y = height / 2 + Math.sin(angle) * radius;
+
+                    if (angle === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+
+                ctx.closePath();
+                ctx.strokeStyle = i % 3 === 0 ? scheme.primary : scheme.secondary + '80';
+                ctx.lineWidth = i % 5 === 0 ? 2 : 1;
+                ctx.stroke();
+            }
+        }
+
+        function drawKaleidoscope(ctx, cx, cy, scheme, density, scale, phase) {
+            const segments = Math.floor(density / 10) + 4;
+            const radius = Math.min(cx, cy) * 0.9;
+
+            for (let i = 0; i < segments; i++) {
+                const angle = (i / segments) * Math.PI * 2;
+
+                ctx.save();
+                ctx.translate(cx, cy);
+                ctx.rotate(angle + phase);
+
+                // Draw segment content
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(radius * scale, 0);
+                ctx.lineTo(radius * scale * Math.cos(Math.PI / segments),
+                          radius * scale * Math.sin(Math.PI / segments));
+                ctx.closePath();
+                ctx.strokeStyle = scheme.primary;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                // Add details
+                for (let j = 1; j < 5; j++) {
+                    ctx.beginPath();
+                    ctx.arc(radius * 0.2 * j * scale, 0, 10 * scale, 0, Math.PI * 2);
+                    ctx.strokeStyle = j % 2 === 0 ? scheme.primary : scheme.secondary;
+                    ctx.stroke();
+                }
+
+                ctx.restore();
+            }
+        }
+
+        function drawNoiseField(ctx, width, height, scheme, density, scale, phase) {
+            const resolution = Math.max(4, Math.floor((100 - density) / 10));
+
+            for (let x = 0; x < width; x += resolution) {
+                for (let y = 0; y < height; y += resolution) {
+                    const noise = Math.sin(x * 0.01 + phase) * Math.cos(y * 0.01 + phase) +
+                                  Math.sin((x + y) * 0.005 + phase * 2);
+                    const normalizedNoise = (noise + 2) / 4;
+
+                    const size = normalizedNoise * resolution * scale;
+                    const alpha = Math.floor(normalizedNoise * 255).toString(16).padStart(2, '0');
+
+                    ctx.fillStyle = scheme.primary + alpha;
+                    ctx.fillRect(x, y, size, size);
+                }
+            }
+        }
+
+        function drawIslamicPattern(ctx, width, height, scheme, density, scale) {
+            const size = (100 - density + 40) * scale * 0.5;
+
+            ctx.strokeStyle = scheme.primary;
+            ctx.lineWidth = 1;
+
+            for (let x = 0; x < width + size; x += size) {
+                for (let y = 0; y < height + size; y += size) {
+                    // Draw 8-pointed star
+                    drawEightPointStar(ctx, x, y, size * 0.4);
+                }
+            }
+        }
+
+        function drawEightPointStar(ctx, x, y, size) {
+            ctx.beginPath();
+            for (let i = 0; i < 8; i++) {
+                const angle = (i / 8) * Math.PI * 2 - Math.PI / 2;
+                const nextAngle = ((i + 1) / 8) * Math.PI * 2 - Math.PI / 2;
+                const midAngle = angle + Math.PI / 8;
+
+                const outerX = x + Math.cos(angle) * size;
+                const outerY = y + Math.sin(angle) * size;
+                const innerX = x + Math.cos(midAngle) * size * 0.4;
+                const innerY = y + Math.sin(midAngle) * size * 0.4;
+
+                if (i === 0) ctx.moveTo(outerX, outerY);
+                ctx.lineTo(innerX, innerY);
+                ctx.lineTo(x + Math.cos(nextAngle) * size, y + Math.sin(nextAngle) * size);
+            }
+            ctx.closePath();
+            ctx.stroke();
+        }
+
+        function drawEscherTessellation(ctx, width, height, scheme, density, scale, phase) {
+            const size = (100 - density + 50) * scale * 0.5;
+
+            for (let row = 0; row < height / size + 1; row++) {
+                for (let col = 0; col < width / size + 1; col++) {
+                    const x = col * size + (row % 2 ? size / 2 : 0);
+                    const y = row * size * 0.866;
+                    const flip = (row + col) % 2 === 0;
+
+                    drawEscherTile(ctx, x, y, size, flip, scheme, phase);
+                }
+            }
+        }
+
+        function drawEscherTile(ctx, x, y, size, flip, scheme, phase) {
+            ctx.save();
+            ctx.translate(x, y);
+            if (flip) ctx.scale(-1, 1);
+            ctx.rotate(phase * 0.1);
+
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.quadraticCurveTo(size * 0.25, -size * 0.2, size * 0.5, 0);
+            ctx.quadraticCurveTo(size * 0.75, size * 0.2, size, 0);
+            ctx.lineTo(size, size * 0.866);
+            ctx.quadraticCurveTo(size * 0.75, size * 0.666, size * 0.5, size * 0.866);
+            ctx.quadraticCurveTo(size * 0.25, size * 1.066, 0, size * 0.866);
+            ctx.closePath();
+
+            ctx.strokeStyle = scheme.primary;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            ctx.restore();
+        }
+
+        function drawDataVisualization(ctx, width, height, scheme, density, scale, phase) {
+            const numBars = Math.floor(density * 0.4);
+            const barWidth = width / numBars;
+            const maxHeight = height * 0.8;
+
+            for (let i = 0; i < numBars; i++) {
+                const value = (Math.sin(i * 0.5 + phase) + 1) / 2;
+                const barHeight = value * maxHeight * scale;
+
+                ctx.fillStyle = i % 3 === 0 ? scheme.primary : scheme.secondary;
+                ctx.fillRect(
+                    i * barWidth + 2,
+                    height - barHeight,
+                    barWidth - 4,
+                    barHeight
+                );
+            }
+
+            // Add line graph overlay
+            ctx.beginPath();
+            for (let i = 0; i < numBars; i++) {
+                const value = (Math.sin(i * 0.3 + phase + 1) + 1) / 2;
+                const x = i * barWidth + barWidth / 2;
+                const y = height - value * maxHeight * scale;
+
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.strokeStyle = scheme.primary;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+
+        function drawNeuralNetwork(ctx, width, height, scheme, density, scale, phase) {
+            const layers = [4, 6, 6, 4];
+            const layerSpacing = width / (layers.length + 1);
+            const nodes = [];
+
+            // Create nodes
+            layers.forEach((nodeCount, layerIndex) => {
+                const layerNodes = [];
+                const nodeSpacing = height / (nodeCount + 1);
+
+                for (let i = 0; i < nodeCount; i++) {
+                    layerNodes.push({
+                        x: (layerIndex + 1) * layerSpacing,
+                        y: (i + 1) * nodeSpacing,
+                        activation: (Math.sin(phase + layerIndex + i) + 1) / 2
+                    });
+                }
+                nodes.push(layerNodes);
+            });
+
+            // Draw connections
+            ctx.lineWidth = 1;
+            for (let l = 0; l < nodes.length - 1; l++) {
+                for (const node of nodes[l]) {
+                    for (const nextNode of nodes[l + 1]) {
+                        const alpha = Math.floor(((node.activation + nextNode.activation) / 2) * 200 + 55)
+                            .toString(16).padStart(2, '0');
+                        ctx.strokeStyle = scheme.primary + alpha;
+                        ctx.beginPath();
+                        ctx.moveTo(node.x, node.y);
+                        ctx.lineTo(nextNode.x, nextNode.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // Draw nodes
+            for (const layer of nodes) {
+                for (const node of layer) {
+                    const radius = (node.activation * 8 + 4) * scale;
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
+                    ctx.fillStyle = scheme.primary;
+                    ctx.fill();
+                }
+            }
+        }
+
+        function drawQuantumField(ctx, width, height, scheme, density, scale, phase) {
+            const numParticles = Math.floor(density * 0.8);
+
+            // Draw probability clouds
+            for (let i = 0; i < numParticles; i++) {
+                const baseX = (Math.sin(i * 12.9898) * 43758.5453 % 1 + 1) % 1 * width;
+                const baseY = (Math.sin(i * 78.233) * 43758.5453 % 1 + 1) % 1 * height;
+
+                // Uncertainty cloud
+                const gradient = ctx.createRadialGradient(baseX, baseY, 0, baseX, baseY, 50 * scale);
+                gradient.addColorStop(0, scheme.primary + '40');
+                gradient.addColorStop(1, scheme.primary + '00');
+
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(
+                    baseX + Math.sin(phase + i) * 20,
+                    baseY + Math.cos(phase + i) * 20,
+                    50 * scale,
+                    0,
+                    Math.PI * 2
+                );
+                ctx.fill();
+
+                // Particle position
+                ctx.beginPath();
+                ctx.arc(
+                    baseX + Math.sin(phase * 2 + i) * 30,
+                    baseY + Math.cos(phase * 2 + i) * 30,
+                    3 * scale,
+                    0,
+                    Math.PI * 2
+                );
+                ctx.fillStyle = scheme.primary;
+                ctx.fill();
+            }
+
+            // Draw entanglement lines
+            ctx.strokeStyle = scheme.secondary + '40';
+            ctx.lineWidth = 1;
+            for (let i = 0; i < numParticles - 1; i += 2) {
+                const x1 = (Math.sin(i * 12.9898) * 43758.5453 % 1 + 1) % 1 * width;
+                const y1 = (Math.sin(i * 78.233) * 43758.5453 % 1 + 1) % 1 * height;
+                const x2 = (Math.sin((i + 1) * 12.9898) * 43758.5453 % 1 + 1) % 1 * width;
+                const y2 = (Math.sin((i + 1) * 78.233) * 43758.5453 % 1 + 1) % 1 * height;
+
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
+            }
+        }
+
+        // Export functionality
+        exportBtn.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.download = 'tfg-pattern.png';
+            link.href = patternCanvas.toDataURL('image/png');
+            link.click();
+            showToast('Pattern exported!');
+        });
+
+        // Randomize
+        randomizeBtn.addEventListener('click', () => {
+            const types = patternTypeSelect.options;
+            const schemes = colorSchemeSelect.options;
+
+            patternTypeSelect.selectedIndex = Math.floor(Math.random() * types.length);
+            colorSchemeSelect.selectedIndex = Math.floor(Math.random() * schemes.length);
+            densitySlider.value = Math.floor(Math.random() * 90) + 10;
+            scaleSlider.value = Math.floor(Math.random() * 150) + 50;
+
+            updateSliderValue(densitySlider);
+            updateSliderValue(scaleSlider);
+
+            generatePattern();
+        });
+
+        // Initialize preview canvas
+        function initPreviewCanvas() {
+            const scheme = colorSchemes.neonBlack;
+            drawPattern(previewCtx, 200, 200, 'radialBurst', scheme, 50, 1, 1, 0, '', 0);
+        }
+        initPreviewCanvas();
+
+        // Animate preview
+        let previewPhase = 0;
+        function animatePreview() {
+            previewPhase += 0.01;
+            const scheme = colorSchemes.neonBlack;
+            drawPattern(previewCtx, 200, 200, 'radialBurst', scheme, 40, 0.8, 1, 0, '', previewPhase);
+            requestAnimationFrame(animatePreview);
+        }
+        animatePreview();
     </script>
 </body>
 </html>

@@ -85,9 +85,9 @@
             font-weight: 500;
         }
 
-        .serif-italic {
+        .serif {
             font-family: 'Tobias', serif;
-            font-style: italic;
+            font-weight: 500;
         }
 
         .section-label {
@@ -229,7 +229,7 @@
             margin-bottom: 24px;
         }
 
-        .hero-headline .serif-italic {
+        .hero-headline .serif {
             font-weight: 400;
             color: var(--electric-green);
         }
@@ -244,9 +244,8 @@
 
         .hero-hook {
             font-family: 'Tobias', serif;
-            font-style: italic;
             font-size: 1.1rem;
-            color: var(--muted-green);
+            color: rgba(255, 255, 255, 0.5);
             border-left: 2px solid var(--electric-green);
             padding-left: 20px;
         }
@@ -377,7 +376,7 @@
 
         .pillar-title {
             font-family: 'Tobias', serif;
-            font-style: italic;
+            font-weight: 500;
             font-size: 2.5rem;
             color: var(--white);
             margin-bottom: 12px;
@@ -955,10 +954,11 @@
             font-size: 3rem;
         }
 
-        .type-specimen-sample.headline-italic {
+        .type-specimen-sample.headline-accent {
             font-family: 'Tobias', serif;
-            font-style: italic;
+            font-weight: 300;
             font-size: 3rem;
+            color: var(--electric-green);
         }
 
         .type-specimen-sample.body {
@@ -1317,7 +1317,7 @@
                         <img src="./tfg_logo_neon.svg" alt="TFG Logo" class="logo-mark-svg">
                     </div>
                     <h1 class="hero-headline fade-up stagger-1">
-                        <span class="serif-italic">Move Faster.</span><br>
+                        <span class="serif">Move Faster.</span><br>
                         Build Bigger.
                     </h1>
                     <p class="hero-subhead fade-up stagger-2">
@@ -1342,7 +1342,7 @@
             <div class="pillars-header">
                 <span class="section-label fade-up">What We Do</span>
                 <h2 class="pillars-headline fade-up stagger-1">
-                    Four pillars. <span class="serif-italic">One mission.</span>
+                    Four pillars. <span class="serif">One mission.</span>
                 </h2>
             </div>
             <div class="pillars-grid">
@@ -1449,7 +1449,7 @@
             <div class="advisors-header">
                 <span class="section-label fade-up">The Team</span>
                 <h2 class="advisors-headline fade-up stagger-1">
-                    Serial founders. VCs. <span class="serif-italic">Operators.</span>
+                    Serial founders. VCs. <span class="serif">Operators.</span>
                 </h2>
                 <p class="advisors-subhead fade-up stagger-2">
                     14 advisors who've built, funded, and scaled companies from zero to exit.
@@ -1467,66 +1467,99 @@
                 <div class="advisor-card fade-up stagger-1">
                     <div class="advisor-image"></div>
                     <div class="advisor-info">
-                        <div class="advisor-name">Advisor Name</div>
-                        <div class="advisor-role">Partner, Venture Fund</div>
-                        <div class="advisor-tags">
-                            <span class="advisor-tag">Finance</span>
-                            <span class="advisor-tag">Series A+</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="advisor-card fade-up stagger-2">
-                    <div class="advisor-image"></div>
-                    <div class="advisor-info">
-                        <div class="advisor-name">Advisor Name</div>
-                        <div class="advisor-role">SBIR Specialist</div>
+                        <div class="advisor-name">Charles Eason</div>
+                        <div class="advisor-role">SBIR/STTR Specialist</div>
                         <div class="advisor-tags">
                             <span class="advisor-tag">Grants</span>
                             <span class="advisor-tag">SBIR/STTR</span>
                         </div>
                     </div>
                 </div>
+                <div class="advisor-card fade-up stagger-2">
+                    <div class="advisor-image"></div>
+                    <div class="advisor-info">
+                        <div class="advisor-name">Paul Bozzo</div>
+                        <div class="advisor-role">Finance & Strategy</div>
+                        <div class="advisor-tags">
+                            <span class="advisor-tag">Finance</span>
+                            <span class="advisor-tag">Business Planning</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="advisor-card fade-up stagger-3">
                     <div class="advisor-image"></div>
                     <div class="advisor-info">
-                        <div class="advisor-name">Advisor Name</div>
-                        <div class="advisor-role">Serial Founder, 3x Exit</div>
+                        <div class="advisor-name">Mark Klopp</div>
+                        <div class="advisor-role">Corporate Venturing</div>
                         <div class="advisor-tags">
-                            <span class="advisor-tag">Go-to-Market</span>
-                            <span class="advisor-tag">SaaS</span>
+                            <span class="advisor-tag">Investment</span>
+                            <span class="advisor-tag">Medical Devices</span>
                         </div>
                     </div>
                 </div>
                 <div class="advisor-card fade-up stagger-4">
                     <div class="advisor-image"></div>
                     <div class="advisor-info">
-                        <div class="advisor-name">Advisor Name</div>
-                        <div class="advisor-role">VP Engineering, BigCo</div>
+                        <div class="advisor-name">Hon Pak</div>
+                        <div class="advisor-role">Startup Strategy</div>
                         <div class="advisor-tags">
                             <span class="advisor-tag">Enterprise</span>
-                            <span class="advisor-tag">Scale</span>
+                            <span class="advisor-tag">SaaS</span>
                         </div>
                     </div>
                 </div>
                 <div class="advisor-card fade-up stagger-1">
                     <div class="advisor-image"></div>
                     <div class="advisor-info">
-                        <div class="advisor-name">Advisor Name</div>
-                        <div class="advisor-role">Biotech Founder</div>
+                        <div class="advisor-name">Stuart Broadhead</div>
+                        <div class="advisor-role">Navy SBIR Specialist</div>
                         <div class="advisor-tags">
-                            <span class="advisor-tag">Biotech</span>
-                            <span class="advisor-tag">FDA</span>
+                            <span class="advisor-tag">Defense</span>
+                            <span class="advisor-tag">SBIR</span>
                         </div>
                     </div>
                 </div>
                 <div class="advisor-card fade-up stagger-2">
                     <div class="advisor-image"></div>
                     <div class="advisor-info">
-                        <div class="advisor-name">Advisor Name</div>
-                        <div class="advisor-role">Growth Lead, Unicorn</div>
+                        <div class="advisor-name">Daniel Kriozere</div>
+                        <div class="advisor-role">Climate Tech</div>
                         <div class="advisor-tags">
-                            <span class="advisor-tag">Go-to-Market</span>
-                            <span class="advisor-tag">B2B</span>
+                            <span class="advisor-tag">Climate</span>
+                            <span class="advisor-tag">Grants</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="advisor-card fade-up stagger-3">
+                    <div class="advisor-image"></div>
+                    <div class="advisor-info">
+                        <div class="advisor-name">Helena Merk</div>
+                        <div class="advisor-role">Grants Specialist</div>
+                        <div class="advisor-tags">
+                            <span class="advisor-tag">Grants</span>
+                            <span class="advisor-tag">Strategy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="advisor-card fade-up stagger-4">
+                    <div class="advisor-image"></div>
+                    <div class="advisor-info">
+                        <div class="advisor-name">KC Wisdom</div>
+                        <div class="advisor-role">Pitch & Events</div>
+                        <div class="advisor-tags">
+                            <span class="advisor-tag">Pitching</span>
+                            <span class="advisor-tag">Events</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="advisor-card fade-up stagger-1">
+                    <div class="advisor-image"></div>
+                    <div class="advisor-info">
+                        <div class="advisor-name">Axel Tillmann</div>
+                        <div class="advisor-role">Pitch & Events</div>
+                        <div class="advisor-tags">
+                            <span class="advisor-tag">Pitching</span>
+                            <span class="advisor-tag">Capital</span>
                         </div>
                     </div>
                 </div>
@@ -1540,7 +1573,7 @@
             <div class="assets-header">
                 <span class="section-label fade-up">Asset Library</span>
                 <h2 class="assets-headline fade-up stagger-1">
-                    Brand assets. <span class="serif-italic">Ready to deploy.</span>
+                    Brand assets. <span class="serif">Ready to deploy.</span>
                 </h2>
             </div>
 
@@ -1752,7 +1785,7 @@
             <div class="brand-elements-header">
                 <span class="section-label fade-up">Brand Guidelines</span>
                 <h2 class="brand-elements-headline fade-up stagger-1">
-                    Visual system. <span class="serif-italic">Built for impact.</span>
+                    Visual system. <span class="serif">Built for impact.</span>
                 </h2>
             </div>
 
@@ -1840,9 +1873,9 @@
                         <div class="type-specimen-meta">Medium for emphasis, Thin for elegance</div>
                     </div>
                     <div class="type-specimen fade-up stagger-2">
-                        <div class="type-specimen-label">Headlines — Serif Italic</div>
-                        <div class="type-specimen-sample headline-italic">Move Faster. Build Bigger.</div>
-                        <div class="type-specimen-meta">Used for brand voice, emotional emphasis</div>
+                        <div class="type-specimen-label">Headlines — Accent</div>
+                        <div class="type-specimen-sample headline-accent">Move Faster. Build Bigger.</div>
+                        <div class="type-specimen-meta">Thin weight in neon green for impact</div>
                     </div>
                     <div class="type-specimen fade-up stagger-3">
                         <div class="type-specimen-label">Body — Sans Serif</div>

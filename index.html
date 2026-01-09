@@ -145,7 +145,7 @@
            ============================================ */
         .hero {
             min-height: 100vh;
-            background: var(--charcoal);
+            background: linear-gradient(180deg, #0a0a0a 0%, #151515 50%, var(--charcoal) 100%);
             position: relative;
             display: flex;
             align-items: center;
@@ -159,65 +159,27 @@
             width: 100%;
             height: 100%;
             background-image:
-                linear-gradient(90deg, rgba(57, 255, 20, 0.03) 1px, transparent 1px),
-                linear-gradient(rgba(57, 255, 20, 0.03) 1px, transparent 1px);
-            background-size: 80px 80px;
+                linear-gradient(90deg, rgba(78, 255, 0, 0.015) 1px, transparent 1px),
+                linear-gradient(rgba(78, 255, 0, 0.015) 1px, transparent 1px);
+            background-size: 60px 60px;
             pointer-events: none;
         }
 
         /* Large gradient arc - TFG style */
         .hero-gradient-arc {
             position: absolute;
-            bottom: -500px;
+            bottom: -550px;
             left: 50%;
-            transform: translateX(-60%);
-            width: 1100px;
-            height: 1100px;
+            transform: translateX(-55%);
+            width: 1200px;
+            height: 1200px;
             border-radius: 50%;
             pointer-events: none;
             z-index: 1;
         }
 
-        /* The thick gradient band */
+        /* The thick gradient band - BOLDER */
         .hero-gradient-arc::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: conic-gradient(
-                from 220deg at 50% 50%,
-                transparent 0deg,
-                rgba(55, 75, 70, 0.15) 10deg,
-                rgba(60, 85, 78, 0.4) 40deg,
-                rgba(65, 90, 82, 0.6) 70deg,
-                rgba(58, 80, 74, 0.5) 100deg,
-                rgba(50, 70, 65, 0.3) 130deg,
-                transparent 160deg,
-                transparent 360deg
-            );
-            -webkit-mask: radial-gradient(
-                circle at center,
-                transparent 0%,
-                transparent 58%,
-                black 58%,
-                black 72%,
-                transparent 72%
-            );
-            mask: radial-gradient(
-                circle at center,
-                transparent 0%,
-                transparent 58%,
-                black 58%,
-                black 72%,
-                transparent 72%
-            );
-        }
-
-        /* Magenta accent line */
-        .hero-gradient-arc::after {
             content: '';
             position: absolute;
             top: 0;
@@ -228,64 +190,150 @@
             background: conic-gradient(
                 from 210deg at 50% 50%,
                 transparent 0deg,
-                rgba(180, 80, 160, 0.3) 15deg,
-                rgba(200, 100, 180, 0.7) 45deg,
-                rgba(220, 120, 200, 0.9) 75deg,
-                rgba(200, 100, 180, 0.6) 105deg,
-                rgba(180, 80, 160, 0.2) 135deg,
-                transparent 155deg,
+                rgba(50, 70, 65, 0.2) 10deg,
+                rgba(55, 80, 72, 0.5) 35deg,
+                rgba(60, 90, 80, 0.7) 60deg,
+                rgba(65, 95, 85, 0.8) 85deg,
+                rgba(60, 90, 80, 0.6) 110deg,
+                rgba(50, 75, 68, 0.4) 140deg,
+                transparent 170deg,
                 transparent 360deg
             );
             -webkit-mask: radial-gradient(
                 circle at center,
                 transparent 0%,
-                transparent 71%,
-                black 71%,
+                transparent 42%,
+                black 42%,
+                black 72%,
+                transparent 72%
+            );
+            mask: radial-gradient(
+                circle at center,
+                transparent 0%,
+                transparent 42%,
+                black 42%,
+                black 72%,
+                transparent 72%
+            );
+        }
+
+        /* Magenta accent line - bolder */
+        .hero-gradient-arc::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 200deg at 50% 50%,
+                transparent 0deg,
+                rgba(180, 80, 160, 0.4) 20deg,
+                rgba(210, 100, 190, 0.9) 50deg,
+                rgba(230, 130, 210, 1) 80deg,
+                rgba(210, 100, 190, 0.8) 110deg,
+                rgba(180, 80, 160, 0.3) 145deg,
+                transparent 170deg,
+                transparent 360deg
+            );
+            -webkit-mask: radial-gradient(
+                circle at center,
+                transparent 0%,
+                transparent 70%,
+                black 70%,
                 black 73%,
                 transparent 73%
             );
             mask: radial-gradient(
                 circle at center,
                 transparent 0%,
-                transparent 71%,
-                black 71%,
+                transparent 70%,
+                black 70%,
                 black 73%,
                 transparent 73%
             );
         }
 
-        /* Small decorative arcs - top right */
-        .hero-arc {
-            position: absolute;
-            top: 60px;
-            right: 80px;
-            width: 180px;
-            height: 180px;
-            border: 1px solid rgba(78, 255, 0, 0.15);
-            border-radius: 50%;
-            pointer-events: none;
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0) 100%);
+            transition: background 0.3s ease, padding 0.3s ease;
         }
 
-        .hero-arc::before {
-            content: '';
-            position: absolute;
-            top: -25px;
-            left: -25px;
-            width: 230px;
-            height: 230px;
-            border: 1px solid rgba(78, 255, 0, 0.08);
-            border-radius: 50%;
+        .nav.scrolled {
+            background: rgba(10, 10, 10, 0.98);
+            padding: 16px 40px;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(78, 255, 0, 0.1);
         }
 
-        .hero-arc::after {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 140px;
-            height: 140px;
-            border: 1px solid rgba(78, 255, 0, 0.1);
-            border-radius: 50%;
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 36px;
+            width: 36px;
+        }
+
+        .nav-logo-text {
+            font-family: 'GT America Extended', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--white);
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-link {
+            font-family: 'GT America Extended', sans-serif;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-link:hover {
+            color: var(--electric-green);
+        }
+
+        .nav-link.active {
+            color: var(--white);
+        }
+
+        .nav-cta {
+            font-family: 'GT America Extended', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--near-black);
+            background: var(--electric-green);
+            padding: 10px 20px;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(78, 255, 0, 0.3);
         }
 
         .hero-content {
@@ -2093,10 +2141,24 @@
 </head>
 <body>
 
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="#" class="nav-logo">
+            <img src="./tfg_logo_neon.svg" alt="TFG">
+            <span class="nav-logo-text">Tech Futures Group</span>
+        </a>
+        <div class="nav-links">
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#team" class="nav-link">Team</a>
+            <a href="#assets" class="nav-link active">Brand Assets</a>
+            <a href="#guidelines" class="nav-link">Guidelines</a>
+            <a href="https://techfuturesgroup.org" class="nav-cta" target="_blank">Main Site</a>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
     <section class="hero grain">
         <div class="hero-grid-lines"></div>
-        <div class="hero-arc"></div>
         <div class="hero-gradient-arc"></div>
         <div class="container">
             <div class="hero-content">
@@ -2125,7 +2187,7 @@
     </section>
 
     <!-- Service Pillars -->
-    <section class="pillars">
+    <section class="pillars" id="services">
         <div class="container">
             <div class="pillars-header">
                 <span class="section-label fade-up">What We Do</span>
@@ -2211,7 +2273,7 @@
     </section>
 
     <!-- Advisors Section -->
-    <section class="advisors">
+    <section class="advisors" id="team">
         <div class="container">
             <div class="advisors-header">
                 <span class="section-label fade-up">The Team</span>
@@ -2418,7 +2480,7 @@
     </section>
 
     <!-- Asset Library -->
-    <section class="assets grain">
+    <section class="assets grain" id="assets">
         <div class="container">
             <div class="assets-header">
                 <span class="section-label fade-up">Asset Library</span>
@@ -2796,7 +2858,7 @@
     </section>
 
     <!-- Brand Elements -->
-    <section class="brand-elements">
+    <section class="brand-elements" id="guidelines">
         <div class="container">
             <div class="brand-elements-header">
                 <span class="section-label fade-up">Brand Guidelines</span>
@@ -3142,6 +3204,32 @@
     <div class="toast" id="toast">Copied to clipboard!</div>
 
     <script>
+        // ============================================
+        // NAVIGATION SCROLL BEHAVIOR
+        // ============================================
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
         // ============================================
         // SCROLL ANIMATIONS
         // ============================================

@@ -298,6 +298,120 @@
             box-shadow: 0 4px 20px rgba(78, 255, 0, 0.3);
         }
 
+        /* Mobile Nav Toggle */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1001;
+        }
+
+        .nav-toggle-bar {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .nav-toggle.active .nav-toggle-bar:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .nav-toggle.active .nav-toggle-bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active .nav-toggle-bar:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Responsive Nav */
+        @media (max-width: 900px) {
+            .nav {
+                padding: 16px 24px;
+            }
+
+            .nav.scrolled {
+                padding: 12px 24px;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding: 100px 32px 40px;
+                gap: 0;
+                transition: right 0.3s ease;
+                border-left: 1px solid rgba(78, 255, 0, 0.1);
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            .nav-link {
+                font-size: 1rem;
+                padding: 16px 0;
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .nav-link.active {
+                color: var(--electric-green);
+            }
+
+            .nav-cta {
+                margin-top: 24px;
+                width: 100%;
+                text-align: center;
+                padding: 14px 24px;
+            }
+
+            .nav-logo-text {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav {
+                padding: 14px 16px;
+            }
+
+            .nav.scrolled {
+                padding: 10px 16px;
+            }
+
+            .nav-logo img {
+                height: 28px;
+                width: 28px;
+            }
+
+            .nav-links {
+                width: 100%;
+                right: -100%;
+            }
+        }
+
         .hero-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -2612,11 +2726,16 @@
             <img src="./tfg_logo_neon.svg" alt="TFG">
             <span class="nav-logo-text">Tech Futures Group</span>
         </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+        </button>
         <div class="nav-links">
-            <a href="#services" class="nav-link">Services</a>
-            <a href="#team" class="nav-link">Team</a>
-            <a href="#assets" class="nav-link active">Brand Assets</a>
-            <a href="#guidelines" class="nav-link">Guidelines</a>
+            <a href="#services" class="nav-link" data-section="services">Services</a>
+            <a href="#team" class="nav-link" data-section="team">Team</a>
+            <a href="#assets" class="nav-link" data-section="assets">Brand Assets</a>
+            <a href="#guidelines" class="nav-link" data-section="guidelines">Guidelines</a>
             <a href="https://techfuturesgroup.org" class="nav-cta" target="_blank">Main Site</a>
         </div>
     </nav>
@@ -3685,13 +3804,74 @@
         // NAVIGATION SCROLL BEHAVIOR
         // ============================================
         const nav = document.querySelector('.nav');
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinkItems = document.querySelectorAll('.nav-link[data-section]');
+
+        // Mobile menu toggle
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navLinks.classList.toggle('open');
+            document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+        });
+
+        // Close mobile menu on link click
+        navLinkItems.forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navLinks.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close mobile menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+                navToggle.classList.remove('active');
+                navLinks.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Scroll behavior: add scrolled class and update active nav link
+        const sections = document.querySelectorAll('section[id]');
+
+        function updateActiveNavLink() {
+            const scrollPos = window.scrollY + 100;
+
+            // Find which section is currently in view
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            // Update active class on nav links
+            navLinkItems.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section') === currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
         window.addEventListener('scroll', () => {
+            // Nav background on scroll
             if (window.scrollY > 50) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
             }
+
+            // Update active nav link
+            updateActiveNavLink();
         });
+
+        // Initial check for active link
+        updateActiveNavLink();
 
         // Smooth scroll for nav links
         document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {

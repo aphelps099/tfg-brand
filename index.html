@@ -1785,6 +1785,30 @@
             color: rgba(255, 255, 255, 0.3);
         }
 
+        .footer-bg-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-bg-image {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: cover;
+            object-position: bottom center;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .footer-bg-wrapper .footer {
+            position: relative;
+            z-index: 1;
+        }
+
         /* ============================================
            MODAL
            ============================================ */
@@ -2600,6 +2624,26 @@
                             </div>
                         </div>
                     </a>
+                    <a href="./Fliers-TFG-June-Events.pdf" class="asset-card-link" target="_blank">
+                        <div class="asset-card">
+                            <div class="asset-preview">
+                                <span class="asset-preview-placeholder">Flier</span>
+                                <span class="asset-preview-badge">Sample</span>
+                                <div class="asset-preview-overlay">
+                                    <div class="asset-preview-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="asset-info">
+                                <div class="asset-name">Event Flier Sample</div>
+                                <div class="asset-type">PDF</div>
+                                <div class="asset-description">June Events flier example</div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
 
@@ -2692,22 +2736,26 @@
                             </div>
                         </div>
                     </a>
-                    <div class="asset-card" data-modal="onepager-2">
-                        <div class="asset-preview">
-                            <span class="asset-preview-placeholder">Services</span>
-                            <div class="asset-preview-overlay">
-                                <div class="asset-preview-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
-                                    </svg>
+                    <a href="./TFG-1-pager-founders--31824.pdf" class="asset-card-link" target="_blank">
+                        <div class="asset-card">
+                            <div class="asset-preview">
+                                <span class="asset-preview-placeholder">Onboard</span>
+                                <span class="asset-preview-badge">Founders</span>
+                                <div class="asset-preview-overlay">
+                                    <div class="asset-preview-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+                                        </svg>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="asset-info">
+                                <div class="asset-name">TFG Onboard Letter</div>
+                                <div class="asset-type">PDF</div>
+                                <div class="asset-description">Welcome letter for new founders</div>
+                            </div>
                         </div>
-                        <div class="asset-info">
-                            <div class="asset-name">Service Menu</div>
-                            <div class="asset-type">PDF / HTML</div>
-                        </div>
-                    </div>
+                    </a>
                     <a href="./20241120_TFG-deck-2024-1B-.pdf" class="asset-card-link" target="_blank">
                         <div class="asset-card">
                             <div class="asset-preview">
@@ -3033,21 +3081,24 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="./tfg_logo_neon.svg" alt="TFG Logo" style="width: 40px; height: 40px;">
-                    <span class="footer-logo-text">Tech Futures Group</span>
-                </div>
-                <div class="footer-links">
-                    <a href="https://techfuturesgroup.org" class="footer-link" target="_blank">techfuturesgroup.org</a>
-                    <span class="footer-network">Part of the NorCal SBDC Network</span>
+    <!-- Footer with Background Image -->
+    <div class="footer-bg-wrapper">
+        <img src="./impact-orbits-2.jpg" alt="" class="footer-bg-image" aria-hidden="true">
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <img src="./tfg_logo_neon.svg" alt="TFG Logo" style="width: 40px; height: 40px;">
+                        <span class="footer-logo-text">Tech Futures Group</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="https://techfuturesgroup.org" class="footer-link" target="_blank">techfuturesgroup.org</a>
+                        <span class="footer-network">Part of the NorCal SBDC Network</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <!-- Modal -->
     <div class="modal-overlay" id="modal">

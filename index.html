@@ -715,11 +715,32 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            filter: grayscale(100%);
+            transition: transform 0.3s ease, filter 0.3s ease;
         }
 
         .advisor-card:hover .advisor-image img {
             transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        /* Green overlay on hover */
+        .advisor-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--electric-green);
+            mix-blend-mode: multiply;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .advisor-card:hover .advisor-image::after {
+            opacity: 0.6;
         }
 
         .advisor-image-placeholder {
@@ -2212,10 +2233,10 @@
             <div class="advisors-grid">
                 <div class="advisor-card fade-up stagger-1" data-advisor="charles-eason">
                     <div class="advisor-image">
-                        <img src="https://ui-avatars.com/api/?name=Charles+Eason&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true" alt="Charles Eason">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/08/chuck-eason-768x768.jpg" alt="Chuck Eason">
                     </div>
                     <div class="advisor-info">
-                        <div class="advisor-name">Charles Eason</div>
+                        <div class="advisor-name">Chuck Eason</div>
                         <div class="advisor-role">SBIR/STTR Specialist</div>
                         <div class="advisor-tags">
                             <span class="advisor-tag">Grants</span>
@@ -2225,7 +2246,7 @@
                 </div>
                 <div class="advisor-card fade-up stagger-2" data-advisor="paul-bozzo">
                     <div class="advisor-image">
-                        <img src="https://ui-avatars.com/api/?name=Paul+Bozzo&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true" alt="Paul Bozzo">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/08/paul-bozzo-768x768.jpg" alt="Paul Bozzo">
                     </div>
                     <div class="advisor-info">
                         <div class="advisor-name">Paul Bozzo</div>
@@ -2238,7 +2259,7 @@
                 </div>
                 <div class="advisor-card fade-up stagger-3" data-advisor="mark-klopp">
                     <div class="advisor-image">
-                        <img src="https://ui-avatars.com/api/?name=Mark+Klopp&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true" alt="Mark Klopp">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/08/mark-klopp-768x768.jpg" alt="Mark Klopp">
                     </div>
                     <div class="advisor-info">
                         <div class="advisor-name">Mark Klopp</div>
@@ -2249,25 +2270,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="advisor-card fade-up stagger-4" data-advisor="hon-pak">
+                <div class="advisor-card fade-up stagger-4" data-advisor="stewart">
                     <div class="advisor-image">
-                        <img src="https://ui-avatars.com/api/?name=Hon+Pak&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true" alt="Hon Pak">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/09/stewart.jpeg" alt="Stewart">
                     </div>
                     <div class="advisor-info">
-                        <div class="advisor-name">Hon Pak</div>
-                        <div class="advisor-role">Startup Strategy</div>
-                        <div class="advisor-tags">
-                            <span class="advisor-tag">Enterprise</span>
-                            <span class="advisor-tag">SaaS</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="advisor-card fade-up stagger-1" data-advisor="stuart-broadhead">
-                    <div class="advisor-image">
-                        <img src="https://ui-avatars.com/api/?name=Stuart+Broadhead&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true" alt="Stuart Broadhead">
-                    </div>
-                    <div class="advisor-info">
-                        <div class="advisor-name">Stuart Broadhead</div>
+                        <div class="advisor-name">Stewart</div>
                         <div class="advisor-role">Navy SBIR Specialist</div>
                         <div class="advisor-tags">
                             <span class="advisor-tag">Defense</span>
@@ -2275,38 +2283,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="advisor-card fade-up stagger-2" data-advisor="daniel-kriozere">
+                <div class="advisor-card fade-up stagger-1" data-advisor="kc">
                     <div class="advisor-image">
-                        <img src="https://ui-avatars.com/api/?name=Daniel+Kriozere&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true" alt="Daniel Kriozere">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/08/kc-2.png" alt="KC">
                     </div>
                     <div class="advisor-info">
-                        <div class="advisor-name">Daniel Kriozere</div>
-                        <div class="advisor-role">Climate Tech</div>
-                        <div class="advisor-tags">
-                            <span class="advisor-tag">Climate</span>
-                            <span class="advisor-tag">Grants</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="advisor-card fade-up stagger-3" data-advisor="helena-merk">
-                    <div class="advisor-image">
-                        <img src="https://ui-avatars.com/api/?name=Helena+Merk&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true" alt="Helena Merk">
-                    </div>
-                    <div class="advisor-info">
-                        <div class="advisor-name">Helena Merk</div>
-                        <div class="advisor-role">Grants Specialist</div>
-                        <div class="advisor-tags">
-                            <span class="advisor-tag">Grants</span>
-                            <span class="advisor-tag">Strategy</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="advisor-card fade-up stagger-4" data-advisor="kc-wisdom">
-                    <div class="advisor-image">
-                        <img src="https://ui-avatars.com/api/?name=KC+Wisdom&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true" alt="KC Wisdom">
-                    </div>
-                    <div class="advisor-info">
-                        <div class="advisor-name">KC Wisdom</div>
+                        <div class="advisor-name">KC</div>
                         <div class="advisor-role">Pitch & Events</div>
                         <div class="advisor-tags">
                             <span class="advisor-tag">Pitching</span>
@@ -2314,16 +2296,120 @@
                         </div>
                     </div>
                 </div>
+                <div class="advisor-card fade-up stagger-2" data-advisor="kristina-mcmillan">
+                    <div class="advisor-image">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/12/kristina-mcmillan.jpeg" alt="Kristina McMillan">
+                    </div>
+                    <div class="advisor-info">
+                        <div class="advisor-name">Kristina McMillan</div>
+                        <div class="advisor-role">Strategy</div>
+                        <div class="advisor-tags">
+                            <span class="advisor-tag">Strategy</span>
+                            <span class="advisor-tag">Growth</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="advisor-card fade-up stagger-3" data-advisor="stephen-plume">
+                    <div class="advisor-image">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/09/Plume-Stephen-768x801.jpg" alt="Stephen Plume">
+                    </div>
+                    <div class="advisor-info">
+                        <div class="advisor-name">Stephen Plume</div>
+                        <div class="advisor-role">Enterprise</div>
+                        <div class="advisor-tags">
+                            <span class="advisor-tag">Enterprise</span>
+                            <span class="advisor-tag">Software</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="advisor-card fade-up stagger-4" data-advisor="gurdeep">
+                    <div class="advisor-image">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/08/Gurdeep.jpg" alt="Gurdeep">
+                    </div>
+                    <div class="advisor-info">
+                        <div class="advisor-name">Gurdeep</div>
+                        <div class="advisor-role">Technology</div>
+                        <div class="advisor-tags">
+                            <span class="advisor-tag">Tech</span>
+                            <span class="advisor-tag">Product</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="advisor-card fade-up stagger-1" data-advisor="nikki-sims">
+                    <div class="advisor-image">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2025/11/nikki-tfg-2025-768x768.jpeg" alt="Nikki Sims">
+                    </div>
+                    <div class="advisor-info">
+                        <div class="advisor-name">Nikki Sims</div>
+                        <div class="advisor-role">Operations</div>
+                        <div class="advisor-tags">
+                            <span class="advisor-tag">Operations</span>
+                            <span class="advisor-tag">Strategy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="advisor-card fade-up stagger-2" data-advisor="jeff-smith">
+                    <div class="advisor-image">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/08/jeff-smith-768x768.jpg" alt="Jeff Smith">
+                    </div>
+                    <div class="advisor-info">
+                        <div class="advisor-name">Jeff Smith</div>
+                        <div class="advisor-role">Executive</div>
+                        <div class="advisor-tags">
+                            <span class="advisor-tag">Leadership</span>
+                            <span class="advisor-tag">Strategy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="advisor-card fade-up stagger-3" data-advisor="hillary-talbot">
+                    <div class="advisor-image">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2024/10/hillary-talbot.jpeg" alt="Hillary Talbot">
+                    </div>
+                    <div class="advisor-info">
+                        <div class="advisor-name">Hillary Talbot</div>
+                        <div class="advisor-role">Marketing</div>
+                        <div class="advisor-tags">
+                            <span class="advisor-tag">Marketing</span>
+                            <span class="advisor-tag">Growth</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="advisor-card fade-up stagger-4" data-advisor="gregory-theyel">
+                    <div class="advisor-image">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/08/gregory-theyel-768x768.jpg" alt="Gregory Theyel">
+                    </div>
+                    <div class="advisor-info">
+                        <div class="advisor-name">Gregory Theyel</div>
+                        <div class="advisor-role">Innovation</div>
+                        <div class="advisor-tags">
+                            <span class="advisor-tag">Innovation</span>
+                            <span class="advisor-tag">R&D</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="advisor-card fade-up stagger-1" data-advisor="axel-tillmann">
                     <div class="advisor-image">
-                        <img src="https://ui-avatars.com/api/?name=Axel+Tillmann&background=0a0a0a&color=4EFF00&size=300&font-size=0.35&bold=true" alt="Axel Tillmann">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/08/axel-tillman.jpg" alt="Axel Tillmann">
                     </div>
                     <div class="advisor-info">
                         <div class="advisor-name">Axel Tillmann</div>
-                        <div class="advisor-role">Pitch & Events</div>
+                        <div class="advisor-role">Pitch & Capital</div>
                         <div class="advisor-tags">
                             <span class="advisor-tag">Pitching</span>
                             <span class="advisor-tag">Capital</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="advisor-card fade-up stagger-2" data-advisor="hon-wong">
+                    <div class="advisor-image">
+                        <img src="https://www.techfuturesgroup.org/wp-content/uploads/2023/08/hon-won-768x768.jpg" alt="Hon Wong">
+                    </div>
+                    <div class="advisor-info">
+                        <div class="advisor-name">Hon Wong</div>
+                        <div class="advisor-role">Enterprise</div>
+                        <div class="advisor-tags">
+                            <span class="advisor-tag">Enterprise</span>
+                            <span class="advisor-tag">SaaS</span>
                         </div>
                     </div>
                 </div>

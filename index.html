@@ -41,14 +41,15 @@
             font-display: swap;
         }
         :root {
-            --electric-green: #39FF14;
-            --charcoal: #1a1a1a;
+            --electric-green: #4EFF00;
+            --charcoal: #272727;
             --near-black: #0a0a0a;
-            --dark-gray: #2d2d2d;
+            --dark-gray: #1a1a1a;
             --white: #ffffff;
-            --muted-green: #39FF1466;
-            --cream: #f7f6f1;
-            --green-glow: rgba(57, 255, 20, 0.15);
+            --muted-green: #48524B;
+            --muted-green-trans: rgba(78, 255, 0, 0.4);
+            --cream: #F7F6F2;
+            --green-glow: rgba(78, 255, 0, 0.15);
         }
 
         * {
@@ -186,6 +187,12 @@
 
         .hero-logo {
             margin-bottom: 60px;
+        }
+
+        .logo-mark-svg {
+            width: 70px;
+            height: 70px;
+            filter: drop-shadow(0 0 20px rgba(78, 255, 0, 0.4));
         }
 
         .logo-mark {
@@ -1307,7 +1314,7 @@
             <div class="hero-content">
                 <div class="hero-left">
                     <div class="hero-logo fade-up">
-                        <div class="logo-mark"></div>
+                        <img src="./tfg_logo_neon.svg" alt="TFG Logo" class="logo-mark-svg">
                     </div>
                     <h1 class="hero-headline fade-up stagger-1">
                         <span class="serif-italic">Move Faster.</span><br>
@@ -1754,19 +1761,19 @@
                 <h3 class="brand-subsection-title fade-up">Logo Usage</h3>
                 <div class="logo-grid">
                     <div class="logo-example fade-up stagger-1">
-                        <div class="brand-logo-mark"></div>
+                        <img src="./tfg_logo_neon.svg" alt="TFG Logo Mark" style="width: 100px; height: 100px;">
                         <span class="logo-example-label">Mark Only — Dark BG</span>
                     </div>
                     <div class="logo-example fade-up stagger-2">
                         <div class="brand-logo-full">
-                            <div class="mark"></div>
+                            <img src="./tfg_logo_neon.svg" alt="TFG Logo" style="width: 50px; height: 50px;">
                             <span class="wordmark">Tech Futures Group</span>
                         </div>
                         <span class="logo-example-label">Full Lockup — Dark BG</span>
                     </div>
                     <div class="logo-example light fade-up stagger-3">
                         <div class="brand-logo-full dark">
-                            <div class="mark"></div>
+                            <img src="./tfg_logo_neon.svg" alt="TFG Logo" style="width: 50px; height: 50px;">
                             <span class="wordmark">Tech Futures Group</span>
                         </div>
                         <span class="logo-example-label">Full Lockup — Light BG</span>
@@ -1778,46 +1785,46 @@
             <div class="brand-subsection">
                 <h3 class="brand-subsection-title fade-up">Color Palette</h3>
                 <div class="color-grid">
-                    <div class="color-swatch fade-up stagger-1" data-color="#39FF14">
-                        <div class="color-swatch-preview" style="background: #39FF14;"></div>
+                    <div class="color-swatch fade-up stagger-1" data-color="#4EFF00">
+                        <div class="color-swatch-preview" style="background: #4EFF00;"></div>
                         <div class="color-swatch-info">
-                            <div class="color-swatch-name">Electric Green</div>
-                            <div class="color-swatch-hex">#39FF14</div>
+                            <div class="color-swatch-name">Neon Green</div>
+                            <div class="color-swatch-hex">#4EFF00</div>
                         </div>
                     </div>
-                    <div class="color-swatch fade-up stagger-2" data-color="#1a1a1a">
-                        <div class="color-swatch-preview" style="background: #1a1a1a;"></div>
+                    <div class="color-swatch fade-up stagger-2" data-color="#48524B">
+                        <div class="color-swatch-preview" style="background: #48524B;"></div>
                         <div class="color-swatch-info">
-                            <div class="color-swatch-name">Charcoal</div>
-                            <div class="color-swatch-hex">#1a1a1a</div>
+                            <div class="color-swatch-name">Muted Green</div>
+                            <div class="color-swatch-hex">#48524B</div>
                         </div>
                     </div>
-                    <div class="color-swatch fade-up stagger-3" data-color="#0a0a0a">
-                        <div class="color-swatch-preview" style="background: #0a0a0a;"></div>
-                        <div class="color-swatch-info">
-                            <div class="color-swatch-name">Near Black</div>
-                            <div class="color-swatch-hex">#0a0a0a</div>
-                        </div>
-                    </div>
-                    <div class="color-swatch fade-up stagger-4" data-color="#2d2d2d">
-                        <div class="color-swatch-preview" style="background: #2d2d2d;"></div>
+                    <div class="color-swatch fade-up stagger-3" data-color="#272727">
+                        <div class="color-swatch-preview" style="background: #272727;"></div>
                         <div class="color-swatch-info">
                             <div class="color-swatch-name">Dark Gray</div>
-                            <div class="color-swatch-hex">#2d2d2d</div>
+                            <div class="color-swatch-hex">#272727</div>
                         </div>
                     </div>
-                    <div class="color-swatch fade-up stagger-1" data-color="#ffffff">
-                        <div class="color-swatch-preview" style="background: #ffffff;"></div>
+                    <div class="color-swatch fade-up stagger-4" data-color="#000000">
+                        <div class="color-swatch-preview" style="background: #000000;"></div>
+                        <div class="color-swatch-info">
+                            <div class="color-swatch-name">Black</div>
+                            <div class="color-swatch-hex">#000000</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch fade-up stagger-1" data-color="#FFFFFF">
+                        <div class="color-swatch-preview" style="background: #FFFFFF;"></div>
                         <div class="color-swatch-info">
                             <div class="color-swatch-name">White</div>
-                            <div class="color-swatch-hex">#ffffff</div>
+                            <div class="color-swatch-hex">#FFFFFF</div>
                         </div>
                     </div>
-                    <div class="color-swatch fade-up stagger-2" data-color="#f7f6f1">
-                        <div class="color-swatch-preview" style="background: #f7f6f1;"></div>
+                    <div class="color-swatch fade-up stagger-2" data-color="#F7F6F2">
+                        <div class="color-swatch-preview" style="background: #F7F6F2;"></div>
                         <div class="color-swatch-info">
-                            <div class="color-swatch-name">Cream</div>
-                            <div class="color-swatch-hex">#f7f6f1</div>
+                            <div class="color-swatch-name">Off White</div>
+                            <div class="color-swatch-hex">#F7F6F2</div>
                         </div>
                     </div>
                 </div>
@@ -1897,7 +1904,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <div class="footer-logo-mark"></div>
+                    <img src="./tfg_logo_neon.svg" alt="TFG Logo" style="width: 40px; height: 40px;">
                     <span class="footer-logo-text">Tech Futures Group</span>
                 </div>
                 <div class="footer-links">

@@ -165,15 +165,86 @@
             pointer-events: none;
         }
 
+        /* Large gradient arc */
+        .hero-gradient-arc {
+            position: absolute;
+            bottom: -450px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 900px;
+            height: 900px;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 180deg,
+                transparent 0deg,
+                rgba(72, 82, 75, 0.6) 30deg,
+                rgba(72, 82, 75, 0.4) 90deg,
+                rgba(72, 82, 75, 0.2) 150deg,
+                transparent 180deg
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-gradient-arc::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+            background: var(--charcoal);
+        }
+
+        /* Thin magenta accent arc */
+        .hero-gradient-arc::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 1px solid transparent;
+            background: conic-gradient(
+                from 200deg,
+                transparent 0deg,
+                rgba(200, 100, 180, 0.8) 20deg,
+                rgba(200, 100, 180, 0.6) 60deg,
+                rgba(200, 100, 180, 0.3) 100deg,
+                transparent 140deg
+            ) border-box;
+            -webkit-mask:
+                linear-gradient(#fff 0 0) padding-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        /* Small decorative arcs */
         .hero-arc {
             position: absolute;
-            bottom: -200px;
-            right: -200px;
-            width: 600px;
-            height: 600px;
-            border: 2px solid var(--muted-green);
+            top: 80px;
+            right: 100px;
+            width: 200px;
+            height: 200px;
+            border: 1px solid rgba(72, 82, 75, 0.3);
             border-radius: 50%;
             pointer-events: none;
+        }
+
+        .hero-arc::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            width: 260px;
+            height: 260px;
+            border: 1px solid rgba(72, 82, 75, 0.2);
+            border-radius: 50%;
         }
 
         .hero-content {
@@ -1964,6 +2035,7 @@
     <section class="hero grain">
         <div class="hero-grid-lines"></div>
         <div class="hero-arc"></div>
+        <div class="hero-gradient-arc"></div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-left">

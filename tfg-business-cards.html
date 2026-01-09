@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFG Business Card Concepts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Font Faces */
+        @font-face {
+            font-family: 'GT America Extended';
+            src: url('./4618gt.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'GT America Extended';
+            src: url('./2809gt-bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Tobias';
+            src: url('./Tobias-Thin.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Tobias';
+            src: url('./Tobias-Medium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --green: #4EFF00;
+            --charcoal: #0d0d0d;
+            --charcoal-light: #1a1a1a;
+            --white: #ffffff;
+            --gray: #666666;
+            --cream: #f5f3ef;
+
+            --serif: 'Tobias', Georgia, serif;
+            --sans: 'GT America Extended', 'Helvetica Neue', sans-serif;
+            --mono: 'Roboto Mono', monospace;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: #0a0a0a;
+            padding: 40px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            margin-bottom: 48px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .page-header img { height: 48px; }
+        .page-meta { flex: 1; }
+
+        .page-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+
+        .page-title {
+            font-family: var(--serif);
+            font-size: 36px;
+            color: var(--white);
+            font-weight: 300;
+        }
+
+        .page-desc {
+            font-size: 14px;
+            color: var(--gray);
+            margin-top: 12px;
+            max-width: 500px;
+        }
+
+        .concept-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green);
+            background: var(--charcoal-light);
+            padding: 8px 16px;
+            margin-bottom: 0;
+            display: inline-block;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .card-pair {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 64px;
+            padding: 32px;
+            background: #1a1a1a;
+            border-radius: 0 8px 8px 8px;
+        }
+
+        .card-side-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            color: #666;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        /* Standard business card: 3.5" x 2" = 350px x 200px at 100ppi for display */
+        .card {
+            width: 350px;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border-radius: 4px;
+        }
+
+        /* =============================================
+           CONCEPT 1: CLASSIC DARK
+        ============================================= */
+        .card-1-front {
+            background: var(--charcoal);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px;
+        }
+
+        .card-1-front .logo {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--green);
+        }
+
+        .card-1-front .name {
+            font-family: var(--serif);
+            font-size: 24px;
+            color: var(--white);
+            margin-bottom: 4px;
+            font-weight: 300;
+        }
+
+        .card-1-front .title {
+            font-family: var(--sans);
+            font-size: 11px;
+            color: var(--gray);
+        }
+
+        .card-1-front .contact {
+            font-family: var(--sans);
+            font-size: 10px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .card-1-front .contact a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .card-1-back {
+            background: var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-1-back .logo-mark {
+            font-family: var(--serif);
+            font-size: 72px;
+            color: var(--charcoal);
+            opacity: 0.15;
+            font-weight: 500;
+        }
+
+        .card-1-back .tagline {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--charcoal);
+        }
+
+        /* =============================================
+           CONCEPT 2: ZAG SPLIT
+        ============================================= */
+        .card-2-front {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .card-2-front .left {
+            background: var(--charcoal);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-2-front .left .name {
+            font-family: var(--serif);
+            font-size: 18px;
+            color: var(--white);
+            margin-bottom: 4px;
+            font-weight: 300;
+        }
+
+        .card-2-front .left .title {
+            font-family: var(--sans);
+            font-size: 10px;
+            color: var(--green);
+            letter-spacing: 0.05em;
+        }
+
+        .card-2-front .right {
+            background: var(--green);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .card-2-front .right::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -20px;
+            width: 40px;
+            height: 100%;
+            background: var(--green);
+            transform: skewX(-6deg);
+        }
+
+        .card-2-front .right .logo {
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--charcoal);
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-2-front .right .contact {
+            font-family: var(--sans);
+            font-size: 9px;
+            color: var(--charcoal);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-2-back {
+            background: var(--charcoal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-2-back .stat {
+            text-align: center;
+        }
+
+        .card-2-back .stat-value {
+            font-family: var(--serif);
+            font-size: 48px;
+            color: var(--green);
+            font-weight: 300;
+        }
+
+        .card-2-back .stat-label {
+            font-family: var(--mono);
+            font-size: 8px;
+            letter-spacing: 0.15em;
+            color: var(--gray);
+        }
+
+        /* =============================================
+           CONCEPT 3: MINIMAL WHITE
+        ============================================= */
+        .card-3-front {
+            background: var(--white);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-left: 4px solid var(--green);
+        }
+
+        .card-3-front .top .logo {
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            color: var(--charcoal);
+            margin-bottom: 16px;
+        }
+
+        .card-3-front .top .name {
+            font-family: var(--serif);
+            font-size: 22px;
+            color: var(--charcoal);
+            font-weight: 300;
+        }
+
+        .card-3-front .top .title {
+            font-family: var(--sans);
+            font-size: 11px;
+            color: var(--gray);
+            margin-top: 2px;
+        }
+
+        .card-3-front .bottom {
+            font-family: var(--sans);
+            font-size: 10px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        .card-3-front .bottom a {
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+
+        .card-3-back {
+            background: var(--charcoal);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .card-3-back .tagline {
+            font-family: var(--serif);
+            font-size: 20px;
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: 16px;
+            font-weight: 300;
+        }
+
+        .card-3-back .url {
+            font-family: var(--mono);
+            font-size: 9px;
+            color: var(--green);
+            letter-spacing: 0.05em;
+        }
+
+        /* =============================================
+           CONCEPT 4: ZAG DIAGONAL
+        ============================================= */
+        .card-4-front {
+            background: var(--charcoal);
+            position: relative;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-4-front::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 120px;
+            height: 100%;
+            background: var(--green);
+            clip-path: polygon(100% 0, 100% 100%, 0 100%);
+        }
+
+        .card-4-front .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-4-front .logo {
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            color: var(--green);
+            margin-bottom: 24px;
+        }
+
+        .card-4-front .name {
+            font-family: var(--serif);
+            font-size: 22px;
+            color: var(--white);
+            font-weight: 300;
+        }
+
+        .card-4-front .title {
+            font-family: var(--sans);
+            font-size: 10px;
+            color: var(--gray);
+            margin-top: 4px;
+        }
+
+        .card-4-front .contact {
+            font-family: var(--sans);
+            font-size: 10px;
+            color: var(--gray);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-4-front .contact a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .card-4-back {
+            background: var(--green);
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            padding: 24px;
+            position: relative;
+        }
+
+        .card-4-back::before {
+            content: 'TFG';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: var(--serif);
+            font-size: 100px;
+            color: var(--charcoal);
+            opacity: 0.1;
+            letter-spacing: -0.05em;
+            font-weight: 500;
+        }
+
+        .card-4-back .tagline {
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--charcoal);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* =============================================
+           CONCEPT 5: CREAM EDITORIAL
+        ============================================= */
+        .card-5-front {
+            background: var(--cream);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-5-front .top .name {
+            font-family: var(--serif);
+            font-size: 26px;
+            font-style: italic;
+            color: var(--charcoal);
+            margin-bottom: 2px;
+            font-weight: 300;
+        }
+
+        .card-5-front .top .title {
+            font-family: var(--sans);
+            font-size: 10px;
+            color: var(--gray);
+        }
+
+        .card-5-front .bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .card-5-front .bottom .contact {
+            font-family: var(--sans);
+            font-size: 9px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .card-5-front .bottom .contact a {
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+
+        .card-5-front .bottom .logo {
+            font-family: var(--mono);
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--green);
+        }
+
+        .card-5-back {
+            background: var(--charcoal);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card-5-back .stat {
+            margin-bottom: 8px;
+        }
+
+        .card-5-back .stat-value {
+            font-family: var(--serif);
+            font-size: 42px;
+            color: var(--green);
+            font-weight: 300;
+        }
+
+        .card-5-back .stat-label {
+            font-family: var(--mono);
+            font-size: 8px;
+            letter-spacing: 0.12em;
+            color: var(--gray);
+            margin-top: 4px;
+        }
+
+        .card-5-back .tagline {
+            font-family: var(--serif);
+            font-size: 14px;
+            font-style: italic;
+            color: var(--white);
+            margin-top: 16px;
+            opacity: 0.6;
+            font-weight: 300;
+        }
+
+        /* =============================================
+           CONCEPT 6: STARK GRID
+        ============================================= */
+        .card-6-front {
+            background: var(--charcoal);
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            height: 100%;
+        }
+
+        .card-6-front .header {
+            background: var(--green);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-6-front .header .logo {
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--charcoal);
+        }
+
+        .card-6-front .header .url {
+            font-family: var(--sans);
+            font-size: 8px;
+            color: var(--charcoal);
+            opacity: 0.6;
+        }
+
+        .card-6-front .body {
+            padding: 16px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-6-front .body .name {
+            font-family: var(--serif);
+            font-size: 22px;
+            color: var(--white);
+            font-weight: 300;
+        }
+
+        .card-6-front .body .title {
+            font-family: var(--sans);
+            font-size: 10px;
+            color: var(--green);
+            margin-top: 2px;
+        }
+
+        .card-6-front .footer {
+            padding: 12px 20px;
+            border-top: 1px solid #333;
+        }
+
+        .card-6-front .footer .contact {
+            font-family: var(--sans);
+            font-size: 9px;
+            color: var(--gray);
+        }
+
+        .card-6-front .footer .contact a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .card-6-back {
+            background: var(--charcoal);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-6-back .grid-pattern {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(to right, #333 1px, transparent 1px),
+                linear-gradient(to bottom, #333 1px, transparent 1px);
+            background-size: 25px 25px;
+            opacity: 0.5;
+        }
+
+        .card-6-back .center {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .card-6-back .center .mark {
+            font-family: var(--serif);
+            font-size: 48px;
+            color: var(--green);
+            font-weight: 500;
+        }
+
+        .card-6-back .center .tagline {
+            font-family: var(--mono);
+            font-size: 8px;
+            letter-spacing: 0.15em;
+            color: var(--gray);
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="page-header">
+            <img src="./tfg_logo_neon.svg" alt="TFG">
+            <div class="page-meta">
+                <div class="page-label">Brand Assets</div>
+                <h1 class="page-title">Business Cards</h1>
+                <p class="page-desc">Professional business card designs for TFG team members. 6 concepts with front and back designs.</p>
+            </div>
+        </div>
+
+        <!-- CONCEPT 1: CLASSIC DARK -->
+        <div class="concept-label">Concept 1 — Classic Dark</div>
+        <div class="card-pair">
+            <div>
+                <div class="card-side-label">Front</div>
+                <div class="card card-1-front">
+                    <div class="logo">TECH FUTURES GROUP</div>
+                    <div class="info">
+                        <div class="name">Matthew Joehnk</div>
+                        <div class="title">Program Director</div>
+                    </div>
+                    <div class="contact">
+                        <a href="mailto:matthew@techfuturesgroup.org">matthew@techfuturesgroup.org</a><br>
+                        techfuturesgroup.org
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card-side-label">Back</div>
+                <div class="card card-1-back">
+                    <div class="logo-mark">TFG</div>
+                    <div class="tagline">MOVE FASTER. BUILD BIGGER.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONCEPT 2: ZAG SPLIT -->
+        <div class="concept-label">Concept 2 — ZAG Split</div>
+        <div class="card-pair">
+            <div>
+                <div class="card-side-label">Front</div>
+                <div class="card card-2-front">
+                    <div class="left">
+                        <div>
+                            <div class="name">Matthew Joehnk</div>
+                            <div class="title">PROGRAM DIRECTOR</div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="logo">TECH FUTURES GROUP</div>
+                        <div class="contact">
+                            matthew@techfuturesgroup.org<br>
+                            techfuturesgroup.org
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card-side-label">Back</div>
+                <div class="card card-2-back">
+                    <div class="stat">
+                        <div class="stat-value">$1B+</div>
+                        <div class="stat-label">RAISED BY TFG FOUNDERS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONCEPT 3: MINIMAL WHITE -->
+        <div class="concept-label">Concept 3 — Minimal White</div>
+        <div class="card-pair">
+            <div>
+                <div class="card-side-label">Front</div>
+                <div class="card card-3-front">
+                    <div class="top">
+                        <div class="logo">TECH FUTURES GROUP</div>
+                        <div class="name">Matthew Joehnk</div>
+                        <div class="title">Program Director</div>
+                    </div>
+                    <div class="bottom">
+                        <a href="mailto:matthew@techfuturesgroup.org">matthew@techfuturesgroup.org</a><br>
+                        techfuturesgroup.org
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card-side-label">Back</div>
+                <div class="card card-3-back">
+                    <div class="tagline">Move Faster.<br>Build Bigger.</div>
+                    <div class="url">techfuturesgroup.org</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONCEPT 4: ZAG DIAGONAL -->
+        <div class="concept-label">Concept 4 — ZAG Diagonal</div>
+        <div class="card-pair">
+            <div>
+                <div class="card-side-label">Front</div>
+                <div class="card card-4-front">
+                    <div class="content">
+                        <div class="logo">TECH FUTURES GROUP</div>
+                        <div class="name">Matthew Joehnk</div>
+                        <div class="title">Program Director</div>
+                    </div>
+                    <div class="contact">
+                        <a href="mailto:matthew@techfuturesgroup.org">matthew@techfuturesgroup.org</a><br>
+                        techfuturesgroup.org
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card-side-label">Back</div>
+                <div class="card card-4-back">
+                    <div class="tagline">MOVE FASTER. BUILD BIGGER.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONCEPT 5: CREAM EDITORIAL -->
+        <div class="concept-label">Concept 5 — Cream Editorial</div>
+        <div class="card-pair">
+            <div>
+                <div class="card-side-label">Front</div>
+                <div class="card card-5-front">
+                    <div class="top">
+                        <div class="name">Matthew Joehnk</div>
+                        <div class="title">Program Director</div>
+                    </div>
+                    <div class="bottom">
+                        <div class="contact">
+                            <a href="mailto:matthew@techfuturesgroup.org">matthew@techfuturesgroup.org</a><br>
+                            techfuturesgroup.org
+                        </div>
+                        <div class="logo">TFG</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card-side-label">Back</div>
+                <div class="card card-5-back">
+                    <div class="stat">
+                        <div class="stat-value">$1B+</div>
+                        <div class="stat-label">RAISED BY FOUNDERS</div>
+                    </div>
+                    <div class="tagline">Move Faster. Build Bigger.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONCEPT 6: STARK GRID -->
+        <div class="concept-label">Concept 6 — Stark Grid</div>
+        <div class="card-pair">
+            <div>
+                <div class="card-side-label">Front</div>
+                <div class="card card-6-front">
+                    <div class="header">
+                        <div class="logo">TECH FUTURES GROUP</div>
+                        <div class="url">techfuturesgroup.org</div>
+                    </div>
+                    <div class="body">
+                        <div class="name">Matthew Joehnk</div>
+                        <div class="title">Program Director</div>
+                    </div>
+                    <div class="footer">
+                        <div class="contact">
+                            <a href="mailto:matthew@techfuturesgroup.org">matthew@techfuturesgroup.org</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card-side-label">Back</div>
+                <div class="card card-6-back">
+                    <div class="grid-pattern"></div>
+                    <div class="center">
+                        <div class="mark">TFG</div>
+                        <div class="tagline">MOVE FASTER. BUILD BIGGER.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFG Social Templates</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'GT America Extended';
+            src: url('./4618gt.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'GT America Extended';
+            src: url('./2809gt-bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Tobias';
+            src: url('./Tobias-Thin.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Tobias';
+            src: url('./Tobias-Medium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --green: #4EFF00;
+            --green-dim: rgba(78, 255, 0, 0.3);
+            --charcoal: #2d2d2d;
+            --charcoal-dark: #1a1a1a;
+            --charcoal-light: #3a3a3a;
+            --white: #ffffff;
+            --gray: #888888;
+            --gray-dark: #666666;
+            --serif: 'Tobias', Georgia, serif;
+            --sans: 'GT America Extended', 'Helvetica Neue', sans-serif;
+            --mono: 'Roboto Mono', monospace;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: #1a1a1a;
+            padding: 40px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page-header {
+            margin-bottom: 48px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .page-header img { height: 48px; }
+        .page-meta { flex: 1; }
+
+        .page-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+
+        .page-title {
+            font-family: var(--serif);
+            font-size: 36px;
+            color: var(--white);
+            font-weight: 300;
+        }
+
+        .templates-row {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .template-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .template-label {
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green);
+            background: #2d2d2d;
+            padding: 10px 16px;
+            display: inline-block;
+            margin-bottom: 0;
+        }
+
+        .template-info {
+            font-family: var(--mono);
+            font-size: 10px;
+            color: #666;
+            margin-top: 12px;
+        }
+
+        .social-graphic {
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+        }
+
+        .graphic-inner {
+            transform-origin: top left;
+            position: relative;
+        }
+
+        .section-divider {
+            margin: 80px 0 40px;
+            padding: 20px 0;
+            border-top: 1px solid #3a3a3a;
+        }
+
+        .section-divider span {
+            font-family: var(--mono);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            color: var(--green);
+        }
+
+        /* =============================================
+           ANNOUNCEMENT POST - 1080x1080 (shown at 0.5x = 540px)
+        ============================================= */
+        .announcement-post {
+            width: 540px;
+            height: 540px;
+        }
+
+        .announcement-post .graphic-inner {
+            width: 1080px;
+            height: 1080px;
+            transform: scale(0.5);
+            background: var(--charcoal);
+            display: flex;
+            flex-direction: column;
+            padding: 80px;
+        }
+
+        .announcement-post .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: auto;
+        }
+
+        .announcement-post .logo-circle {
+            width: 64px;
+            height: 64px;
+            border: 7px solid var(--green);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .announcement-post .logo-text {
+            font-family: var(--mono);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            color: var(--green);
+            line-height: 1.4;
+        }
+
+        .announcement-post .content-area {
+            margin-bottom: auto;
+        }
+
+        .announcement-post .tag {
+            font-family: var(--mono);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: var(--green);
+            margin-bottom: 24px;
+        }
+
+        .announcement-post .headline {
+            font-family: var(--serif);
+            font-size: 72px;
+            font-weight: 500;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 32px;
+        }
+
+        .announcement-post .headline span {
+            color: var(--green);
+        }
+
+        .announcement-post .body-text {
+            font-size: 24px;
+            color: var(--gray);
+            line-height: 1.5;
+            max-width: 800px;
+        }
+
+        .announcement-post .footer-area {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .announcement-post .cta {
+            font-family: var(--mono);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--charcoal);
+            background: var(--green);
+            padding: 20px 40px;
+        }
+
+        .announcement-post .url {
+            font-family: var(--mono);
+            font-size: 14px;
+            color: var(--gray-dark);
+        }
+
+        /* =============================================
+           EVENT STORY - 1080x1920 (shown at 0.35x = 378x672)
+        ============================================= */
+        .event-story {
+            width: 378px;
+            height: 672px;
+        }
+
+        .event-story .graphic-inner {
+            width: 1080px;
+            height: 1920px;
+            transform: scale(0.35);
+            background: var(--charcoal-dark);
+            display: flex;
+            flex-direction: column;
+            padding: 80px;
+            position: relative;
+        }
+
+        .event-story .green-accent {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 400px;
+            background: var(--green);
+            clip-path: polygon(0 40%, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .event-story .content-wrapper {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-story .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 60px;
+        }
+
+        .event-story .logo-circle {
+            width: 56px;
+            height: 56px;
+            border: 6px solid var(--green);
+            border-radius: 50%;
+        }
+
+        .event-story .logo-text {
+            font-family: var(--mono);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            color: var(--green);
+            line-height: 1.4;
+        }
+
+        .event-story .event-type {
+            font-family: var(--mono);
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+
+        .event-story .headline {
+            font-family: var(--serif);
+            font-size: 96px;
+            font-weight: 500;
+            color: var(--white);
+            line-height: 1.05;
+            margin-bottom: 32px;
+        }
+
+        .event-story .headline span {
+            color: var(--green);
+        }
+
+        .event-story .body-text {
+            font-size: 28px;
+            color: var(--gray);
+            line-height: 1.5;
+            max-width: 800px;
+            margin-bottom: auto;
+        }
+
+        .event-story .date-block {
+            background: var(--charcoal);
+            padding: 40px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--green);
+        }
+
+        .event-story .date-label {
+            font-family: var(--mono);
+            font-size: 14px;
+            letter-spacing: 0.15em;
+            color: var(--gray-dark);
+            margin-bottom: 8px;
+        }
+
+        .event-story .date-value {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .event-story .footer-area {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 40px;
+        }
+
+        .event-story .cta {
+            font-family: var(--mono);
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--charcoal-dark);
+            background: var(--green);
+            padding: 24px 48px;
+        }
+
+        .event-story .swipe-text {
+            font-family: var(--mono);
+            font-size: 16px;
+            color: var(--charcoal-dark);
+            letter-spacing: 0.1em;
+        }
+
+        /* =============================================
+           STAT CAROUSEL - 1080x1080 (shown at 0.5x = 540px)
+        ============================================= */
+        .stat-carousel {
+            width: 540px;
+            height: 540px;
+        }
+
+        .stat-carousel .graphic-inner {
+            width: 1080px;
+            height: 1080px;
+            transform: scale(0.5);
+            background: var(--charcoal-dark);
+            display: flex;
+            flex-direction: column;
+            padding: 80px;
+            position: relative;
+        }
+
+        .stat-carousel .arc-decoration {
+            position: absolute;
+            bottom: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            border: 2px solid var(--green-dim);
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+
+        .stat-carousel .content-wrapper {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-carousel .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: auto;
+        }
+
+        .stat-carousel .logo-circle {
+            width: 56px;
+            height: 56px;
+            border: 6px solid var(--green);
+            border-radius: 50%;
+        }
+
+        .stat-carousel .logo-text {
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            color: var(--green);
+            line-height: 1.4;
+        }
+
+        .stat-carousel .stat-area {
+            margin-bottom: auto;
+        }
+
+        .stat-carousel .stat-label {
+            font-family: var(--mono);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: var(--gray);
+            margin-bottom: 16px;
+        }
+
+        .stat-carousel .stat-value {
+            font-family: var(--serif);
+            font-size: 200px;
+            font-weight: 500;
+            color: var(--green);
+            line-height: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .stat-carousel .stat-desc {
+            font-size: 28px;
+            color: var(--white);
+            line-height: 1.4;
+            max-width: 700px;
+        }
+
+        .stat-carousel .footer-area {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .stat-carousel .slide-indicator {
+            display: flex;
+            gap: 12px;
+        }
+
+        .stat-carousel .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--charcoal-light);
+        }
+
+        .stat-carousel .dot.active {
+            background: var(--green);
+        }
+
+        .stat-carousel .url {
+            font-family: var(--mono);
+            font-size: 14px;
+            color: var(--gray-dark);
+        }
+
+        /* =============================================
+           LINKEDIN BANNER - 1584x396 (shown at 0.6x = 950x238)
+        ============================================= */
+        .linkedin-banner {
+            width: 950px;
+            height: 238px;
+        }
+
+        .linkedin-banner .graphic-inner {
+            width: 1584px;
+            height: 396px;
+            transform: scale(0.6);
+            background: var(--charcoal);
+            display: flex;
+            align-items: center;
+            padding: 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .linkedin-banner .green-block {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 500px;
+            height: 100%;
+            background: var(--green);
+            clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .linkedin-banner .content-wrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .linkedin-banner .left-content {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .linkedin-banner .logo-circle {
+            width: 80px;
+            height: 80px;
+            border: 8px solid var(--green);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .linkedin-banner .headline {
+            font-family: var(--serif);
+            font-size: 56px;
+            font-weight: 500;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .linkedin-banner .headline span {
+            color: var(--green);
+        }
+
+        .linkedin-banner .subhead {
+            font-size: 18px;
+            color: var(--gray);
+        }
+
+        .linkedin-banner .right-content {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            padding-right: 80px;
+        }
+
+        .linkedin-banner .stat-block {
+            text-align: right;
+        }
+
+        .linkedin-banner .stat-value {
+            font-family: var(--serif);
+            font-size: 48px;
+            color: var(--charcoal);
+            line-height: 1;
+        }
+
+        .linkedin-banner .stat-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            color: var(--charcoal);
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-header">
+        <img src="./tfg_logo_neon.svg" alt="TFG">
+        <div class="page-meta">
+            <div class="page-label">Brand Assets</div>
+            <h1 class="page-title">Social Media Templates</h1>
+        </div>
+    </div>
+
+    <div class="templates-row">
+
+        <!-- ANNOUNCEMENT POST -->
+        <div class="template-container">
+            <div class="template-label">Announcement Post</div>
+            <div class="social-graphic announcement-post">
+                <div class="graphic-inner">
+                    <div class="logo-area">
+                        <div class="logo-circle"></div>
+                        <div class="logo-text">TECH<br>FUTURES<br>GROUP</div>
+                    </div>
+
+                    <div class="content-area">
+                        <div class="tag">ANNOUNCEMENT</div>
+                        <h1 class="headline">Applications<br>now <span>open</span></h1>
+                        <p class="body-text">Join our Spring 2025 cohort. Get matched with world-class advisors. $0 cost.</p>
+                    </div>
+
+                    <div class="footer-area">
+                        <div class="cta">APPLY NOW →</div>
+                        <div class="url">techfuturesgroup.org</div>
+                    </div>
+                </div>
+            </div>
+            <div class="template-info">1080 × 1080 PNG · LinkedIn Square</div>
+        </div>
+
+        <!-- EVENT STORY -->
+        <div class="template-container">
+            <div class="template-label">Event Story</div>
+            <div class="social-graphic event-story">
+                <div class="graphic-inner">
+                    <div class="green-accent"></div>
+
+                    <div class="content-wrapper">
+                        <div class="logo-area">
+                            <div class="logo-circle"></div>
+                            <div class="logo-text">TECH<br>FUTURES<br>GROUP</div>
+                        </div>
+
+                        <div class="event-type">WORKSHOP</div>
+                        <h1 class="headline">SBIR Grant<br><span>Writing</span></h1>
+                        <p class="body-text">Master the proposal process. Get non-dilutive funding for your R&D.</p>
+
+                        <div class="date-block">
+                            <div class="date-label">DATE & TIME</div>
+                            <div class="date-value">Jan 18 · 1:00 PM PST</div>
+                        </div>
+
+                        <div class="footer-area">
+                            <div class="cta">REGISTER FREE</div>
+                            <div class="swipe-text">SWIPE UP ↑</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="template-info">1080 × 1920 PNG · Story Format</div>
+        </div>
+
+    </div>
+
+    <!-- STAT CAROUSEL SECTION -->
+    <div class="section-divider">
+        <span>STAT CAROUSEL — TFG IMPACT</span>
+    </div>
+
+    <div class="templates-row">
+
+        <!-- STAT CAROUSEL SLIDE 1: $1B+ -->
+        <div class="template-container">
+            <div class="template-label">Stat Carousel — Slide 1</div>
+            <div class="social-graphic stat-carousel">
+                <div class="graphic-inner">
+                    <div class="arc-decoration"></div>
+
+                    <div class="content-wrapper">
+                        <div class="logo-area">
+                            <div class="logo-circle"></div>
+                            <div class="logo-text">TECH<br>FUTURES<br>GROUP</div>
+                        </div>
+
+                        <div class="stat-area">
+                            <div class="stat-label">TFG IMPACT</div>
+                            <div class="stat-value">$1B+</div>
+                            <p class="stat-desc">raised by TFG founders to date</p>
+                        </div>
+
+                        <div class="footer-area">
+                            <div class="slide-indicator">
+                                <div class="dot active"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                            <div class="url">techfuturesgroup.org</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="template-info">1080 × 1080 PNG · Carousel Slide</div>
+        </div>
+
+        <!-- STAT CAROUSEL SLIDE 2: $70M -->
+        <div class="template-container">
+            <div class="template-label">Stat Carousel — Slide 2</div>
+            <div class="social-graphic stat-carousel">
+                <div class="graphic-inner">
+                    <div class="arc-decoration"></div>
+
+                    <div class="content-wrapper">
+                        <div class="logo-area">
+                            <div class="logo-circle"></div>
+                            <div class="logo-text">TECH<br>FUTURES<br>GROUP</div>
+                        </div>
+
+                        <div class="stat-area">
+                            <div class="stat-label">TFG IMPACT</div>
+                            <div class="stat-value">$70M</div>
+                            <p class="stat-desc">in grants secured for founders</p>
+                        </div>
+
+                        <div class="footer-area">
+                            <div class="slide-indicator">
+                                <div class="dot"></div>
+                                <div class="dot active"></div>
+                                <div class="dot"></div>
+                            </div>
+                            <div class="url">techfuturesgroup.org</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="template-info">1080 × 1080 PNG · Carousel Slide</div>
+        </div>
+
+        <!-- STAT CAROUSEL SLIDE 3: 10X -->
+        <div class="template-container">
+            <div class="template-label">Stat Carousel — Slide 3</div>
+            <div class="social-graphic stat-carousel">
+                <div class="graphic-inner">
+                    <div class="arc-decoration"></div>
+
+                    <div class="content-wrapper">
+                        <div class="logo-area">
+                            <div class="logo-circle"></div>
+                            <div class="logo-text">TECH<br>FUTURES<br>GROUP</div>
+                        </div>
+
+                        <div class="stat-area">
+                            <div class="stat-label">TFG IMPACT</div>
+                            <div class="stat-value">10X</div>
+                            <p class="stat-desc">faster go-to-market for founders</p>
+                        </div>
+
+                        <div class="footer-area">
+                            <div class="slide-indicator">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot active"></div>
+                            </div>
+                            <div class="url">techfuturesgroup.org</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="template-info">1080 × 1080 PNG · Carousel Slide</div>
+        </div>
+
+    </div>
+
+    <!-- LINKEDIN BANNERS -->
+    <div class="section-divider">
+        <span>LINKEDIN BANNERS</span>
+    </div>
+
+    <div class="template-container" style="margin-bottom: 60px;">
+        <div class="template-label">LinkedIn Banner</div>
+        <div class="social-graphic linkedin-banner">
+            <div class="graphic-inner">
+                <div class="green-block"></div>
+
+                <div class="content-wrapper">
+                    <div class="left-content">
+                        <div class="logo-circle"></div>
+                        <div class="text-content">
+                            <h1 class="headline">Move Faster. <span>Build Bigger.</span></h1>
+                            <p class="subhead">Venture-grade advising for NorCal tech founders. $0 cost.</p>
+                        </div>
+                    </div>
+
+                    <div class="right-content">
+                        <div class="stat-block">
+                            <div class="stat-value">$1B+</div>
+                            <div class="stat-label">RAISED</div>
+                        </div>
+                        <div class="stat-block">
+                            <div class="stat-value">$70M</div>
+                            <div class="stat-label">GRANTS</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="template-info">1584 × 396 PNG · LinkedIn Banner</div>
+    </div>
+
+    <div class="template-container" style="margin-bottom: 60px;">
+        <div class="template-label">LinkedIn Banner — Alt</div>
+        <div class="social-graphic linkedin-banner">
+            <div class="graphic-inner" style="background: var(--charcoal-dark);">
+                <div style="position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(78, 255, 0, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(78, 255, 0, 0.03) 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+                <div class="content-wrapper">
+                    <div class="left-content">
+                        <div class="logo-circle"></div>
+                        <div class="text-content">
+                            <h1 class="headline" style="font-size: 48px;">Tech Futures Group</h1>
+                            <p class="subhead">Y Combinator meets government funding. For NorCal founders.</p>
+                        </div>
+                    </div>
+
+                    <div class="right-content" style="padding-right: 0;">
+                        <div style="display: flex; gap: 32px;">
+                            <div class="stat-block" style="text-align: center;">
+                                <div class="stat-value" style="color: var(--green); font-size: 40px;">$1B+</div>
+                                <div class="stat-label" style="color: var(--gray);">RAISED</div>
+                            </div>
+                            <div class="stat-block" style="text-align: center;">
+                                <div class="stat-value" style="color: var(--green); font-size: 40px;">$70M</div>
+                                <div class="stat-label" style="color: var(--gray);">GRANTS</div>
+                            </div>
+                            <div class="stat-block" style="text-align: center;">
+                                <div class="stat-value" style="color: var(--green); font-size: 40px;">$0</div>
+                                <div class="stat-label" style="color: var(--gray);">COST</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="template-info">1584 × 396 PNG · LinkedIn Banner</div>
+    </div>
+
+    <!-- ANNOUNCEMENT VARIATIONS -->
+    <div class="section-divider">
+        <span>ANNOUNCEMENT VARIATIONS</span>
+    </div>
+
+    <div class="templates-row">
+        <!-- STATS FOCUS -->
+        <div class="template-container">
+            <div class="template-label">Announcement — Stats Focus</div>
+            <div class="social-graphic announcement-post">
+                <div class="graphic-inner" style="background: linear-gradient(180deg, var(--charcoal-dark) 0%, var(--charcoal) 100%);">
+                    <div class="logo-area">
+                        <div class="logo-circle"></div>
+                        <div class="logo-text">TECH<br>FUTURES<br>GROUP</div>
+                    </div>
+
+                    <div class="content-area">
+                        <div class="tag" style="color: var(--gray);">TFG IMPACT</div>
+                        <h1 class="headline" style="font-size: 64px;">We've helped founders raise over <span>$1B</span> and receive over <span>$70M</span> in grants.</h1>
+                    </div>
+
+                    <div class="footer-area">
+                        <div class="cta">LEARN MORE →</div>
+                        <div class="url">techfuturesgroup.org</div>
+                    </div>
+                </div>
+            </div>
+            <div class="template-info">1080 × 1080 PNG · LinkedIn Square</div>
+        </div>
+
+        <!-- FOUNDER WIN -->
+        <div class="template-container">
+            <div class="template-label">Announcement — Founder Win</div>
+            <div class="social-graphic announcement-post">
+                <div class="graphic-inner" style="background: var(--charcoal);">
+                    <div class="logo-area">
+                        <div class="logo-circle"></div>
+                        <div class="logo-text">TECH<br>FUTURES<br>GROUP</div>
+                    </div>
+
+                    <div class="content-area">
+                        <div class="tag">FOUNDER WIN</div>
+                        <h1 class="headline" style="font-size: 64px;">Meridian Bio closes <span>$12M</span> Series A</h1>
+                        <p class="body-text">Congrats to TFG alum Sarah Chen on a huge milestone. From Phase I SBIR to institutional backing in under 2 years.</p>
+                    </div>
+
+                    <div class="footer-area">
+                        <div class="cta">READ STORY →</div>
+                        <div class="url">techfuturesgroup.org</div>
+                    </div>
+                </div>
+            </div>
+            <div class="template-info">1080 × 1080 PNG · LinkedIn Square</div>
+        </div>
+    </div>
+
+    <!-- INVERSE COLORS -->
+    <div class="section-divider">
+        <span>INVERSE COLORS</span>
+    </div>
+
+    <div class="templates-row">
+
+        <!-- INVERSE: ANNOUNCEMENT POST -->
+        <div class="template-container">
+            <div class="template-label">Announcement — Inverse</div>
+            <div class="social-graphic announcement-post">
+                <div class="graphic-inner" style="background: var(--green);">
+                    <div class="logo-area">
+                        <div class="logo-circle" style="border-color: var(--charcoal-dark);"></div>
+                        <div class="logo-text" style="color: var(--charcoal-dark);">TECH<br>FUTURES<br>GROUP</div>
+                    </div>
+
+                    <div class="content-area">
+                        <div class="tag" style="color: var(--charcoal); opacity: 0.6;">ANNOUNCEMENT</div>
+                        <h1 class="headline" style="color: var(--charcoal-dark);">Applications<br>now <span style="color: var(--charcoal-dark); text-decoration: underline; text-decoration-thickness: 4px;">open</span></h1>
+                        <p class="body-text" style="color: var(--charcoal); opacity: 0.8;">Join our Spring 2025 cohort. Get matched with world-class advisors. $0 cost.</p>
+                    </div>
+
+                    <div class="footer-area">
+                        <div class="cta" style="background: var(--charcoal-dark); color: var(--green);">APPLY NOW →</div>
+                        <div class="url" style="color: var(--charcoal);">techfuturesgroup.org</div>
+                    </div>
+                </div>
+            </div>
+            <div class="template-info">1080 × 1080 PNG · LinkedIn Square · Inverse</div>
+        </div>
+
+        <!-- INVERSE: EVENT STORY -->
+        <div class="template-container">
+            <div class="template-label">Event Story — Inverse</div>
+            <div class="social-graphic event-story">
+                <div class="graphic-inner" style="background: var(--green);">
+                    <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 400px; background: var(--charcoal-dark); clip-path: polygon(0 40%, 100% 0, 100% 100%, 0 100%);"></div>
+
+                    <div class="content-wrapper">
+                        <div class="logo-area">
+                            <div class="logo-circle" style="border-color: var(--charcoal-dark);"></div>
+                            <div class="logo-text" style="color: var(--charcoal-dark);">TECH<br>FUTURES<br>GROUP</div>
+                        </div>
+
+                        <div class="event-type" style="color: var(--charcoal); opacity: 0.6;">WORKSHOP</div>
+                        <h1 class="headline" style="color: var(--charcoal-dark);">SBIR Grant<br><span style="color: var(--charcoal-dark); text-decoration: underline; text-decoration-thickness: 4px;">Writing</span></h1>
+                        <p class="body-text" style="color: var(--charcoal); opacity: 0.8;">Master the proposal process. Get non-dilutive funding for your R&D.</p>
+
+                        <div class="date-block" style="background: var(--charcoal-dark); border-left-color: var(--green);">
+                            <div class="date-label" style="color: var(--gray);">DATE & TIME</div>
+                            <div class="date-value" style="color: var(--white);">Jan 18 · 1:00 PM PST</div>
+                        </div>
+
+                        <div class="footer-area">
+                            <div class="cta" style="background: var(--charcoal-dark); color: var(--green);">REGISTER FREE</div>
+                            <div class="swipe-text" style="color: var(--white);">SWIPE UP ↑</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="template-info">1080 × 1920 PNG · Story Format · Inverse</div>
+        </div>
+
+    </div>
+
+    <div class="templates-row">
+
+        <!-- INVERSE: STAT CAROUSEL -->
+        <div class="template-container">
+            <div class="template-label">Stat Carousel — Inverse</div>
+            <div class="social-graphic stat-carousel">
+                <div class="graphic-inner" style="background: var(--green);">
+                    <div style="position: absolute; bottom: -200px; right: -200px; width: 600px; height: 600px; border: 2px solid rgba(0,0,0,0.1); border-radius: 50%;"></div>
+
+                    <div class="content-wrapper">
+                        <div class="logo-area">
+                            <div class="logo-circle" style="border-color: var(--charcoal-dark);"></div>
+                            <div class="logo-text" style="color: var(--charcoal-dark);">TECH<br>FUTURES<br>GROUP</div>
+                        </div>
+
+                        <div class="stat-area">
+                            <div class="stat-label" style="color: var(--charcoal); opacity: 0.6;">TFG IMPACT</div>
+                            <div class="stat-value" style="color: var(--charcoal-dark);">$1B+</div>
+                            <p class="stat-desc" style="color: var(--charcoal);">raised by TFG founders to date</p>
+                        </div>
+
+                        <div class="footer-area">
+                            <div class="slide-indicator">
+                                <div class="dot" style="background: var(--charcoal-dark);"></div>
+                                <div class="dot" style="background: rgba(0,0,0,0.2);"></div>
+                                <div class="dot" style="background: rgba(0,0,0,0.2);"></div>
+                            </div>
+                            <div class="url" style="color: var(--charcoal);">techfuturesgroup.org</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="template-info">1080 × 1080 PNG · Carousel Slide · Inverse</div>
+        </div>
+
+        <!-- INVERSE: STAT CAROUSEL 2 -->
+        <div class="template-container">
+            <div class="template-label">Stat Carousel — Inverse 2</div>
+            <div class="social-graphic stat-carousel">
+                <div class="graphic-inner" style="background: var(--green);">
+                    <div style="position: absolute; bottom: -200px; right: -200px; width: 600px; height: 600px; border: 2px solid rgba(0,0,0,0.1); border-radius: 50%;"></div>
+
+                    <div class="content-wrapper">
+                        <div class="logo-area">
+                            <div class="logo-circle" style="border-color: var(--charcoal-dark);"></div>
+                            <div class="logo-text" style="color: var(--charcoal-dark);">TECH<br>FUTURES<br>GROUP</div>
+                        </div>
+
+                        <div class="stat-area">
+                            <div class="stat-label" style="color: var(--charcoal); opacity: 0.6;">TFG IMPACT</div>
+                            <div class="stat-value" style="color: var(--charcoal-dark);">$70M</div>
+                            <p class="stat-desc" style="color: var(--charcoal);">in grants secured for founders</p>
+                        </div>
+
+                        <div class="footer-area">
+                            <div class="slide-indicator">
+                                <div class="dot" style="background: rgba(0,0,0,0.2);"></div>
+                                <div class="dot" style="background: var(--charcoal-dark);"></div>
+                                <div class="dot" style="background: rgba(0,0,0,0.2);"></div>
+                            </div>
+                            <div class="url" style="color: var(--charcoal);">techfuturesgroup.org</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="template-info">1080 × 1080 PNG · Carousel Slide · Inverse</div>
+        </div>
+
+        <!-- INVERSE: STAT CAROUSEL 3 -->
+        <div class="template-container">
+            <div class="template-label">Stat Carousel — Inverse 3</div>
+            <div class="social-graphic stat-carousel">
+                <div class="graphic-inner" style="background: var(--green);">
+                    <div style="position: absolute; bottom: -200px; right: -200px; width: 600px; height: 600px; border: 2px solid rgba(0,0,0,0.1); border-radius: 50%;"></div>
+
+                    <div class="content-wrapper">
+                        <div class="logo-area">
+                            <div class="logo-circle" style="border-color: var(--charcoal-dark);"></div>
+                            <div class="logo-text" style="color: var(--charcoal-dark);">TECH<br>FUTURES<br>GROUP</div>
+                        </div>
+
+                        <div class="stat-area">
+                            <div class="stat-label" style="color: var(--charcoal); opacity: 0.6;">TFG IMPACT</div>
+                            <div class="stat-value" style="color: var(--charcoal-dark);">10X</div>
+                            <p class="stat-desc" style="color: var(--charcoal);">faster go-to-market for founders</p>
+                        </div>
+
+                        <div class="footer-area">
+                            <div class="slide-indicator">
+                                <div class="dot" style="background: rgba(0,0,0,0.2);"></div>
+                                <div class="dot" style="background: rgba(0,0,0,0.2);"></div>
+                                <div class="dot" style="background: var(--charcoal-dark);"></div>
+                            </div>
+                            <div class="url" style="color: var(--charcoal);">techfuturesgroup.org</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="template-info">1080 × 1080 PNG · Carousel Slide · Inverse</div>
+        </div>
+
+    </div>
+
+    <!-- INVERSE LINKEDIN BANNERS -->
+    <div class="template-container" style="margin-bottom: 60px;">
+        <div class="template-label">LinkedIn Banner — Inverse</div>
+        <div class="social-graphic linkedin-banner">
+            <div class="graphic-inner" style="background: var(--green);">
+                <div style="position: absolute; top: 0; right: 0; width: 500px; height: 100%; background: var(--charcoal-dark); clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);"></div>
+
+                <div class="content-wrapper">
+                    <div class="left-content">
+                        <div class="logo-circle" style="border-color: var(--charcoal-dark);"></div>
+                        <div class="text-content">
+                            <h1 class="headline" style="color: var(--charcoal-dark);">Move Faster. <span style="color: var(--charcoal-dark); text-decoration: underline; text-decoration-thickness: 3px;">Build Bigger.</span></h1>
+                            <p class="subhead" style="color: var(--charcoal); opacity: 0.8;">Venture-grade advising for NorCal tech founders. $0 cost.</p>
+                        </div>
+                    </div>
+
+                    <div class="right-content">
+                        <div class="stat-block">
+                            <div class="stat-value" style="color: var(--green);">$1B+</div>
+                            <div class="stat-label" style="color: var(--gray);">RAISED</div>
+                        </div>
+                        <div class="stat-block">
+                            <div class="stat-value" style="color: var(--green);">$70M</div>
+                            <div class="stat-label" style="color: var(--gray);">GRANTS</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="template-info">1584 × 396 PNG · LinkedIn Banner · Inverse</div>
+    </div>
+
+    <div class="template-container" style="margin-bottom: 60px;">
+        <div class="template-label">LinkedIn Banner — Inverse Alt</div>
+        <div class="social-graphic linkedin-banner">
+            <div class="graphic-inner" style="background: var(--green);">
+                <div style="position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+                <div class="content-wrapper">
+                    <div class="left-content">
+                        <div class="logo-circle" style="border-color: var(--charcoal-dark);"></div>
+                        <div class="text-content">
+                            <h1 class="headline" style="font-size: 48px; color: var(--charcoal-dark);">Tech Futures Group</h1>
+                            <p class="subhead" style="color: var(--charcoal); opacity: 0.8;">Y Combinator meets government funding. For NorCal founders.</p>
+                        </div>
+                    </div>
+
+                    <div class="right-content" style="padding-right: 0;">
+                        <div style="display: flex; gap: 32px;">
+                            <div class="stat-block" style="text-align: center;">
+                                <div class="stat-value" style="color: var(--charcoal-dark); font-size: 40px;">$1B+</div>
+                                <div class="stat-label" style="color: var(--charcoal); opacity: 0.6;">RAISED</div>
+                            </div>
+                            <div class="stat-block" style="text-align: center;">
+                                <div class="stat-value" style="color: var(--charcoal-dark); font-size: 40px;">$70M</div>
+                                <div class="stat-label" style="color: var(--charcoal); opacity: 0.6;">GRANTS</div>
+                            </div>
+                            <div class="stat-block" style="text-align: center;">
+                                <div class="stat-value" style="color: var(--charcoal-dark); font-size: 40px;">$0</div>
+                                <div class="stat-label" style="color: var(--charcoal); opacity: 0.6;">COST</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="template-info">1584 × 396 PNG · LinkedIn Banner · Inverse</div>
+    </div>
+
+</body>
+</html>

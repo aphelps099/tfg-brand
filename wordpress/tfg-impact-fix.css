@@ -1,0 +1,258 @@
+/**
+ * TFG Impact Report - WordPress FIX
+ *
+ * ADD THIS to your Additional CSS to fix invisible text
+ * This uses aggressive !important to override theme styles
+ */
+
+/* Force all text white in dark sections */
+.tfg-impact-report,
+.tfg-impact-report * {
+    color: #ffffff !important;
+}
+
+/* Section labels - green */
+.tfg-impact-report .tfg-section-label {
+    color: #4EFF00 !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.25em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 16px !important;
+    display: block !important;
+}
+
+/* Cover section - dark text on green */
+.tfg-section-cover,
+.tfg-section-cover *,
+.tfg-section-cta,
+.tfg-section-cta * {
+    color: #0d0d0d !important;
+}
+
+.tfg-section-cover .tfg-section-label,
+.tfg-section-cta .tfg-section-label {
+    opacity: 0.6 !important;
+}
+
+/* Titles */
+.tfg-impact-report .tfg-section-title {
+    color: #ffffff !important;
+    font-size: clamp(36px, 7vw, 64px) !important;
+    font-weight: 400 !important;
+    line-height: 1.05 !important;
+    margin: 0 0 24px 0 !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+}
+
+.tfg-section-cover .tfg-section-title,
+.tfg-section-cta .tfg-section-title {
+    color: #0d0d0d !important;
+}
+
+/* Descriptions */
+.tfg-impact-report .tfg-section-desc {
+    color: #999999 !important;
+    font-size: 18px !important;
+    line-height: 1.6 !important;
+    max-width: 500px !important;
+}
+
+.tfg-section-cover .tfg-section-desc,
+.tfg-section-cta .tfg-section-desc {
+    color: #0d0d0d !important;
+    opacity: 0.7 !important;
+}
+
+/* Stat values - green */
+.tfg-impact-report .tfg-stat-value,
+.tfg-impact-report .tfg-geo-value,
+.tfg-impact-report .tfg-winrate-number,
+.tfg-impact-report .tfg-story-stat-value {
+    color: #4EFF00 !important;
+    font-family: Georgia, serif !important;
+}
+
+/* Stat labels - gray */
+.tfg-impact-report .tfg-stat-label,
+.tfg-impact-report .tfg-geo-region,
+.tfg-impact-report .tfg-geo-label,
+.tfg-impact-report .tfg-grant-block-title,
+.tfg-impact-report .tfg-winrate-label,
+.tfg-impact-report .tfg-story-stat-label {
+    color: #666666 !important;
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
+}
+
+/* SBIR amounts - white */
+.tfg-impact-report .tfg-sbir-amount {
+    color: #ffffff !important;
+    font-family: Georgia, serif !important;
+    font-size: clamp(32px, 5vw, 56px) !important;
+}
+
+/* SBIR phase - green */
+.tfg-impact-report .tfg-sbir-phase {
+    color: #4EFF00 !important;
+}
+
+/* SBIR timeline - gray */
+.tfg-impact-report .tfg-sbir-timeline {
+    color: #666666 !important;
+}
+
+/* Compare banner - on green background */
+.tfg-compare-banner,
+.tfg-compare-banner * {
+    color: #0d0d0d !important;
+}
+
+/* Grant labels */
+.tfg-impact-report .tfg-grant-label {
+    color: #ffffff !important;
+}
+
+.tfg-impact-report .tfg-grant-value {
+    color: #4EFF00 !important;
+}
+
+/* Green block overrides */
+.tfg-block-green,
+.tfg-block-green * {
+    color: #0d0d0d !important;
+}
+
+/* Story cards */
+.tfg-story-header,
+.tfg-story-header * {
+    color: #0d0d0d !important;
+}
+
+.tfg-impact-report .tfg-story-quote {
+    color: #999999 !important;
+}
+
+/* Geo breakdown rows */
+.tfg-impact-report .tfg-geo-row span:first-child {
+    color: #999999 !important;
+}
+
+.tfg-impact-report .tfg-geo-row span:last-child {
+    color: #ffffff !important;
+}
+
+/* Advantage items */
+.tfg-impact-report .tfg-advantage-item {
+    color: #666666 !important;
+}
+
+.tfg-impact-report .tfg-advantage-item span {
+    color: #4EFF00 !important;
+}
+
+.tfg-block-green .tfg-advantage-item,
+.tfg-block-green .tfg-advantage-item span {
+    color: #0d0d0d !important;
+}
+
+/* CTA button */
+.tfg-impact-report .tfg-cta-button {
+    color: #0d0d0d !important;
+    border: 2px solid #0d0d0d !important;
+    background: transparent !important;
+    padding: 18px 36px !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+}
+
+.tfg-impact-report .tfg-cta-button:hover {
+    background: #0d0d0d !important;
+    color: #4EFF00 !important;
+}
+
+/* Winrate description */
+.tfg-impact-report .tfg-winrate-desc {
+    color: #999999 !important;
+    font-size: 16px !important;
+}
+
+.tfg-block-green .tfg-winrate-desc {
+    color: #0d0d0d !important;
+    opacity: 0.8 !important;
+}
+
+/* Make sure sections display properly */
+.tfg-impact-report .tfg-section {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    padding: 80px 60px !important;
+}
+
+/* Make sure grids display */
+.tfg-impact-report .tfg-stats-grid,
+.tfg-impact-report .tfg-sbir-banner,
+.tfg-impact-report .tfg-grants-grid,
+.tfg-impact-report .tfg-geo-grid,
+.tfg-impact-report .tfg-stories-grid,
+.tfg-impact-report .tfg-compare-banner {
+    display: grid !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Grid columns */
+.tfg-stats-grid,
+.tfg-geo-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.tfg-sbir-banner,
+.tfg-grants-grid,
+.tfg-stories-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+}
+
+.tfg-compare-banner {
+    grid-template-columns: 1fr auto 1fr !important;
+}
+
+/* Cards visibility */
+.tfg-impact-report .tfg-stat-card,
+.tfg-impact-report .tfg-sbir-card,
+.tfg-impact-report .tfg-grant-block,
+.tfg-impact-report .tfg-geo-card,
+.tfg-impact-report .tfg-story-card,
+.tfg-impact-report .tfg-compare-block {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .tfg-stats-grid,
+    .tfg-geo-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .tfg-sbir-banner,
+    .tfg-grants-grid,
+    .tfg-stories-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .tfg-compare-banner {
+        grid-template-columns: 1fr !important;
+    }
+
+    .tfg-impact-report .tfg-section {
+        padding: 60px 24px !important;
+    }
+}

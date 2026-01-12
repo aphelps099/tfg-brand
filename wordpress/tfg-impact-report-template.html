@@ -1,0 +1,377 @@
+<!--
+    TFG Impact Report 2025 - WordPress Page Template
+
+    USAGE:
+    1. Create a new WordPress page
+    2. Switch to HTML/Code editor (not visual editor)
+    3. Paste this entire content
+    4. Update any dynamic values as needed
+    5. Publish the page
+-->
+
+<!-- SVG Symbols (place at top of content) -->
+<svg style="display: none;">
+    <symbol id="starburst" viewBox="0 0 100 100">
+        <g transform="translate(50,50)" fill="none" stroke="currentColor" stroke-width="1.2">
+            <line x1="0" y1="-46" x2="0" y2="-18"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(15)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(30)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(45)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(60)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(75)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(90)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(105)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(120)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(135)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(150)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(165)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(180)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(195)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(210)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(225)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(240)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(255)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(270)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(285)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(300)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(315)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(330)"/>
+            <line x1="0" y1="-46" x2="0" y2="-18" transform="rotate(345)"/>
+        </g>
+    </symbol>
+    <symbol id="starburst-9" viewBox="0 0 100 100">
+        <g transform="translate(50,50)" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="0" y1="-44" x2="0" y2="-16"/>
+            <line x1="0" y1="-44" x2="0" y2="-16" transform="rotate(40)"/>
+            <line x1="0" y1="-44" x2="0" y2="-16" transform="rotate(80)"/>
+            <line x1="0" y1="-44" x2="0" y2="-16" transform="rotate(120)"/>
+            <line x1="0" y1="-44" x2="0" y2="-16" transform="rotate(160)"/>
+            <line x1="0" y1="-44" x2="0" y2="-16" transform="rotate(200)"/>
+            <line x1="0" y1="-44" x2="0" y2="-16" transform="rotate(240)"/>
+            <line x1="0" y1="-44" x2="0" y2="-16" transform="rotate(280)"/>
+            <line x1="0" y1="-44" x2="0" y2="-16" transform="rotate(320)"/>
+        </g>
+    </symbol>
+</svg>
+
+<!-- Main Container - REQUIRED wrapper -->
+<div class="tfg-impact-report">
+
+    <!-- Progress Bar -->
+    <div class="tfg-progress-bar"></div>
+
+    <!-- Navigation Dots -->
+    <nav class="tfg-nav">
+        <button class="tfg-nav-dot active" data-section="0" data-label="COVER"></button>
+        <button class="tfg-nav-dot" data-section="1" data-label="IMPACT"></button>
+        <button class="tfg-nav-dot" data-section="2" data-label="SBIR"></button>
+        <button class="tfg-nav-dot" data-section="3" data-label="GRANTS"></button>
+        <button class="tfg-nav-dot" data-section="4" data-label="GEOGRAPHY"></button>
+        <button class="tfg-nav-dot" data-section="5" data-label="STORIES"></button>
+        <button class="tfg-nav-dot" data-section="6" data-label="APPLY"></button>
+    </nav>
+
+    <!-- =============================================
+         SECTION 0: COVER
+    ============================================= -->
+    <section class="tfg-section tfg-section-cover in-view" id="section-0">
+        <div class="tfg-cover-bg-text">2025</div>
+        <div class="tfg-pattern-arc" style="width: 500px; height: 500px; bottom: -150px; right: -100px; border-color: #0d0d0d; opacity: 0.1;" data-speed="0.3"></div>
+        <svg class="tfg-parallax-starburst dark" style="width: 180px; height: 180px; top: 15%; right: 12%; opacity: 0.12;" data-speed="0.5" viewBox="0 0 100 100">
+            <use href="#starburst"/>
+        </svg>
+        <div class="tfg-cover-content">
+            <div class="tfg-section-label tfg-snap-content">Impact Report 2025</div>
+            <h1 class="tfg-section-title">
+                <span class="tfg-title-mask"><span class="tfg-title-mask-inner">Real Impact.</span></span>
+                <span class="tfg-title-mask"><span class="tfg-title-mask-inner delay-1">Real Results.</span></span>
+            </h1>
+            <p class="tfg-section-desc tfg-snap-content delay-2">We've helped Northern California founders raise over $1B to date. Here's how.</p>
+        </div>
+        <a href="#section-1" class="tfg-scroll-arrow">
+            <svg viewBox="0 0 24 60" width="24" height="60">
+                <line x1="12" y1="0" x2="12" y2="50" stroke="currentColor" stroke-width="1.5"/>
+                <polygon points="12,60 7,50 17,50" fill="currentColor"/>
+            </svg>
+        </a>
+        <div class="tfg-section-divider"></div>
+    </section>
+
+    <!-- =============================================
+         SECTION 1: HERO STATS
+    ============================================= -->
+    <section class="tfg-section tfg-section-hero" id="section-1">
+        <div class="tfg-pattern-arc" style="width: 400px; height: 400px; top: -120px; right: -80px;" data-speed="0.35"></div>
+
+        <div class="tfg-section-label tfg-snap-content">TFG Creates Real Impact</div>
+        <h2 class="tfg-section-title">
+            <span class="tfg-title-mask"><span class="tfg-title-mask-inner">To Date</span></span>
+        </h2>
+        <p class="tfg-section-desc tfg-snap-content delay-2">We've helped founders raise capital, secure grants, and build companies that matter.</p>
+
+        <div class="tfg-stats-grid">
+            <div class="tfg-stat-card tfg-scale-snap delay-2">
+                <svg class="tfg-stat-accent-star" viewBox="0 0 100 100">
+                    <use href="#starburst-9"/>
+                </svg>
+                <div class="tfg-stat-value"><span class="tfg-counter" data-target="1" data-prefix="$" data-suffix="B+">$0</span></div>
+                <div class="tfg-stat-label">Capital Raised</div>
+            </div>
+            <div class="tfg-stat-card tfg-scale-snap delay-3">
+                <div class="tfg-stat-value"><span class="tfg-counter" data-target="70" data-prefix="$" data-suffix="M+">$0</span></div>
+                <div class="tfg-stat-label">Grants Secured</div>
+            </div>
+            <div class="tfg-stat-card tfg-scale-snap delay-4">
+                <div class="tfg-stat-value"><span class="tfg-counter" data-target="0" data-prefix="$" data-suffix="">$0</span></div>
+                <div class="tfg-stat-label">Cost to Founders</div>
+            </div>
+        </div>
+
+        <div class="tfg-section-divider"></div>
+    </section>
+
+    <!-- =============================================
+         SECTION 2: SBIR
+    ============================================= -->
+    <section class="tfg-section tfg-section-sbir" id="section-2">
+        <div class="tfg-sbir-bg"></div>
+        <svg class="tfg-parallax-starburst" style="width: 100px; height: 100px; top: 12%; right: 10%; opacity: 0.15;" data-speed="0.55" viewBox="0 0 100 100">
+            <use href="#starburst"/>
+        </svg>
+
+        <div class="tfg-section-label tfg-snap-content">SBIR/STTR Grants</div>
+        <h2 class="tfg-section-title">
+            <span class="tfg-title-mask"><span class="tfg-title-mask-inner">TFG Founders</span></span>
+            <span class="tfg-title-mask"><span class="tfg-title-mask-inner delay-1">Outperform</span></span>
+        </h2>
+        <p class="tfg-section-desc tfg-snap-content delay-2">TFG clients significantly outperform peers in winning Small Business Innovation Research grants.</p>
+
+        <div class="tfg-sbir-banner tfg-scale-snap delay-3">
+            <div class="tfg-sbir-card">
+                <div class="tfg-sbir-phase">Phase I</div>
+                <div class="tfg-sbir-amount">$295,924</div>
+                <div class="tfg-sbir-timeline">6 months – 2 years</div>
+            </div>
+            <div class="tfg-sbir-card">
+                <div class="tfg-sbir-phase">Phase II</div>
+                <div class="tfg-sbir-amount">$1.97M</div>
+                <div class="tfg-sbir-timeline">1 – 3 years</div>
+            </div>
+        </div>
+
+        <div class="tfg-compare-banner tfg-scale-snap delay-4">
+            <div class="tfg-compare-block tfg">
+                <div class="tfg-compare-value"><span class="tfg-counter" data-target="57" data-suffix="%">0%</span></div>
+                <div class="tfg-compare-label">TFG Founders</div>
+            </div>
+            <div class="tfg-compare-vs">VS</div>
+            <div class="tfg-compare-block state">
+                <div class="tfg-compare-value"><span class="tfg-counter" data-target="15" data-suffix="%">0%</span></div>
+                <div class="tfg-compare-label">CA State Average</div>
+            </div>
+        </div>
+
+        <div class="tfg-section-divider"></div>
+    </section>
+
+    <!-- =============================================
+         SECTION 3: GRANTS BREAKDOWN
+    ============================================= -->
+    <section class="tfg-section" id="section-3">
+        <div class="tfg-pattern-arc" style="width: 450px; height: 450px; top: -150px; left: -120px;" data-speed="0.3"></div>
+
+        <div class="tfg-section-label tfg-snap-content">Grant Funding</div>
+        <h2 class="tfg-section-title">
+            <span class="tfg-title-mask"><span class="tfg-title-mask-inner">$70M+ Secured</span></span>
+        </h2>
+        <p class="tfg-section-desc tfg-snap-content delay-2">Non-dilutive capital that doesn't cost equity.</p>
+
+        <div class="tfg-grants-grid">
+            <div class="tfg-grant-block block-dark tfg-scale-snap delay-3">
+                <div class="tfg-grant-block-title">By Agency</div>
+
+                <div class="tfg-grant-row">
+                    <div class="tfg-grant-label">NIH</div>
+                    <div class="tfg-grant-bar"><div class="tfg-grant-bar-fill" data-width="40"></div></div>
+                    <div class="tfg-grant-value">$28M</div>
+                </div>
+                <div class="tfg-grant-row">
+                    <div class="tfg-grant-label">NSF</div>
+                    <div class="tfg-grant-bar"><div class="tfg-grant-bar-fill" data-width="30"></div></div>
+                    <div class="tfg-grant-value">$21M</div>
+                </div>
+                <div class="tfg-grant-row">
+                    <div class="tfg-grant-label">DOE</div>
+                    <div class="tfg-grant-bar"><div class="tfg-grant-bar-fill" data-width="20"></div></div>
+                    <div class="tfg-grant-value">$14M</div>
+                </div>
+                <div class="tfg-grant-row">
+                    <div class="tfg-grant-label">DOD</div>
+                    <div class="tfg-grant-bar"><div class="tfg-grant-bar-fill" data-width="10"></div></div>
+                    <div class="tfg-grant-value">$7M</div>
+                </div>
+            </div>
+
+            <div class="tfg-grant-block block-green tfg-scale-snap delay-4">
+                <div class="tfg-grant-block-title">TFG Advantage</div>
+                <div class="tfg-winrate-display">
+                    <div class="tfg-winrate-number"><span class="tfg-counter" data-target="57" data-suffix="%">0%</span></div>
+                    <div class="tfg-winrate-context">
+                        <div class="tfg-winrate-label">Win Rate</div>
+                        <div class="tfg-winrate-desc">Only 15% of Phase I California applications receive funds. TFG founders win at nearly 4× the state average.</div>
+                    </div>
+                </div>
+                <div class="tfg-winrate-advantage">
+                    <div class="tfg-advantage-item"><span>3.8×</span> better odds</div>
+                    <div class="tfg-advantage-item"><span>$70M+</span> secured</div>
+                    <div class="tfg-advantage-item"><span>0%</span> equity cost</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tfg-section-divider"></div>
+    </section>
+
+    <!-- =============================================
+         SECTION 4: GEOGRAPHY
+    ============================================= -->
+    <section class="tfg-section" id="section-4">
+        <div class="tfg-pattern-arc" style="width: 380px; height: 380px; bottom: -100px; right: -100px;" data-speed="0.35"></div>
+        <svg class="tfg-parallax-starburst" style="width: 90px; height: 90px; top: 18%; left: 6%; opacity: 0.15;" data-speed="0.5" viewBox="0 0 100 100">
+            <use href="#starburst"/>
+        </svg>
+
+        <div class="tfg-section-label tfg-snap-content">Northern California</div>
+        <h2 class="tfg-section-title">
+            <span class="tfg-title-mask"><span class="tfg-title-mask-inner">Across the Region</span></span>
+        </h2>
+        <p class="tfg-section-desc tfg-snap-content delay-2">We serve tech founders throughout the NorCal SBDC network coverage area.</p>
+
+        <div class="tfg-geo-grid">
+            <div class="tfg-geo-card tfg-scale-snap delay-2">
+                <div class="tfg-geo-region">Bay Area</div>
+                <div class="tfg-geo-value"><span class="tfg-counter" data-target="187">0</span></div>
+                <div class="tfg-geo-label">Founders Advised</div>
+                <div class="tfg-geo-breakdown">
+                    <div class="tfg-geo-row"><span>San Francisco</span><span>72</span></div>
+                    <div class="tfg-geo-row"><span>South Bay</span><span>58</span></div>
+                    <div class="tfg-geo-row"><span>East Bay</span><span>41</span></div>
+                    <div class="tfg-geo-row"><span>Peninsula</span><span>16</span></div>
+                </div>
+            </div>
+
+            <div class="tfg-geo-card tfg-scale-snap delay-3">
+                <div class="tfg-geo-region">Sacramento Region</div>
+                <div class="tfg-geo-value"><span class="tfg-counter" data-target="68">0</span></div>
+                <div class="tfg-geo-label">Founders Advised</div>
+                <div class="tfg-geo-breakdown">
+                    <div class="tfg-geo-row"><span>Sacramento</span><span>42</span></div>
+                    <div class="tfg-geo-row"><span>Davis</span><span>14</span></div>
+                    <div class="tfg-geo-row"><span>Roseville / Folsom</span><span>12</span></div>
+                </div>
+            </div>
+
+            <div class="tfg-geo-card tfg-scale-snap delay-4">
+                <div class="tfg-geo-region">North State</div>
+                <div class="tfg-geo-value"><span class="tfg-counter" data-target="57">0</span></div>
+                <div class="tfg-geo-label">Founders Advised</div>
+                <div class="tfg-geo-breakdown">
+                    <div class="tfg-geo-row"><span>Chico</span><span>23</span></div>
+                    <div class="tfg-geo-row"><span>Redding</span><span>18</span></div>
+                    <div class="tfg-geo-row"><span>Other</span><span>16</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tfg-section-divider"></div>
+    </section>
+
+    <!-- =============================================
+         SECTION 5: FOUNDER STORIES
+    ============================================= -->
+    <section class="tfg-section tfg-section-stories" id="section-5">
+        <div class="tfg-pattern-grid"></div>
+        <div class="tfg-pattern-arc" style="width: 320px; height: 320px; top: -80px; right: -60px;" data-speed="0.4"></div>
+
+        <div class="tfg-section-label tfg-snap-content">Founder Spotlight</div>
+        <h2 class="tfg-section-title">
+            <span class="tfg-title-mask"><span class="tfg-title-mask-inner">Real Stories</span></span>
+        </h2>
+        <p class="tfg-section-desc tfg-snap-content delay-2">Behind the numbers are founders building the future.</p>
+
+        <div class="tfg-stories-grid">
+            <div class="tfg-story-card tfg-scale-snap delay-2">
+                <div class="tfg-story-header">
+                    <div class="tfg-story-avatar">SC</div>
+                    <div>
+                        <div class="tfg-story-name">Dr. Sarah Chen</div>
+                        <div class="tfg-story-company">CARBONGRID · CLIMATE TECH</div>
+                    </div>
+                </div>
+                <div class="tfg-story-body">
+                    <div class="tfg-story-stats">
+                        <div>
+                            <div class="tfg-story-stat-value">$3.2M</div>
+                            <div class="tfg-story-stat-label">Seed Raised</div>
+                        </div>
+                        <div>
+                            <div class="tfg-story-stat-value">12 wks</div>
+                            <div class="tfg-story-stat-label">Time to Close</div>
+                        </div>
+                    </div>
+                    <div class="tfg-story-quote">"TFG helped us reframe from 'cool technology' to '$4B compliance problem.' That shift was everything."</div>
+                </div>
+            </div>
+
+            <div class="tfg-story-card tfg-scale-snap delay-3">
+                <div class="tfg-story-header">
+                    <div class="tfg-story-avatar">MK</div>
+                    <div>
+                        <div class="tfg-story-name">Marcus Kim</div>
+                        <div class="tfg-story-company">NEURALPATH · BIOTECH</div>
+                    </div>
+                </div>
+                <div class="tfg-story-body">
+                    <div class="tfg-story-stats">
+                        <div>
+                            <div class="tfg-story-stat-value">$1.97M</div>
+                            <div class="tfg-story-stat-label">SBIR Phase II</div>
+                        </div>
+                        <div>
+                            <div class="tfg-story-stat-value">0%</div>
+                            <div class="tfg-story-stat-label">Equity Given</div>
+                        </div>
+                    </div>
+                    <div class="tfg-story-quote">"David walked us through every section of the NIH application. Funded on the first submission."</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tfg-section-divider"></div>
+    </section>
+
+    <!-- =============================================
+         SECTION 6: CTA
+    ============================================= -->
+    <section class="tfg-section tfg-section-cta" id="section-6">
+        <div class="tfg-pattern-arc" style="width: 500px; height: 500px; top: -180px; left: -150px; border-color: #0d0d0d; opacity: 0.08;" data-speed="0.3"></div>
+        <svg class="tfg-parallax-starburst dark" style="width: 140px; height: 140px; bottom: 15%; right: 10%; opacity: 0.1;" data-speed="0.45" viewBox="0 0 100 100">
+            <use href="#starburst"/>
+        </svg>
+
+        <div class="tfg-cta-content">
+            <h2 class="tfg-section-title">
+                <span class="tfg-title-mask"><span class="tfg-title-mask-inner">A tech startup's</span></span>
+                <span class="tfg-title-mask"><span class="tfg-title-mask-inner delay-1">dream come true.</span></span>
+            </h2>
+            <p class="tfg-section-desc tfg-snap-content delay-1">No-cost & no-equity advising for select tech companies in Northern California.</p>
+            <a href="https://techfuturesgroup.org/apply" class="tfg-cta-button tfg-snap-content delay-2">
+                Apply Now
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+</div><!-- End .tfg-impact-report -->

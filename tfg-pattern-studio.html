@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>TFG Pattern Studio | Tech Futures Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Custom Font Faces */
+@font-face {
+    font-family: 'GT America Extended';
+    src: url('./4618gt.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GT America Extended';
+    src: url('./2809gt-bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tobias';
+    src: url('./Tobias-Thin.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tobias';
+    src: url('./Tobias-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+  --green: #4EFD05;
+  --electric-green: #4EFF00;
+  --dark: #272727;
+  --charcoal: #272727;
+  --near-black: #0a0a0a;
+  --cream: #F7F6F1;
+  --cool: #63AD45;
+  --fog: #D6D5D3;
+  --white: #ffffff;
+  --tfg-serif: 'Tobias', Georgia, serif;
+  --tfg-sans: 'GT America Extended', 'Helvetica Neue', sans-serif;
+  --tfg-mono: 'Roboto Mono', monospace;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--near-black);
+  font-family: var(--tfg-sans);
+  overflow: hidden;
+}
+
+#tfg-studio {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  isolation: isolate;
+}
+
+#canvas {
+  display: block;
+  background: var(--dark);
+  box-shadow: 0 0 50px rgba(78, 255, 0, 0.1);
+}
+
+/* Navigation */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(10, 10, 10, 0.98);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(78, 255, 0, 0.1);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.nav-logo-text {
+  font-family: var(--tfg-sans);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: 0.02em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-link {
+  font-family: var(--tfg-sans);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  letter-spacing: 0.02em;
+}
+
+.nav-link:hover {
+  color: var(--electric-green);
+}
+
+.nav-link.active {
+  color: var(--electric-green);
+}
+
+.nav-cta {
+  font-family: var(--tfg-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--near-black);
+  background: var(--electric-green);
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(78, 255, 0, 0.3);
+}
+
+/* Controls Panel */
+#controls {
+  position: absolute;
+  top: 80px;
+  left: 20px;
+  background: rgba(10, 10, 10, 0.95);
+  border: 1px solid rgba(78, 255, 0, 0.15);
+  padding: 18px;
+  border-radius: 6px;
+  color: #eaeaea;
+  width: 440px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  backdrop-filter: blur(10px);
+}
+
+#controls::-webkit-scrollbar {
+  width: 6px;
+}
+
+#controls::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+#controls::-webkit-scrollbar-thumb {
+  background: rgba(78, 255, 0, 0.3);
+  border-radius: 3px;
+}
+
+#controls h3 {
+  color: var(--green);
+  margin: 0 0 14px;
+  font-family: var(--tfg-sans);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.control-group {
+  margin: 0 0 14px;
+}
+
+label {
+  display: block;
+  font-family: var(--tfg-mono);
+  font-size: 10px;
+  color: #9a9a9a;
+  margin: 0 0 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+select, input[type="range"], input[type="text"], input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  background: #151515;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #eee;
+  border-radius: 3px;
+  font-family: var(--tfg-sans);
+  font-size: 13px;
+}
+
+select:focus, input[type="text"]:focus {
+  border-color: var(--green);
+  outline: none;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  outline: none;
+  border: none;
+  padding: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: var(--green);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.range-value {
+  font-family: var(--tfg-mono);
+  font-size: 10px;
+  color: #777;
+  text-align: right;
+  margin-top: 4px;
+}
+
+.color-swatches {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.color-swatch {
+  position: relative;
+  cursor: pointer;
+}
+
+.color-swatch input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.color-swatch .swatch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  border-radius: 4px;
+  font-family: var(--tfg-sans);
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.color-swatch .swatch-label {
+  display: block;
+  font-family: var(--tfg-mono);
+  font-size: 9px;
+  text-align: center;
+  margin-top: 4px;
+  color: #999;
+  letter-spacing: 0.05em;
+}
+
+.color-swatch input[type="radio"]:checked + .swatch {
+  box-shadow: 0 0 0 3px rgba(78, 255, 0, 0.45);
+}
+
+.color-swatch:hover .swatch {
+  transform: scale(1.03);
+}
+
+.aspect-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.aspect-buttons button {
+  padding: 8px;
+  font-size: 10px;
+}
+
+.position-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.position-grid button {
+  padding: 6px;
+  font-size: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #eee;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.position-grid button:hover {
+  background: rgba(78, 255, 0, 0.2);
+}
+
+.position-grid button.active {
+  background: var(--green);
+  color: #111;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+button {
+  flex: 1;
+  padding: 10px;
+  background: var(--green);
+  color: #0d0d0d;
+  border: none;
+  border-radius: 3px;
+  font-family: var(--tfg-sans);
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 12px;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+
+button:hover {
+  filter: brightness(0.9);
+}
+
+button.secondary {
+  background: transparent;
+  color: var(--green);
+  border: 1px solid var(--green);
+}
+
+button.secondary:hover {
+  background: var(--green);
+  color: #111;
+}
+
+.small {
+  font-family: var(--tfg-mono);
+  font-size: 10px;
+  color: #8a8a8a;
+  margin-top: 6px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.row > * {
+  flex: 1;
+}
+
+/* Joystick + compact zoom */
+#joy-wrap {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#joystick {
+  width: 130px;
+  height: 130px;
+  background: #151515;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  position: relative;
+  touch-action: none;
+}
+
+#joy-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--green);
+  position: absolute;
+  left: calc(50% - 8px);
+  top: calc(50% - 8px);
+  box-shadow: 0 0 0 2px rgba(78, 255, 0, 0.3);
+}
+
+#zoomControls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 170px;
+}
+
+.z-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.ghost {
+  opacity: 0.65;
+}
+
+.mini {
+  padding: 6px 8px;
+  font-size: 11px;
+  border-radius: 4px;
+}
+
+.badge {
+  min-width: 56px;
+  text-align: center;
+  background: #151515;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ddd;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-family: var(--tfg-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+}
+
+/* Simplified overlays */
+.inline-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.inline-check input {
+  width: auto;
+}
+
+.inline-check span {
+  font-family: var(--tfg-sans);
+  font-size: 13px;
+}
+
+.help {
+  font-family: var(--tfg-mono);
+  font-size: 10px;
+  color: #9a9a9a;
+}
+
+/* WP spacing guard */
+#tfg-studio #controls,
+#tfg-studio #controls *,
+#tfg-studio #controls *::before,
+#tfg-studio #controls *::after {
+  box-sizing: border-box;
+}
+
+#tfg-studio #controls .control-group {
+  margin: 0 0 14px !important;
+}
+
+#tfg-studio #controls label {
+  margin: 0 0 6px !important;
+  line-height: 1.2 !important;
+}
+
+/* Right-click toast */
+#rc-toast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 16px;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  border: 1px solid rgba(78, 255, 0, 0.2);
+  border-radius: 4px;
+  font-family: var(--tfg-mono);
+  font-size: 11px;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+#rc-toast.show {
+  opacity: 1;
+}
+
+/* Mobile responsive */
+@media (max-width: 900px) {
+  .nav {
+    padding: 16px 24px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  #controls {
+    width: calc(100% - 40px);
+    left: 20px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav {
+    padding: 14px 16px;
+  }
+
+  #controls {
+    width: calc(100% - 32px);
+    left: 16px;
+    right: 16px;
+    padding: 14px;
+  }
+
+  #joy-wrap {
+    flex-direction: column;
+  }
+
+  #joystick {
+    width: 100%;
+    height: 100px;
+  }
+
+  #zoomControls {
+    width: 100%;
+    min-width: auto;
+  }
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+    <a href="index.html" class="nav-logo">
+        <span class="nav-logo-text">Tech Futures Group</span>
+    </a>
+    <div class="nav-links">
+        <a href="index.html" class="nav-link">Brand House</a>
+        <a href="index.html#assets" class="nav-link">Brand Assets</a>
+        <a href="tfg-pattern-studio.html" class="nav-link active">Pattern Studio</a>
+        <a href="https://techfuturesgroup.org" class="nav-cta" target="_blank">Main Site</a>
+    </div>
+</nav>
+
+<div id="tfg-studio">
+  <canvas id="canvas"></canvas>
+  <div id="controls">
+    <h3>TFG Pattern Studio</h3>
+    <div class="control-group">
+      <label>Pattern</label>
+      <select id="pattern">
+        <option value="orbit-spokes">Orbit Spokes</option>
+        <option value="radial-minimal">Radial Minimal</option>
+        <option value="radial-burst">Radial Burst</option>
+        <option value="grid-matrix">Grid Matrix</option>
+        <option value="scale-grid">Scale Grid</option>
+        <option value="tfg-ring">TFG Ring</option>
+        <option value="spirograph">Spirograph Rings</option>
+        <option value="spirograph-dense">Spirograph Dense</option>
+        <option value="spirograph-triangle">Spirograph Triangle</option>
+        <option value="escher-impossible">Escher Impossible</option>
+        <option value="escher-interlock">Escher Interlock</option>
+        <option value="dot-grid">Dot Grid</option>
+        <option value="dot-wave">Dot Wave</option>
+        <option value="growth-bars">Growth Bars</option>
+        <option value="venture-grid">Venture Grid</option>
+        <option value="funding-rounds">Funding Rounds</option>
+        <option value="wave-field">Wave Field</option>
+        <option value="static-noise">Static Noise</option>
+        <option value="text-grid">Text Grid</option>
+        <option value="text-cascade">Text Cascade</option>
+        <option value="text-diagonal">Text Diagonal</option>
+      </select>
+      <div class="small">Removed: Fan Halftone, Pitch Deck, Escher Tessellation.</div>
+    </div>
+
+    <div class="control-group">
+      <label>Color Scheme</label>
+      <div class="color-swatches">
+        <label class="color-swatch">
+          <input type="radio" name="scheme" value="greenOnDark" checked />
+          <div class="swatch" style="background:#272727;border:2px solid #4EFD05;"><span style="color:#4EFD05;">AA</span></div>
+          <span class="swatch-label">#4EFD05 on #272727</span>
+        </label>
+        <label class="color-swatch">
+          <input type="radio" name="scheme" value="darkOnGreen" />
+          <div class="swatch" style="background:#4EFD05;border:2px solid #272727;"><span style="color:#272727;">AA</span></div>
+          <span class="swatch-label">#272727 on #4EFD05</span>
+        </label>
+        <label class="color-swatch">
+          <input type="radio" name="scheme" value="coolGreen" />
+          <div class="swatch" style="background:#D6D5D3;border:2px solid #63AD45;"><span style="color:#63AD45;">AA</span></div>
+          <span class="swatch-label">#63AD45 on #D6D5D3</span>
+        </label>
+        <label class="color-swatch">
+          <input type="radio" name="scheme" value="coolGreenInverse" />
+          <div class="swatch" style="background:#63AD45;border:2px solid #D6D5D3;"><span style="color:#D6D5D3;">AA</span></div>
+          <span class="swatch-label">#D6D5D3 on #63AD45</span>
+        </label>
+        <label class="color-swatch">
+          <input type="radio" name="scheme" value="creamOnDark" />
+          <div class="swatch" style="background:#272727;border:2px solid #F7F6F1;"><span style="color:#F7F6F1;">AA</span></div>
+          <span class="swatch-label">#F7F6F1 on #272727</span>
+        </label>
+        <label class="color-swatch">
+          <input type="radio" name="scheme" value="darkOnCream" />
+          <div class="swatch" style="background:#F7F6F1;border:2px solid #272727;"><span style="color:#272727;">AA</span></div>
+          <span class="swatch-label">#272727 on #F7F6F1</span>
+        </label>
+      </div>
+      <div class="row" style="margin-top:8px;">
+        <label style="flex:1;">Boost Strength</label>
+        <select id="boostStrength">
+          <option value="off" selected>Off</option>
+          <option value="normal">Normal (outline)</option>
+          <option value="mega">Mega (20px)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Density / Scale / Animation</label>
+      <input type="range" id="density" min="10" max="100" value="38" />
+      <div class="range-value"><span id="densityValue">38</span></div>
+      <label style="margin-top:8px;">Scale</label>
+      <input type="range" id="scale" min="0.5" max="3" step="0.1" value="1.0" />
+      <div class="range-value"><span id="scaleValue">1.0</span>x</div>
+      <label style="margin-top:8px;">Animation Speed</label>
+      <input type="range" id="animSpeed" min="0" max="10" value="0" />
+      <div class="range-value"><span id="animSpeedValue">0</span></div>
+    </div>
+
+    <div class="control-group">
+      <label>Crop / Zoom</label>
+      <div id="joy-wrap">
+        <div id="joystick"><div id="joy-dot"></div></div>
+        <div id="zoomControls">
+          <div class="z-row">
+            <button class="mini secondary" id="zoomMinus">−</button>
+            <div class="badge" id="zoomLabel">1.0×</div>
+            <button class="mini secondary" id="zoomPlus">+</button>
+            <button class="mini" id="zoomReset" title="Reset Zoom">⟲</button>
+          </div>
+          <div class="help">Use joystick to anchor the crop. Zoom is relative to the anchor.</div>
+        </div>
+      </div>
+      <input type="range" id="zoom" min="1" max="4" step="0.1" value="1" style="display:none" />
+    </div>
+
+    <div class="control-group">
+      <label>Overlays</label>
+      <div class="inline-check">
+        <input type="checkbox" id="addNoise" checked />
+        <span>Add static</span>
+      </div>
+      <label style="margin-top:4px;">Static Opacity</label>
+      <input type="range" id="noiseOpacity" min="0" max="0.6" step="0.02" value="0.18" />
+      <div class="range-value"><span id="noiseOpacityValue">0.18</span></div>
+
+      <div class="inline-check" style="margin-top:10px;">
+        <input type="checkbox" id="addFloatie" />
+        <span>Add star floatie</span>
+      </div>
+      <div class="row">
+        <select id="floatieStyle">
+          <option value="full">Full</option>
+          <option value="clean" selected>Clean</option>
+        </select>
+        <select id="floatieColor">
+          <option value="auto" selected>Auto contrast</option>
+          <option value="fullcolor">Full color</option>
+          <option value="cream">Cream</option>
+          <option value="charcoal">Charcoal</option>
+          <option value="green">Green</option>
+        </select>
+      </div>
+      <div class="row">
+        <input type="number" id="floatieSize" value="185" min="50" max="2000" step="5" />
+        <div style="flex:2;">
+          <div class="position-grid" id="bgPosGrid">
+            <button onclick="setBgPos('tl', this)">↖</button>
+            <button onclick="setBgPos('tc', this)">↑</button>
+            <button onclick="setBgPos('tr', this)">↗</button>
+            <button onclick="setBgPos('cl', this)">←</button>
+            <button onclick="setBgPos('cc', this)" class="active">●</button>
+            <button onclick="setBgPos('cr', this)">→</button>
+            <button onclick="setBgPos('bl', this)">↙</button>
+            <button onclick="setBgPos('bc', this)">↓</button>
+            <button onclick="setBgPos('br', this)">↘</button>
+          </div>
+        </div>
+      </div>
+      <label style="margin-top:6px;">Floatie Opacity</label>
+      <input type="range" id="floatieOpacity" min="0" max="1" step="0.05" value="0.35" />
+      <div class="range-value"><span id="floatieOpacityValue">0.35</span></div>
+    </div>
+
+    <details class="control-group">
+      <summary class="inline-check"><span class="ghost">More settings [+]</span></summary>
+      <label style="margin-top:8px;">Gradient Overlay (#2A3D40 → #3A343A)</label>
+      <input type="range" id="gradOpacity" min="0" max="1" step="0.05" value="0.35" />
+    </details>
+
+    <div class="control-group">
+      <label>Text Overlay</label>
+      <input type="text" id="textOverlay" placeholder="Enter text..." />
+      <div class="row">
+        <select id="textStyle">
+          <option value="h1">Heading 1 (Tobias)</option>
+          <option value="h2" selected>Heading 2 (GT America)</option>
+        </select>
+        <select id="fontType">
+          <option value="tobias">Tobias</option>
+          <option value="gt" selected>GT America</option>
+        </select>
+      </div>
+      <label style="margin-top:8px;">Position</label>
+      <div class="position-grid">
+        <button onclick="setTextPos('tl', this)">↖</button>
+        <button onclick="setTextPos('tc', this)">↑</button>
+        <button onclick="setTextPos('tr', this)">↗</button>
+        <button onclick="setTextPos('cl', this)">←</button>
+        <button onclick="setTextPos('cc', this)" class="active">●</button>
+        <button onclick="setTextPos('cr', this)">→</button>
+        <button onclick="setTextPos('bl', this)">↙</button>
+        <button onclick="setTextPos('bc', this)">↓</button>
+        <button onclick="setTextPos('br', this)">↘</button>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Canvas Size</label>
+      <div class="aspect-buttons">
+        <button onclick="setAspect('1:1')">1:1</button>
+        <button onclick="setAspect('16:9')">16:9</button>
+        <button onclick="setAspect('3:1')">3:1</button>
+        <button onclick="setAspect('1:2')">1:2</button>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <select id="exportScale">
+        <option value="1">Export: 1x</option>
+        <option value="2">Export: 2x</option>
+        <option value="3" selected>Export: 3x</option>
+        <option value="4">Export: 4x</option>
+      </select>
+      <button onclick="generatePattern()">Generate</button>
+      <button onclick="exportPNG()">Export PNG</button>
+    </div>
+    <div class="button-group">
+      <button class="secondary" onclick="randomize()">Randomize</button>
+      <button class="secondary" onclick="toggleAnimation()">Animate</button>
+    </div>
+    <div class="small">Shortcuts: <b>R</b>=Randomize, <b>E</b>=Export. Right-click shows copyright.</div>
+  </div>
+  <div id="rc-toast">© Tech Futures Group — questions? marketing@norcalsbdc.org</div>
+</div>
+
+<script>
+let CANVAS = document.getElementById('canvas');
+let CTX = CANVAS.getContext('2d');
+CTX.imageSmoothingEnabled = false;
+
+let animationId = null, time = 0;
+let textPosition = 'cc', cropAnchor = [0.5, 0.5], bgPos = 'cc';
+let boostStrength = 'off';
+
+// Right-click soft guard
+document.addEventListener('contextmenu', e => { e.preventDefault(); toast(); });
+document.addEventListener('keydown', e => {
+  const tag = (document.activeElement && document.activeElement.tagName) || '';
+  const typing = /INPUT|TEXTAREA|SELECT/.test(tag);
+  if ((e.ctrlKey || e.metaKey) && (e.key.toLowerCase() === 'u' || (e.shiftKey && e.key.toLowerCase() === 'i'))) {
+    e.preventDefault();
+    toast();
+  }
+  if (typing) return;
+  if (e.key === 'r' || e.key === 'R') randomize();
+  if (e.key === 'e' || e.key === 'E') exportPNG();
+});
+
+function toast() {
+  const t = document.getElementById('rc-toast');
+  t.classList.add('show');
+  clearTimeout(t._t);
+  t._t = setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// Colors
+function getScheme() {
+  const key = document.querySelector('input[name="scheme"]:checked').value;
+  const map = {
+    greenOnDark: { bg: '#272727', fg: '#4EFD05', accent: '#63AD45' },
+    darkOnGreen: { bg: '#4EFD05', fg: '#272727', accent: '#272727' },
+    coolGreen: { bg: '#D6D5D3', fg: '#63AD45', accent: '#272727' },
+    coolGreenInverse: { bg: '#63AD45', fg: '#D6D5D3', accent: '#272727' },
+    creamOnDark: { bg: '#272727', fg: '#F7F6F1', accent: '#4EFD05' },
+    darkOnCream: { bg: '#F7F6F1', fg: '#272727', accent: '#63AD45' }
+  };
+  return { ...map[key] };
+}
+
+function isLight(hex) {
+  const c = hex.replace('#', '');
+  const r = parseInt(c.substr(0, 2), 16), g = parseInt(c.substr(2, 2), 16), b = parseInt(c.substr(4, 2), 16);
+  return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255 > 0.6;
+}
+
+// Aspect
+function setAspect(r) {
+  const base = 1200;
+  if (r === '1:1') { CANVAS.width = base; CANVAS.height = base; }
+  else if (r === '16:9') { CANVAS.width = 1200; CANVAS.height = 675; }
+  else if (r === '3:1') { CANVAS.width = base; CANVAS.height = base / 3; }
+  else if (r === '1:2') { CANVAS.width = base / 2; CANVAS.height = base; }
+  CTX = CANVAS.getContext('2d');
+  CTX.imageSmoothingEnabled = false;
+  generatePattern();
+}
+
+// Crop / zoom
+(function() {
+  const box = document.getElementById('joystick');
+  const dot = document.getElementById('joy-dot');
+  function setFromEvent(evt) {
+    const r = box.getBoundingClientRect();
+    const x = Math.min(Math.max((evt.clientX || evt.touches[0].clientX) - r.left, 0), r.width);
+    const y = Math.min(Math.max((evt.clientY || evt.touches[0].clientY) - r.top, 0), r.height);
+    cropAnchor = [x / r.width, y / r.height];
+    dot.style.left = `calc(${cropAnchor[0] * 100}% - 8px)`;
+    dot.style.top = `calc(${cropAnchor[1] * 100}% - 8px)`;
+    generatePattern();
+  }
+  let dragging = false;
+  ['mousedown', 'touchstart'].forEach(ev => box.addEventListener(ev, e => { dragging = true; setFromEvent(e); }));
+  ['mousemove', 'touchmove'].forEach(ev => window.addEventListener(ev, e => { if (dragging) setFromEvent(e); }, { passive: false }));
+  ['mouseup', 'mouseleave', 'touchend', 'touchcancel'].forEach(ev => window.addEventListener(ev, () => dragging = false));
+})();
+
+document.getElementById('zoomMinus').addEventListener('click', () => { changeZoom(-0.1) });
+document.getElementById('zoomPlus').addEventListener('click', () => { changeZoom(0.1) });
+document.getElementById('zoomReset').addEventListener('click', resetZoom);
+
+function changeZoom(delta) {
+  const z = document.getElementById('zoom');
+  let v = parseFloat(z.value);
+  v = Math.min(4, Math.max(1, +(v + delta).toFixed(1)));
+  z.value = v;
+  document.getElementById('zoomLabel').textContent = v.toFixed(1) + '×';
+  generatePattern();
+}
+
+function resetZoom() {
+  const z = document.getElementById('zoom');
+  z.value = '1';
+  document.getElementById('zoomLabel').textContent = '1.0×';
+  generatePattern();
+}
+
+document.getElementById('zoom').addEventListener('input', e => {
+  document.getElementById('zoomLabel').textContent = parseFloat(e.target.value).toFixed(1) + '×';
+  generatePattern();
+});
+
+function applyCropTransform() {
+  const z = parseFloat(document.getElementById('zoom').value);
+  const vw = CANVAS.width / z, vh = CANVAS.height / z;
+  const tx = -(CANVAS.width - vw) * cropAnchor[0];
+  const ty = -(CANVAS.height - vh) * cropAnchor[1];
+  CTX.setTransform(z, 0, 0, z, tx, ty);
+}
+
+// Floatie: vector with style + color
+let floatiePos = 'cc';
+function setBgPos(p, el) {
+  floatiePos = p;
+  document.querySelectorAll('#bgPosGrid button').forEach(b => b.classList.remove('active'));
+  if (el) el.classList.add('active');
+  generatePattern();
+}
+
+function resolveFloatieColor(mode, scheme) {
+  if (mode === 'fullcolor') return null;
+  if (mode === 'cream') return '#F7F6F1';
+  if (mode === 'charcoal') return '#272727';
+  if (mode === 'green') return '#4EFD05';
+  // auto
+  return isLight(scheme.bg) ? '#272727' : '#F7F6F1';
+}
+
+function drawFloatieVector(style, colorMode, sizePx, pos, opacity) {
+  const scheme = getScheme();
+  const w = sizePx, h = sizePx;
+  const pad = 20;
+  const grid = {
+    tl: [pad, pad], tc: [(CANVAS.width - w) / 2, pad], tr: [CANVAS.width - w - pad, pad],
+    cl: [pad, (CANVAS.height - h) / 2], cc: [(CANVAS.width - w) / 2, (CANVAS.height - h) / 2], cr: [CANVAS.width - w - pad, (CANVAS.height - h) / 2],
+    bl: [pad, CANVAS.height - h - pad], bc: [(CANVAS.width - w) / 2, CANVAS.height - h - pad], br: [CANVAS.width - w - pad, CANVAS.height - h - pad]
+  };
+  const [x0, y0] = grid[pos] || grid.cc;
+  const cx = x0 + w / 2, cy = y0 + h / 2;
+
+  CTX.save();
+  CTX.globalAlpha = opacity;
+  const tint = resolveFloatieColor(colorMode, scheme);
+
+  const ring1 = tint || '#4EFD05';
+  const ring2 = tint || '#D6D5D3';
+  const neutral = tint || (isLight(scheme.bg) ? '#222' : '#F7F6F1');
+
+  if (style === 'clean') {
+    CTX.lineCap = 'butt';
+    CTX.strokeStyle = neutral; CTX.lineWidth = 2; CTX.globalAlpha = 0.18;
+    CTX.beginPath(); CTX.arc(cx, cy, w * 0.42, 0, Math.PI * 2); CTX.stroke();
+    CTX.strokeStyle = ring1; CTX.globalAlpha = 0.28;
+    CTX.beginPath(); CTX.arc(cx, cy, w * 0.35, 0, Math.PI * 2); CTX.stroke();
+
+    const rays = 28, outer = w * 0.46, inner = w * 0.05;
+    CTX.strokeStyle = tint || '#4EFD05'; CTX.globalAlpha = 0.55; CTX.lineWidth = 2;
+    for (let i = 0; i < rays; i++) {
+      const a = i / rays * Math.PI * 2;
+      CTX.beginPath();
+      CTX.moveTo(cx + Math.cos(a) * inner, cy + Math.sin(a) * inner);
+      CTX.lineTo(cx + Math.cos(a) * outer, cy + Math.sin(a) * outer);
+      CTX.stroke();
+    }
+  } else {
+    CTX.lineCap = 'round';
+    const ring = (r, a, clr) => { CTX.globalAlpha = a; CTX.strokeStyle = clr; CTX.lineWidth = 2; CTX.beginPath(); CTX.arc(cx, cy, r, 0, Math.PI * 2); CTX.stroke(); };
+    ring(w * 0.42, 0.12, neutral);
+    ring(w * 0.35, 0.28, ring1);
+    ring(w * 0.28, 0.18, ring2);
+    ring(w * 0.21, 0.25, ring1);
+    CTX.globalAlpha = 0.25; CTX.strokeStyle = ring1; CTX.lineWidth = 1.5;
+    for (let i = 0; i < 28; i++) {
+      const a = i / 28 * Math.PI * 2;
+      CTX.beginPath();
+      CTX.moveTo(cx + Math.cos(a) * w * 0.05, cy + Math.sin(a) * w * 0.05);
+      CTX.lineTo(cx + Math.cos(a) * w * 0.48, cy + Math.sin(a) * w * 0.48);
+      CTX.stroke();
+    }
+    CTX.globalAlpha = 0.9; CTX.fillStyle = ring1; CTX.beginPath(); CTX.arc(cx, cy, w * 0.02, 0, Math.PI * 2); CTX.fill();
+  }
+  CTX.restore();
+}
+
+// Noise (procedural only)
+function drawNoise(opacity) {
+  if (opacity <= 0) return;
+  CTX.save();
+  CTX.globalAlpha = opacity;
+  const s = 2;
+  for (let x = 0; x < CANVAS.width; x += s) {
+    for (let y = 0; y < CANVAS.height; y += s) {
+      if (Math.random() < 0.18) {
+        const v = 220 + Math.floor(Math.random() * 30);
+        CTX.fillStyle = `rgb(${v},${v},${v})`;
+        CTX.fillRect(x, y, s, s);
+      }
+    }
+  }
+  CTX.restore();
+}
+
+// Text overlay (wrapping) - Updated for Tobias and GT America
+function drawTextOverlay(scheme) {
+  const text = document.getElementById('textOverlay').value.trim();
+  if (!text) return;
+  const style = document.getElementById('textStyle').value;
+  const fontType = document.getElementById('fontType').value;
+
+  let size, weight, family;
+  if (fontType === 'tobias') {
+    family = "'Tobias', Georgia, serif";
+    size = style === 'h1' ? 72 : 48;
+    weight = style === 'h1' ? 500 : 300;
+  } else {
+    family = "'GT America Extended', 'Helvetica Neue', sans-serif";
+    size = style === 'h1' ? 72 : 48;
+    weight = style === 'h1' ? 700 : 400;
+  }
+
+  CTX.font = `normal ${weight} ${size}px ${family}`;
+
+  const pad = 60;
+  const v = textPosition[0], h = textPosition[1];
+  let x, y, align, baseline;
+  if (h === 'l') { align = 'left'; x = pad; }
+  else if (h === 'c') { align = 'center'; x = CANVAS.width / 2; }
+  else { align = 'right'; x = CANVAS.width - pad; }
+  if (v === 't') { baseline = 'top'; y = pad; }
+  else if (v === 'c') { baseline = 'middle'; y = CANVAS.height / 2; }
+  else { baseline = 'bottom'; y = CANVAS.height - pad; }
+
+  let maxW = (h === 'c') ? CANVAS.width - pad * 2 : CANVAS.width * 0.46;
+  const lines = wrapText(text, maxW);
+  const lh = size * 1.15;
+  let startY = y;
+  if (baseline === 'middle') { startY = y - (lines.length - 1) * lh / 2; }
+  if (baseline === 'bottom') { startY = y - (lines.length - 1) * lh; }
+  CTX.textAlign = align;
+  CTX.textBaseline = 'top';
+  const onLight = isLight(getScheme().bg);
+  CTX.fillStyle = onLight ? '#272727' : scheme.fg;
+  lines.forEach((ln, i) => CTX.fillText(ln, x, startY + i * lh));
+}
+
+function wrapText(t, maxW) {
+  const words = t.split(/\s+/), lines = [];
+  let line = '';
+  for (let i = 0; i < words.length; i++) {
+    const test = line ? line + ' ' + words[i] : words[i];
+    if (CTX.measureText(test).width <= maxW) { line = test; }
+    else { if (line) lines.push(line); line = words[i]; }
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+
+// Patterns
+function generatePattern() {
+  const scheme = getScheme();
+  const pattern = document.getElementById('pattern').value;
+  const density = parseInt(document.getElementById('density').value, 10);
+  const scale = parseFloat(document.getElementById('scale').value);
+  boostStrength = document.getElementById('boostStrength').value;
+
+  CTX.setTransform(1, 0, 0, 1, 0, 0);
+  CTX.setLineDash([]);
+  CTX.lineCap = 'butt';
+  CTX.lineJoin = 'miter';
+  CTX.clearRect(0, 0, CANVAS.width, CANVAS.height);
+  CTX.fillStyle = scheme.bg;
+  CTX.fillRect(0, 0, CANVAS.width, CANVAS.height);
+
+  applyCropTransform();
+
+  switch (pattern) {
+    case 'orbit-spokes': orbitSpokes(density, scale, scheme); break;
+    case 'radial-minimal': radialMinimal(density, scale, scheme); break;
+    case 'radial-burst': radialBurst(density, scale, scheme); break;
+    case 'grid-matrix': gridMatrix(density, scale, scheme); break;
+    case 'scale-grid': scaleGrid(density, scale, scheme); break;
+    case 'tfg-ring': tfgRing(density, scale, scheme); break;
+    case 'spirograph': spirograph(density, scale, scheme); break;
+    case 'spirograph-dense': spirographDense(density, scale, scheme); break;
+    case 'spirograph-triangle': spirographTriangle(density, scale, scheme); break;
+    case 'escher-impossible': escherImpossible(density, scale, scheme); break;
+    case 'escher-interlock': escherInterlock(density, scale, scheme); break;
+    case 'dot-grid': dotGrid(density, scale, scheme); break;
+    case 'dot-wave': dotWave(density, scale, scheme); break;
+    case 'growth-bars': growthBars(density, scale, scheme); break;
+    case 'venture-grid': ventureGrid(density, scale, scheme); break;
+    case 'funding-rounds': fundingRounds(density, scale, scheme); break;
+    case 'wave-field': waveField(density, scale, scheme); break;
+    case 'static-noise': staticNoise(density, scale, scheme); break;
+    case 'text-grid': textGrid(density, scale, scheme); break;
+    case 'text-cascade': textCascade(density, scale, scheme); break;
+    case 'text-diagonal': textDiagonal(density, scale, scheme); break;
+  }
+
+  CTX.setTransform(1, 0, 0, 1, 0, 0);
+
+  if (document.getElementById('addFloatie').checked) {
+    const style = document.getElementById('floatieStyle').value;
+    const color = document.getElementById('floatieColor').value;
+    const size = parseInt(document.getElementById('floatieSize').value, 10) || 185;
+    const op = parseFloat(document.getElementById('floatieOpacity').value);
+    drawFloatieVector(style, color, size, floatiePos, op);
+  }
+
+  const go = parseFloat(document.getElementById('gradOpacity').value);
+  if (go > 0) {
+    const grd = CTX.createLinearGradient(0, 0, CANVAS.width, CANVAS.height);
+    grd.addColorStop(0, '#2a3d40');
+    grd.addColorStop(1, '#3a343a');
+    CTX.globalAlpha = go;
+    CTX.globalCompositeOperation = 'overlay';
+    CTX.fillStyle = grd;
+    CTX.fillRect(0, 0, CANVAS.width, CANVAS.height);
+    CTX.globalCompositeOperation = 'source-over';
+    CTX.globalAlpha = 1;
+  }
+
+  if (document.getElementById('addNoise').checked) {
+    drawNoise(parseFloat(document.getElementById('noiseOpacity').value));
+  }
+
+  if (!pattern.startsWith('text-')) drawTextOverlay(scheme);
+}
+
+// Pattern implementations
+function orbitSpokes(density, scale, scheme) {
+  const cx = CANVAS.width * 0.5, cy = CANVAS.height * 0.5;
+  const spokes = Math.max(18, Math.floor(density * 1.2));
+  const outer = Math.max(CANVAS.width, CANVAS.height) * 0.9;
+  const inner = 8 * scale;
+  const neutral = isLight(scheme.bg) ? 'rgba(39,39,39,0.22)' : 'rgba(247,246,241,0.18)';
+  CTX.save();
+  CTX.strokeStyle = neutral;
+  CTX.lineCap = 'round';
+  for (let i = 0; i < spokes; i++) {
+    const a = (i / spokes) * Math.PI * 2, aa = a + Math.sin(time * 0.00025 + i * 0.13) * 0.007;
+    CTX.globalAlpha = 0.28 + (i % 3) * 0.06;
+    CTX.lineWidth = 1.25;
+    CTX.beginPath();
+    CTX.moveTo(cx + Math.cos(aa) * inner, cy + Math.sin(aa) * inner);
+    CTX.lineTo(cx + Math.cos(aa) * outer, cy + Math.sin(aa) * outer);
+    CTX.stroke();
+  }
+  CTX.restore();
+}
+
+function radialBurst(density, scale, scheme) {
+  const cx = CANVAS.width / 2, cy = CANVAS.height / 2, rays = density * 2;
+  CTX.save();
+  CTX.strokeStyle = scheme.fg;
+  CTX.setLineDash([15, 10]);
+  CTX.lineWidth = 2;
+  for (let i = 0; i < rays; i++) {
+    const a = (i / rays) * Math.PI * 2, len = Math.max(CANVAS.width, CANVAS.height) * 0.8;
+    CTX.globalAlpha = 0.2 + (i % 4) * 0.1;
+    CTX.beginPath();
+    CTX.moveTo(cx + Math.cos(a) * 20, cy + Math.sin(a) * 20);
+    CTX.lineTo(cx + Math.cos(a) * len, cy + Math.sin(a) * len);
+    CTX.stroke();
+  }
+  CTX.setLineDash([]);
+  CTX.globalAlpha = 1;
+  CTX.fillStyle = scheme.fg;
+  CTX.beginPath();
+  CTX.arc(cx, cy, 8, 0, Math.PI * 2);
+  CTX.fill();
+  CTX.restore();
+}
+
+function radialMinimal(density, scale, scheme) {
+  const cx = CANVAS.width / 2, cy = CANVAS.height / 2, rays = Math.max(8, density / 2);
+  CTX.strokeStyle = scheme.fg;
+  CTX.lineWidth = 1;
+  for (let i = 0; i < rays; i++) {
+    const a = (i / rays) * Math.PI * 2, len = Math.max(CANVAS.width, CANVAS.height);
+    CTX.globalAlpha = 0.15;
+    CTX.beginPath();
+    CTX.moveTo(cx, cy);
+    CTX.lineTo(cx + Math.cos(a) * len, cy + Math.sin(a) * len);
+    CTX.stroke();
+  }
+  CTX.globalAlpha = 1;
+}
+
+function gridMatrix(density, scale, scheme) {
+  const cell = Math.round((100 / density) * 5 * scale);
+  CTX.fillStyle = scheme.fg;
+  for (let x = 0; x < CANVAS.width; x += cell) {
+    for (let y = 0; y < CANVAS.height; y += cell) {
+      const d = Math.hypot(x - CANVAS.width / 2, y - CANVAS.height / 2), max = Math.hypot(CANVAS.width / 2, CANVAS.height / 2);
+      CTX.globalAlpha = 0.3 + (1 - d / max) * 0.5;
+      CTX.fillRect(x, y, cell - 1, cell - 1);
+    }
+  }
+  CTX.globalAlpha = 1;
+}
+
+function scaleGrid(density, scale, scheme) {
+  CTX.save();
+  CTX.setLineDash([]);
+  CTX.lineCap = 'butt';
+  CTX.lineJoin = 'miter';
+  CTX.strokeStyle = scheme.fg;
+  const lines = density / 2;
+  for (let i = 0; i < lines; i++) {
+    const p = i / lines, x = Math.round(CANVAS.width * p), y = Math.round(CANVAS.height * p), s = Math.round(20 * (1 + p * 2) * scale);
+    CTX.globalAlpha = 0.2 + p * 0.5;
+    CTX.lineWidth = Math.round(2 + p * 2);
+    CTX.beginPath(); CTX.moveTo(x - s, Math.round(CANVAS.height / 2)); CTX.lineTo(x + s, Math.round(CANVAS.height / 2)); CTX.stroke();
+    CTX.beginPath(); CTX.moveTo(Math.round(CANVAS.width / 2), y - s); CTX.lineTo(Math.round(CANVAS.width / 2), y + s); CTX.stroke();
+    CTX.beginPath(); CTX.moveTo(x - s / 2, y); CTX.lineTo(x + s / 2, y); CTX.stroke();
+    CTX.beginPath(); CTX.moveTo(x, y - s / 2); CTX.lineTo(x, y + s / 2); CTX.stroke();
+    const mx = Math.round(CANVAS.width - x), my = Math.round(CANVAS.height - y);
+    CTX.beginPath(); CTX.moveTo(mx - s / 2, my); CTX.lineTo(mx + s / 2, my); CTX.stroke();
+    CTX.beginPath(); CTX.moveTo(mx, my - s / 2); CTX.lineTo(mx, my + s / 2); CTX.stroke();
+  }
+  CTX.restore();
+  CTX.globalAlpha = 1;
+}
+
+function tfgRing(density, scale, scheme) {
+  const cx = CANVAS.width * 0.3, cy = CANVAS.height * 0.7, R = Math.min(CANVAS.width, CANVAS.height) * 0.35 * scale, r = R * 0.75;
+  CTX.strokeStyle = scheme.fg;
+  CTX.globalAlpha = 0.28;
+  CTX.lineWidth = 2;
+  CTX.beginPath(); CTX.arc(cx, cy, R, 0, Math.PI * 2); CTX.stroke();
+  CTX.beginPath(); CTX.arc(cx, cy, r, 0, Math.PI * 2); CTX.stroke();
+  CTX.globalAlpha = 1;
+}
+
+function spirographDense(density, scale, scheme) {
+  CTX.strokeStyle = scheme.fg;
+  CTX.lineWidth = 1;
+  const rings = density / 3, cx = CANVAS.width / 2, cy = CANVAS.height / 2;
+  for (let layer = 0; layer < 3; layer++) {
+    for (let i = 0; i < rings; i++) {
+      const a = (i / rings) * Math.PI * 2 + layer * Math.PI / 3, offR = Math.min(CANVAS.width, CANVAS.height) * 0.15 * scale, ringR = Math.min(CANVAS.width, CANVAS.height) * (0.2 + layer * 0.1) * scale;
+      const x = cx + Math.cos(a + time * 0.0001) * offR, y = cy + Math.sin(a + time * 0.0001) * offR;
+      CTX.globalAlpha = Math.max(0, 0.1 - layer * 0.02);
+      CTX.beginPath(); CTX.arc(x, y, ringR, 0, Math.PI * 2); CTX.stroke();
+    }
+  }
+  CTX.globalAlpha = 1;
+}
+
+function spirograph(density, scale, scheme) {
+  CTX.strokeStyle = scheme.fg;
+  CTX.lineWidth = 1;
+  const rings = density / 5;
+  for (let i = 0; i < rings; i++) {
+    const a = (i / rings) * Math.PI * 2, offR = Math.min(CANVAS.width, CANVAS.height) * 0.2 * scale, ringR = Math.min(CANVAS.width, CANVAS.height) * 0.3 * scale;
+    const cx2 = CANVAS.width / 2 + Math.cos(a + time * 0.0001) * offR, cy2 = CANVAS.height / 2 + Math.sin(a + time * 0.0001) * offR;
+    CTX.globalAlpha = 0.15;
+    CTX.beginPath(); CTX.arc(cx2, cy2, ringR, 0, Math.PI * 2); CTX.stroke();
+    CTX.globalAlpha = 0.1;
+    CTX.beginPath(); CTX.arc(cx2, cy2, ringR * 0.75, 0, Math.PI * 2); CTX.stroke();
+  }
+  CTX.globalAlpha = 0.28;
+  CTX.lineWidth = 2;
+  CTX.beginPath(); CTX.arc(CANVAS.width / 2, CANVAS.height / 2, Math.min(CANVAS.width, CANVAS.height) * 0.15 * scale, 0, Math.PI * 2); CTX.stroke();
+  CTX.globalAlpha = 1;
+}
+
+function spirographTriangle(density, scale, scheme) {
+  CTX.strokeStyle = scheme.fg;
+  CTX.lineWidth = 1;
+  const rings = density / 4, cx = CANVAS.width / 2, cy = CANVAS.height / 2, baseR = Math.min(CANVAS.width, CANVAS.height) * 0.25 * scale, offR = baseR * 0.6;
+  for (let i = 0; i < rings; i++) {
+    const radius = baseR * (1 - i * 0.1);
+    for (let j = 0; j < 3; j++) {
+      const a = (j / 3) * Math.PI * 2 - Math.PI / 2 + time * 0.0001, x = cx + Math.cos(a) * offR, y = cy + Math.sin(a) * offR;
+      CTX.globalAlpha = Math.max(0, 0.15 - i * 0.02);
+      CTX.beginPath(); CTX.arc(x, y, radius, 0, Math.PI * 2); CTX.stroke();
+    }
+  }
+  CTX.globalAlpha = 0.2;
+  CTX.beginPath();
+  for (let j = 0; j <= 3; j++) {
+    const a = (j / 3) * Math.PI * 2 - Math.PI / 2, x = cx + Math.cos(a) * offR * 0.8, y = cy + Math.sin(a) * offR * 0.8;
+    if (j === 0) CTX.moveTo(x, y); else CTX.lineTo(x, y);
+  }
+  CTX.stroke();
+  CTX.globalAlpha = 1;
+}
+
+function escherImpossible(density, scale, scheme) {
+  CTX.strokeStyle = scheme.fg;
+  CTX.lineWidth = 2;
+  const tri = (Math.min(CANVAS.width, CANVAS.height) / density) * scale * 10, step = tri * 1.5;
+  for (let x = step; x < CANVAS.width; x += step) {
+    for (let y = step; y < CANVAS.height; y += step) {
+      CTX.globalAlpha = 0.2 + Math.sin(x * 0.005 + y * 0.005) * 0.3;
+      CTX.save();
+      CTX.translate(x, y);
+      CTX.rotate(time * 0.0001 + x * 0.001);
+      CTX.beginPath();
+      for (let i = 0; i <= 3; i++) {
+        const a = (i / 3) * Math.PI * 2 - Math.PI / 2, px = Math.cos(a) * tri, py = Math.sin(a) * tri;
+        if (i === 0) CTX.moveTo(px, py); else CTX.lineTo(px, py);
+      }
+      CTX.stroke();
+      const inner = tri * 0.6;
+      CTX.beginPath();
+      for (let i = 0; i < 3; i++) {
+        const a1 = (i / 3) * Math.PI * 2 - Math.PI / 2, a2 = ((i + 1) / 3) * Math.PI * 2 - Math.PI / 2;
+        const x1 = Math.cos(a1) * tri, y1 = Math.sin(a1) * tri, x2 = Math.cos(a2) * inner, y2 = Math.sin(a2) * inner;
+        CTX.moveTo(x1, y1); CTX.lineTo(x2, y2);
+      }
+      CTX.stroke();
+      CTX.restore();
+    }
+  }
+  CTX.globalAlpha = 1;
+}
+
+function escherInterlock(density, scale, scheme) {
+  CTX.strokeStyle = scheme.fg;
+  CTX.fillStyle = scheme.fg;
+  CTX.lineWidth = 1;
+  const hex = (CANVAS.width / density) * scale * 2, hh = hex * Math.sqrt(3);
+  for (let row = -2; row < CANVAS.height / hh + 2; row++) {
+    for (let col = -2; col < CANVAS.width / (hex * 1.5) + 2; col++) {
+      const x = col * hex * 1.5, y = row * hh + (col % 2) * hh / 2;
+      CTX.globalAlpha = 0.1 + Math.sin(col * 0.5 + row * 0.5) * 0.2;
+      CTX.save();
+      CTX.translate(x, y);
+      for (let i = 0; i < 6; i++) {
+        const a1 = (i / 6) * Math.PI * 2, a2 = ((i + 1) / 6) * Math.PI * 2, a3 = ((i + 0.5) / 6) * Math.PI * 2;
+        const x1 = Math.cos(a1) * hex, y1 = Math.sin(a1) * hex, x2 = Math.cos(a2) * hex, y2 = Math.sin(a2) * hex, cx2 = Math.cos(a3) * hex * 1.2, cy2 = Math.sin(a3) * hex * 1.2;
+        CTX.beginPath();
+        CTX.moveTo(0, 0);
+        CTX.lineTo(x1, y1);
+        CTX.quadraticCurveTo(cx2, cy2, x2, y2);
+        CTX.closePath();
+        if (i % 2 === 0) { CTX.globalAlpha = 0.05; CTX.fill(); }
+        CTX.globalAlpha = 0.2;
+        CTX.stroke();
+      }
+      CTX.restore();
+    }
+  }
+  CTX.globalAlpha = 1;
+}
+
+function dotGrid(density, scale, scheme) {
+  CTX.fillStyle = scheme.fg;
+  const dot = 3 * scale, spacing = (CANVAS.width / density) * scale;
+  for (let x = spacing / 2; x < CANVAS.width; x += spacing) {
+    for (let y = spacing / 2; y < CANVAS.height; y += spacing) {
+      const d = Math.hypot(x - CANVAS.width / 2, y - CANVAS.height / 2), max = Math.hypot(CANVAS.width / 2, CANVAS.height / 2);
+      CTX.globalAlpha = 0.1 + (1 - d / max) * 0.5;
+      CTX.beginPath(); CTX.arc(x, y, dot, 0, Math.PI * 2); CTX.fill();
+    }
+  }
+  CTX.globalAlpha = 1;
+}
+
+function dotWave(density, scale, scheme) {
+  CTX.fillStyle = scheme.fg;
+  const dot = 2 * scale, spacing = (CANVAS.width / density) * scale;
+  for (let x = spacing / 2; x < CANVAS.width; x += spacing) {
+    for (let y = spacing / 2; y < CANVAS.height; y += spacing) {
+      const w = Math.sin(x * 0.01 + time * 0.001) * Math.cos(y * 0.01), size = dot * (1 + w * 0.5);
+      CTX.globalAlpha = 0.1 + Math.abs(w) * 0.4;
+      CTX.beginPath(); CTX.arc(x, y, size, 0, Math.PI * 2); CTX.fill();
+    }
+  }
+  CTX.globalAlpha = 1;
+}
+
+function growthBars(density, scale, scheme) {
+  CTX.fillStyle = scheme.fg;
+  const count = Math.max(3, Math.min(24, Math.floor(density / 3))), w = (CANVAS.width * 0.8) / count, sx = CANVAS.width * 0.1;
+  CTX.strokeStyle = scheme.fg;
+  CTX.globalAlpha = 0.1;
+  CTX.lineWidth = 1;
+  for (let i = 0; i <= 5; i++) {
+    const y = CANVAS.height - (i / 5) * CANVAS.height * 0.8;
+    CTX.beginPath(); CTX.moveTo(sx, y); CTX.lineTo(CANVAS.width * 0.9, y); CTX.stroke();
+  }
+  for (let i = 0; i < count; i++) {
+    const p = i / (count - 1), base = Math.pow(p, 1.5) * CANVAS.height * 0.7, anim = Math.sin(time * 0.001 + i * 0.3) * 10 * scale, h = base + anim, x = sx + i * w, y = CANVAS.height - h - 20;
+    CTX.fillStyle = scheme.fg;
+    CTX.globalAlpha = 0.3 + p * 0.5;
+    CTX.fillRect(x + w * 0.2, y, w * 0.6, h);
+    CTX.globalAlpha = 0.8;
+    CTX.fillRect(x + w * 0.2, y - 2, w * 0.6, 2);
+  }
+  CTX.globalAlpha = 1;
+}
+
+function ventureGrid(density, scale, scheme) {
+  const cols = Math.floor(Math.sqrt(density) * 1.5), rows = Math.floor(Math.sqrt(density)), cw = CANVAS.width / cols, ch = CANVAS.height / rows;
+  CTX.fillStyle = scheme.fg;
+  for (let x = 0; x < cols; x++) {
+    for (let y = 0; y < rows; y++) {
+      const a = Math.sin(x * 0.3 + y * 0.3 + time * 0.0005) * 0.5 + 0.5;
+      CTX.globalAlpha = 0.05 + a * 0.15;
+      CTX.fillRect(x * cw + 4, y * ch + 4, cw - 8, ch - 8);
+      if (a > 0.6) {
+        const cx = x * cw + cw / 2, cy = y * ch + ch / 2;
+        CTX.globalAlpha = a * 0.6;
+        CTX.beginPath(); CTX.arc(cx, cy, 4, 0, Math.PI * 2); CTX.fill();
+      }
+    }
+  }
+  CTX.globalAlpha = 1;
+}
+
+function fundingRounds(density, scale, scheme) {
+  CTX.strokeStyle = scheme.fg;
+  const rounds = Math.max(3, Math.min(8, density / 10)), cx = CANVAS.width / 2, cy = CANVAS.height / 2;
+  for (let i = 0; i < rounds; i++) {
+    const r = (i + 1) * 60 * scale + Math.sin(time * 0.001 + i) * 5, op = 1 - (i / rounds);
+    CTX.globalAlpha = op * 0.2;
+    CTX.lineWidth = 2;
+    CTX.beginPath(); CTX.arc(cx, cy, r, 0, Math.PI * 2); CTX.stroke();
+  }
+  CTX.globalAlpha = 1;
+}
+
+function waveField(density, scale, scheme) {
+  CTX.strokeStyle = scheme.fg;
+  const waves = density / 5;
+  for (let w = 0; w < waves; w++) {
+    CTX.lineWidth = 1 + (w % 3);
+    CTX.globalAlpha = 0.1 + (w / waves) * 0.3;
+    CTX.beginPath();
+    for (let x = 0; x < CANVAS.width; x += 5) {
+      const y = CANVAS.height / 2 + Math.sin(x * 0.02 + w * 0.5 + time * 0.001) * (40 - w * 3) * scale + w * 15 - waves * 7.5;
+      if (x === 0) CTX.moveTo(x, y); else CTX.lineTo(x, y);
+    }
+    CTX.stroke();
+  }
+  CTX.globalAlpha = 1;
+}
+
+function staticNoise(density, scale, scheme) {
+  CTX.fillStyle = scheme.fg;
+  const dot = 2;
+  for (let x = 0; x < CANVAS.width; x += dot * 2) {
+    for (let y = 0; y < CANVAS.height; y += dot * 2) {
+      if (Math.random() < density / 100) {
+        CTX.globalAlpha = 0.1 + Math.random() * 0.2;
+        CTX.fillRect(x, y, dot, dot);
+      }
+    }
+  }
+  CTX.globalAlpha = 1;
+}
+
+function textGrid(density, scale, scheme) { drawTextPattern('TFG', density, scale, scheme, 20, 400); }
+function textCascade(density, scale, scheme) { drawTextPatternCascade('TFG', density, scale, scheme, 30, 600); }
+function textDiagonal(density, scale, scheme) { drawTextPatternDiagonal('TFG', density, scale, scheme, 25, 400); }
+
+function drawTextPattern(text, density, scale, scheme, baseSize, weight) {
+  const family = "'GT America Extended', 'Helvetica Neue', sans-serif";
+  CTX.font = `normal ${weight} ${baseSize * scale}px ${family}`;
+  CTX.fillStyle = isLight(scheme.bg) ? '#272727' : scheme.fg;
+  CTX.textAlign = 'center';
+  CTX.textBaseline = 'middle';
+  const spacing = (CANVAS.width / (density / 3)) * scale;
+  for (let x = spacing / 2; x < CANVAS.width; x += spacing) {
+    for (let y = spacing / 2; y < CANVAS.height; y += spacing) {
+      const d = Math.hypot(x - CANVAS.width / 2, y - CANVAS.height / 2), m = Math.hypot(CANVAS.width / 2, CANVAS.height / 2);
+      CTX.globalAlpha = 0.1 + (1 - d / m) * 0.5;
+      CTX.fillText(text, x, y);
+    }
+  }
+  CTX.globalAlpha = 1;
+}
+
+function drawTextPatternCascade(text, density, scale, scheme, baseSize, weight) {
+  const family = "'GT America Extended', 'Helvetica Neue', sans-serif";
+  CTX.font = `normal ${weight} ${baseSize * scale}px ${family}`;
+  CTX.fillStyle = isLight(scheme.bg) ? '#272727' : scheme.fg;
+  const streams = density / 5;
+  for (let s = 0; s < streams; s++) {
+    const x = (s / streams) * CANVAS.width + CANVAS.width / (streams * 2), startY = -baseSize * scale * s;
+    for (let i = 0; i < 20; i++) {
+      const y = startY + i * baseSize * scale * 1.5 + (time * 0.05 * (s + 1)) % (CANVAS.height + baseSize * scale * 20);
+      if (y > -baseSize && y < CANVAS.height + baseSize) {
+        CTX.globalAlpha = 0.1 + (i / 20) * 0.4;
+        CTX.textAlign = 'center';
+        CTX.fillText(text, x, y);
+      }
+    }
+  }
+  CTX.globalAlpha = 1;
+}
+
+function drawTextPatternDiagonal(text, density, scale, scheme, baseSize, weight) {
+  const family = "'GT America Extended', 'Helvetica Neue', sans-serif";
+  CTX.font = `normal ${weight} ${baseSize * scale}px ${family}`;
+  CTX.fillStyle = isLight(scheme.bg) ? '#272727' : scheme.fg;
+  CTX.textAlign = 'center';
+  CTX.textBaseline = 'middle';
+  const spacing = (CANVAS.width / (density / 4)) * scale;
+  for (let d = -CANVAS.height; d < CANVAS.width + CANVAS.height; d += spacing) {
+    for (let i = 0; i < density; i++) {
+      const x = d + i * spacing, y = i * spacing;
+      if (x > 0 && x < CANVAS.width && y > 0 && y < CANVAS.height) {
+        CTX.globalAlpha = 0.1 + Math.sin(i * 0.2) * 0.3;
+        CTX.save();
+        CTX.translate(x, y);
+        CTX.rotate(-Math.PI / 4);
+        CTX.fillText(text, 0, 0);
+        CTX.restore();
+      }
+    }
+  }
+  CTX.globalAlpha = 1;
+}
+
+// Boost wrapper
+(function() {
+  const nativeStroke = CTX.stroke.bind(CTX);
+  const nativeStrokeRect = CTX.strokeRect.bind(CTX);
+  CTX.stroke = function() {
+    if (boostStrength === 'mega') {
+      const a = CTX.globalAlpha, w = CTX.lineWidth, s = CTX.strokeStyle, c = CTX.lineCap;
+      CTX.lineWidth = 20; CTX.lineCap = 'butt'; nativeStroke();
+      CTX.lineWidth = w; CTX.globalAlpha = Math.min(1, a * 0.9); CTX.strokeStyle = isLight(getScheme().bg) ? 'rgba(0,0,0,0.35)' : 'rgba(255,255,255,0.35)';
+      CTX.lineCap = c; nativeStroke(); CTX.globalAlpha = a; CTX.strokeStyle = s;
+      return;
+    }
+    nativeStroke();
+    if (boostStrength !== 'normal') return;
+    const a = CTX.globalAlpha, w = CTX.lineWidth, s = CTX.strokeStyle, c = CTX.lineCap;
+    CTX.lineWidth = w + (w < 2 ? 1 : 2); CTX.globalAlpha = Math.min(1, a * 0.95); CTX.strokeStyle = isLight(getScheme().bg) ? 'rgba(0,0,0,0.35)' : 'rgba(255,255,255,0.35)'; CTX.lineCap = 'butt';
+    nativeStroke(); CTX.globalAlpha = a; CTX.lineWidth = w; CTX.strokeStyle = s; CTX.lineCap = c;
+  };
+  CTX.strokeRect = function(x, y, w, h) {
+    nativeStrokeRect(x, y, w, h);
+    if (boostStrength !== 'normal' && boostStrength !== 'mega') return;
+    const a = CTX.globalAlpha, lw = CTX.lineWidth, s = CTX.strokeStyle, c = CTX.lineCap;
+    CTX.lineWidth = (boostStrength === 'mega') ? 20 : lw + 2; CTX.globalAlpha = Math.min(1, a * 0.95); CTX.strokeStyle = isLight(getScheme().bg) ? 'rgba(0,0,0,0.35)' : 'rgba(255,255,255,0.35)'; CTX.lineCap = 'butt';
+    nativeStrokeRect(x, y, w, h); CTX.globalAlpha = a; CTX.lineWidth = lw; CTX.strokeStyle = s; CTX.lineCap = c;
+  };
+})();
+
+// Animation
+function animate() {
+  const s = parseInt(document.getElementById('animSpeed').value, 10);
+  if (s > 0) {
+    time += s;
+    generatePattern();
+    animationId = requestAnimationFrame(animate);
+  }
+}
+
+function startAnimation() {
+  const s = parseInt(document.getElementById('animSpeed').value, 10);
+  if (s > 0 && !animationId) { animate(); }
+  else if (s === 0 && animationId) { cancelAnimationFrame(animationId); animationId = null; }
+}
+
+function toggleAnimation() {
+  const s = document.getElementById('animSpeed');
+  if (s.value === '0') { s.value = '3'; document.getElementById('animSpeedValue').textContent = '3'; }
+  else { s.value = '0'; document.getElementById('animSpeedValue').textContent = '0'; }
+  startAnimation();
+}
+
+// UI helpers
+function setTextPos(pos, el) {
+  textPosition = pos;
+  document.querySelectorAll('.position-grid button').forEach(b => b.classList.remove('active'));
+  if (el) el.classList.add('active');
+  generatePattern();
+}
+
+// Event listeners
+['addNoise', 'noiseOpacity', 'addFloatie', 'floatieStyle', 'floatieColor', 'floatieSize', 'floatieOpacity', 'gradOpacity'].forEach(id => {
+  document.getElementById(id).addEventListener('input', generatePattern);
+  document.getElementById(id).addEventListener('change', generatePattern);
+});
+
+document.getElementById('density').addEventListener('input', e => { document.getElementById('densityValue').textContent = e.target.value; generatePattern(); });
+document.getElementById('scale').addEventListener('input', e => { document.getElementById('scaleValue').textContent = e.target.value; generatePattern(); });
+document.getElementById('animSpeed').addEventListener('input', e => { document.getElementById('animSpeedValue').textContent = e.target.value; startAnimation(); });
+document.getElementById('textOverlay').addEventListener('input', generatePattern);
+document.getElementById('textStyle').addEventListener('change', generatePattern);
+document.querySelectorAll('input[name="scheme"]').forEach(r => r.addEventListener('change', generatePattern));
+document.getElementById('fontType').addEventListener('change', generatePattern);
+document.getElementById('boostStrength').addEventListener('change', generatePattern);
+document.getElementById('pattern').addEventListener('change', generatePattern);
+
+// Export
+function exportPNG() {
+  const scale = parseInt(document.getElementById('exportScale').value, 10) || 1;
+  if (scale === 1) {
+    try {
+      const link = document.createElement('a');
+      link.download = `tfg-pattern-${Date.now()}.png`;
+      link.href = CANVAS.toDataURL('image/png');
+      link.click();
+    } catch (e) { alert('Export blocked (CORS).'); }
+    return;
+  }
+  const off = document.createElement('canvas');
+  off.width = CANVAS.width * scale;
+  off.height = CANVAS.height * scale;
+  const prevC = CANVAS, prevX = CTX;
+  CANVAS = off;
+  CTX = off.getContext('2d');
+  CTX.imageSmoothingEnabled = false;
+  const done = () => {
+    try {
+      const link = document.createElement('a');
+      link.download = `tfg-pattern-${Date.now()}-${scale}x.png`;
+      link.href = off.toDataURL('image/png');
+      link.click();
+    } catch (e) { alert('Export blocked (CORS).'); }
+    CANVAS = prevC;
+    CTX = prevX;
+    generatePattern();
+  };
+  generatePattern();
+  done();
+}
+
+// Init
+function init() {
+  setAspect('16:9');
+  document.getElementById('zoomLabel').textContent = parseFloat(document.getElementById('zoom').value).toFixed(1) + '×';
+  generatePattern();
+}
+init();
+
+// Randomize
+function randomize() {
+  const patterns = ['orbit-spokes', 'radial-minimal', 'radial-burst', 'grid-matrix', 'scale-grid', 'tfg-ring', 'spirograph', 'spirograph-dense', 'spirograph-triangle', 'escher-impossible', 'escher-interlock', 'dot-grid', 'dot-wave', 'growth-bars', 'venture-grid', 'funding-rounds', 'wave-field', 'static-noise', 'text-grid', 'text-cascade', 'text-diagonal'];
+  const schemes = ['greenOnDark', 'darkOnGreen', 'coolGreen', 'coolGreenInverse', 'creamOnDark', 'darkOnCream'];
+  document.getElementById('pattern').value = patterns[Math.floor(Math.random() * patterns.length)];
+  const r = schemes[Math.floor(Math.random() * schemes.length)];
+  const radio = document.querySelector(`input[name="scheme"][value="${r}"]`);
+  if (radio) radio.checked = true;
+  document.getElementById('density').value = Math.floor(Math.random() * 70) + 20;
+  document.getElementById('densityValue').textContent = document.getElementById('density').value;
+  document.getElementById('scale').value = (Math.random() * 1.5 + 0.5).toFixed(1);
+  document.getElementById('scaleValue').textContent = document.getElementById('scale').value;
+  generatePattern();
+}
+</script>
+</body>
+</html>

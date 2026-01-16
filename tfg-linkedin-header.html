@@ -116,19 +116,32 @@
             color: #0a0a0a;
             margin-bottom: 20px;
             text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+        }
+
+        .tagline::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: #0a0a0a;
         }
 
         .main-message {
             font-family: 'GT America Extended', sans-serif;
             font-weight: bold;
-            font-size: 52px;
-            line-height: 1.2;
+            font-size: 48px;
+            line-height: 1.25;
             color: #0a0a0a;
             letter-spacing: -0.01em;
         }
 
         .impact-amount {
             color: #0a0a0a;
+            font-weight: bold;
         }
 
         /* Instructions */

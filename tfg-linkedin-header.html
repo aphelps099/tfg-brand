@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFG LinkedIn Header - $1.4B Impact</title>
+    <style>
+        @font-face {
+            font-family: 'GT America Extended';
+            src: url('4618gt.woff') format('woff');
+            font-weight: normal;
+        }
+        @font-face {
+            font-family: 'GT America Extended';
+            src: url('2809gt-bold.woff') format('woff');
+            font-weight: bold;
+        }
+        @font-face {
+            font-family: 'Tobias';
+            src: url('Tobias-Thin.woff') format('woff');
+            font-weight: 100;
+        }
+        @font-face {
+            font-family: 'Tobias';
+            src: url('Tobias-Medium.woff') format('woff');
+            font-weight: 500;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px;
+            font-family: 'GT America Extended', sans-serif;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            width: 1584px;
+            height: 396px;
+            position: relative;
+            overflow: hidden;
+            background: #0a0a0a;
+            display: flex;
+        }
+
+        /* Left side - Dark with Impact text */
+        .left-side {
+            width: 40%;
+            background: #0a0a0a;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .impact-text {
+            font-family: 'Tobias', serif;
+            font-weight: 100;
+            font-size: 120px;
+            color: #3a3a3a;
+            z-index: 2;
+            position: relative;
+            letter-spacing: -0.02em;
+        }
+
+        /* Wavy contour lines background */
+        .contour-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .wave-line {
+            position: absolute;
+            width: 200%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #4a4a4a, transparent);
+            left: -50%;
+        }
+
+        /* Right side - Green with stats */
+        .right-side {
+            width: 60%;
+            background: #4EFF00;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 80px;
+            position: relative;
+        }
+
+        .tagline {
+            font-family: 'GT America Extended', sans-serif;
+            font-weight: normal;
+            font-size: 16px;
+            letter-spacing: 0.15em;
+            color: #0a0a0a;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .main-message {
+            font-family: 'GT America Extended', sans-serif;
+            font-weight: bold;
+            font-size: 52px;
+            line-height: 1.2;
+            color: #0a0a0a;
+            letter-spacing: -0.01em;
+        }
+
+        .impact-amount {
+            color: #0a0a0a;
+        }
+
+        /* Instructions */
+        .instructions {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f7f6f1;
+            border-radius: 6px;
+        }
+
+        .instructions h3 {
+            font-family: 'GT America Extended', sans-serif;
+            font-weight: bold;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .instructions code {
+            background: #e0e0e0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 13px;
+        }
+
+        .specs {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header" id="linkedin-header">
+            <!-- Left Side -->
+            <div class="left-side">
+                <!-- Wavy contour lines -->
+                <svg class="contour-lines" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" preserveAspectRatio="none">
+                    <path d="M0,50 Q150,30 300,50 T600,50" stroke="#3a3a3a" stroke-width="1" fill="none" opacity="0.4"/>
+                    <path d="M0,100 Q150,80 300,100 T600,100" stroke="#3a3a3a" stroke-width="1" fill="none" opacity="0.4"/>
+                    <path d="M0,150 Q150,130 300,150 T600,150" stroke="#3a3a3a" stroke-width="1" fill="none" opacity="0.4"/>
+                    <path d="M0,200 Q150,180 300,200 T600,200" stroke="#3a3a3a" stroke-width="1" fill="none" opacity="0.35"/>
+                    <path d="M0,250 Q150,230 300,250 T600,250" stroke="#3a3a3a" stroke-width="1" fill="none" opacity="0.3"/>
+                    <path d="M0,300 Q150,280 300,300 T600,300" stroke="#3a3a3a" stroke-width="1" fill="none" opacity="0.25"/>
+                    <path d="M0,350 Q150,330 300,350 T600,350" stroke="#3a3a3a" stroke-width="1" fill="none" opacity="0.2"/>
+                </svg>
+
+                <div class="impact-text">Impact</div>
+            </div>
+
+            <!-- Right Side -->
+            <div class="right-side">
+                <div class="tagline">TFG CREATES REAL IMPACT</div>
+                <div class="main-message">
+                    We've helped Northern California<br>
+                    founders raise over <span class="impact-amount">$1.4B</span> to date.
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions">
+            <h3>How to Export LinkedIn Header Image</h3>
+            <ol>
+                <li>Open this HTML file in <strong>Google Chrome</strong> or <strong>Firefox</strong></li>
+                <li>Right-click on the header image above</li>
+                <li>Select <code>Inspect Element</code> or <code>Inspect</code></li>
+                <li>In the DevTools, right-click on the <code>&lt;div class="header"&gt;</code> element</li>
+                <li>Select <code>Capture node screenshot</code> (Chrome) or use Firefox's screenshot tool</li>
+                <li>The image will be saved at exactly 1584 x 396 pixels</li>
+            </ol>
+
+            <div class="specs">
+                <strong>LinkedIn Header Specifications:</strong><br>
+                • Dimensions: 1584 x 396 pixels (recommended)<br>
+                • File format: PNG or JPG<br>
+                • Max file size: 8MB<br>
+                • Safe zone: Keep important content away from edges (50px margin recommended)<br>
+                • Current design: $1.4B impact message
+            </div>
+        </div>
+    </div>
+</body>
+</html>

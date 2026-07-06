@@ -25,6 +25,7 @@ export function builtinFonts(): FontOption[] {
     { family: 'GT America Extended', label: 'GT America Extended', source: 'local' },
     { family: 'Tobias',              label: 'Tobias (serif)',      source: 'local' },
     { family: 'Roboto Mono',         label: 'Roboto Mono',         source: 'local' },
+    { family: 'Michroma',            label: 'Michroma (TFG logo)', source: 'local' },
   ];
 }
 

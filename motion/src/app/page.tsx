@@ -30,9 +30,9 @@ export default function HomePage() {
           <span className="tfg-ring" aria-hidden />
           <span
             style={{
+              fontFamily: "'Michroma', sans-serif",
               fontSize: 11,
-              fontWeight: 700,
-              letterSpacing: '0.08em',
+              letterSpacing: '0.18em',
               textTransform: 'uppercase',
               color: '#ffffff',
             }}

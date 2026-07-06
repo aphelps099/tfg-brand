@@ -1,0 +1,56 @@
+/* ═══════════════════════════════════════════════════════
+   TFG Motion — global styles
+   Self-hosted brand fonts (same files as the brand house):
+   GT America Extended for display/UI, Tobias for serif
+   moments. Roboto Mono comes from Google Fonts (layout.tsx).
+   ═══════════════════════════════════════════════════════ */
+
+@font-face {
+  font-family: 'GT America Extended';
+  src: url('/fonts/gt-america-extended-regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT America Extended';
+  src: url('/fonts/gt-america-extended-bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tobias';
+  src: url('/fonts/tobias-thin.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tobias';
+  src: url('/fonts/tobias-medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'GT America Extended', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0a0a0a;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}

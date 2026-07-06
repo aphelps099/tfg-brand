@@ -116,8 +116,8 @@ export default function ProMotionStudio() {
     let alive = true;
     (async () => {
       for (const [id, url] of [
-        ['__logo-white', '/tfg-logo-white.svg'],  // shown on dark backgrounds
-        ['__logo-blue', '/tfg-logo-dark.svg'],    // shown on light backgrounds
+        ['__logo-white', '/tfg-lockup-light.png'],  // full lockup, dark backgrounds
+        ['__logo-blue', '/tfg-lockup-dark.png'],    // full lockup, light backgrounds
       ] as const) {
         try {
           const img = await loadImage(url);

@@ -22,21 +22,12 @@ export default function HomePage() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          borderBottom: '1px solid rgba(255,255,255,0.09)',
+          borderBottom: '1px solid rgba(78,255,0,0.12)',
           background: '#111111',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <span
-            aria-hidden
-            style={{
-              width: 14,
-              height: 14,
-              borderRadius: '50%',
-              border: '3px solid #4EFF00',
-              display: 'inline-block',
-            }}
-          />
+          <span className="tfg-ring" aria-hidden />
           <span
             style={{
               fontSize: 11,

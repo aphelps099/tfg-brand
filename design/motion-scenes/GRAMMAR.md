@@ -32,6 +32,13 @@ Derived tones (from the text color): muted = fg at 55%, hairline = fg at 16%, so
 - Kickers: 24px (22px in dense frames), weight 700, uppercase, letter-spacing 0.17em, accent color. Left-aligned kickers carry a 46×3px accent dash before the text.
 - Dividers: 52×2px in muted (under titles); short thick rule 64×4.5px in accent (Save the Date).
 
+### Stacking discipline
+
+- **Title stack rhythm (center-aligned):** kicker → 36px gap → title 88px/1.14 → 40px gap → 52×2px muted divider → 40px gap → subtitle 32px/1.45 muted. The whole stack is vertically centered as one block.
+- **No orphan wraps, ever.** A display line never auto-wraps to leave a word alone: break titles into 2 balanced lines when they exceed the measure (`Early Stage / Tech Series`); break subtitles at punctuation (after an em dash or comma), never mid-phrase. If the last word of a wrap would sit alone, force the break one word earlier. (The renderer enforces the widow fix and balances two-line title wraps; write clean breaks anyway.)
+- **Kickers, dates, and time lines never wrap.** If a kicker exceeds the measure, shorten the copy, not the tracking.
+- **Max measures:** statement lines 92% of frame width; stat labels 66%; agenda and save-the-date text columns stop 420px short of the right edge.
+
 ## Text placement
 
 Horizontal and vertical placement are independent. Six positions: center, upper left, center left, lower left, lower center, lower right. Lists and photo frames usually read best lower left; titles and statements center.
@@ -49,7 +56,14 @@ Horizontal and vertical placement are independent. Six positions: center, upper 
 
 ## Backdrops
 
-Optional, behind text, in scheme colors, on one or two punch frames only: grid, starburst, ring, arc, hero-ring, star, split blocks, spirograph, escher, dot-wave, wave-field, growth-bars, rounds, TFG type cascade. In static design work, suggest a backdrop with restraint or leave frames clean — the motion renderer owns the animated versions.
+Optional, behind text, in scheme colors, on one or two punch frames only: grid, starburst, ring, arc, hero-ring, star, hero, split blocks, spirograph, escher, dot-wave, wave-field, growth-bars, rounds, TFG type cascade. In static design work, suggest a backdrop with restraint or leave frames clean — the motion renderer owns the animated versions.
+
+**Hero ring** (the SeriesPromoV2 title-shot circle): a thin accent circle behind the text — center of frame, radius 520px, stroke 2.5px, accent at 28% alpha (`rgba(78,255,0,0.28)` on Dark). In motion it draws itself closed (starting 0.15s before the scene's first text, complete by ~1.35s, easeOutCubic) and then its start angle drifts from −90° by +24° across the scene, so it is never static. The techfuturesgroup.org thick sage gradient band this id used to name lives under the `hero` backdrop.
+
+## Motion
+
+- **Entrance (all elements):** opacity 0→1 over 0.6s and translateY 36px→0 over 0.8s, both easeOutCubic, staggered top-to-bottom 0.15s apart. The scene's first element begins 0.15s before the scene cut, so a cut never lands on an empty frame.
+- **Subtle zoom (every scene):** the content group (text, tiles, dividers — not the backdrop, not the grain) scales 1 → 1.03 linearly across the scene. Transform origin: canvas center for centered layouts; (0.18 × width, 0.5 × height) for left-aligned layouts, so the anchor stays on the text column. Linear and ≤3%, it never fights the entrances.
 
 ## Voice
 

@@ -56,9 +56,9 @@ Horizontal and vertical placement are independent. Six positions: center, upper 
 
 ## Backdrops
 
-Optional, behind text, in scheme colors, on one or two punch frames only: grid, starburst, ring, arc, hero-ring, star, hero, split blocks, spirograph, escher, dot-wave, wave-field, growth-bars, rounds, TFG type cascade. In static design work, suggest a backdrop with restraint or leave frames clean — the motion renderer owns the animated versions.
+Optional, behind text, in scheme colors, on one or two punch frames only. The curated TFG set is **grid, ring, arc, circle, hero** — the old pattern set (splits, star, starburst, spirograph, escher, dot-wave, wave-field, growth-bars, rounds, type cascade) and the SBDC dot-grid were pruned from the TFG vocabulary (the engine still renders them for legacy projects only). In static design work, suggest a backdrop with restraint or leave frames clean — the motion renderer owns the animated versions.
 
-**Hero ring** (the SeriesPromoV2 title-shot circle): a thin accent circle behind the text — center of frame, radius 520px, stroke 2.5px, accent at 28% alpha (`rgba(78,255,0,0.28)` on Dark). In motion it draws itself closed (starting 0.15s before the scene's first text, complete by ~1.35s, easeOutCubic) and then its start angle drifts from −90° by +24° across the scene, so it is never static. The techfuturesgroup.org thick sage gradient band this id used to name lives under the `hero` backdrop.
+**Circle** (the SeriesPromoV2 title-shot circle): a thin accent circle behind the text — center of frame, radius 520px, stroke 2.5px, accent at 28% alpha (`rgba(78,255,0,0.28)` on Dark). In motion it draws itself closed (starting 0.15s before the scene's first text, complete by ~1.35s, easeOutCubic) and then its start angle drifts from −90° by +24° across the scene, so it is never static. The techfuturesgroup.org thick sage gradient band lives under the `hero` backdrop.
 
 ## Motion
 

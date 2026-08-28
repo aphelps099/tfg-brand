@@ -1,0 +1,73 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "title": "Title",
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080
+    },
+    {
+      "file": "Statement.dc.html",
+      "x": 2040,
+      "y": 0,
+      "w": 1920,
+      "h": 1080
+    },
+    {
+      "file": "Stat.dc.html",
+      "x": 4080,
+      "y": 0,
+      "w": 1920,
+      "h": 1080
+    },
+    {
+      "file": "Agenda.dc.html",
+      "x": 6120,
+      "y": 0,
+      "w": 1920,
+      "h": 1080
+    },
+    {
+      "file": "Quote.dc.html",
+      "x": 0,
+      "y": 1300,
+      "w": 1920,
+      "h": 1080
+    },
+    {
+      "file": "SaveTheDate.dc.html",
+      "x": 2040,
+      "y": 1300,
+      "w": 1920,
+      "h": 1080
+    },
+    {
+      "file": "PresenterCard.dc.html",
+      "x": 4080,
+      "y": 1300,
+      "w": 1920,
+      "h": 1080
+    },
+    {
+      "file": "EndCard.dc.html",
+      "x": 6120,
+      "y": 1300,
+      "w": 1920,
+      "h": 1080
+    }
+  ],
+  "annotations": [
+    {
+      "id": "grammar",
+      "x": 0,
+      "y": -470,
+      "w": 640,
+      "text": "TFG Motion Scenes — builder set\nOne artboard per scene template of the TFG Promotions Studio (mysbdc-tools /motion/tfg), matched to its canvas renderer at 1920x1080 (frame padding 110px).\n\nEvery artboard has one tweak: the approved TFG scheme (dark / charcoal / green / cream / white). Copy an artboard to start a new frame; retype the copy in place — kickers stay short caps, one idea per frame.\n\nType: GT America Extended (body, 300 for display lines, 700 caps kickers at wide tracking) - Tobias serif for statements and quotes - Michroma only in the lockup.\nFull grammar: tfg-brand/design/motion-scenes/GRAMMAR.md"
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}

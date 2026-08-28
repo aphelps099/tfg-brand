@@ -51,7 +51,12 @@ Horizontal and vertical placement are independent. Six positions: center, upper 
 - **Agenda** — kicker with accent dash · 2–4 rows at 50px/300, 95px row pitch, lower left.
 - **Quote** — Tobias italic 68px, line-height 1.28, typographic quotes, max-width 84% · attribution 26px/600 in accent with an em dash.
 - **Save the Date** — date tile 290×310, radius 6, soft fill + hairline border, month 26px caps accent over day 158px/300 · beside it: kicker · event title 64px · 64×4.5 accent rule · weekday/time/location 30px/600 · registration line 26px muted.
-- **Presenter card** — portrait frame 475×594 at frame left, top at 14% of height; the photo is ALWAYS grayscale at 50% opacity, no overlay, no motion · lower left: `PRESENTER` kicker, name 88px, divider, `Title · Organization` 32px muted.
+- **Presenter card** — the advisor bio template, four approved layouts (mono data lines in GT America Mono, caps, 0.15em tracking; photos always grayscale, cover-fit, no Ken Burns):
+  - **Split** (default) — accent panel left, 864px wide, 110px padding; on it in the background color: kicker → name 96px/1.08 wt300 → role mono 22px at 65% → URL mono 20px pinned 64px from bottom. Right: portrait 560×660 at 85% opacity, topics mono 21px at 50% centered 36px below.
+  - **Marquee** — poster: the name IS the graphic, accent color 170px/1.02 wt300 (steps down 10px to fit, floor 120px), lower-left, block bottom 210px from base; kicker top; topics mono 23px at 55% at the base; photo tile 480×620 upper right at 85% with a mono index line (`TFG ADVISOR — 01`) under it.
+  - **Baseline** — dark stage: kicker/name 110px/role from (110,150); accent bar full-width × 400px flush bottom carrying up to three `Label|Value` columns (label mono 18px at 55%, value 27px, hairline separators); photo 560×760 fully opaque overlapping the bar seam, crop biased to the top. No watermark.
+  - **Split duo** — the split panel with session title 92px + series line; right: two 400px tiles (photo 400×500 at 85%, name 38px, role mono 19px at 50%), 32px apart, centered as a group.
+  - **Choreography (all four):** structure slides in first (panel from left / bar from below, 700ms easeOutQuint, starting 0.15s before the cut), type mask-reveals over it (clip + 1.15em rise, 120ms stagger from 0.25s), photos fade-rise between (0.6s fade + 36px rise over 0.8s, index × 0.15s). Marquee inverts it — the giant accent name reveals first as the structure. Split layouts are 16:9 compositions; vertical canvases fall back to Baseline.
 - **End card** — centered: ring lockup (96px ring, 15px accent stroke, `TECH FUTURES GROUP` stacked in Michroma 15px at 0.32em beside it) · CTA kicker · `techfuturesgroup.org` 64px · fine print 22px muted at 70%.
 
 ## Backdrops
